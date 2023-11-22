@@ -18,6 +18,23 @@ import milestone from '@/sanity/schemas/objects/milestone';
 import timeline from '@/sanity/schemas/objects/timeline';
 import home from '@/sanity/schemas/singletons/home';
 import settings from '@/sanity/schemas/singletons/settings';
+import { theme } from 'https://themer.sanity.build/api/hues?default=lightest:b0bed4;darkest:000000';
+import CustomField from './sanity/ui/CustomField';
+import CustomItem from '@/sanity/ui/CustomItem';
+
+import posts from '@/sanity/schemas/posts';
+import team from '@/sanity/schemas/team';
+import category from '@/sanity/schemas/category';
+import media from '@/sanity/schemas/media';
+import img from '@/sanity/schemas/img';
+import quote from '@/sanity/schemas/quote';
+import video from '@/sanity/schemas/video';
+import audio from '@/sanity/schemas/audio';
+import model from '@/sanity/schemas/model';
+import library from '@/sanity/schemas/library';
+import headingBlock from '@/sanity/schemas/blocks/headingBlock';
+import contentBlock from '@/sanity/schemas/blocks/contentBlock';
+import teamBlock from '@/sanity/schemas/blocks/teamBlock';
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Reality Designers';
 
@@ -26,6 +43,7 @@ export default defineConfig({
    projectId: projectId || '',
    dataset: dataset || '',
    title,
+   theme,
    schema: {
       // If you want more content types, you can add them to this array
       types: [
@@ -39,7 +57,28 @@ export default defineConfig({
          // Objects
          milestone,
          timeline,
+
+         //
+         posts,
+         img,
+         audio,
+         video,
+         quote,
+         team,
+         category,
+         media,
+         library,
+         headingBlock,
+         contentBlock,
+         teamBlock,
+         model,
       ],
+   },
+   form: {
+      components: {
+         item: CustomItem,
+         field: CustomField,
+      },
    },
    plugins: [
       deskTool({
