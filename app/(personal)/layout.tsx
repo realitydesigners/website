@@ -7,7 +7,7 @@ import { draftMode } from 'next/headers';
 import { Suspense } from 'react';
 
 import { Footer } from '@/components/global/Footer';
-import { Navbar } from '@/components/global/Navbar';
+import Navbar from '@/components/global/Navbar/Navbar';
 
 import { urlForOpenGraphImage } from '@/sanity/lib/utils';
 import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery';
@@ -31,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
    };
 }
+<script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>;
 
 export const viewport: Viewport = {
    themeColor: '#000',
@@ -39,11 +40,11 @@ export const viewport: Viewport = {
 export default async function IndexRoute({ children }: { children: React.ReactNode }) {
    return (
       <>
-         <div className="flex min-h-screen flex-col bg-black text-white">
+         <div className="flex min-h-screen flex-col bg-gray-200">
             <Suspense>
                <Navbar />
             </Suspense>
-            <div className="mt-20 flex-grow px-4 md:px-16 lg:px-32">
+            <div className="mt-20 flex-grow min-h-screen">
                <Suspense>{children}</Suspense>
             </div>
             <Suspense>
