@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
    const [isNavOpen, setIsNavOpen] = useState(false);
@@ -74,14 +75,14 @@ export default function Navbar() {
    return (
       <nav role="navigation" id="navbar" className="flex items-center justify-between z-80 border-b border-gray-200 bg-gray-200/75 fixed w-full z-50 h-12">
          <div className="ml-2 relative z-80 logo">
-            <a href="/" className="flex-cols z-80 p-2 items-center flex">
+            <Link href="/" className="flex-cols z-80 p-2 items-center flex">
                {getIcon('logo')}
-            </a>
+            </Link>
          </div>
-         <a href="/" className="flex lg:flex text-black pt-2 pb-2 flex-col">
+         <Link href="/" className="flex lg:flex text-black pt-2 pb-2 flex-col">
             <span className="text-md font-bold tracking-wide leading-none">REALITY</span>
             <span className="text-xs font-bold leading-none">DESIGNERS</span>
-         </a>
+         </Link>
 
          <div className="flex relative">
             <button id="nav-toggle" className="flex items-center justify-center items-center relative p-2 z-20" aria-label="Toggle Menu" onClick={toggleNav}>
@@ -90,65 +91,65 @@ export default function Navbar() {
          </div>
 
          <div id="nav-content" role="menu" className={`absolute right-2 top-2 rounded-2xl border border-gray-200/20 bg-black/50 lg:w-1/3 sm:w-2/3 w-[96vw] h-[97vh] overflow-y-auto flex-grow flex items-center ${isNavOpen ? 'flex' : 'hidden'}`}>
-            <div class="w-full h-full backdrop-blur-xl p-2 relative ">
-               <div class="w-full h-[250px]">
-                  <a href="/">
+            <div className="w-full h-full backdrop-blur-xl p-2 relative ">
+               <div className="w-full h-[250px]">
+                  <Link href="/">
                      <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>
                      <spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode"></spline-viewer>
-                  </a>
+                  </Link>
                </div>
 
                <ul class="flex font-bold relative  p-2 gap-2 h-auto lg:h-auto flex-col  lg:justify-end uppercase text-black text-5xl lg:text-6xl">
                   <li>
-                     <a href="/library" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/library" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('library')}
                         </svg>
                         Library
-                     </a>
+                     </Link>
                   </li>
                   <li>
-                     <a href="/story" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/story" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('story')}
                         </svg>
                         Story
-                     </a>
+                     </Link>
                   </li>
 
                   <li>
-                     <a href="/feed" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/feed" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('feed')}
                         </svg>
                         Feed
-                     </a>
+                     </Link>
                   </li>
                   <li>
-                     <a href="/team" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/team" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('team')}
                         </svg>
                         Team
-                     </a>
+                     </Link>
                   </li>
                   <li>
-                     <a href="/assets" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/assets" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('assets')}
                         </svg>
                         3D
-                     </a>
+                     </Link>
                   </li>
                </ul>
-               <div class="w-full h-auto justify-center flex  p-2 bottom-0 rounded-xl relative ">
-                  <ul class="flex uppercase font-bold flex-row flex-wrap h-auto text-sm ">
-                     <li class="px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg ">
-                        <a href="/become-a-creator">Become A Creator</a>
+               <div className="w-full h-auto justify-center flex  p-2 bottom-0 rounded-xl relative ">
+                  <ul className="flex uppercase font-bold flex-row flex-wrap h-auto text-sm ">
+                     <li className="px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg ">
+                        <Link href="/become-a-creator">Become A Creator</Link>
                      </li>
 
-                     <li class="px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg ">
-                        <a href="/team">Contact </a>
+                     <li className="px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg ">
+                        <Link href="/team">Contact </Link>
                      </li>
                   </ul>
                </div>
