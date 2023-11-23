@@ -10,12 +10,12 @@ import { Footer } from '@/components/global/Footer';
 import Navbar from '@/components/global/Navbar/Navbar';
 
 import { urlForOpenGraphImage } from '@/sanity/lib/utils';
-import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery';
+import { loadHomePage, loadSettings, loadPosts } from '@/sanity/loader/loadQuery';
 
 const VisualEditing = dynamic(() => import('@/sanity/loader/VisualEditing'));
 
 export async function generateMetadata(): Promise<Metadata> {
-   const [{ data: settings }, { data: homePage }] = await Promise.all([loadSettings(), loadHomePage()]);
+   const [{ data: settings }, { data: homePage }] = await Promise.all([loadSettings(), loadHomePage(), loadPosts()]);
 
    const ogImage = urlForOpenGraphImage(settings?.ogImage);
    return {
