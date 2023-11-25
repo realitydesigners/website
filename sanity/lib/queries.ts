@@ -54,12 +54,13 @@ export const settingsQuery = groq`
 `;
 
 export const postsQuery = groq`
- *[_type == "posts"] |  order(_createdAt desc)[0] {
+ *[_type == "posts"] |  order(_createdAt desc)[0..8] {
    title,
    category,
    excerpt,
    tags,
    slug,
+   image,
 
    subcategories[]->{
      ...,
@@ -75,16 +76,9 @@ export const postsQuery = groq`
      image,
      tags,
      layout,
-
      title,
      publicationDate,
-      team->{
-     ...,
-     name,
-     role,
-     image,
-     shortBio,
-   },
+    
  },
-   image,
+   
  }`;

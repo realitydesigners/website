@@ -63,5 +63,6 @@ export function loadPage(slug: string) {
 }
 
 export function loadPosts() {
-   return loadQuery<PostsPayload | null>(postsQuery, {}, { next: { tags: [`posts`] } });
+   // The generic here should be an array of PostsPayload, not a single value or null
+   return loadQuery<PostsPayload[]>(postsQuery, {}, { next: { tags: [`posts`] } });
 }

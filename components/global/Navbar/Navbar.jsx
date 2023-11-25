@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { staatliches, inter, jura } from '@/app/fonts';
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -27,7 +28,6 @@ export default function Navbar() {
                <path d="M47.1279 70.8731L33.5967 55.3087M43.4729 23.3416L10.6978 28.9689L33.5967 55.3087M43.4729 23.3416L33.5967 55.3087M43.4729 23.3416L68.3831 51.4708L33.5967 55.3087M43.4729 23.3416L30.6805 9.58502" stroke="black" strokeWidth="5" />
             </svg>
          ),
-         // Placeholder icon for 'library'
          library: (
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path d="M4 3H20V21H4V3ZM6 5V19H18V5H6Z" stroke="currentColor" strokeWidth="2" />
@@ -80,8 +80,8 @@ export default function Navbar() {
             </Link>
          </div>
          <Link href="/" className="flex lg:flex text-black pt-2 pb-2 flex-col">
-            <span className="text-md font-bold tracking-wide leading-none">REALITY</span>
-            <span className="text-xs font-bold leading-none">DESIGNERS</span>
+            <span className={`${staatliches.className} text-xl font-bold tracking-wide leading-none`}>REALITY</span>
+            <span className={`${staatliches.className} text-sm font-bold tracking-wide leading-none`}>DESIGNERS</span>
          </Link>
 
          <div className="flex relative">
@@ -101,7 +101,7 @@ export default function Navbar() {
 
                <ul className="flex font-bold relative  p-2 gap-2 h-auto lg:h-auto flex-col  lg:justify-end uppercase text-black text-5xl lg:text-6xl">
                   <li>
-                     <Link href="/library" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/library" className={`${staatliches.className}  flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg`}>
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('library')}
                         </svg>
@@ -109,16 +109,15 @@ export default function Navbar() {
                      </Link>
                   </li>
                   <li>
-                     <Link href="/story" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/story" className={`${staatliches.className} flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg`}>
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('story')}
                         </svg>
                         Story
                      </Link>
                   </li>
-
                   <li>
-                     <Link href="/feed" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/feed" className={`${staatliches.className} flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg`}>
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('feed')}
                         </svg>
@@ -126,7 +125,7 @@ export default function Navbar() {
                      </Link>
                   </li>
                   <li>
-                     <Link href="/team" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/team" className={`${staatliches.className} flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg`}>
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('team')}
                         </svg>
@@ -134,7 +133,7 @@ export default function Navbar() {
                      </Link>
                   </li>
                   <li>
-                     <Link href="/assets" className="block flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg">
+                     <Link href="/assets" className={`${staatliches.className} flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg`}>
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('assets')}
                         </svg>
@@ -143,12 +142,11 @@ export default function Navbar() {
                   </li>
                </ul>
                <div className="w-full h-auto justify-center flex  p-2 bottom-0 rounded-xl relative ">
-                  <ul className="flex uppercase font-bold flex-row flex-wrap h-auto text-sm ">
-                     <li className="px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg ">
+                  <ul className={`${staatliches.className} flex uppercase font-bold flex-row flex-wrap h-auto text-sm`}>
+                     <li className="px-3 py-1 text-white hover:bg-gray-200/30 rounded-xl ">
                         <Link href="/become-a-creator">Become A Creator</Link>
                      </li>
-
-                     <li className="px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg ">
+                     <li className="px-3 py-1 text-white hover:bg-gray-200/30 rounded-xl ">
                         <Link href="/team">Contact </Link>
                      </li>
                   </ul>

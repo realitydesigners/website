@@ -65,10 +65,21 @@ export interface SettingsPayload {
    ogImage?: Image;
 }
 
+export interface BlockItem {
+   // ... define the BlockItem properties as they appear in your data
+   publicationDate?: string; // assuming publicationDate is optional within each block
+   // ... other properties
+}
+
 export interface PostsPayload {
    title: string;
    category: string;
    excerpt: string;
    tags: string[];
-   slug: string;
+   slug: {
+      current: string;
+   };
+   publicationDate?;
+   image: Image;
+   block?: BlockItem[]; // Add this line to include the 'block' property
 }
