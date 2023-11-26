@@ -1,21 +1,46 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { staatliches, inter, jura } from '@/app/fonts';
 import Link from 'next/link';
+import { Application } from '@splinetool/runtime';
 
 export default function Navbar() {
    const [isNavOpen, setIsNavOpen] = useState(false);
 
-   // Function to toggle the navigation menu
    const toggleNav = () => {
       setIsNavOpen(!isNavOpen);
+
       document.body.style.overflow = isNavOpen ? 'auto' : 'hidden';
    };
+   useEffect(() => {
+      return () => {
+         document.body.style.overflow = 'auto';
+      };
+   }, []);
 
-   // Function to handle the SVG path change
-   const getMenuIconPath = () => {
-      return isNavOpen ? 'M3 3l18 18M3 21L21 3' : 'M3 12h18M3 6h18M3 18h18';
-   };
+   // const loadSplineScene = () => {
+   //    const canvas = document.getElementById('canvas3d');
+   //    if (!canvas) {
+   //       console.error('Canvas element not found');
+   //       return;
+   //    }
+
+   //    console.log('Loading Spline scene...');
+   //    const spline = new Application(canvas);
+   //    spline
+   //       .load('https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode')
+   //       .then(() => {
+   //          console.log('Spline scene loaded successfully');
+   //       })
+   //       .catch(error => {
+   //          console.error('Error loading Spline scene:', error);
+   //       });
+   // };
+
+   // useEffect(() => {
+   //    loadSplineScene();
+   // }, []);
+
    const getIcon = name => {
       const icons = {
          logo: (
@@ -96,6 +121,7 @@ export default function Navbar() {
                   <Link href="/">
                      <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>
                      <spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode"></spline-viewer>
+                     {/* <canvas id="canvas3d" className="w-80 h-80 z-10" /> */}
                   </Link>
                </div>
 
@@ -109,11 +135,11 @@ export default function Navbar() {
                      </Link>
                   </li>
                   <li>
-                     <Link href="/story" className={`${staatliches.className} flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg`}>
+                     <Link href="/posts" className={`${staatliches.className} flex items-center px-3 py-1 text-white hover:bg-gray-200/30 rounded-lg`}>
                         <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                            {getIcon('story')}
                         </svg>
-                        Story
+                        Posts
                      </Link>
                   </li>
                   <li>
