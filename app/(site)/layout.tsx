@@ -17,10 +17,6 @@ export default async function PostsPage({ children }: { children: React.ReactNod
             <div className="flex min-h-screen flex-col bg-gray-200">
                <Suspense>{children}</Suspense>
             </div>
-
-            <Suspense>
-               <Footer />
-            </Suspense>
          </div>
       </>
    );

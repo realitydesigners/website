@@ -24,7 +24,7 @@ const mono = IBM_Plex_Mono({
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
    return (
-      <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable}`}>
+      <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} bg-gray-200`}>
          <body>{children}</body>
       </html>
    );

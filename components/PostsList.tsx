@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import ImageBox from '@/components/shared/ImageBox';
-import { PostsPayload } from '@/types/index';
+import { PostsPayload } from '@/types';
 import { staatliches, jura } from '@/app/fonts'; // Assuming these are valid class names
 
 interface PostItemProps {
