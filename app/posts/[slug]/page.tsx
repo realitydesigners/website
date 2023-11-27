@@ -6,8 +6,10 @@ import dynamic from 'next/dynamic';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
-import { Page } from '@/components/pages/posts/Page';
+import { Page } from '@/components/pages/posts/PostSlugPage';
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs';
+
+const PostPagePreview = dynamic(() => import('@/components/pages/posts/PostPagePreview'));
 
 type Props = {
    params: { slug: string };
@@ -23,12 +25,15 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 }
 
 export function generateStaticParams() {
-   return generateStaticSlugs('page');
+   return generateStaticSlugs('posts');
 }
 
 export default async function PageSlugRoute({ params }: Props) {
    const initial = await loadPostsPage(params.slug);
 
+   if (draftMode().isEnabled) {
+      return <PostPagePreview params={params} initial={initial} />;
+   }
    // console.log(initial);
 
    if (!initial.data) {

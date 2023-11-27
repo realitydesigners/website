@@ -38,7 +38,7 @@ export const PostItem: FC<PostItemProps> = ({ post }) => {
          )}
          <div>
             <p className={`${jura.className} w-10/12 p-2 text-sm text-black`}>{formattedDate}</p>
-            <Link href={`/posts/${slug.current}`}>
+            <Link href={`/posts/${slug?.current}`}>
                <h2 className={`${staatliches.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}>{title}</h2>
             </Link>
             <p className={`${jura.className} p-2 text-md font-bold leading-tight text-black`}>{excerpt}</p>
@@ -58,7 +58,7 @@ export const PostsList: FC<PostsListProps> = ({ post }) => {
    return (
       <div className="grid grid-cols-1 gap-4 p-4 pt-20 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
          {post.map(post => (
-            <PostItem key={post.slug.current} post={post} />
+            <PostItem key={post.slug?.current} post={post} />
          ))}
       </div>
    );

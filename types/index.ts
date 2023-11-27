@@ -72,15 +72,15 @@ export interface BlockItem {
 }
 
 export interface PostsPayload {
-   title: string;
-   category: string;
-   excerpt: string;
-   tags: string[];
-   slug: {
+   title?: string;
+   category?: string;
+   excerpt?: string;
+   tags?: string[];
+   slug?: {
       current: string;
    };
-   publicationDate?;
-   image: Image;
+   publicationDate?: string;
+   image?: Image;
    block?: BlockItem[]; // Add this line to include the 'block' property
-   content: PortableTextBlock[];
+   content?: PortableTextBlock[];
 }
