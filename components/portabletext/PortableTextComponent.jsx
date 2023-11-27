@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ArticleRef, AudioRef, ImageRef, MediaRef, MediaRefLight, PostsRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
 
+import { staatliches, jura } from '@/fonts';
+
 const iFrame = ({ value }) => {
    const { url, width, height } = value;
 
@@ -60,19 +62,24 @@ const Blog = {
 const Light = {
    block: {
       normal: ({ children }) => (
-         <div className="w-screen flex justify-center " style={{ fontFamily: 'Noto Sans', fontWeight: 400 }}>
-            <p className="w-11/12 text-black leading-7 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl mb-8  ">{children}</p>
+         <div className="w-screen flex justify-center ">
+            <p className={`${jura.className} w-11/12 font-bold text-black leading-7 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
          </div>
       ),
-      h1: ({ children }) => <h1 className="w-full text-4xl font-bold uppercase leading-none tracking-wide  lg:w-1/2 lg:text-6xl">{children}</h1>,
+      h1: ({ children }) => (
+         <div className="w-screen flex justify-center">
+            <h1 className={`${staatliches.className} mb-6 w-10/12 text-black text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h1>
+         </div>
+      ),
+
       h2: ({ children }) => (
-         <div style={{ fontFamily: 'Rajdhani', fontWeight: 700 }} className="w-screen flex justify-center">
-            <h2 className="mb-8 w-10/12 text-black text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl">{children}</h2>
+         <div className="w-screen flex justify-center">
+            <h2 className={`${staatliches.className} mb-6 w-10/12 text-black text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h2>
          </div>
       ),
       h3: ({ children }) => (
-         <div style={{ fontFamily: 'Rajdhani', fontWeight: 700 }} className="w-screen flex justify-center">
-            <h2 className="mb-8  w-10/12 text-3xl font-bold  leading-none tracking-wide md:w-3/4   lg:w-1/2 lg:text-5xl">{children}</h2>
+         <div className="w-screen flex justify-center">
+            <h2 className={`${staatliches.className} mb-6  w-11/12 text-4xl font-bold  leading-none tracking-wide md:w-3/4   lg:w-1/2 lg:text-5xl`}>{children}</h2>
          </div>
       ),
    },

@@ -1,3 +1,5 @@
+import { staatliches, jura } from '@/fonts';
+
 const VideoRefWrapper = ({ value }) => {
    const { videoRefData, className } = value;
 
@@ -15,16 +17,16 @@ const VideoRefWrapper = ({ value }) => {
    switch (className) {
       case 'card-1':
          return (
-            <div className="flex justify-center w-full p-0 lg:p-8 mb-8">
-               <div className=" w-full lg:w-3/4 bg-black p-4 rounded-none lg:rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="flex justify-center w-full mb-6">
+               <div className=" w-full lg:w-3/4 ">
                   <video
                      controls
-                     className="w-full h-auto rounded-xl" // Ensure responsiveness and rounded corners at top
+                     className="w-full h-auto rounded-x bg-black shadow-xl " // Ensure responsiveness and rounded corners at top
                   >
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                   </video>
-                  <p className=" ml-2 uppercase text-sm tracking-wide pt-4 font-mono text-white font-bold ">{videoTitle}</p>
+                  <p className={`${staatliches.className} ml-2 uppercase text-4xl text-center tracking-wide pt-4 font-mono text-black font-bold`}>{videoTitle}</p>
                </div>
             </div>
          );
