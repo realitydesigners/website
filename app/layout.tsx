@@ -1,27 +1,31 @@
 import 'tailwindcss/tailwind.css';
 
-import { Suspense } from 'react';
-import { Footer } from '@/components/global/Footer';
-import Navbar from '@/components/global/Navbar';
+import 'tailwindcss/tailwind.css';
 
-export default function IndexPage({ children }: { children: React.ReactNode }) {
+import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google';
+
+const serif = PT_Serif({
+   variable: '--font-serif',
+   style: ['normal', 'italic'],
+   subsets: ['latin'],
+   weight: ['400', '700'],
+});
+const sans = Inter({
+   variable: '--font-sans',
+   subsets: ['latin'],
+   // @todo: understand why extrabold (800) isn't being respected when explicitly specified in this weight array
+   // weight: ['500', '700', '800'],
+});
+const mono = IBM_Plex_Mono({
+   variable: '--font-mono',
+   subsets: ['latin'],
+   weight: ['500', '700'],
+});
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
    return (
-      <html lang="en">
-         <body>
-            <Navbar />
-            <main className="flex-grow bg-gray-200">
-               <Suspense
-                  fallback={
-                     <div className="flex justify-center items-center min-h-screen">
-                        <p>Loading...</p>
-                     </div>
-                  }
-               >
-                  {children}
-               </Suspense>
-            </main>
-            <Footer />
-         </body>
+      <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable}`}>
+         <body>{children}</body>
       </html>
    );
 }
