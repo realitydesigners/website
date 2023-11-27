@@ -19,12 +19,12 @@ export default function Navbar() {
    const getIcon = name => {
       const icons = {
          logo: (
-            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path d="M47.1279 70.8731L33.5967 55.3087M43.4729 23.3416L10.6978 28.9689L33.5967 55.3087M43.4729 23.3416L33.5967 55.3087M43.4729 23.3416L68.3831 51.4708L33.5967 55.3087M43.4729 23.3416L30.6805 9.58502" stroke="black" strokeWidth="5" />
             </svg>
          ),
          menu: (
-            <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg width="35" height="35" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isNavOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
             </svg>
          ),
@@ -51,7 +51,7 @@ export default function Navbar() {
    return (
       <nav role="navigation" id="navbar" className="flex items-center h-16 p-2 justify-between fixed w-full z-50 bg-gradient-to-t from-transparent to-gray-200">
          <div className=" relative flex items-center z-10">
-            <Link href="/posts" className="flex items-center h-12 w-12 w-auto p-2">
+            <Link href="/posts" className="flex items-center  w-auto p-2">
                {getIcon('logo')}
             </Link>
             <Link href="/" className={`${staatliches.className} text-black pt-2 pb-2 hidden lg:flex flex-col`}>
