@@ -82,4 +82,5 @@ export interface PostsPayload {
    publicationDate?;
    image: Image;
    block?: BlockItem[]; // Add this line to include the 'block' property
+   content: PortableTextBlock[];
 }

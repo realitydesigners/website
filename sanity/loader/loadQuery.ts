@@ -3,7 +3,7 @@ import 'server-only';
 import { draftMode } from 'next/headers';
 
 import { client } from '@/sanity/lib/client';
-import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery } from '@/sanity/lib/queries';
+import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery } from '@/sanity/lib/queries';
 import { token } from '@/sanity/lib/token';
 import { HomePagePayload, PagePayload, ProjectPayload, SettingsPayload, PostsPayload } from '@/types';
 
@@ -65,4 +65,8 @@ export function loadPage(slug: string) {
 export function loadPosts() {
    // The generic here should be an array of PostsPayload, not a single value or null
    return loadQuery<PostsPayload[]>(postsQuery, {}, { next: { tags: [`posts`] } });
+}
+
+export function loadPostsPage(slug: string) {
+   return loadQuery<PostsPayload | null>(postsBySlugQuery, { slug }, { next: { tags: [`posts:${slug}`] } });
 }

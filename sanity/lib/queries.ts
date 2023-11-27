@@ -82,3 +82,33 @@ export const postsQuery = groq`
  },
    
  }`;
+
+export const postsBySlugQuery = groq`
+ *[_type == "posts" && slug.current == $slug][0] {
+   title,
+   category,
+   excerpt,
+   tags,
+   slug,
+   image,
+
+   subcategories[]->{
+     ...,
+     name,
+     title,
+   },
+   
+   publicationDate,
+   block[]{
+     ...,
+     heading,
+     subHeading,
+     image,
+     tags,
+     layout,
+     title,
+     publicationDate,
+    
+ },
+   
+ }`;
