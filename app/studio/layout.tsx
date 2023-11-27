@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Footer } from '@/components/global/Footer';
 import Navbar from '@/components/global/Navbar';
 
-export default function IndexPage({ children }: { children: React.ReactNode }) {
+export default async function IndexPage({ children }: { children: React.ReactNode }) {
    return (
       <main className="flex-grow bg-gray-200">
          <Suspense
