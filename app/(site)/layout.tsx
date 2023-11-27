@@ -13,16 +13,14 @@ export default async function PostsPage({ children }: { children: React.ReactNod
             <Suspense>
                <Navbar />
             </Suspense>
-            <main>
-               <div className="flex min-h-screen flex-col bg-gray-200">
-                  <div className="mt-20 flex-grow min-h-screen">
-                     <Suspense>{children}</Suspense>
-                  </div>
-               </div>
-               <Suspense>
-                  <Footer />
-               </Suspense>
-            </main>
+
+            <div className="flex min-h-screen flex-col bg-gray-200">
+               <Suspense>{children}</Suspense>
+            </div>
+
+            <Suspense>
+               <Footer />
+            </Suspense>
          </div>
       </>
    );
