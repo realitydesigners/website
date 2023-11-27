@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
-import ImageBox from '@/components/shared/ImageBox';
+import SmallImage from '@/components/shared/SmallImage';
 import { PostsPayload } from '@/types';
 import { staatliches, jura } from '@/fonts'; // Assuming these are valid class names
 
@@ -33,7 +33,7 @@ export const PostItem: FC<PostItemProps> = ({ post }) => {
       <article className="mb-4 h-auto border border-gray-800 p-1">
          {image && (
             <div className="relative h-48">
-               <ImageBox image={image} alt={`Cover Image for ${title}`} classesWrapper="w-full h-full object-cover object-contain" />
+               <SmallImage image={image} alt={`Cover Image for ${title}`} classesWrapper="w-full h-full object-cover object-contain" />
             </div>
          )}
          <div>

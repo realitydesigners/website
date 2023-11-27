@@ -1,28 +1,26 @@
 import ImageBox from '@/components/shared/ImageBox';
+import SmallImage from '../shared/SmallImage';
 import Link from 'next/link';
 
 const ImageCard = ({ title, slug, image, className }) => {
-   // Change 'img' to 'image' as the prop name
    switch (className) {
       case 'card-1':
          return (
             <div className="relative p-4 mb-8 ">
-               <div className="relative flex h-auto w-full">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper="relative h-[325px] md:h-[600px] lg:h-[800px] w-full object-cover rounded-2xl shadow-xl" />}</div>
+               <div className="relative justify-center  items-center flex h-auto bg-gray-400 w-full ">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  object-cover contain h-full object-cover" />}</div>
                {image?.team && (
-                  <div className="relative rounded-b-xl -mt-12  pt-4 bottom-0 flex h-auto w-full  bg-gradient-to-t from-black to-transparent pl-4  text-white">
-                     <ImageBox image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper="mr-2 h-6 w-6 rounded-full" />
+                  <div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-white">
+                     <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper="mr-2 h-[40px] w-[40px] rounded-full" />
 
-                     <div className="font-rajdhani relative flex flex-col items-start text-xs uppercase leading-none">
-                        <a href="/" className="text-gray-400">
+                     <div className=" justify-center relative flex flex-col items-start text-xs uppercase leading-none">
+                        <Link href="/" className="text-black font-mono text-xs">
                            Artist
-                        </a>
-                        <a href="/" className="text-white">
+                        </Link>
+                        <Link href={`/media/${slug}`} className="text-black font-mono font-bold text-md">
                            {image.team.name}
-                        </a>
+                        </Link>
                      </div>
-                     <Link href={`/media/${slug}`} className=" ml-4 inline-block cursor-pointer text-2xl font-bold text-white">
-                        →
-                     </Link>
+                     <p className=" ml-4 inline-block cursor-pointer text-2xl font-bold text-black">→</p>
                   </div>
                )}
             </div>
@@ -38,15 +36,12 @@ const ImageCard = ({ title, slug, image, className }) => {
 };
 
 const ImageRefWrapper = ({ value }) => {
-   const { image, className } = value; // Destructure 'image' from 'value'
+   const { image, className } = value;
 
    return (
       <div>
          <div className={className}>
-            <ImageCard
-               image={image} // Pass 'image' as a prop
-               className={className}
-            />
+            <ImageCard image={image} className={className} />
          </div>
       </div>
    );

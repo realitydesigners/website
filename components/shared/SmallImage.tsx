@@ -12,7 +12,7 @@ interface ImageBoxProps {
    'data-sanity'?: string;
 }
 
-export default function ImageBox({ image, alt = 'Cover image', width = 1500, height = 1000, size = '100vw', classesWrapper, ...props }: ImageBoxProps) {
+export default function SmallImage({ image, alt = 'Cover image', width = 600, height = 450, size = '100vw', classesWrapper, ...props }: ImageBoxProps) {
    const imageUrl = image && urlForImage(image)?.height(height).width(width).fit('crop').url();
 
    return (

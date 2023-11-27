@@ -1,6 +1,6 @@
-import React from 'react';
 import Link from 'next/link';
-import { staatliches, jura } from '@/fonts'; // Assuming these are valid class names
+import SmallImage from '../shared/SmallImage';
+import { staatliches, jura } from '@/fonts';
 
 import ImageBox from '@/components/shared/ImageBox';
 
@@ -47,13 +47,13 @@ const HeadingBlockLight = ({ block }) => {
                         </div>
                      )}
                   </div>
-                  {block.heading && <h1 className={`${staatliches.className} text-4xl text-black leading-8 mb-4 lg:text-6xl `}>{block.heading}</h1>}
-                  {block.subheading && <p className={`${jura.className}  w-full font-bold text-md text-black leading-5 tracking-wide `}>{block.subheading}</p>}
+                  {block.heading && <h1 className={`${staatliches.className} text-5xl text-black leading-tightest mb-4 lg:text-6xl `}>{block.heading}</h1>}
+                  {block.subheading && <p className={`${jura.className}  w-full font-bold text-2xl  text-black leading-7 tracking-wide `}>{block.subheading}</p>}
                   <div className="w-full h-auto flex items-center pt-4">
                      {block.team && (
                         <Link href={`/team/${block.team.slug.current}`}>
-                           <div className="flex items-center bg-gray-300 p-2 rounded-lg border w-full ">
-                              {block.team.image && <ImageBox image={block.team.image} alt={`Cover Image for ${block.title}`} classesWrapper="w-10 h-10 object-cover rounded-full" />}
+                           <div className="flex items-center p-2 rounded-lg border w-full ">
+                              {block.team.image && <SmallImage image={block.team.image} alt={`Cover Image for ${block.title}`} classesWrapper="w-[25px] h-[25px] object-cover rounded-full" />}
                               {block.team.name && <span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-xs">By {block.team.name}</span>}
                            </div>
                         </Link>
