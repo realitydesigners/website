@@ -8,38 +8,22 @@ export default function Navbar() {
    const [isNavOpen, setIsNavOpen] = useState(false);
 
    const toggleNav = () => {
-      setIsNavOpen(!isNavOpen);
-
-      document.body.style.overflow = isNavOpen ? 'auto' : 'hidden';
+      setIsNavOpen(prevIsNavOpen => {
+         // Toggle the overflow style immediately with the current state
+         document.body.style.overflow = prevIsNavOpen ? 'auto' : 'hidden';
+         return !prevIsNavOpen;
+      });
    };
+
+   // Effect for applying body overflow style when the nav state changes
    useEffect(() => {
+      document.body.style.overflow = isNavOpen ? 'hidden' : 'auto';
+
+      // Cleanup function to reset the overflow style on unmount
       return () => {
          document.body.style.overflow = 'auto';
       };
-   }, []);
-
-   // const loadSplineScene = () => {
-   //    const canvas = document.getElementById('canvas3d');
-   //    if (!canvas) {
-   //       console.error('Canvas element not found');
-   //       return;
-   //    }
-
-   //    console.log('Loading Spline scene...');
-   //    const spline = new Application(canvas);
-   //    spline
-   //       .load('https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode')
-   //       .then(() => {
-   //          console.log('Spline scene loaded successfully');
-   //       })
-   //       .catch(error => {
-   //          console.error('Error loading Spline scene:', error);
-   //       });
-   // };
-
-   // useEffect(() => {
-   //    loadSplineScene();
-   // }, []);
+   }, [isNavOpen]);
 
    const getIcon = name => {
       const icons = {
@@ -98,7 +82,7 @@ export default function Navbar() {
    };
 
    return (
-      <nav role="navigation" id="navbar" className="flex items-center justify-between z-80 border-b border-gray-200 bg-gray-200/75 fixed w-full z-50 h-12">
+      <nav role="navigation" id="navbar" className={`flex items-center justify-between z-50 border-b border-gray-200 bg-gray-200/75 fixed w-full h-12 ${isNavOpen ? 'overflow-hidden' : 'overflow-auto'}`}>
          <div className="ml-2 relative z-80 logo">
             <Link href="/" className="flex-cols z-80 p-2 items-center flex">
                {getIcon('logo')}
@@ -115,7 +99,7 @@ export default function Navbar() {
             </button>
          </div>
 
-         <div id="nav-content" role="menu" className={`absolute right-2 top-2 rounded-2xl border border-gray-200/20 bg-black/50 lg:w-1/3 sm:w-2/3 w-[96vw] h-[97vh] overflow-y-auto flex-grow flex items-center ${isNavOpen ? 'flex' : 'hidden'}`}>
+         <div id="nav-content" role="menu" className={`absolute right-2 top-full mt-12 rounded-2xl border border-gray-200/20 bg-black/50 lg:w-1/3 sm:w-2/3 w-[96vw] h-[97vh] overflow-y-auto ${isNavOpen ? 'flex' : 'hidden'}`}>
             <div className="w-full h-full backdrop-blur-xl p-2 relative ">
                <div className="w-full h-[250px]">
                   <Link href="/">
