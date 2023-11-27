@@ -83,7 +83,7 @@ export const postsQuery = groq`
    
  }`;
 
-export const postsBySlugQuery = groq`
+export const postssBySlugQuery = groq`
  *[_type == "posts" && slug.current == $slug][0] {
    title,
    category,
@@ -112,3 +112,78 @@ export const postsBySlugQuery = groq`
  },
    
  }`;
+
+export const postsBySlugQuery = groq`
+*[_type == "posts" && slug.current == $slug][0] {
+     title,
+     slug,
+     excerpt,
+     image,
+     block[]{
+       ...,
+       heading,
+       subHeading,
+       image,
+       tags,
+       layout,
+       title,
+       publicationDate,
+        team->{
+       ...,
+       name,
+       role,
+       image,
+       shortBio,
+     },
+     
+         content[]{
+       ...,
+       
+       media-> {
+         ...,
+         className->{name},
+         team->,
+       },
+       image->{
+         ...,
+         className->{name},
+         team->,
+       },
+       "videoRefData": {
+         "videoTitle": video->title,
+         "videoFileUrl": video->video.asset->url,
+         "videoImage": video->image,
+         "videoTeam": video->team,
+         team->,
+       },
+
+       "audioRefData": {
+         "audioTitle": audio->title,
+         "audioFileUrl": audio->audioFile.asset->url
+       },
+       quote->{
+         ...,
+         quote,
+         "mediaRef": {
+           "layout": mediaRef.layout,
+           "image": mediaRef.image->image.asset->url
+         }
+       },
+       markDefs[]{
+         ...,
+         _type == "internalLink" => {
+           "slug": @.reference->slug
+         }
+       },
+       "postsRef": {
+         "postsTitle": posts->title,
+         "postsSlug": posts->slug.current,
+         "postsImage": posts->image,
+         "postsExcerpt": posts->excerpt,
+         ...,
+       },
+     },
+   },
+  
+   }
+ `;

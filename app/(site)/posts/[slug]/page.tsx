@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 
-import { Page } from '@/app/(site)/posts/[slug]/SlugPage';
+import Page from '@/app/(site)/posts/[slug]/SlugPage';
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs';
 
 const PostPagePreview = dynamic(() => import('@/app/(site)/posts/[slug]/Preview'));
