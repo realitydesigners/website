@@ -1,6 +1,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader/rsc';
 
 import type { PostsPayload } from '@/types';
+import PortableTextComponent from '@/components/portabletext/PortableTextComponent';
 
 import React from 'react';
 import HeadingBlockLight from '@/components/blog/HeadingBlockLight';
@@ -25,6 +26,17 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
          })}
 
          {/* CONTENT BLOCK */}
+         {data?.block?.map(
+            (contentBlock: any, index: number) =>
+               contentBlock?.content &&
+               (contentBlock.layout === 'dark' ? (
+                  <PortableTextComponent content={contentBlock.content} template="blog" />
+               ) : contentBlock.layout === 'light' ? (
+                  <div className="w-full h-auto bg-gray-200  lg:pt-24">
+                     <PortableTextComponent content={contentBlock.content} template="light" />
+                  </div>
+               ) : null),
+         )}
       </main>
    );
 };
