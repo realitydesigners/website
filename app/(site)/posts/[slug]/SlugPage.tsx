@@ -1,7 +1,7 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader/rsc';
 import { CustomPortableText } from '@/components/shared/CustomPortableText';
 import { Header } from '@/components/shared/Header';
-import { staatliches } from '@/app/fonts'; //
+import { staatliches } from '@/fonts'; //
 import type { PostsPayload } from '@/types';
 
 export interface PageProps {

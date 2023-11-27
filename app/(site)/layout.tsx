@@ -1,10 +1,7 @@
 import 'tailwindcss/tailwind.css';
 
 import { Suspense } from 'react';
-import { Footer } from '@/components/global/Footer';
 import Navbar from '@/components/global/Navbar';
-
-<script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>;
 
 export default async function PostsPage({ children }: { children: React.ReactNode }) {
    return (

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 import Link from 'next/link';
-import { staatliches, inter, jura } from '@/app/fonts';
+import { staatliches, inter, jura } from '@/fonts';
 
 export default function Navbar() {
    const [isNavOpen, setIsNavOpen] = useState(false);

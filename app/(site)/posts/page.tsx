@@ -1,5 +1,5 @@
 import { loadPosts } from '@/sanity/loader/loadQuery';
-import { PostsList } from '@/components/PostsList';
+import { PostsList } from '@/components/global/PostsList';
 
 export default async function PostPage() {
    const response = await loadPosts();
