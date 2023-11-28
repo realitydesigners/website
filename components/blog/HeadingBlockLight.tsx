@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import SmallImage from '../shared/SmallImage';
-import { staatliches, jura } from '@/fonts';
 
 import ImageBox from '@/components/shared/ImageBox';
+import { jura,staatliches } from '@/fonts';
+
+import SmallImage from '../shared/SmallImage';
 
 const HeadingBlockLight = ({ block }) => {
    if (block?._type !== 'headingBlock') {

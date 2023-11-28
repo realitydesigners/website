@@ -1,5 +1,7 @@
+'use client';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
+
 import { PostsBySubCategory, useCategoryInteraction } from './index.ts';
 
 const CAMERA_POSITION = [0, 0, 5];

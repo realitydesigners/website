@@ -38,7 +38,7 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
                ) : null),
          )}
          {/* CONTENT BLOCK */}
-         {data?.block?.map((block: any) => <div>{block._type === 'teamBlock' && <TeamBlock block={block} />}</div>)}
+         {data?.block?.map((block, index) => <div>{block._type === 'teamBlock' && <TeamBlock key={index} block={block} />}</div>)}
       </main>
    );
 };

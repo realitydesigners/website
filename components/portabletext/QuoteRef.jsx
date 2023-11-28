@@ -1,5 +1,6 @@
-import ImageBox from '@/components/shared/ImageBox';
 import Link from 'next/link';
+
+import ImageBox from '@/components/shared/ImageBox';
 
 const QuoteCard = ({ quote, media }) => {
    return (

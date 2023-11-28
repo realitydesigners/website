@@ -1,6 +1,8 @@
+'use client';
 import { Text } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import React, { useRef, useState } from 'react';
+
 import Crystal from './Crystal';
 import { getCategoryPositions } from './Postions';
 
@@ -9,13 +11,7 @@ export const Category = props => {
 
    const isDimmed = selectedCategory && selectedCategory !== title;
 
-   const playSound = soundPath => {
-      const audio = new Audio(soundPath);
-      audio.play();
-   };
-
    const handleHover = () => {
-      playSound('/sounds/click.mp3');
       if (onPointerOver) {
          onPointerOver(title, position);
       }
@@ -38,7 +34,7 @@ export const Category = props => {
    return (
       <group position={position} rotation={[0, rotationY, 0]} onPointerOver={onHover} onPointerOut={onLeave} onClick={handleRedirect}>
          <Crystal className="main-crystal" position={[0, 0, 5]} scale={[5, 5, 5]} onPointerOver={handleHover} onPointerOut={onPointerOut} emissiveIntensity={isDimmed ? 0.5 : isHighlighted ? 1 : 0.6} />
-         <Text ref={textRef} position={[0, 0, -1]} color="black" fontSize={1.5} font="/fonts/monomaniac.ttf" anchorY="middle" maxWidth={5} lineHeight={0.9} textAlign="center">
+         <Text ref={textRef} position={[0, 0, -1]} color="black" fontSize={1.5} anchorY="middle" maxWidth={5} lineHeight={0.9} textAlign="center">
             {title}
          </Text>
       </group>

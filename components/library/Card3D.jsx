@@ -1,3 +1,4 @@
+'use client';
 import { Text } from '@react-three/drei';
 import React, { useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -30,7 +31,7 @@ const Card3D = props => {
    return (
       <mesh ref={meshRef} position={position}>
          <primitive attach="material" object={material} />
-         <Text position={[0, 0.2, 0.07]} fontSize={0.1} color="black" maxWidth={0.8} font="/fonts/monomaniac.ttf">
+         <Text position={[0, 0.2, 0.07]} fontSize={0.1} color="black" maxWidth={0.8}>
             {title}
          </Text>
       </mesh>

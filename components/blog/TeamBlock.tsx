@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import SmallImage from '@/components/shared/SmallImage';
 
 const TeamBlock = ({ block }) => {

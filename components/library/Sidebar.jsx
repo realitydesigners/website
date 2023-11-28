@@ -1,5 +1,3 @@
-import React from 'react';
-
 const PostCard = ({ title, author, excerpt, publicationDate }) => {
    return (
       <div className="mb-2 max-w-full rounded border border-gray-200/20 bg-black bg-opacity-50 p-4 font-mono text-gray-300 shadow-md transition duration-300 ease-in-out hover:bg-opacity-70">

@@ -4,7 +4,7 @@ export { default as ImageRef } from './ImageRef';
 export { default as MediaRef } from './MediaRef';
 export { default as MediaRefLight } from './MediaRefLight';
 export { default as PostsRef } from './PostsRef';
+export { default as PostsRefLight } from './PostsRefLight';
 export { default as QuoteRef } from './QuoteRef';
 export { default as SplineRef } from './SplineRef';
 export { default as VideoRef } from './VideoRef';
-export { default as PostsRefLight } from './PostsRefLight';

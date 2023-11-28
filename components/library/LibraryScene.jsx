@@ -1,6 +1,7 @@
+'use client';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import SplineCode from '../three/SplineCode.jsx';
+
 import { LibraryCategories, Sidebar, useCategoryInteraction } from './index.ts';
 
 const CAMERA_POSITION = [0, 25, 40];

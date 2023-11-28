@@ -1,3 +1,4 @@
+'use client';
 import * as SPLAT from 'gsplat';
 import React, { useEffect, useRef, useState } from 'react';
 

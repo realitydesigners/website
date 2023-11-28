@@ -1,8 +1,10 @@
+'use client';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import React, { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { fileUrlFor } from '../../lib/urlFor';
+
+import { fileUrlFor } from '@/sanity/lib/utils';
 
 const ModelWithEffects = ({ model, position, scale, onPointerOver, onPointerOut, onClick, emissiveIntensity = 1 }) => {
    const meshRef = useRef(null);

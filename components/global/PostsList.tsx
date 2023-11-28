@@ -1,8 +1,9 @@
-import { FC } from 'react';
 import Link from 'next/link';
+import { FC } from 'react';
+
 import SmallImage from '@/components/shared/SmallImage';
+import { jura,staatliches } from '@/fonts'; // Assuming these are valid class names
 import { PostsPayload } from '@/types';
-import { staatliches, jura } from '@/fonts'; // Assuming these are valid class names
 
 interface PostItemProps {
    post: PostsPayload;

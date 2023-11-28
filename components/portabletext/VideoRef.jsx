@@ -1,4 +1,4 @@
-import { staatliches, jura } from '@/fonts';
+import { jura,staatliches } from '@/fonts';
 
 const VideoRefWrapper = ({ value }) => {
    const { videoRefData, className } = value;

@@ -1,7 +1,9 @@
+'use client';
 import { Line, Text } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+
 import Crystal from './Crystal';
 import ModelWithEffects from './ModelWithEffects';
 import { getRefPostPosition, getSubCategoryPositions } from './Postions';
@@ -21,7 +23,7 @@ export const SubCategory = props => {
    return (
       <group position={position} rotation={[0, rotationY, 0]} onPointerOver={onHover}>
          <ModelWithEffects model={model} className="model" position={[0, 0, 5]} scale={[3, 3, 3]} onPointerOut={onPointerOut} onClick={() => title && onClick(title, position)} emissiveIntensity={isHighlighted ? 1 : 0.6} />
-         <Text ref={textRef} position={[0, 0, -3]} color="black" fontSize={1.5} font="/fonts/monomaniac.ttf" anchorY="middle" maxWidth={6} lineHeight={0.9} textAlign="center">
+         <Text ref={textRef} position={[0, 0, -3]} color="black" fontSize={1.5} anchorY="middle" maxWidth={6} lineHeight={0.9} textAlign="center">
             {title}
          </Text>
          <Line
@@ -94,7 +96,7 @@ export const RefPost = props => {
    return (
       <group position={position}>
          <Crystal className="sub-crystal" position={[0, 0, 0]} scale={[1, 1, 1]} onPointerOut={onPointerOut} onClick={() => title && onClick(title, position)} emissiveIntensity={isHighlighted ? 1 : 0.6} />
-         <Text ref={textRef} position={[0, 0, -3]} color="black" fontSize={0.5} font="/fonts/monomaniac.ttf" textAlign="center" anchorY="middle" maxWidth={6}>
+         <Text ref={textRef} position={[0, 0, -3]} color="black" fontSize={0.5} textAlign="center" anchorY="middle" maxWidth={6}>
             {title}
          </Text>
       </group>

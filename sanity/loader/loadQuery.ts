@@ -3,9 +3,9 @@ import 'server-only';
 import { draftMode } from 'next/headers';
 
 import { client } from '@/sanity/lib/client';
-import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery } from '@/sanity/lib/queries';
+import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery, categoryQuery } from '@/sanity/lib/queries';
 import { token } from '@/sanity/lib/token';
-import { HomePagePayload, PagePayload, ProjectPayload, SettingsPayload, PostsPayload } from '@/types';
+import { HomePagePayload, PagePayload, ProjectPayload, SettingsPayload, PostsPayload, CategoryPayload } from '@/types';
 
 import { queryStore } from './createQueryStore';
 
@@ -42,10 +42,6 @@ export const loadQuery = ((query, params = {}, options = {}) => {
    });
 }) satisfies typeof queryStore.loadQuery;
 
-/**
- * Loaders that are used in more than one place are declared here, otherwise they're colocated with the component
- */
-
 export function loadSettings() {
    return loadQuery<SettingsPayload>(settingsQuery, {}, { next: { tags: ['settings', 'home', 'page', 'project'] } });
 }
@@ -69,4 +65,8 @@ export function loadPosts() {
 
 export function loadPostsPage(slug: string) {
    return loadQuery<PostsPayload | null>(postsBySlugQuery, { slug }, { next: { tags: [`posts:${slug}`] } });
+}
+
+export function loadCategories() {
+   return loadQuery<CategoryPayload[]>(categoryQuery, {}, { next: { tags: [`category`] } });
 }

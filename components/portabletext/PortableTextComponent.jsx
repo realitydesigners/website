@@ -1,11 +1,12 @@
 'use client';
 import { PortableText } from '@portabletext/react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { ArticleRef, AudioRef, ImageRef, MediaRef, MediaRefLight, PostsRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
-import Link from 'next/link';
 
-import { staatliches, jura } from '@/fonts';
+import { jura,staatliches } from '@/fonts';
+
+import { ArticleRef, AudioRef, ImageRef, MediaRef, MediaRefLight, PostsRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
 
 const iFrame = ({ value }) => {
    const { url, width, height } = value;

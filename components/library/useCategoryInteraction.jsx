@@ -1,4 +1,6 @@
+'use client';
 import { useCallback, useState } from 'react';
+
 import { useCategory } from './CategoryContext';
 
 export const useCategoryInteraction = category => {
