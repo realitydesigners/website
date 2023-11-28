@@ -12,10 +12,6 @@ module.exports = {
          serif: 'var(--font-serif)',
       },
    },
-   variants: {
-      extend: {
-         display: ['responsive', 'group-hover', 'group-focus', 'focus-within', 'hover', 'focus', 'active'],
-      },
-   },
+
    plugins: [require('@tailwindcss/typography')],
 };

@@ -3,9 +3,9 @@ import type { EncodeDataAttributeCallback } from '@sanity/react-loader/rsc';
 import type { PostsPayload } from '@/types';
 import PortableTextComponent from '@/components/portabletext/PortableTextComponent';
 
-import React from 'react';
 import HeadingBlockLight from '@/components/blog/HeadingBlockLight';
 import HeadingBlockDark from '@/components/blog/HeadingBlockDark';
+import TeamBlock from '@/components/blog/TeamBlock';
 
 export interface PageProps {
    data: PostsPayload | null;
@@ -37,6 +37,8 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
                   </div>
                ) : null),
          )}
+         {/* CONTENT BLOCK */}
+         {data?.block?.map((block: any) => <div>{block._type === 'teamBlock' && <TeamBlock block={block} />}</div>)}
       </main>
    );
 };
