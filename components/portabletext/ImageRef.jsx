@@ -6,11 +6,11 @@ const ImageCard = ({ title, slug, image, className }) => {
    switch (className) {
       case 'card-1':
          return (
-            <div className="relative p-4 mb-8 ">
+            <div className="relative p-4 mb-6 ">
                <div className="relative justify-center  items-center flex h-auto bg-gray-400 w-full ">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  object-cover contain h-full object-cover" />}</div>
                {image?.team && (
                   <div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-white">
-                     <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper="mr-2 h-[40px] w-[40px] rounded-full" />
+                     <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper="mr-2 max-h-[30px] max-w-[30px] rounded-full" />
 
                      <div className=" justify-center relative flex flex-col items-start text-xs uppercase leading-none">
                         <Link href="/" className="text-black font-mono text-xs">

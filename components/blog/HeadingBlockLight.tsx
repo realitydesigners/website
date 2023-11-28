@@ -53,7 +53,7 @@ const HeadingBlockLight = ({ block }) => {
                      {block.team && (
                         <Link href={`/team/${block.team.slug.current}`}>
                            <div className="flex items-center p-2 rounded-lg border w-full ">
-                              {block.team.image && <SmallImage image={block.team.image} alt={`Cover Image for ${block.title}`} classesWrapper="w-[25px] h-[25px] object-cover rounded-full" />}
+                              {block.team.image && <SmallImage image={block.team.image} alt={`Cover Image for ${block.title}`} classesWrapper="max-w-[50px] max-h-[50px] object-cover rounded-full" />}
                               {block.team.name && <span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-xs">By {block.team.name}</span>}
                            </div>
                         </Link>
