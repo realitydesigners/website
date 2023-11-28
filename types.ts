@@ -221,53 +221,48 @@ export interface PostsPayload {
    }>;
    // ...other top-level fields you might have
 }
+
 export interface CategoryPayload {
-   categories: Array<{
-      _id: string;
+   _id: string;
+   _type: string;
+   title: string;
+   isMain: boolean;
+   slug: {
       _type: string;
-      title: string;
-      isMain: boolean;
-      slug: {
-         _type: string;
-         current: string;
-      };
-      model?: {
-         file: any;
-      };
-      sceneIdentifier?: string;
-      subCategories: Array<{
-         _id: string;
-         _type: string;
-         title: string;
-         slug: {
-            _type: string;
-            current: string;
-         };
-         isMain: boolean;
-         model?: {
-            file: any;
-         };
-         refPosts: Array<{
-            _id: string;
-            title: string;
-            slug: {
-               _type: string;
-               current: string;
-            };
-            excerpt?: string;
-            author?: {
-               _id: string;
-               name: string;
-            };
-            tags?: Array<string>;
-            category?: {
-               _id: string;
-               title: string;
-            };
-            publicationDate?: string;
-            lightLayout?: boolean;
-            darkLayout?: boolean;
-         }>;
-      }>;
-   }>;
+      current: string;
+   };
+   model?: {
+      file: any; // Replace 'any' with the appropriate type if known
+      // ... other properties of model
+   };
+   sceneIdentifier?: string;
+   subCategories: SubCategoryPayload[];
+}
+
+export interface SubCategoryPayload {
+   _id: string;
+   _type: string;
+   title: string;
+   slug: {
+      _type: string;
+      current: string;
+   };
+   isMain: boolean;
+   model?: {
+      file: any; // Replace 'any' with the appropriate type if known
+      // ... other properties of model
+   };
+   refPosts: RefPostPayload[];
+   // ... other properties if there are any
+}
+
+export interface RefPostPayload {
+   _id: string;
+   title: string;
+   slug: {
+      _type: string;
+      current: string;
+   };
+   excerpt?: string;
+   // ... other properties of posts
 }

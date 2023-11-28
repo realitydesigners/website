@@ -1,72 +1,41 @@
 import 'server-only';
-
 import { draftMode } from 'next/headers';
-
 import { client } from '@/sanity/lib/client';
 import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery, categoryQuery } from '@/sanity/lib/queries';
 import { token } from '@/sanity/lib/token';
 import { HomePagePayload, PagePayload, ProjectPayload, SettingsPayload, PostsPayload, CategoryPayload } from '@/types';
-
 import { queryStore } from './createQueryStore';
 
+// Initialize the client with the given configuration.
 const serverClient = client.withConfig({
    token,
-   stega: {
-      // Enable stega if it's a Vercel preview deployment, as the Vercel Toolbar has controls that shows overlays
-      enabled: process.env.VERCEL_ENV !== 'production',
-   },
+   useCdn: process.env.VERCEL_ENV === 'production',
 });
 
-/**
- * Sets the server client for the query store, doing it here ensures that all data fetching in production
- * happens on the server and not on the client.
- * Live mode in `sanity/presentation` still works, as it uses the `useLiveMode` hook to update `useQuery` instances with
- * live draft content using `postMessage`.
- */
+// Set the server client for the query store to ensure server-side data fetching.
 queryStore.setServerClient(serverClient);
 
-const usingCdn = serverClient.config().useCdn;
-// Automatically handle draft mode
-export const loadQuery = ((query, params = {}, options = {}) => {
-   const { perspective = draftMode().isEnabled ? 'previewDrafts' : 'published' } = options;
-   // Don't cache by default
-   let cache: RequestCache = 'no-store';
-   // If `next.tags` is set, and we're not using the CDN, then it's safe to cache
-   if (!usingCdn && Array.isArray(options.next?.tags)) {
-      cache = 'force-cache';
-   }
-   return queryStore.loadQuery(query, params, {
-      cache,
-      ...options,
-      perspective,
-   });
-}) satisfies typeof queryStore.loadQuery;
+// A utility function to handle common logic for load queries.
+function loadSanityQuery<T>(query: string, params: Record<string, unknown> = {}, tags: string[]): Promise<T> {
+   const perspective = draftMode().isEnabled ? 'previewDrafts' : 'published';
+   const cache: RequestCache = serverClient.config().useCdn ? 'no-store' : 'force-cache';
 
-export function loadSettings() {
-   return loadQuery<SettingsPayload>(settingsQuery, {}, { next: { tags: ['settings', 'home', 'page', 'project'] } });
+   return queryStore
+      .loadQuery<T>(query, params, {
+         cache,
+         next: { tags },
+         perspective,
+      })
+      .then(response => response.data);
 }
 
-export function loadHomePage() {
-   return loadQuery<HomePagePayload | null>(homePageQuery, {}, { next: { tags: ['home', 'project'] } });
-}
+// Exported functions to load different types of data.
+export const loadSettings = () => loadSanityQuery<SettingsPayload>(settingsQuery, {}, ['settings', 'home', 'page', 'project']);
+export const loadHomePage = () => loadSanityQuery<HomePagePayload | null>(homePageQuery, {}, ['home', 'project']);
+export const loadProject = (slug: string) => loadSanityQuery<ProjectPayload | null>(projectBySlugQuery, { slug }, [`project:${slug}`]);
+export const loadPage = (slug: string) => loadSanityQuery<PagePayload | null>(pagesBySlugQuery, { slug }, [`page:${slug}`]);
+export const loadPosts = () => loadSanityQuery<PostsPayload[]>(postsQuery, {}, ['posts']);
+export const loadPostsPage = (slug: string) => loadSanityQuery<PostsPayload | null>(postsBySlugQuery, { slug }, [`posts:${slug}`]);
+export const loadCategories = () => loadSanityQuery<CategoryPayload[]>(categoryQuery, {}, ['category']);
 
-export function loadProject(slug: string) {
-   return loadQuery<ProjectPayload | null>(projectBySlugQuery, { slug }, { next: { tags: [`project:${slug}`] } });
-}
-
-export function loadPage(slug: string) {
-   return loadQuery<PagePayload | null>(pagesBySlugQuery, { slug }, { next: { tags: [`page:${slug}`] } });
-}
-
-export function loadPosts() {
-   // The generic here should be an array of PostsPayload, not a single value or null
-   return loadQuery<PostsPayload[]>(postsQuery, {}, { next: { tags: [`posts`] } });
-}
-
-export function loadPostsPage(slug: string) {
-   return loadQuery<PostsPayload | null>(postsBySlugQuery, { slug }, { next: { tags: [`posts:${slug}`] } });
-}
-
-export function loadCategories() {
-   return loadQuery<CategoryPayload[]>(categoryQuery, {}, { next: { tags: [`category`] } });
-}
+// Exporting types for external use (if needed).

@@ -1,9 +1,9 @@
 'use client';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useMemo } from 'react';
 
 import { useCategory } from './CategoryContext';
 
-export const useCategoryInteraction = category => {
+export const useCategoryInteraction = (category = {}) => {
    const { navigation, setNavigation } = useCategory();
 
    // State variables
@@ -17,16 +17,18 @@ export const useCategoryInteraction = category => {
 
    const mainCategories = Array.isArray(category) ? category.filter(cat => Boolean(cat.title) && cat.isMain) : [];
 
-   const subCategories = Array.isArray(category.subCategories) ? category.subCategories.filter(subCat => Boolean(subCat.title)) : [];
+   // Memoizing subCategories to ensure it's only recalculated when category.subCategories changes
+   const subCategories = useMemo(() => {
+      return Array.isArray(category.subCategories) ? category.subCategories : [];
+   }, [category.subCategories]);
 
    const onCategoryHover = useCallback(
       subcategoryName => {
-         const relatedPosts = category.subCategories.find(sub => sub.slug.current === subcategoryName)?.associatedPosts || [];
-
+         const relatedPosts = subCategories.find(sub => sub.slug.current === subcategoryName)?.associatedPosts || [];
          setSubcategoryContent(relatedPosts);
          setIsSidebarVisible(true);
       },
-      [category.subCategories],
+      [subCategories],
    );
 
    const onCategoryLeave = useCallback(() => {
@@ -38,7 +40,7 @@ export const useCategoryInteraction = category => {
          setSelectedCategory(categoryName);
          setHighlightedCategory(categoryName);
 
-         const currentCategory = category.subCategories.find(sub => sub.slug.current === subcategoryName);
+         const currentCategory = subCategories.find(sub => sub.slug.current === subcategoryName);
 
          if (currentCategory?.sceneIdentifier) {
             setActiveBackgroundScene(currentCategory.sceneIdentifier);
@@ -53,12 +55,12 @@ export const useCategoryInteraction = category => {
             subCategory: subcategoryName || prev.subCategory,
          }));
       },
-      [category.subCategories, setNavigation],
+      [subCategories, setNavigation],
    );
 
    // Debugging logs
-   console.log('Category data Fetched From Parent Page:', category);
-   console.log('subCategories', subCategories);
+   // console.log('Category data Fetched From Parent Page:', category);
+   // console.log('subCategories', subCategories);
 
    return {
       onCategorySelect,
