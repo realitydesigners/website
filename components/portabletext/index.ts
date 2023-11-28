@@ -7,3 +7,4 @@ export { default as PostsRef } from './PostsRef';
 export { default as QuoteRef } from './QuoteRef';
 export { default as SplineRef } from './SplineRef';
 export { default as VideoRef } from './VideoRef';
+export { default as PostsRefLight } from './PostsRefLight';

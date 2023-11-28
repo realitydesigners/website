@@ -6,7 +6,7 @@ const MediaCard = ({ title, slug, image, media, className }) => {
       case 'card-1':
          return (
             <div className="relative p-4 mb-8 ">
-               <div className="relative flex h-auto w-full">{media?.image && <img src={getSanityImageURL(media.image).url()} alt={title || 'Article image'} className="relative h-[325px] md:h-[600px] lg:h-[800px] w-full object-cover rounded-2xl shadow-xl" />}</div>
+               <div className="relative flex h-auto w-full">{media?.image && <ImageBox image={media.team.image} alt={`Cover Image for ${title}`} classesWrapper="relative h-[325px] md:h-[600px] lg:h-[800px] w-full object-cover rounded-2xl shadow-xl" />}</div>
                {media?.team && (
                   <div className="relative rounded-b-xl -mt-12  pt-4 bottom-0 flex h-auto w-full  bg-gradient-to-t from-black to-transparent pl-4  text-white">
                      <ImageBox image={media.team.image} alt={`Cover Image for ${media.team.name}`} classesWrapper="mr-2 h-6 w-6 rounded-full" />
@@ -38,7 +38,7 @@ const MediaCard = ({ title, slug, image, media, className }) => {
                         <Link href="/" className="text-gray-400">
                            Artist
                         </Link>
-                        <Link href="/" c className="text-white">
+                        <Link href="/" className="text-white">
                            {media.team.name}
                         </Link>
                      </div>

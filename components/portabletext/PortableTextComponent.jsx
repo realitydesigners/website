@@ -3,6 +3,7 @@ import { PortableText } from '@portabletext/react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ArticleRef, AudioRef, ImageRef, MediaRef, MediaRefLight, PostsRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
+import Link from 'next/link';
 
 import { staatliches, jura } from '@/fonts';
 
@@ -41,9 +42,9 @@ const Blog = {
          const href = `/blog/${slug?.current}`;
 
          return (
-            <a className="font-extrabold text-white " href={href}>
+            <Link className="font-extrabold text-black underline " href={href}>
                {children}
-            </a>
+            </Link>
          );
       },
    },
@@ -102,9 +103,9 @@ const Light = {
          const href = `/posts/${slug?.current}`;
 
          return (
-            <a className="font-extrabold text-black underline " href={href}>
+            <Link className="font-extrabold text-black underline " href={href}>
                {children}
-            </a>
+            </Link>
          );
       },
    },
@@ -146,9 +147,9 @@ const Team = {
          const href = `/blog/${slug?.current}`;
 
          return (
-            <a className="font-extrabold text-white " href={href}>
+            <Link className="font-extrabold text-black underline " href={href}>
                {children}
-            </a>
+            </Link>
          );
       },
    },
