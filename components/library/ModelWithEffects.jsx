@@ -11,13 +11,12 @@ const ModelWithEffects = ({ model, position, scale, onPointerOver, onPointerOut,
    const { raycaster, camera, scene } = useThree();
 
    const modelRef = model?.file?.asset?._ref;
-   if (!modelRef) {
-      // handles in case no model is provided
+   const modelUrl = modelRef ? fileUrlFor(modelRef) : null;
+   const gltf = useLoader(GLTFLoader, modelUrl);
+
+   if (!gltf) {
       return null;
    }
-
-   const modelUrl = fileUrlFor(modelRef);
-   const gltf = useLoader(GLTFLoader, modelUrl);
 
    const material = useMemo(() => {
       return new THREE.ShaderMaterial({
