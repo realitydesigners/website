@@ -3,7 +3,6 @@ import LibraryScene from '@/components/library/LibraryScene';
 
 export default async function CategoryPage() {
    const categories = await loadCategories(); // Directly use categories as it's already CategoryPayload[]
-   console.log('library Page Data', categories);
 
    return (
       <div className="w-screen h-screen bg-gray-200">

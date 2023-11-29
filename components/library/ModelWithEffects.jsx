@@ -11,10 +11,16 @@ const ModelWithEffects = ({ model, position, scale, onPointerOver, onPointerOut,
    const { raycaster, camera, scene } = useThree();
 
    const modelRef = model?.file?.asset?._ref;
-   const modelUrl = modelRef ? fileUrlFor(modelRef) : null;
+   if (!modelRef) {
+      // handles in case no model is provided
+      return null;
+   }
+
+   const modelUrl = fileUrlFor(modelRef);
    const gltf = useLoader(GLTFLoader, modelUrl);
 
    if (!gltf) {
+      // handles in case no model is loaded (e.g., no modelRef or invalid URL)
       return null;
    }
 

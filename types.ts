@@ -224,15 +224,15 @@ export interface PostsPayload {
 
 export interface CategoryPayload {
    _id: string;
-   _type: string;
+   _type?: string;
    title: string;
-   isMain: boolean;
-   slug: {
+   isMain?: boolean;
+   slug?: {
       _type: string;
       current: string;
    };
    model?: {
-      file: any; // Replace 'any' with the appropriate type if known
+      file?: any; // Replace 'any' with the appropriate type if known
       // ... other properties of model
    };
    sceneIdentifier?: string;
@@ -240,19 +240,20 @@ export interface CategoryPayload {
 }
 
 export interface SubCategoryPayload {
-   _id: string;
-   _type: string;
-   title: string;
-   slug: {
+   _id?: string;
+   _type?: string;
+   title?: string;
+   slug?: {
       _type: string;
       current: string;
    };
-   isMain: boolean;
+   isMain?: boolean;
+   sceneIdentifier?: string;
    model?: {
-      file: any; // Replace 'any' with the appropriate type if known
+      file?: any; // Replace 'any' with the appropriate type if known
       // ... other properties of model
    };
-   refPosts: RefPostPayload[];
+   refPosts?: RefPostPayload[];
    // ... other properties if there are any
 }
 

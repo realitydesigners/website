@@ -3,8 +3,6 @@ import { Text } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import React, { useRef, useState } from 'react';
 
-import { staatliches } from '@/fonts';
-
 import Crystal from './Crystal';
 import { getCategoryPositions } from './Postions';
 

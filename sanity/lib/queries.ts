@@ -221,5 +221,41 @@ export const categoryQuery = groq`
        darkLayout,
      }
    },
- }
- `;
+  }
+  `;
+
+export const categoryBySlugQuery = groq`
+  *[_type == "category" && slug.current == $slug][0] {
+   _id,
+   _type,
+   title,
+   isMain,
+   slug,
+   model->{...,
+     file,
+      },
+   sceneIdentifier,
+   "subCategories": *[_type == "category" && references(^._id)] {
+     _id,
+     _type,
+     title,
+     slug,
+     isMain,
+     model->{...,
+       file,
+        },
+     "refPosts": *[_type == "posts" && references(^._id)] {
+       _id,
+       title,
+       slug,
+       excerpt,
+       author,
+       tags,
+       category,
+       publicationDate,
+       lightLayout,
+       darkLayout,
+     }
+   },
+  }
+  `;
