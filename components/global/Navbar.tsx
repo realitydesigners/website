@@ -2,7 +2,19 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { inter, jura, staatliches } from '@/fonts';
+import { staatliches } from '@/fonts';
+
+interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
+   url: string;
+}
+
+declare global {
+   namespace JSX {
+      interface IntrinsicElements {
+         'spline-viewer': SplineViewerProps;
+      }
+   }
+}
 
 export default function Navbar() {
    const [isNavOpen, setIsNavOpen] = useState(false);
@@ -66,25 +78,31 @@ export default function Navbar() {
             </button>
          </div>
 
-         <div id="nav-content" role="menu" className={`absolute lg:relative top-0 left-0 w-full bg-gray-200 lg:bg-transparent lg:w-auto h-screen lg:h-auto overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${isNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 flex flex-col lg:flex-row justify-start lg:justify-end p-8 lg:p-0`}>
-            <ul className="flex flex-col lg:flex-row lg:space-x-8 mt-4 lg:mt-0">
+         <div id="nav-content" role="menu" className={`absolute lg:relative top-0 left-0 w-full bg-gray-200 lg:bg-transparent lg:w-auto h-screen lg:h-auto overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${isNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 flex flex-col lg:flex-row justify-start lg:justify-end p-3  lg:p-0`}>
+            <div className="w-full mb-2 rounded-lg block lg:hidden mt-16 bg-black/20 h-[275px]">
+               <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>
+               <Link href="/" onClick={closeNav}>
+                  <spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode"></spline-viewer>
+               </Link>
+            </div>
+            <ul className="flex justify-center items-center gap-4 flex-col lg:flex-row lg:space-x-2 mt-4 lg:mt-0">
                <li>
-                  <Link href="/library" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/library" className={`${staatliches.className} text-black text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Library
                   </Link>
                </li>
                <li>
-                  <Link href="/posts" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/posts" className={`${staatliches.className} text-black text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Posts
                   </Link>
                </li>
                <li>
-                  <Link href="/videos" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/videos" className={`${staatliches.className} text-black text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Videos
                   </Link>
                </li>
                <li>
-                  <Link href="/story" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/story" className={`${staatliches.className} text-black  text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Story
                   </Link>
                </li>

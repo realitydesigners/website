@@ -24,6 +24,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+   <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>;
    return (
       <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} bg-gray-200`}>
          <body>
