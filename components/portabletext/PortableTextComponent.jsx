@@ -4,7 +4,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import { jura,staatliches } from '@/fonts';
+import { jura, staatliches } from '@/fonts';
 
 import { ArticleRef, AudioRef, ImageRef, MediaRef, MediaRefLight, PostsRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
 
@@ -16,49 +16,6 @@ const iFrame = ({ value }) => {
          <iframe title="iframe" src={url} width={width} height={height} allowFullScreen></iframe>
       </div>
    );
-};
-
-const Blog = {
-   block: {
-      normal: ({ children }) => (
-         <div className="w-screen flex justify-center " style={{ fontFamily: 'Noto Sans', fontWeight: 400 }}>
-            <p className="w-11/12 text-gray-200 leading-6 tracking-normal text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-8  ">{children}</p>
-         </div>
-      ),
-      h1: ({ children }) => <h1 className="w-full text-4xl font-bold uppercase leading-none tracking-wide lg:w-2/3 lg:text-6xl">{children}</h1>,
-      h2: ({ children }) => (
-         <div style={{ fontFamily: 'Rajdhani', fontWeight: 700 }} className="w-screen flex justify-center">
-            <h2 className="my-4 w-11/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4  lg:w-1/2  lg:text-5xl">{children}</h2>
-         </div>
-      ),
-      h3: ({ children }) => (
-         <div style={{ fontFamily: 'Rajdhani', fontWeight: 700 }} className="w-screen flex justify-center">
-            <h2 className="my-4 w-11/12 text-3xl font-bold  leading-none tracking-wide md:w-3/4  lg:w-1/2  lg:text-4xl">{children}</h2>
-         </div>
-      ),
-   },
-   marks: {
-      internalLink: ({ value, children }) => {
-         const { slug = {} } = value;
-         const href = `/blog/${slug?.current}`;
-
-         return (
-            <Link className="font-extrabold text-black underline " href={href}>
-               {children}
-            </Link>
-         );
-      },
-   },
-   types: {
-      iframe: iFrame,
-      postsRef: PostsRef,
-      articleRef: ArticleRef,
-      mediaRef: MediaRef,
-      spline: SplineRef,
-      image: ImageRef,
-      audioRef: AudioRef,
-      quoteRef: QuoteRef,
-   },
 };
 
 const Light = {
@@ -153,24 +110,6 @@ const Team = {
             </Link>
          );
       },
-   },
-};
-
-const PostCard = {
-   normal: ({ children }) => <p className="article-card-text">{children}</p>,
-   h1: ({ children }) => <h1 className="article-card-h1">{children}</h1>,
-
-   block: {
-      normal: ({ children }) => (
-         <div style={{ fontFamily: 'Rajdhani', fontWeight: 400 }}>
-            <p className=" text-gray-400 leading-6 tracking-wide text-lg ">{children}</p>
-         </div>
-      ),
-      h2: ({ children }) => (
-         <div style={{ fontFamily: 'Rajdhani', fontWeight: 700 }}>
-            <h2 className="my-4 text-2xl font-bold  leading-none tracking-wide ">{children}</h2>
-         </div>
-      ),
    },
 };
 
