@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { inter, jura,staatliches } from '@/fonts';
+import { inter, jura, staatliches } from '@/fonts';
 
 export default function Navbar() {
    const [isNavOpen, setIsNavOpen] = useState(false);
@@ -51,7 +51,7 @@ export default function Navbar() {
    return (
       <nav role="navigation" id="navbar" className="flex items-center h-16 p-2 justify-between fixed w-full z-50 bg-gradient-to-t from-transparent to-gray-200">
          <div className=" relative flex items-center z-10">
-            <Link href="/posts" className="flex items-center  w-auto p-2">
+            <Link href="/" className="flex items-center  w-auto p-2">
                {getIcon('logo')}
             </Link>
             <Link href="/" className={`${staatliches.className} text-black pt-2 pb-2 hidden lg:flex flex-col`}>
@@ -76,6 +76,11 @@ export default function Navbar() {
                <li>
                   <Link href="/posts" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Posts
+                  </Link>
+               </li>
+               <li>
+                  <Link href="/story" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                     Story
                   </Link>
                </li>
             </ul>

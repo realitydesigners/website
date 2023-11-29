@@ -2,6 +2,9 @@ import 'tailwindcss/tailwind.css';
 
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google';
 
+import { Suspense } from 'react';
+import Navbar from '@/components/global/Navbar';
+
 const serif = PT_Serif({
    variable: '--font-serif',
    style: ['normal', 'italic'],
@@ -23,7 +26,11 @@ const mono = IBM_Plex_Mono({
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
    return (
       <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} bg-gray-200`}>
-         <body>{children}</body>
+         <body>
+            {' '}
+            <Navbar />
+            {children}
+         </body>
       </html>
    );
 }

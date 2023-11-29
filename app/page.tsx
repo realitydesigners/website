@@ -1,3 +1,12 @@
-export default async function IndexRoute() {
-   return <div className="w-full h-screen bg-gray-200"></div>;
+import { loadPosts } from '@/sanity/loader/loadQuery';
+import { PostsList } from '@/components/global/PostsList';
+
+export default async function IndexPage() {
+   const post = await loadPosts();
+
+   return (
+      <div className="flex w-full">
+         <PostsList post={post} />
+      </div>
+   );
 }
