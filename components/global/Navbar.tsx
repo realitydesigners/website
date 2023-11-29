@@ -79,6 +79,11 @@ export default function Navbar() {
                   </Link>
                </li>
                <li>
+                  <Link href="/videos" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                     Videos
+                  </Link>
+               </li>
+               <li>
                   <Link href="/story" className={`${staatliches.className} text-black text-3xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-3 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Story
                   </Link>

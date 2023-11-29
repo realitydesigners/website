@@ -267,3 +267,37 @@ export interface RefPostPayload {
    excerpt?: string;
    // ... other properties of posts
 }
+
+export interface VideoPayload {
+   title: string;
+   slug: {
+      current?: string;
+   };
+   url: string;
+   image?: {
+      _key?: string;
+      _type?: string;
+      alt?: string;
+      asset: {
+         _key?: string;
+         _type?: string;
+         url: string;
+      };
+   };
+   video: any;
+   subcategories: Array<{
+      name: string;
+      title: string;
+   }>;
+   videoRefData: {
+      videoTitle: string;
+      videoFileUrl: string;
+      videoImage: {
+         asset: {
+            url: string;
+         };
+      };
+      videoTeam: string;
+      team: any;
+   };
+}

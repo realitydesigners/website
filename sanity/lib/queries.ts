@@ -259,3 +259,40 @@ export const categoryBySlugQuery = groq`
    },
   }
   `;
+
+export const getVideosQuery = groq`
+*[_type == "video"] |  order(_createdAt desc) {
+ title,
+ slug,
+ url,
+ image,
+ video,
+ subcategories[]->{
+   ...,
+   name,
+   title,
+ },
+ 
+ }`;
+
+export const getVideoBySlugQuery = groq`
+*[_type == "video" && slug.current == $slug][0] {
+   title,
+   slug,
+   url,
+   image,
+   video,
+   subcategories[]->{
+     ...,
+     name,
+     title,
+   },
+   "videoRefData": {
+     "videoTitle": video->title,
+     "videoFileUrl": video->video.asset->url,
+     "videoImage": video->image,
+     "videoTeam": video->team,
+     team->,
+   },
+   
+   }`;
