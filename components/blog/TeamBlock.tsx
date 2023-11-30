@@ -12,7 +12,7 @@ const TeamBlock = ({ block }) => {
          <div className="w-full flex justify-center">
             <div className="flex flex-col w-11/12 lg:w-1/3 bg-gray-300 mb-12 shadow-lg p-4 border border-gray-300 rounded-xl">
                <div className="flex items-center">
-                  <SmallImage image={block?.team.image} alt="Team member image" classesWrapper="w-20 h-20 object-cover rounded-full shadow-2xl" />
+                  <SmallImage image={block?.team.image} alt="Team member image" classesWrapper="w-[5rem] h-[5rem] object-cover rounded-full shadow-2xl" />
                   <div className="ml-4 flex flex-col">
                      <p className="text-black uppercase leading-none font-bold font-mono tracking-wide text-lg">{block?.team.name}</p>
                      <span className="text-black font-mono leading-none uppercase text-xs tracking-widest">{block?.team.role}</span>

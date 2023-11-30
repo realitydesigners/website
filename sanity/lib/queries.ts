@@ -54,37 +54,7 @@ export const settingsQuery = groq`
 `;
 
 export const postsQuery = groq`
- *[_type == "posts"] |  order(_createdAt desc)[0..8] {
-   title,
-   category,
-   excerpt,
-   tags,
-   slug,
-   image,
-
-   subcategories[]->{
-     ...,
-     name,
-     title,
-   },
-   
-   publicationDate,
-   block[]{
-     ...,
-     heading,
-     subHeading,
-     image,
-     tags,
-     layout,
-     title,
-     publicationDate,
-    
- },
-   
- }`;
-
-export const postssBySlugQuery = groq`
- *[_type == "posts" && slug.current == $slug][0] {
+ *[_type == "posts"] |  order(_createdAt desc) {
    title,
    category,
    excerpt,

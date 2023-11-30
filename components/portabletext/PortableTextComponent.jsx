@@ -44,13 +44,13 @@ const Light = {
    },
    list: {
       bullet: ({ children }) => (
-         <div className="w-screen flex justify-center" style={{ fontFamily: 'Noto Sans', fontWeight: 400 }}>
-            <ul className="w-10/12  text-black leading-6 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-8 mb-8">{children}</ul>
+         <div className="w-screen flex justify-center">
+            <ul className={`${staatliches.className} w-11/12  text-black leading-6 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}>{children}</ul>
          </div>
       ),
       number: ({ children }) => (
-         <div className="w-screen flex justify-center" style={{ fontFamily: 'Noto Sans', fontWeight: 400 }}>
-            <ol className="w-10/12 text-black leading-6 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-8 mb-8">{children}</ol>
+         <div className="w-screen flex justify-center">
+            <ol className={`${staatliches.className} w-11/12 text-black leading-8 tracking-wide text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}>{children}</ol>
          </div>
       ),
    },
