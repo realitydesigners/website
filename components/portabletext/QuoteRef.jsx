@@ -6,7 +6,7 @@ const QuoteCard = ({ quote, media }) => {
    return (
       <div className="flex w-full items-center justify-center mb-8 ">
          <div className="relative md:w-4/5 lg:w-1/2 w-11/12 border bg-black rounded-2xl border-gray-600">
-            <div className="absolute inset-0 z-10">{media?.image && <ImageBox image={media.image} alt={`Cover Image`} classesWrapper="-full w-full opacity-40  object-cover rounded-2xl" />}</div>
+            <div className="absolute inset-0 z-10">{media?.image && <ImageBox image={media.image} alt={`Cover Image`} classesWrapper="h-full w-full opacity-40  object-cover rounded-2xl" />}</div>
             <div className="relative p-3 z-20">
                <div className="flex w-full justify-end mb-4">
                   <p className="tag tracking-wide uppercase text-pink-200 flex w-auto p-[.2em] pl-2 pr-2 text-xs backdrop-blur-lg  rounded-2xl border border-pink-200 bg-pink-200/20 transition-all duration-300 ease-in hover:bg-pink-400 hover:border-pink-400 hover:text-white">Quote</p>
