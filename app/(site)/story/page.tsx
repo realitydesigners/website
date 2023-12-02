@@ -3,6 +3,10 @@ import { staatliches, jura } from '@/fonts';
 export default function StoryPage() {
    return (
       <div className="flex flex-col flex-wrap items-center w-screen h-auto justify-center bg-gray-200">
+         <div className="w-full block h-screen p-2 pt-16 bg-gray-200 overflow-hidden">
+            <iframe src="https://my.spline.design/realitydesignershome-8fbba7c43359ec8cb3c064461f38e4b2/" className="rounded-[1.5em]" width="100%" height="100%"></iframe>
+         </div>
+
          <div className="lg:w-1/2 w-11/12 pt-32 pb-20">
             <div className={`${jura.className} text-xl font-bold `}>
                <h1 className={`${staatliches.className}  text-6xl lg:text-7xl font-bold text-center mb-6`}>A NEW REALITY IS BEING DESIGNED</h1>
