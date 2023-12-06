@@ -3,7 +3,7 @@ import { draftMode } from 'next/headers';
 import { client } from '@/sanity/lib/client';
 import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery, categoryQuery, categoryBySlugQuery, getVideosQuery, getVideoBySlugQuery } from '@/sanity/lib/queries';
 import { token } from '@/sanity/lib/token';
-import { HomePagePayload, PagePayload, ProjectPayload, SettingsPayload, PostsPayload, CategoryPayload, VideoPayload } from '@/types';
+import { PagePayload, SettingsPayload, PostsPayload, CategoryPayload, VideoPayload } from '@/types';
 import { queryStore } from './createQueryStore';
 
 const serverClient = client.withConfig({
@@ -17,11 +17,11 @@ queryStore.setServerClient(serverClient);
 // A utility function to handle common logic for load queries.
 function loadSanityQuery<T>(query: string, params: Record<string, unknown> = {}, tags: string[]): Promise<T> {
    const perspective = draftMode().isEnabled ? 'previewDrafts' : 'published';
-   const cache: RequestCache = serverClient.config().useCdn ? 'no-store' : 'force-cache';
+   // const cache: RequestCache = serverClient.config().useCdn ? 'force-cache' : 'force-cache';
 
    return queryStore
       .loadQuery<T>(query, params, {
-         cache,
+         // cache,
          next: { tags },
          perspective,
       })
@@ -29,8 +29,6 @@ function loadSanityQuery<T>(query: string, params: Record<string, unknown> = {},
 }
 
 export const loadSettings = () => loadSanityQuery<SettingsPayload>(settingsQuery, {}, ['settings', 'home', 'page', 'project']);
-export const loadHomePage = () => loadSanityQuery<HomePagePayload | null>(homePageQuery, {}, ['home', 'project']);
-export const loadProject = (slug: string) => loadSanityQuery<ProjectPayload | null>(projectBySlugQuery, { slug }, [`project:${slug}`]);
 export const loadPage = (slug: string) => loadSanityQuery<PagePayload | null>(pagesBySlugQuery, { slug }, [`page:${slug}`]);
 
 // Posts

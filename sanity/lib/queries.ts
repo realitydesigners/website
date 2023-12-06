@@ -132,13 +132,14 @@ export const postsBySlugQuery = groq`
          "audioFileUrl": audio->audioFile.asset->url
        },
        quote->{
-         ...,
-         quote,
-         "mediaRef": {
-           "layout": mediaRef.layout,
-           "image": mediaRef.image->image.asset->url
-         }
-       },
+        ...,
+        quote,
+        "mediaRef": {
+          "layout": mediaRef.layout,
+          "imageUrl": mediaRef.image.asset->url
+        }
+      },
+      
        markDefs[]{
          ...,
          _type == "internalLink" => {

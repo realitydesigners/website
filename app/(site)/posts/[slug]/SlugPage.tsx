@@ -13,6 +13,8 @@ export interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
+   //console.log(data);
+
    const { block } = data ?? {};
 
    return (

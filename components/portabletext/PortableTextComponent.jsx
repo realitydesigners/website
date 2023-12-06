@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { jura, staatliches } from '@/fonts';
 
-import { ArticleRef, AudioRef, ImageRef, MediaRef, MediaRefLight, PostsRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
+import { ArticleRef, AudioRef, ImageRef, MediaRefLight, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
 
 const iFrame = ({ value }) => {
    const { url, width, height } = value;
