@@ -1,18 +1,40 @@
 import Link from 'next/link';
 import { FC } from 'react';
-
-import SmallImage from '@/components/shared/SmallImage';
-import { jura,staatliches } from '@/fonts'; // Assuming these are valid class names
+import { jura, staatliches } from '@/fonts';
 import { PostsPayload } from '@/types';
+import Image from 'next/image';
+import { urlForImage } from '@/sanity/lib/utils';
 
 interface PostItemProps {
    post: PostsPayload;
 }
 
+interface PostsListProps {
+   post: PostsPayload[];
+}
+
+interface ImageBoxProps {
+   image?: { asset?: any };
+   alt?: string;
+   width?: number;
+   height?: number;
+   classesWrapper?: string;
+   'data-sanity'?: string;
+}
+
+function SmallImage({ image, alt = 'Cover image', width = 600, height = 600, classesWrapper, ...props }: ImageBoxProps) {
+   const imageUrl = image && urlForImage(image)?.height(height).width(width).fit('crop').url();
+
+   return (
+      <div className={`w-full h-[50vw] lg:h-[20vw] overflow-hidden ${classesWrapper}`} data-sanity={props['data-sanity']}>
+         {imageUrl && <Image priority={true} className="object-cover cover h-full w-full" alt={alt} width={width} height={height} src={imageUrl} />}
+      </div>
+   );
+}
+
 export const PostItem: FC<PostItemProps> = ({ post }) => {
    let publicationDate = post.publicationDate;
 
-   // If there's no top-level publicationDate, try to get one from the block array
    if (!publicationDate && post.block) {
       const blockWithDate = post.block.find(blockItem => blockItem.publicationDate);
       if (blockWithDate) {
@@ -33,7 +55,7 @@ export const PostItem: FC<PostItemProps> = ({ post }) => {
    return (
       <article className="mb-4 h-auto border border-gray-800 p-1">
          {image && (
-            <div className="relative h-48">
+            <div className="relative">
                <SmallImage image={image} alt={`Cover Image for ${title}`} classesWrapper="w-full h-full object-cover object-contain" />
             </div>
          )}
@@ -48,9 +70,6 @@ export const PostItem: FC<PostItemProps> = ({ post }) => {
    );
 };
 
-interface PostsListProps {
-   post: PostsPayload[];
-}
 export const PostsList: FC<PostsListProps> = ({ post }) => {
    if (!post) {
       return null;

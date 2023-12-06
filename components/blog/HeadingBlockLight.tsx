@@ -10,8 +10,6 @@ const HeadingBlockLight = ({ block }) => {
    }
 
    const blockImageUrl = block?.image && urlForImage(block.image)?.height(1000).width(1000).fit('crop').url();
-
-   // Functionality for team member image
    const teamImageUrl = block?.team?.image && urlForImage(block.team.image)?.height(100).width(100).fit('crop').url();
 
    return (
