@@ -1,14 +1,18 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
-import ImageBox from '@/components/shared/ImageBox';
-import { jura,staatliches } from '@/fonts';
-
-import SmallImage from '../shared/SmallImage';
+import { urlForImage } from '@/sanity/lib/utils';
+import { jura, staatliches } from '@/fonts';
 
 const HeadingBlockLight = ({ block }) => {
    if (block?._type !== 'headingBlock') {
       return null;
    }
+
+   const blockImageUrl = block?.image && urlForImage(block.image)?.height(1000).width(1000).fit('crop').url();
+
+   // Functionality for team member image
+   const teamImageUrl = block?.team?.image && urlForImage(block.team.image)?.height(100).width(100).fit('crop').url();
 
    return (
       <div className="w-full h-auto bg-gray-200 pt-20 lg:pt-32">
@@ -27,9 +31,11 @@ const HeadingBlockLight = ({ block }) => {
                   </div>
                )}
             </div>
-            {block.image && (
+            {blockImageUrl && (
                <div className="w-full flex-wrap lg:w-1/2 p-4 flex">
-                  <ImageBox image={block.image} alt={`Cover Image for ${block.title}`} classesWrapper="w-full h-full object-cover object-contain" />
+                  <div className="w-full h-full object-cover object-contain">
+                     <Image priority={true} className="object-cover cover h-full w-full" alt={`Cover Image for ${block.title}`} width={1000} height={1000} src={blockImageUrl} />
+                  </div>
                </div>
             )}
             <div className="w-full lg:w-1/2 p-4 pr-4 lg:pr-20 flex pt-2 lg:pt-4 justify-center flex-cols">
@@ -54,7 +60,11 @@ const HeadingBlockLight = ({ block }) => {
                      {block.team && (
                         <Link href={`/team/${block.team.slug.current}`}>
                            <div className="flex items-center p-2 rounded-lg border w-full ">
-                              {block.team.image && <SmallImage image={block.team.image} alt={`Cover Image for ${block.title}`} classesWrapper="max-w-[50px] max-h-[50px] object-cover rounded-full" />}
+                              {teamImageUrl && (
+                                 <div className="overflow-hidden object-cover rounded-full">
+                                    <Image priority={true} className="object-cover cover h-full w-full" alt={`Team member image for ${block.team.name}`} width={100} height={100} src={teamImageUrl} />
+                                 </div>
+                              )}
                               {block.team.name && <span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-xs">By {block.team.name}</span>}
                            </div>
                         </Link>
