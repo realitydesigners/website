@@ -79,7 +79,7 @@ export default function Navbar() {
          </div>
 
          <div id="nav-content" role="menu" className={`absolute lg:relative top-0 left-0 w-full bg-gray-200 lg:bg-transparent lg:w-auto h-screen lg:h-auto overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${isNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 flex flex-col lg:flex-row justify-start lg:justify-end p-3  lg:p-0`}>
-            <div className="w-full mb-2 rounded-lg block lg:hidden mt-16 bg-black/20 h-[275px]">
+            <div className="w-full mb-2 rounded-lg block lg:hidden mt-12 bg-black h-[250px]">
                <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>
                <Link href="/" onClick={closeNav}>
                   <spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode"></spline-viewer>
