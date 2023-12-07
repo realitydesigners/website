@@ -3,9 +3,6 @@ import { jura, staatliches } from '@/fonts';
 import QuoteImage from '@/components/shared/QuoteImage';
 
 const QuoteCard = ({ quote, media, image, className }) => {
-   console.log('Quote:', quote);
-   console.log('Media Image URL:', media?.image?.asset?.url);
-
    switch (className) {
       case 'card-1':
          return (
