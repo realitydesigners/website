@@ -1,4 +1,4 @@
-import { jura,staatliches } from '@/fonts';
+import { jura, staatliches } from '@/fonts';
 
 const VideoRefWrapper = ({ value }) => {
    const { videoRefData, className } = value;
@@ -32,12 +32,14 @@ const VideoRefWrapper = ({ value }) => {
          );
       case 'card-2':
          return (
-            <div className="video-container mb-8 ">
-               <video controls>
-                  <source src={videoFileUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-               </video>
-               <p className="card-2-title">{videoTitle}</p>
+            <div className="video-container mb-6 ">
+               <div className=" w-full lg:w-3/4 ">
+                  <video controls>
+                     <source src={videoFileUrl} type="video/mp4" />
+                     Your browser does not support the video tag.
+                  </video>
+                  <p className={`${staatliches.className} ml-2 uppercase text-4xl text-center tracking-wide pt-4 font-mono text-gray-200 font-bold`}>{videoTitle}</p>
+               </div>
             </div>
          );
       default:

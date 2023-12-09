@@ -11,9 +11,9 @@ const TeamBlock = ({ block }) => {
    const imageUrl = block?.team?.image && urlForImage(block.team.image)?.height(200).width(200).fit('crop').url();
 
    return (
-      <div className="w-full h-auto bg-gray-200 pb-8 ">
+      <div className="w-full h-auto bg-gray-400 p-4 ">
          <div className="w-full flex justify-center">
-            <div className="flex flex-col w-11/12 lg:w-1/3 bg-gray-300 mb-12 shadow-lg p-4 border border-gray-300 rounded-xl">
+            <div className="flex flex-col w-11/12 lg:w-1/3 bg-gray-300 mb-12 shadow-lg p-4 border border-gray-400 rounded-lg ">
                <div className="flex justify-center items-center">
                   {imageUrl && (
                      <div className="overflow-hidden object-cover rounded-full shadow-2xl">

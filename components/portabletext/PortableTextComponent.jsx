@@ -33,7 +33,7 @@ const Dark = {
 
       h2: ({ children }) => (
          <div className="w-screen flex justify-center">
-            <h2 className={`${staatliches.className} mb-6 w-10/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h2>
+            <h2 className={`${staatliches.className} mb-6 w-11/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h2>
          </div>
       ),
       h3: ({ children }) => (
@@ -95,7 +95,7 @@ const Light = {
 
       h2: ({ children }) => (
          <div className="w-screen flex justify-center">
-            <h2 className={`${staatliches.className} mb-6 w-10/12 text-black text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h2>
+            <h2 className={`${staatliches.className} mb-6 w-11/12 text-black text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h2>
          </div>
       ),
       h3: ({ children }) => (

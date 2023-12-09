@@ -60,7 +60,7 @@ const HeadingBlockLight = ({ block }) => {
                            <div className="flex items-center p-2 rounded-lg border w-full ">
                               {teamImageUrl && (
                                  <div className="overflow-hidden object-cover rounded-full">
-                                    <Image priority={true} className="object-cover cover h-full w-full" alt={`Team member image for ${block.team.name}`} width={60} height={60} src={teamImageUrl} />
+                                    <Image priority={true} className="object-cover cover h-12 w-12" alt={`Team member image for ${block.team.name}`} width={60} height={60} src={teamImageUrl} />
                                  </div>
                               )}
                               {block.team.name && <span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-xs">By {block.team.name}</span>}
