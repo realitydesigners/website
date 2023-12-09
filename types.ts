@@ -78,6 +78,7 @@ export interface BlockItem {
    };
    markDefs?: any; // Simplify as per your requirement
    postsRef?: any; // Simplify as per your requirement
+   content?: Array<any>;
 }
 
 export interface PostsPayload {
@@ -171,4 +172,31 @@ export interface VideoPayload {
       videoTeam: string;
       team: any;
    };
+}
+
+export interface TeamPayload {
+   _id: string;
+   _type: string;
+   title: string;
+   name: string;
+   role: string;
+   shortBio: string;
+   block?: Array<BlockItem>;
+   content?: Array<any>; // Define this more accurately
+   slug: {
+      _type: string;
+      current: string;
+   };
+   bio?: Array<BlockItem>;
+   image?: {
+      _key?: string;
+      _type?: string;
+      alt?: string;
+      asset: {
+         _key?: string;
+         _type?: string;
+         url: string;
+      };
+   };
+   scene?: string; // Assuming scene is a string, modify as necessary
 }

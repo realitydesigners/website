@@ -267,3 +267,27 @@ export const getVideoBySlugQuery = groq`
    },
    
    }`;
+
+export const teamQuery = groq`
+ *[_type == "team"] |  order(_createdAt asc) {
+ name,
+ role,
+ image,
+ scene,
+ shortBio,
+ bio,
+ slug,
+ title,    
+}`;
+
+export const teamBySlugQuery = groq`
+*[_type == "team" && slug.current == $slug][0] {
+ name,
+ role,
+ image,
+ scene,
+ shortBio,
+ bio,
+ slug,
+ title,    
+}`;

@@ -1,9 +1,9 @@
 import 'server-only';
 import { draftMode } from 'next/headers';
 import { client } from '@/sanity/lib/client';
-import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery, categoryQuery, categoryBySlugQuery, getVideosQuery, getVideoBySlugQuery } from '@/sanity/lib/queries';
+import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery, categoryQuery, categoryBySlugQuery, getVideosQuery, getVideoBySlugQuery, teamQuery, teamBySlugQuery } from '@/sanity/lib/queries';
 import { token } from '@/sanity/lib/token';
-import { PagePayload, SettingsPayload, PostsPayload, CategoryPayload, VideoPayload } from '@/types';
+import { PagePayload, SettingsPayload, PostsPayload, CategoryPayload, VideoPayload, TeamPayload } from '@/types';
 import { queryStore } from './createQueryStore';
 
 const serverClient = client.withConfig({
@@ -42,3 +42,7 @@ export const loadCategorySlugPage = (slug: string) => loadSanityQuery<CategoryPa
 //Videos
 export const loadVideos = () => loadSanityQuery<VideoPayload[]>(getVideosQuery, {}, ['video']);
 export const loadVideoSlugPage = (slug: string) => loadSanityQuery<VideoPayload | null>(getVideoBySlugQuery, { slug }, [`video:${slug}`]);
+
+//Team
+export const loadTeam = () => loadSanityQuery<TeamPayload[]>(teamQuery, {}, ['team']);
+export const loadTeamSlugPage = (slug: string) => loadSanityQuery<TeamPayload | null>(teamBySlugQuery, { slug }, [`team:${slug}`]);
