@@ -32,7 +32,9 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
             (contentBlock: any, index: number) =>
                contentBlock?.content &&
                (contentBlock.layout === 'dark' ? (
-                  <PortableTextComponent content={contentBlock.content} template="blog" />
+                  <div className="w-full h-auto bg-black lg:pt-24">
+                     <PortableTextComponent content={contentBlock.content} template="dark" />
+                  </div>
                ) : contentBlock.layout === 'light' ? (
                   <div className="w-full h-auto bg-gray-200  lg:pt-24">
                      <PortableTextComponent content={contentBlock.content} template="light" />
