@@ -11,6 +11,10 @@ module.exports = {
          sans: 'var(--font-sans)',
          serif: 'var(--font-serif)',
       },
+      colors: {
+         ...theme.colors,
+         black: '#000',
+      },
    },
 
    plugins: [require('@tailwindcss/typography')],

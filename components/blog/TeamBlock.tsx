@@ -17,7 +17,7 @@ const TeamBlock = ({ block }) => {
                <div className="flex justify-center items-center">
                   {imageUrl && (
                      <div className="overflow-hidden object-cover rounded-full shadow-2xl">
-                        <Image priority={true} className="object-cover cover h-full w-full" alt="Team member image" width={200} height={200} src={imageUrl} />
+                        <Image priority={true} className="object-cover cover h-24 w-24" alt="Team member image" width={100} height={100} src={imageUrl} />
                      </div>
                   )}
                   <div className="ml-4 flex flex-col">
