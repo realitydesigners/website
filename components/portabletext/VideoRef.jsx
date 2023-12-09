@@ -25,7 +25,7 @@ const VideoRefWrapper = ({ value }) => {
          return (
             <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
-                  <video controls poster={videoThumbnail} className="w-full h-auto rounded-x bg-black shadow-xl ">
+                  <video controls poster={videoThumbnail} className="w-full h-auto ">
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                   </video>
@@ -37,7 +37,7 @@ const VideoRefWrapper = ({ value }) => {
          return (
             <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
-                  <video controls poster={videoThumbnail} className="w-full h-auto rounded-x; bg-black shadow-xl">
+                  <video controls poster={videoThumbnail} className="w-full h-auto ">
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                   </video>
