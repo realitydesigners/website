@@ -32,7 +32,7 @@ const VideoRefWrapper = ({ value }) => {
          );
       case 'card-2':
          return (
-            <div className="video-container mb-6 ">
+            <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
                   <video controls>
                      <source src={videoFileUrl} type="video/mp4" />
@@ -44,12 +44,17 @@ const VideoRefWrapper = ({ value }) => {
          );
       default:
          return (
-            <div className="video-container mb-8">
-               <video controls>
-                  <source src={videoFileUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-               </video>
-               <p>{videoTitle}</p>
+            <div className="flex justify-center w-full mb-6">
+               <div className=" w-full lg:w-3/4 ">
+                  <video
+                     controls
+                     className="w-full h-auto rounded-x bg-black shadow-xl " // Ensure responsiveness and rounded corners at top
+                  >
+                     <source src={videoFileUrl} type="video/mp4" />
+                     Your browser does not support the video tag.
+                  </video>
+                  <p className={`${staatliches.className} ml-2 uppercase text-4xl text-center tracking-wide pt-4 font-mono text-black font-bold`}>{videoTitle}</p>
+               </div>
             </div>
          );
    }

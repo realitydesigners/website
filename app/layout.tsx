@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} bg-gray-200`}>
          <body>
             {' '}
-            <Navbar />
+            <Navbar pageBackground="light" />
             {children}
          </body>
       </html>

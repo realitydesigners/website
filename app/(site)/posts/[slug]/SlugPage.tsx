@@ -1,8 +1,6 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader/rsc';
-
 import type { PostsPayload } from '@/types';
 import PortableTextComponent from '@/components/portabletext/PortableTextComponent';
-
 import HeadingBlockLight from '@/components/blog/HeadingBlockLight';
 import HeadingBlockDark from '@/components/blog/HeadingBlockDark';
 import TeamBlock from '@/components/blog/TeamBlock';
