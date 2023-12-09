@@ -1,11 +1,15 @@
 'use client';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { staatliches } from '@/fonts';
 
 interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
    url: string;
+}
+interface NavbarProps {
+   pageBackground: 'light' | 'dark';
 }
 
 declare global {
@@ -16,8 +20,10 @@ declare global {
    }
 }
 
-export default function Navbar() {
+export default function Navbar({ pageBackground }: NavbarProps) {
    const [isNavOpen, setIsNavOpen] = useState(false);
+
+   const logoColor = pageBackground === 'dark' ? 'white' : 'black';
 
    const toggleNav = () => {
       setIsNavOpen(!isNavOpen);
@@ -32,11 +38,11 @@ export default function Navbar() {
       const icons = {
          logo: (
             <svg width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-               <path d="M47.1279 70.8731L33.5967 55.3087M43.4729 23.3416L10.6978 28.9689L33.5967 55.3087M43.4729 23.3416L33.5967 55.3087M43.4729 23.3416L68.3831 51.4708L33.5967 55.3087M43.4729 23.3416L30.6805 9.58502" stroke="black" strokeWidth="5" />
+               <path d="M47.1279 70.8731L33.5967 55.3087M43.4729 23.3416L10.6978 28.9689L33.5967 55.3087M43.4729 23.3416L33.5967 55.3087M43.4729 23.3416L68.3831 51.4708L33.5967 55.3087M43.4729 23.3416L30.6805 9.58502" stroke={logoColor} strokeWidth="5" />
             </svg>
          ),
          menu: (
-            <svg width="35" height="35" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg width="35" height="35" fill="none" viewBox="0 0 24 24" stroke={logoColor}>
                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isNavOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
             </svg>
          ),
@@ -61,7 +67,7 @@ export default function Navbar() {
    };
 
    return (
-      <nav role="navigation" id="navbar" className="flex items-center h-16 p-2 justify-between fixed w-full z-50 bg-gradient-to-t from-transparent to-gray-200">
+      <nav role="navigation" id="navbar" className="flex items-center h-16 p-2 justify-between fixed w-full z-50 ">
          <div className=" relative flex items-center z-10">
             <Link href="/" className="flex items-center  w-auto p-2">
                {getIcon('logo')}

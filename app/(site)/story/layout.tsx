@@ -7,7 +7,7 @@ export default async function PostsPage({ children }: { children: React.ReactNod
    return (
       <div className="flex min-h-screen flex-col bg-white text-black">
          <Suspense>
-            <Navbar pageBackground="light" />
+            <Navbar pageBackground="dark" />
          </Suspense>
 
          <div className="flex min-h-screen flex-col bg-gray-200">
