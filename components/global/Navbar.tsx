@@ -61,7 +61,7 @@ export default function Navbar() {
    };
 
    return (
-      <nav role="navigation" id="navbar" className="flex items-center h-16 p-2 justify-between fixed w-full z-50 bg-gradient-to-t from-transparent to-gray-200">
+      <nav role="navigation" id="navbar" className="flex items-center h-16 p-2 justify-between fixed w-full z-50 ">
          <div className=" relative flex items-center z-10">
             <Link href="/" className="flex items-center  w-auto p-2">
                {getIcon('logo')}

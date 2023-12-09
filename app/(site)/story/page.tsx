@@ -2,14 +2,16 @@ import { staatliches, jura } from '@/fonts';
 
 export default function StoryPage() {
    return (
-      <div className="flex flex-col flex-wrap items-center w-screen h-auto justify-center bg-gray-200">
-         <div className="w-full block h-screen p-2 pt-16 bg-gray-200 overflow-hidden">
-            <iframe src="https://my.spline.design/realitydesignershome-8fbba7c43359ec8cb3c064461f38e4b2/" className="rounded-[1.5em]" width="100%" height="100%"></iframe>
+      <div className="flex flex-col flex-wrap items-center w-screen h-auto justify-center bg-black">
+         <div className="w-full block h-screen  bg-gray-200 overflow-hidden">
+            {/* <iframe src="https://my.spline.design/realitydesignershome-8fbba7c43359ec8cb3c064461f38e4b2/" className="rounded-[1.5em]" width="100%" height="100%"></iframe> */}
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.520/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/iKmFxJxXHvp6KcMb/scene.splinecode" className="rounded-[1.5em] w-full h-full"></spline-viewer>
          </div>
 
          <div className="lg:w-1/2 w-11/12 pt-32 pb-20">
-            <div className={`${jura.className} text-xl font-bold `}>
-               <h1 className={`${staatliches.className}  text-6xl lg:text-7xl font-bold text-center mb-6`}>A NEW REALITY IS BEING DESIGNED</h1>
+            <div className={`${jura.className} text-xl font-bold text-gray-400 `}>
+               <h1 className={`${staatliches.className} text-gray-200 text-6xl lg:text-7xl font-bold text-center mb-6`}>A NEW REALITY IS BEING DESIGNED</h1>
                <p className="mb-6 ">
                   IN A WORLD NOT SO DIFFERENT FROM OUR OWN, LIFE WAS ONCE UNDERSTOOD AS THE ULTIMATE GAME, EVERYONE HELD THE LIFE'S USER MANUAL. THIS MANUAL WAS LIKE A TREASURE MAP AND BLUEPRINT TO THE HUMAN OPERATING SYSTEM. WITH THIS KNOWLEDGE HUMANS HAD THE KEY TO UNLOCK UNBELIEVABLE POTENTIAL. EARTH WAS OUR SPECIAL REALM. A PLACE TO INSTALL NEW SKILLS AND DOWNLOAD EXPERIENCES. A WORLD WHERE
                   EVERY MOMENT HELD A LESSON, AND EVERY CHALLENGE OPENED AN INTERNAL GATE TOWARDS GROWTH AND PROGRESSING IN THEIR LIFE MISSIONS. THIS REALM, WAS A PLACE ONLY FOR OUR HIGHEST INTENTIONS, A GAME MEANT TO BE PLAYED, ONLY BY PLAYERS WHO KNEW THE RULES, AND FOLLOWED THEM. THIS REALITY WAS A GAME INTACT FOR A MILLENNIA, UP UNTIL VERY RECENTLY... THEN EVERYTHING CHANGED.
@@ -46,7 +48,7 @@ export default function StoryPage() {
             </div>
             <h1 className={`${staatliches.className}  text-4xl font-bold text-center`}>WE ARE THE REALITY DESIGNERS.</h1>
          </div>
-         <div className="bg-gray-300 p-8 rounded-lg shadow-md w-11/12 lg:w-1/2 mb-20">
+         <div className="bg-gray-300 p-4 lg:p-8 rounded-lg shadow-md w-11/12 lg:w-1/2 mb-20">
             <form action="/submit_form" method="POST" id="realityDesignerForm" className={`${staatliches.className} flex flex-col space-y-4`}>
                <h2 className="text-4xl uppercase text-black font-bold text-center">Are You A Reality Designer?</h2>
                <p className="text-black text-xl text-center">If so, we have a very important mission waiting for you.</p>
