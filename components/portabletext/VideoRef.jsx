@@ -4,8 +4,6 @@ import { urlForImage } from '@/sanity/lib/utils';
 const VideoRefWrapper = ({ value }) => {
    const { videoRef, className, image } = value;
 
-   console.log('videoRef', videoRef);
-
    if (!videoRef) {
       return <p>Video file not found.</p>;
    }
@@ -13,8 +11,6 @@ const VideoRefWrapper = ({ value }) => {
    const videoFileUrl = videoRef?.videoFileUrl;
    const videoTitle = videoRef?.videoTitle;
    const videoThumbnail = videoRef?.image?.asset?.url;
-
-   // console.log('videoRefData', videoThumbnail);
 
    if (!videoFileUrl) {
       return <p>Video URL is not available.</p>;
@@ -25,7 +21,7 @@ const VideoRefWrapper = ({ value }) => {
          return (
             <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
-                  <video controls poster={videoThumbnail} className="w-full h-auto ">
+                  <video controls poster={videoThumbnail} autoPlay={true} className="w-full h-auto ">
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                   </video>
@@ -37,7 +33,7 @@ const VideoRefWrapper = ({ value }) => {
          return (
             <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
-                  <video controls poster={videoThumbnail} className="w-full h-auto ">
+                  <video controls poster={videoThumbnail} autoPlay={true} className="w-full h-auto ">
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                   </video>
