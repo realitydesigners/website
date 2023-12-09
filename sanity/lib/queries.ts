@@ -119,14 +119,15 @@ export const postsBySlugQuery = groq`
          className->{name},
          team->,
        },
-       "videoRefData": {
-         "videoTitle": video->title,
-         "videoFileUrl": video->video.asset->url,
-         "videoImage": video->image,
-         "videoTeam": video->team,
-         team->,
-       },
-
+    
+          "videoRef": {
+            "videoTitle": video->title,
+            "videoFileUrl": video->video.asset->url,
+            "videoImage": video->image.asset->url,
+            "videoTeam": video->team,
+            team->,
+        },
+       
        "audioRefData": {
          "audioTitle": audio->title,
          "audioFileUrl": audio->audioFile.asset->url

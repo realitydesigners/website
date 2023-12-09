@@ -68,7 +68,7 @@ export interface BlockItem {
    publicationDate?: string;
    team?: TeamMember;
    media?: any; // Adjust based on actual media content
-   videoRefData?: any; // Simplify as per your requirement
+   videoRefData?: Array<VideoPayload>; // Simplify as per your requirement
    audioRefData?: any; // Simplify as per your requirement
    quote?: {
       _key?: string;
