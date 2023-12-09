@@ -198,5 +198,9 @@ export interface TeamPayload {
          url: string;
       };
    };
-   scene?: string; // Assuming scene is a string, modify as necessary
+   scene?: string;
+   instagram?: string;
+   twitter?: string;
+   website?: string;
+   tiktok?: string;
 }

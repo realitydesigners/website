@@ -53,5 +53,29 @@ export default defineType({
          title: 'Bio',
          of: [{ type: 'block' }],
       }),
+      defineField({
+         name: 'instagram',
+         title: 'Instagram',
+         type: 'url',
+         description: 'Instagram profile URL',
+      }),
+      defineField({
+         name: 'twitter',
+         title: 'Twitter',
+         type: 'url',
+         description: 'Twitter profile URL',
+      }),
+      defineField({
+         name: 'website',
+         title: 'Website',
+         type: 'url',
+         description: 'Personal or business website URL',
+      }),
+      defineField({
+         name: 'tiktok',
+         title: 'TikTok',
+         type: 'url',
+         description: 'TikTok profile URL',
+      }),
    ],
 });

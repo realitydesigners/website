@@ -291,4 +291,8 @@ export const teamBySlugQuery = groq`
  bio,
  slug,
  title,    
+ instagram,
+ twitter,
+ website,
+ tiktok,
 }`;
