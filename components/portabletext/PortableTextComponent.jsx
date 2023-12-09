@@ -22,7 +22,7 @@ const Dark = {
    block: {
       normal: ({ children }) => (
          <div className="w-screen flex justify-center ">
-            <p className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
+            <p className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
          </div>
       ),
       h1: ({ children }) => (
@@ -84,7 +84,7 @@ const Light = {
    block: {
       normal: ({ children }) => (
          <div className="w-screen flex justify-center ">
-            <p className={`${jura.className} w-11/12 font-bold text-black leading-7 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
+            <p className={`${jura.className} w-11/12 font-bold text-black leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
          </div>
       ),
       h1: ({ children }) => (
