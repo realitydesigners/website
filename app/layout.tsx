@@ -1,6 +1,7 @@
 import 'tailwindcss/tailwind.css';
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import { ClerkProvider } from '@clerk/nextjs';
 import Navbar from '@/components/global/Navbar';
 
 const serif = PT_Serif({
@@ -22,13 +23,15 @@ const mono = IBM_Plex_Mono({
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
    <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"></script>;
    return (
-      <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} bg-gray-200`}>
-         <body>
-            {' '}
-            <Navbar pageBackground="light" />
-            {children}
-            <Analytics />
-         </body>
-      </html>
+      <ClerkProvider>
+         <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} bg-gray-200`}>
+            <body>
+               {' '}
+               <Navbar pageBackground="light" />
+               {children}
+               <Analytics />
+            </body>
+         </html>
+      </ClerkProvider>
    );
 }

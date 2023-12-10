@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 import { staatliches } from '@/fonts';
 
@@ -93,26 +94,39 @@ export default function Navbar({ pageBackground }: NavbarProps) {
             </div>
             <ul className="flex justify-center items-center gap-4 flex-col lg:flex-row lg:space-x-2 mt-4 lg:mt-0">
                <li>
-                  <Link href="/library" className={`${staatliches.className} text-black text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/library" className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Library
                   </Link>
                </li>
                <li>
-                  <Link href="/posts" className={`${staatliches.className} text-black text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/posts" className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Posts
                   </Link>
                </li>
                <li>
-                  <Link href="/videos" className={`${staatliches.className} text-black text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/videos" className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Videos
                   </Link>
                </li>
                <li>
-                  <Link href="/story" className={`${staatliches.className} text-black  text-6xl lg:text-sm font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
+                  <Link href="/story" className={`${staatliches.className} text-black  text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`} onClick={closeNav}>
                      Story
                   </Link>
                </li>
             </ul>
+            <SignedOut>
+               <div className="flex mt-4 lg:h-5 lg:mr-4 mr-0 lg:mt-0 justify-center">
+                  <Link href="/sign-up" onClick={closeNav} className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-white rounded-full transition-all duration-200 ease-in-out bg-black">
+                     <span className={`${staatliches.className}  whitespace-nowrap`}>Sign-In</span>
+                  </Link>
+               </div>
+            </SignedOut>
+
+            <SignedIn>
+               <div className=" lg:flex lg:relative lg:ml-2 ml-0  lg:mr-4 mr-0 lg:mt-0 mt-4 justify-center  lg:p-2 flex ">
+                  <UserButton afterSignOutUrl="/" />
+               </div>
+            </SignedIn>
          </div>
       </nav>
    );
