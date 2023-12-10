@@ -17,7 +17,7 @@ queryStore.setServerClient(serverClient);
 // A utility function to handle common logic for load queries.
 function loadSanityQuery<T>(query: string, params: Record<string, unknown> = {}, tags: string[]): Promise<T> {
    const perspective = draftMode().isEnabled ? 'previewDrafts' : 'published';
-   const cache: RequestCache = serverClient.config().useCdn ? 'force-cache' : 'no-cache';
+   const cache: RequestCache = serverClient.config().useCdn ? 'no-cache' : 'force-cache';
 
    return queryStore
       .loadQuery<T>(query, params, {
