@@ -26,7 +26,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <ClerkProvider>
          <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} bg-gray-200`}>
             <body>
-               {' '}
                <Navbar pageBackground="light" />
                {children}
                <Analytics />

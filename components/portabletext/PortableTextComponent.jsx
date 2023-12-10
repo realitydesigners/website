@@ -180,6 +180,40 @@ const Team = {
    },
 };
 
+const Video = {
+   block: {
+      normal: ({ children }) => <p className={`${jura.className}  font-bold text-gray-400 leading-7 tracking-wide text-lg lg:text-xl mb-6 `}>{children}</p>,
+      h1: ({ children }) => (
+         <div className="w-screen flex justify-center">
+            <h1 className={`${staatliches.className} mb-6 w-10/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h1>
+         </div>
+      ),
+
+      h2: ({ children }) => (
+         <div className="w-screen flex justify-center">
+            <h2 className={`${staatliches.className} mb-6 w-11/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}>{children}</h2>
+         </div>
+      ),
+      h3: ({ children }) => (
+         <div className="w-screen flex justify-center">
+            <h2 className={`${staatliches.className} mb-6  w-11/12 text-4xl text-gray-200  font-bold  leading-none tracking-wide md:w-3/4   lg:w-1/2 lg:text-5xl`}>{children}</h2>
+         </div>
+      ),
+   },
+   marks: {
+      internalLink: ({ value, children }) => {
+         const { slug = {} } = value;
+         const href = `/blog/${slug?.current}`;
+
+         return (
+            <Link className="font-extrabold text-black underline " href={href}>
+               {children}
+            </Link>
+         );
+      },
+   },
+};
+
 const PortableTextComponent = ({ content, template }) => {
    const [chosenComponents, setChosenComponents] = useState(null);
 
@@ -194,8 +228,8 @@ const PortableTextComponent = ({ content, template }) => {
          case 'team':
             setChosenComponents(Team);
             break;
-         case 'postCard':
-            setChosenComponents(PostCard);
+         case 'video':
+            setChosenComponents(Video);
             break;
          default:
             return null;
