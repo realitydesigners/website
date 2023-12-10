@@ -161,17 +161,7 @@ export interface VideoPayload {
       name: string;
       title: string;
    }>;
-   videoRefData: {
-      videoTitle: string;
-      videoFileUrl: string;
-      videoImage: {
-         asset: {
-            url: string;
-         };
-      };
-      videoTeam: string;
-      team: any;
-   };
+   content?: Array<any>; // Define this more accurately
 }
 
 export interface TeamPayload {

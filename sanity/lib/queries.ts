@@ -259,13 +259,10 @@ export const getVideoBySlugQuery = groq`
      name,
      title,
    },
-   "videoRefData": {
-     "videoTitle": video->title,
-     "videoFileUrl": video->video.asset->url,
-     "videoImage": video->image,
-     "videoTeam": video->team,
-     team->,
+   content[]{
+    ...,
    },
+
    
    }`;
 
