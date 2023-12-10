@@ -1,8 +1,6 @@
 import 'tailwindcss/tailwind.css';
-
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google';
-
-import { Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/global/Navbar';
 
 const serif = PT_Serif({
@@ -14,8 +12,6 @@ const serif = PT_Serif({
 const sans = Inter({
    variable: '--font-sans',
    subsets: ['latin'],
-   // @todo: understand why extrabold (800) isn't being respected when explicitly specified in this weight array
-   // weight: ['500', '700', '800'],
 });
 const mono = IBM_Plex_Mono({
    variable: '--font-mono',
@@ -31,6 +27,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {' '}
             <Navbar pageBackground="light" />
             {children}
+            <Analytics />
          </body>
       </html>
    );
