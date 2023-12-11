@@ -53,9 +53,10 @@ const SplatScene = ({ url }) => {
          <canvas ref={canvasRef} className="w-full h-full absolute top-0 left-0 z-0" />
          {isLoading && (
             <div className="absolute top-0 left-0 w-full h-full  flex justify-center items-center text-white text-2xl z-10">
+               {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
                <svg className="animate-spin h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0116 0H4z"></path>
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0116 0H4z" />
                </svg>
             </div>
          )}

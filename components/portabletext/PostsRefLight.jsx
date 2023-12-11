@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import ImageBox from '@/components/shared/ImageBox';
-import { jura,staatliches } from '@/fonts';
+import { jura, staatliches } from '@/fonts';
 
 const PostsCardLight = ({ title, slug, image, excerpt }) => {
    return (

@@ -1,12 +1,12 @@
-import { loadPosts } from '@/sanity/loader/loadQuery';
-import { PostsList } from '@/components/global/PostsList';
+import { loadPosts } from "@/sanity/loader/loadQuery";
+import { PostsList } from "@/components/global/PostsList";
 
 export default async function IndexPage() {
-   const post = await loadPosts();
+	const post = await loadPosts();
 
-   return (
-      <div className="flex w-full">
-         <PostsList post={post} />
-      </div>
-   );
+	return (
+		<div className="flex w-full">
+			<PostsList post={post} />
+		</div>
+	);
 }

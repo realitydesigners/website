@@ -13,7 +13,7 @@ const iFrame = ({ value }) => {
 
    return (
       <div className="iframe-container">
-         <iframe title="iframe" src={url} width={width} height={height} allowFullScreen></iframe>
+         <iframe title="iframe" src={url} width={width} height={height} allowFullScreen />
       </div>
    );
 };

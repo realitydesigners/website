@@ -4,6 +4,7 @@ const PostCard = ({ title, author, excerpt, publicationDate }) => {
          {publicationDate && <p className="mb-3 text-xs tracking-wide text-gray-600">{publicationDate}</p>}
          <h3 className="text-md mb-8 font-mono font-bold uppercase leading-none text-gray-200  hover:text-gray-400">{title}</h3>
          {author && <p className="mb-3 font-mono text-sm font-medium tracking-wide text-gray-400">By: {author}</p>}
+         {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
          <button className="flex items-center font-mono text-xs text-gray-400 transition-colors duration-200 hover:text-gray-200">Read More</button>
       </div>
    );
@@ -16,13 +17,7 @@ export const Sidebar = ({ content, isVisible }) => {
             <h2 className="text-md pl-8 pt-20 font-mono font-normal tracking-wide text-gray-400">Related Articles</h2>
             {/* Map through content and render PostCard for each item */}
             {content.map(contentItem => (
-               <PostCard
-                  key={contentItem._id} // Use _id for key if it's unique
-                  title={contentItem.title}
-                  author={contentItem.author}
-                  excerpt={contentItem.excerpt}
-                  publicationDate={contentItem.publicationDate}
-               />
+               <PostCard key={contentItem._id} title={contentItem.title} author={contentItem.author} excerpt={contentItem.excerpt} publicationDate={contentItem.publicationDate} />
             ))}
          </div>
       </aside>

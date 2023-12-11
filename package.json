@@ -1,6 +1,7 @@
 {
   "name": "sanity-template-template-nextjs-personal-website",
   "devDependencies": {
+    "@biomejs/biome": "1.4.1",
     "@types/react": "18.2.37",
     "autoprefixer": "10.4.16",
     "eslint": "8.54.0",

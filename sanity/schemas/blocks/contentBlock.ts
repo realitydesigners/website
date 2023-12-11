@@ -312,6 +312,7 @@ export default {
          contentArray: 'content',
          layout: 'layout',
       },
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       prepare(selection: { contentArray: any[]; layout: string }) {
          const { contentArray, layout } = selection;
 
@@ -319,7 +320,7 @@ export default {
 
          let firstWords = '';
          if (firstContentType === 'block' && contentArray[0].children && contentArray[0].children[0]) {
-            firstWords = contentArray[0].children[0].text.split(' ').slice(0, 5).join(' ') + '...';
+            firstWords = `${contentArray[0].children[0].text.split(' ').slice(0, 5).join(' ')}...`;
          }
 
          const contentTypeCounts = contentArray.reduce<{ [key: string]: number }>((acc, item) => {

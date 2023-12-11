@@ -82,6 +82,7 @@ const ModelWithEffects = ({ model, position, scale, onPointerOver, onPointerOut,
          const intersects = raycaster.intersectObjects(scene.children, true);
 
          if (intersects.length > 0 && intersects[0].object === meshRef.current) {
+            // biome-ignore lint/complexity/useOptionalChain: <explanation>
             onClick && onClick();
          }
       };

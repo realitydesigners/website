@@ -32,6 +32,7 @@ export const Category = props => {
    });
 
    return (
+      // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
       <group position={position} rotation={[0, rotationY, 0]} onPointerOver={onHover} onPointerOut={onLeave} onClick={handleRedirect}>
          <HologramCrystal className="main-crystal" position={[0, 0, 5]} scale={[5, 5, 5]} onPointerOver={handleHover} onPointerOut={onPointerOut} emissiveIntensity={isDimmed ? 0.5 : isHighlighted ? 1 : 0.6} />
          <Text ref={textRef} position={[0, 0, -1]} color="black" fontSize={1.5} font="/Staatliches.ttf" anchorY="middle" maxWidth={5} lineHeight={0.9} textAlign="center">

@@ -60,6 +60,7 @@ const Crystal = ({ position, scale, onPointerOver, onPointerOut, onClick, emissi
          const intersects = raycaster.intersectObjects(scene.children, true);
 
          if (intersects.length > 0 && intersects[0].object === meshRef.current) {
+            // biome-ignore lint/complexity/useOptionalChain: <explanation>
             onClick && onClick();
          }
       };

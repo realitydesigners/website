@@ -27,7 +27,7 @@ const ImageCard = ({ title, slug, image, className }) => {
                )}
             </div>
          );
-      case 'card-2':
+
       default:
          return (
             <div className="relative p-4 mb-6 ">
