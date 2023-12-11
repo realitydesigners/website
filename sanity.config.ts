@@ -1,7 +1,7 @@
 /**
  * This config is used to set up Sanity Studio that's mounted on the `app/studio/[[...index]]/Studio.tsx` route
  */
-
+import useSWR from 'swr';
 import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
@@ -18,7 +18,7 @@ import milestone from '@/sanity/schemas/objects/milestone';
 import timeline from '@/sanity/schemas/objects/timeline';
 import home from '@/sanity/schemas/singletons/home';
 import settings from '@/sanity/schemas/singletons/settings';
-import { theme } from 'https://themer.sanity.build/api/hues?default=lightest:b0bed4;darkest:000000';
+//import { theme } from 'https://themer.sanity.build/api/hues?default=lightest:b0bed4;darkest:000000';
 import CustomField from './sanity/ui/CustomField';
 import CustomItem from '@/sanity/ui/CustomItem';
 
@@ -43,7 +43,7 @@ export default defineConfig({
    projectId: projectId || '',
    dataset: dataset || '',
    title,
-   theme,
+   // theme,
    schema: {
       // If you want more content types, you can add them to this array
       types: [

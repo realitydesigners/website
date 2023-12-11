@@ -10,7 +10,7 @@ import { settingsQuery } from '../lib/queries';
  * Exports to be used in client-only or components that render both server and client
  */
 export const useQuery = <QueryResponseResult = unknown, QueryResponseError = unknown>(query: string, params?: QueryParams, options?: UseQueryOptions<QueryResponseResult>) => {
-   const snapshot = queryStore.useQuery<QueryResponseResult, QueryResponseError>(query, params, options);
+   const snapshot = queryStore.useQuery<QueryResponseResult, QueryResponseError>(query, params);
 
    const encodeDataAttribute = useEncodeDataAttribute(snapshot.data, snapshot.sourceMap, studioUrl);
 

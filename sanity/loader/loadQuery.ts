@@ -6,6 +6,9 @@ import { token } from '@/sanity/lib/token';
 import { PagePayload, SettingsPayload, PostsPayload, CategoryPayload, VideoPayload, TeamPayload } from '@/types';
 import { queryStore } from './createQueryStore';
 
+// In-memory cache (simple key-value store)
+const cacheStore: Record<string, any> = {};
+
 const serverClient = client.withConfig({
    token,
    useCdn: process.env.VERCEL_ENV === 'production',
@@ -17,15 +20,19 @@ queryStore.setServerClient(serverClient);
 // A utility function to handle common logic for load queries.
 function loadSanityQuery<T>(query: string, params: Record<string, unknown> = {}, tags: string[]): Promise<T> {
    const perspective = draftMode().isEnabled ? 'previewDrafts' : 'published';
-   const cache: RequestCache = serverClient.config().useCdn ? 'no-cache' : 'force-cache';
+   const cacheSetting: RequestCache = serverClient.config().useCdn ? 'no-cache' : 'force-cache';
+   const cacheKey = query + JSON.stringify(params);
 
-   return queryStore
-      .loadQuery<T>(query, params, {
-         cache,
-         next: { tags },
-         perspective,
-      })
-      .then(response => response.data);
+   if (cacheSetting === 'force-cache' && cacheStore[cacheKey]) {
+      // Return cached data if available
+      return Promise.resolve(cacheStore[cacheKey]);
+   } else {
+      // Fetch new data and update cache
+      return queryStore.loadQuery<T>(query, params, { perspective }).then(response => {
+         cacheStore[cacheKey] = response.data; // Update cache
+         return response.data;
+      });
+   }
 }
 
 export const loadSettings = () => loadSanityQuery<SettingsPayload>(settingsQuery, {}, ['settings', 'home', 'page', 'project']);
@@ -39,10 +46,10 @@ export const loadPostsPage = (slug: string) => loadSanityQuery<PostsPayload | nu
 export const loadCategories = () => loadSanityQuery<CategoryPayload[]>(categoryQuery, {}, ['category']);
 export const loadCategorySlugPage = (slug: string) => loadSanityQuery<CategoryPayload | null>(categoryBySlugQuery, { slug }, [`category:${slug}`]);
 
-//Videos
+// Videos
 export const loadVideos = () => loadSanityQuery<VideoPayload[]>(getVideosQuery, {}, ['video']);
 export const loadVideoSlugPage = (slug: string) => loadSanityQuery<VideoPayload | null>(getVideoBySlugQuery, { slug }, [`video:${slug}`]);
 
-//Team
+// Team
 export const loadTeam = () => loadSanityQuery<TeamPayload[]>(teamQuery, {}, ['team']);
 export const loadTeamSlugPage = (slug: string) => loadSanityQuery<TeamPayload | null>(teamBySlugQuery, { slug }, [`team:${slug}`]);
