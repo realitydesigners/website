@@ -21,7 +21,8 @@ const VideoRefWrapper = ({ value }) => {
          return (
             <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
-                  <video controls poster={videoThumbnail} autoPlay={true} className="w-full h-auto ">
+                  {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
+                  <video controls poster={videoThumbnail} preload="true" className="w-full h-auto ">
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                   </video>
@@ -33,7 +34,8 @@ const VideoRefWrapper = ({ value }) => {
          return (
             <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
-                  <video controls poster={videoThumbnail} autoPlay={true} className="w-full h-auto ">
+                  {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
+                  <video controls poster={videoThumbnail} preload="true" className="w-full h-auto ">
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
                   </video>
@@ -45,6 +47,7 @@ const VideoRefWrapper = ({ value }) => {
          return (
             <div className="flex justify-center w-full mb-6">
                <div className=" w-full lg:w-3/4 ">
+                  {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
                   <video controls poster={videoThumbnail} className="w-full h-auto rounded-x bg-black shadow-xl ">
                      <source src={videoFileUrl} type="video/mp4" />
                      Your browser does not support the video tag.
