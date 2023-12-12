@@ -6,9 +6,6 @@ import { token } from '@/sanity/lib/token';
 import { PagePayload, SettingsPayload, PostsPayload, CategoryPayload, VideoPayload, TeamPayload } from '@/types';
 import { queryStore } from './createQueryStore';
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const cacheStore: Record<string, any> = {};
-
 const serverClient = client.withConfig({
    token,
    useCdn: process.env.VERCEL_ENV === 'production',
@@ -18,26 +15,21 @@ const serverClient = client.withConfig({
 queryStore.setServerClient(serverClient);
 
 // A utility function to handle common logic for load queries.
+// Assuming that the loadQuery function only accepts an object with a perspective property.
 function loadSanityQuery<T>(query: string, params: Record<string, unknown>, tags: string[]): Promise<T> {
    const perspective = draftMode().isEnabled ? 'previewDrafts' : 'published';
-   const cacheSetting: RequestCache = serverClient.config().useCdn ? 'no-cache' : 'force-cache';
-   const cacheKey = query + JSON.stringify(params);
 
-   if (cacheSetting === 'force-cache' && cacheStore[cacheKey]) {
-      // Return cached data if available
-      return Promise.resolve(cacheStore[cacheKey]);
-   }
-   // Fetch new data and update cache
-   return queryStore.loadQuery<T>(query, params, { perspective }).then(response => {
-      cacheStore[cacheKey] = response.data; // Update cache
-      return response.data;
-   });
+   return queryStore
+      .loadQuery<T>(query, params, {
+         perspective,
+      })
+      .then(response => response.data);
 }
 
 export const loadSettings = () => loadSanityQuery<SettingsPayload>(settingsQuery, {}, ['settings', 'home', 'page', 'project']);
 export const loadPage = (slug: string) => loadSanityQuery<PagePayload | null>(pagesBySlugQuery, { slug }, [`page:${slug}`]);
 
-// Posts
+// Postsxs
 export const loadPosts = () => loadSanityQuery<PostsPayload[]>(postsQuery, {}, ['posts']);
 export const loadPostsPage = (slug: string) => loadSanityQuery<PostsPayload | null>(postsBySlugQuery, { slug }, [`posts:${slug}`]);
 
