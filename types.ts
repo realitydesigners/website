@@ -162,7 +162,9 @@ export interface VideoPayload {
       name: string;
       title: string;
    }>;
-   content?: Array<any>; // Define this more accurately
+   content?: Array<any>;
+   position: number;
+   rotationY: number;
 }
 
 export interface TeamPayload {

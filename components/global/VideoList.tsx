@@ -5,11 +5,11 @@ import ImageBox from "@/components/shared/ImageBox";
 import { jura, staatliches } from "@/fonts";
 import { VideoPayload } from "@/types";
 
-interface PostItemProps {
+interface VideoitemProps {
 	videos: VideoPayload;
 }
 
-export const PostItem: FC<PostItemProps> = ({ videos }) => {
+export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 	const { title, image, slug } = videos;
 
 	return (
@@ -36,18 +36,18 @@ export const PostItem: FC<PostItemProps> = ({ videos }) => {
 	);
 };
 
-interface PostsListProps {
-	video: VideoPayload[];
+interface VideoListProps {
+	videos: VideoPayload[];
 }
-export const VideoList: FC<PostsListProps> = ({ video }) => {
-	if (!video) {
+export const VideoList: FC<VideoListProps> = ({ videos }) => {
+	if (!videos) {
 		return null;
 	}
 
 	return (
 		<div className="grid grid-cols-1 gap-4 p-4 pt-20 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-			{video.map((video) => (
-				<PostItem key={video.slug?.current} videos={video} />
+			{videos.map((video) => (
+				<VideoItem key={video.slug?.current} videos={video} />
 			))}
 		</div>
 	);
