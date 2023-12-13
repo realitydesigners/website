@@ -11,7 +11,8 @@ export function generateStaticParams() {
 }
 
 export default async function PageSlugRoute({ params }: Props) {
-	const post = await loadPostsPage(params.slug);
+	const response = await loadPostsPage(params.slug);
+	const post = await response.data;
 
 	return <SlugPage data={post} />;
 }

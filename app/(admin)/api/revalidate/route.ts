@@ -53,6 +53,7 @@ export async function POST(req: NextRequest) {
          now: Date.now(),
          body,
       });
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
    } catch (err: any) {
       console.error(err);
       return new Response(err.message, { status: 500 });

@@ -11,7 +11,8 @@ export function generateStaticParams() {
 }
 
 export default async function PageSlugRoute({ params }: Props) {
-	const video = await loadVideoSlugPage(params.slug);
+	const response = await loadVideoSlugPage(params.slug);
+	const video = response.data;
 
 	return <SlugPage data={video} />;
 }

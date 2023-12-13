@@ -11,7 +11,8 @@ export function generateStaticParams() {
 }
 
 export default async function CategoryPage({ params }: Props) {
-	const category = await loadCategorySlugPage(params.slug);
+	const response = await loadCategorySlugPage(params.slug);
+	const category = response.data;
 
 	return (
 		<div className="w-screen h-screen bg-gray-200">

@@ -1,12 +1,13 @@
-import { loadVideos } from '@/sanity/loader/loadQuery';
-import { VideoList } from '@/components/global/Videos';
+import { loadVideos } from "@/sanity/loader/loadQuery";
+import { VideoList } from "@/components/global/Videos";
 
 export default async function VideoPage() {
-   const videos = await loadVideos();
+	const response = await loadVideos();
+	const videos = response.data;
 
-   return (
-      <div className="flex w-full">
-         <VideoList video={videos} />
-      </div>
-   );
+	return (
+		<div className="flex w-full">
+			<VideoList video={videos} />
+		</div>
+	);
 }

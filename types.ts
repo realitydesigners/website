@@ -95,9 +95,10 @@ export interface PostsPayload {
 }
 
 export interface CategoryPayload {
-   _id: string;
+   _id?: string;
    _type?: string;
-   title: string;
+   title?: string;
+   category?: string;
    isMain?: boolean;
    slug?: {
       _type: string;
@@ -108,7 +109,7 @@ export interface CategoryPayload {
       // ... other properties of model
    };
    sceneIdentifier?: string;
-   subCategories: SubCategoryPayload[];
+   subCategories?: SubCategoryPayload[];
 }
 
 export interface SubCategoryPayload {
