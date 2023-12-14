@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { jura, staatliches } from '@/fonts';
 
-import { ArticleRef, AudioRef, ImageRef, MediaRefLight, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
+import { ArticleRef, AudioRef, ImageRef, MediaRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
 
 const iFrame = ({ value }) => {
    const { url, width, height } = value;
@@ -45,12 +45,12 @@ const Dark = {
    list: {
       bullet: ({ children }) => (
          <div className="w-screen flex justify-center">
-            <ul className={`${staatliches.className} w-11/12  text-black leading-6 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}>{children}</ul>
+            <ul className={`${jura.className} w-11/12  text-black leading-7  text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}>{children}</ul>
          </div>
       ),
       number: ({ children }) => (
          <div className="w-screen flex justify-center">
-            <ol className={`${staatliches.className} w-11/12 text-black leading-8 tracking-wide text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}>{children}</ol>
+            <ol className={`${jura.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}>{children}</ol>
          </div>
       ),
    },
@@ -71,7 +71,7 @@ const Dark = {
       iframe: iFrame,
       postsRef: PostsRefLight,
       articleRef: ArticleRef,
-      mediaRef: MediaRefLight,
+      mediaRef: MediaRef,
       videoRef: VideoRef,
       spline: SplineRef,
       imageRef: ImageRef,
@@ -107,12 +107,12 @@ const Light = {
    list: {
       bullet: ({ children }) => (
          <div className="w-screen flex justify-center">
-            <ul className={`${staatliches.className} w-11/12  text-black leading-6 tracking-wide text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}>{children}</ul>
+            <ul className={`${jura.className} w-11/12  text-black leading-7 text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}>{children}</ul>
          </div>
       ),
       number: ({ children }) => (
          <div className="w-screen flex justify-center">
-            <ol className={`${staatliches.className} w-11/12 text-black leading-8 tracking-wide text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}>{children}</ol>
+            <ol className={`${jura.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}>{children}</ol>
          </div>
       ),
    },
@@ -133,7 +133,7 @@ const Light = {
       iframe: iFrame,
       postsRef: PostsRefLight,
       articleRef: ArticleRef,
-      mediaRef: MediaRefLight,
+      mediaRef: MediaRef,
       videoRef: VideoRef,
       spline: SplineRef,
       imageRef: ImageRef,

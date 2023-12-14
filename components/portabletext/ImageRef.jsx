@@ -9,16 +9,16 @@ const ImageCard = ({ title, slug, image, className }) => {
       case 'card-1':
          return (
             <div className="relative p-4 mb-6 ">
-               <div className="relative justify-center  items-center flex h-auto bg-gray-400 w-full ">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  object-cover contain h-full object-cover" />}</div>
+               <div className="relative justify-center rounded-[1.3em] lg:rounded-[1.8em] overflow-hidden  items-center flex h-auto bg-gray-400 w-full ">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  contain h-full object-cover" />}</div>
                {image?.team && (
                   <div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-white">
                      <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper="mr-2 max-h-[30px] max-w-[30px] rounded-full" />
 
                      <div className=" justify-center relative flex flex-col items-start text-xs uppercase leading-none">
-                        <Link href="/" className="text-black font-mono text-xs">
-                           Artist
+                        <Link href="/" className="text-gray-600 font-mono text-[10px]">
+                           BY
                         </Link>
-                        <Link href={`/media/${slug}`} className="text-black font-mono font-bold text-md">
+                        <Link href="/" className="text-black font-mono font-bold text-md">
                            {image.team.name}
                         </Link>
                      </div>
@@ -28,23 +28,22 @@ const ImageCard = ({ title, slug, image, className }) => {
             </div>
          );
 
-      default:
+      case 'card-2':
          return (
             <div className="relative p-4 mb-6 ">
-               <div className="relative justify-center  items-center flex h-auto bg-gray-400 w-full ">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  object-cover contain h-full object-cover" />}</div>
-               {image?.team && (
-                  <div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-white">
-                     <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper="mr-2 max-h-[30px] max-w-[30px] rounded-full" />
+               <div className="relative justify-center rounded-[1.3em] lg:rounded-[1.8em] overflow-hidden  items-center flex h-auto bg-gray-400 w-full ">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  contain h-full object-cover" />}</div>
 
+               {image?.team && (
+                  <div className="relative rounded-b-xl -mt-16  pt-4 bottom-0 flex h-auto w-full pl-4  ">
+                     <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper=" border mr-2 max-h-[30px] max-w-[30px] rounded-full" />
                      <div className=" justify-center relative flex flex-col items-start text-xs uppercase leading-none">
-                        <Link href="/" className="text-black font-mono text-xs">
-                           Artist
+                        <Link href="/" className="text-gray-400 font-mono text-[10px]">
+                           BY
                         </Link>
-                        <Link href={`/media/${slug}`} className="text-black font-mono font-bold text-md">
+                        <Link href="/" className="text-gray-200 font-mono font-bold text-md">
                            {image.team.name}
                         </Link>
                      </div>
-                     <p className=" ml-4 inline-block cursor-pointer text-2xl font-bold text-black">→</p>
                   </div>
                )}
             </div>

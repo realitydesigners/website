@@ -57,6 +57,7 @@ export interface MediaRef {
 }
 
 export interface BlockItem {
+   _id: string;
    _key?: string;
    _type: string;
    heading?: string;
