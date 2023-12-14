@@ -38,7 +38,7 @@ export default async function RootLayout({
 			>
 				<body>
 					<Navbar pageBackground="light" />
-					<Suspense fallback={<Loading />}>{children}</Suspense>
+					{children}
 					<Footer />
 					<Analytics />
 				</body>
