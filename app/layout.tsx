@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Inter, PT_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/global/Navbar";
+import Footer from "@/components/global/Footer";
 
 const serif = PT_Serif({
 	variable: "--font-serif",
@@ -36,6 +37,7 @@ export default async function RootLayout({
 				<body>
 					<Navbar pageBackground="light" />
 					{children}
+					<Footer />
 					<Analytics />
 				</body>
 			</html>

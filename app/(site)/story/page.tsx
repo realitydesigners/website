@@ -1,3 +1,4 @@
+"use client";
 import { staatliches, jura } from "@/fonts";
 import Newsletter from "@/components/email/Newsletter";
 
