@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const serif = PT_Serif({
 	variable: "--font-serif",
@@ -36,7 +38,7 @@ export default async function RootLayout({
 			>
 				<body>
 					<Navbar pageBackground="light" />
-					{children}
+					<Suspense fallback={<Loading />}>{children}</Suspense>
 					<Footer />
 					<Analytics />
 				</body>

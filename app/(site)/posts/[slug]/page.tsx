@@ -2,6 +2,8 @@ import { loadPostsPage } from "@/sanity/loader/loadQuery";
 import SlugPage from "@/app/(site)/posts/[slug]/SlugPage";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 
+import { Suspense } from "react";
+
 type Props = {
 	params: { slug: string };
 };
