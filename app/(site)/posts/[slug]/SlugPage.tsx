@@ -1,3 +1,4 @@
+"use client";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import type { PostsPayload } from "@/types";
 import PortableTextComponent from "@/components/portabletext/PortableTextComponent";
