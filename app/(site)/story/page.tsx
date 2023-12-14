@@ -1,14 +1,10 @@
 import { staatliches, jura } from "@/fonts";
+import Newsletter from "@/components/email/Newsletter";
 
 export default function StoryPage() {
 	return (
 		<div className="flex flex-col flex-wrap items-center w-screen h-auto justify-center bg-black">
 			<div className="w-full block h-screen  bg-gray-200 overflow-hidden">
-				{/* <iframe src="https://my.spline.design/realitydesignershome-8fbba7c43359ec8cb3c064461f38e4b2/" className="rounded-[1.5em]" width="100%" height="100%"></iframe> */}
-				<script
-					type="module"
-					src="https://unpkg.com/@splinetool/viewer@0.9.520/build/spline-viewer.js"
-				/>
 				<spline-viewer
 					url="https://prod.spline.design/iKmFxJxXHvp6KcMb/scene.splinecode"
 					className="rounded-[1.5em] w-full h-full"
@@ -130,35 +126,7 @@ export default function StoryPage() {
 				</h1>
 			</div>
 			<div className="bg-gray-300 p-4 lg:p-8 rounded-lg shadow-md w-11/12 lg:w-1/2 mb-20">
-				<form
-					action="/submit_form"
-					method="POST"
-					id="realityDesignerForm"
-					className={`${staatliches.className} flex flex-col space-y-4`}
-				>
-					<h2 className="text-4xl uppercase text-black font-bold text-center">
-						Are You A Reality Designer?
-					</h2>
-					<p className="text-black text-xl text-center">
-						If so, we have a very important mission waiting for you.
-					</p>
-
-					<input
-						type="email"
-						name="email"
-						id="email"
-						required
-						placeholder="yourname@example.com"
-						className="p-2 bg-gray-200 border border-gray-500 rounded-md focus:outline-none focus:ring focus:border-gray-200"
-					/>
-					<button
-						type="submit"
-						className="border uppercase tracking-wide bg-black  border-gray-200 text-white py-2 px-4 rounded-md hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
-					>
-						{" "}
-						Join The Mission
-					</button>
-				</form>
+				<Newsletter />
 			</div>
 		</div>
 	);
