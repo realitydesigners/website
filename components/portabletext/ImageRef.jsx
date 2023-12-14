@@ -1,7 +1,5 @@
 import Link from 'next/link';
-
 import ImageBox from '@/components/shared/ImageBox';
-
 import SmallImage from '../shared/SmallImage';
 
 const ImageCard = ({ title, slug, image, className }) => {
