@@ -5,7 +5,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
 import { Suspense } from "react";
-import Loading from "./loading";
 
 const serif = PT_Serif({
 	variable: "--font-serif",
