@@ -126,9 +126,6 @@ export default function StoryPage() {
 					WE ARE THE REALITY DESIGNERS.
 				</h1>
 			</div>
-			<div className="bg-gray-300 p-4 lg:p-8 rounded-lg shadow-md w-11/12 lg:w-1/2 mb-20">
-				<Newsletter />
-			</div>
 		</div>
 	);
 }
