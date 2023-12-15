@@ -1,5 +1,5 @@
 import { loadCategorySlugPage } from "@/sanity/loader/loadQuery";
-import SlugPage from "@/app/(site)/library/[slug]/SlugPage";
+import SlugPage from "@/app/library/[slug]/SlugPage";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 
 type Props = {

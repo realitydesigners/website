@@ -28,10 +28,6 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 	return (
 		<div className="w-full flex flex-col h-full text-black justify-center flex items-center bg-black ">
 			<div className="w-full h-full bg-black block">
-				<script
-					type="module"
-					src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"
-				/>
 				<spline-viewer
 					className="w-full h-[80vh] lg:h-[90vh]"
 					url={scene || ""}

@@ -4,7 +4,7 @@ import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
 import Loading from "./loading";
 
-export default async function StoryLayout({
+export default async function TeamLayout({
 	children,
 }: { children: React.ReactNode }) {
 	<script
