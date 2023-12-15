@@ -1,0 +1,119 @@
+:root {
+   --font-stack: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   --primary-color: #000000; /* A modern purple as the primary color */
+   --background-color: #ffffff; /* White background for light mode */
+   --text-color: #333333; /* Dark grey for text to ensure readability */
+   --border-radius: 0.5rem; /* Rounded corners for a modern feel */
+   --border-color: #e2e8f0; /* Light grey border color */
+   --input-background: #edf2f7; /* Very light grey for input fields background */
+   --input-border-color: #cbd5e0; /* Light grey for input border */
+   --button-hover-color: #4c1d95; /* A darker purple for button hover state */
+   --error-color: #e53e3e; /* Red color for error states or messages */
+}
+
+/* Base styles */
+body,
+input,
+button {
+   font-family: var(--font-stack);
+   color: var(--text-color);
+}
+
+.cl-rootBox {
+   width: 90%;
+}
+
+.cl-signUp-start,
+.cl-signIn-start {
+   width: 100%;
+}
+
+/* Header styles */
+.cl-header {
+   background-color: var(--background-color);
+   border-bottom: 1px solid var(--border-color);
+   padding: 1.5rem;
+   text-align: center;
+}
+
+.cl-headerTitle {
+   font-size: 1.75rem;
+   font-weight: 600;
+   margin-bottom: 0.5rem;
+}
+
+.cl-headerSubtitle {
+   font-size: 1rem;
+   color: #64748b; /* Lighter text color for subtitle */
+}
+
+/* Main content styles */
+.cl-main {
+   background-color: var(--background-color);
+   padding: 2rem;
+   border-radius: var(--border-radius);
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Form styles */
+.cl-form {
+   width: 100%;
+   gap: 1.5rem;
+}
+
+/* Form field styles */
+.cl-formFieldRow {
+   display: flex;
+   flex-direction: column;
+}
+
+.cl-formFieldRow input[type='text'],
+.cl-formFieldRow input[type='email'],
+.cl-formFieldRow input[type='password'] {
+   padding: 0.75rem 1rem;
+   border: 1px solid var(--input-border-color);
+   border-radius: var(--border-radius);
+   background-color: var(--input-background);
+   font-size: 1rem;
+}
+
+.cl-formFieldRow input[type='text']:focus,
+.cl-formFieldRow input[type='email']:focus,
+.cl-formFieldRow input[type='password']:focus {
+   border-color: var(--primary-color);
+   outline: none;
+}
+
+/* Button styles */
+.cl-formButtonPrimary {
+   padding: 0.75rem 1rem;
+   border: none;
+   border-radius: var(--border-radius);
+   background-color: var(--primary-color);
+   color: white;
+   font-size: 1rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.cl-formButtonPrimary:hover,
+.cl-formButtonPrimary:focus {
+   background-color: var(--button-hover-color);
+   outline: none;
+}
+
+/* Footer styles */
+.cl-footer {
+   text-align: center;
+   padding: 1rem;
+   font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+   .cl-header,
+   .cl-main,
+   .cl-footer {
+      padding: 1rem;
+   }
+}
