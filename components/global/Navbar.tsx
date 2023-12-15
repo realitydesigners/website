@@ -190,7 +190,12 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				</ul>
 				<SignedOut>
 					<div className="flex mt-4 lg:h-5 lg:mr-4 mr-0 lg:mt-0 justify-center">
-						<SignInButton>
+						<SignInButton
+							mode="redirect"
+							redirectUrl="/sign-in"
+							afterSignInUrl="/"
+							afterSignUpUrl="/"
+						>
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black">
 								<span className={`${staatliches.className}  whitespace-nowrap`}>
