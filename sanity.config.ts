@@ -10,13 +10,7 @@ import { presentationTool } from 'sanity/presentation';
 import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api';
 import { locate } from '@/sanity/plugins/locate';
 import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings';
-import page from '@/sanity/schemas/documents/page';
-import project from '@/sanity/schemas/documents/project';
-import duration from '@/sanity/schemas/objects/duration';
-import milestone from '@/sanity/schemas/objects/milestone';
-import timeline from '@/sanity/schemas/objects/timeline';
-import home from '@/sanity/schemas/singletons/home';
-import settings from '@/sanity/schemas/singletons/settings';
+
 //import { theme } from 'https://themer.sanity.build/api/hues?default=lightest:b0bed4;darkest:000000';
 import CustomField from './sanity/ui/CustomField';
 import CustomItem from '@/sanity/ui/CustomItem';
@@ -45,33 +39,7 @@ export default defineConfig({
    // theme,
    schema: {
       // If you want more content types, you can add them to this array
-      types: [
-         // Singletons
-         home,
-         settings,
-         // Documents
-         duration,
-         page,
-         project,
-         // Objects
-         milestone,
-         timeline,
-
-         //
-         posts,
-         img,
-         audio,
-         video,
-         quote,
-         team,
-         category,
-         media,
-         library,
-         headingBlock,
-         contentBlock,
-         teamBlock,
-         model,
-      ],
+      types: [posts, img, audio, video, quote, team, category, media, library, headingBlock, contentBlock, teamBlock, model],
    },
    form: {
       components: {
@@ -80,9 +48,7 @@ export default defineConfig({
       },
    },
    plugins: [
-      deskTool({
-         structure: pageStructure([home, settings]),
-      }),
+      deskTool({}),
       presentationTool({
          locate,
          previewUrl: {
@@ -93,7 +59,7 @@ export default defineConfig({
          },
       }),
       // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-      singletonPlugin([home.name, settings.name]),
+
       // Add an image asset source for Unsplash
 
       // Vision lets you query your content with GROQ in the studio

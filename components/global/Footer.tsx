@@ -26,9 +26,7 @@ export default function Footer() {
 					</li>
 				</ul>
 			</div>
-
 			<NewsletterTwo />
-
 			<div className="w-full p-4  border-gray-600 border rounded-lg  ">
 				<div className="w-full h-full flex justify-center items-center p-4">
 					<p
