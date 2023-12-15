@@ -5,12 +5,6 @@ import { Suspense } from "react";
 import { urlForImage } from "@/sanity/lib/utils";
 import { jura, staatliches } from "@/fonts";
 
-const LoadingSpinner = () => (
-	<div className="flex justify-center items-center">
-		<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900" />
-	</div>
-);
-
 const HeadingBlockLight = ({ block }) => {
 	if (block?._type !== "headingBlock") {
 		return null;
@@ -50,16 +44,14 @@ const HeadingBlockLight = ({ block }) => {
 				{blockImageUrl && (
 					<div className="w-full flex-wrap lg:w-1/2 p-4 flex">
 						<div className="w-full h-full object-cover object-contain">
-							<Suspense fallback={<LoadingSpinner />}>
-								<Image
-									priority={true}
-									className="object-cover cover h-full w-full"
-									alt={`Cover Image for ${block.title}`}
-									width={1000}
-									height={1000}
-									src={blockImageUrl}
-								/>
-							</Suspense>
+							<Image
+								priority={true}
+								className="object-cover cover h-full w-full"
+								alt={`Cover Image for ${block.title}`}
+								width={1000}
+								height={1000}
+								src={blockImageUrl}
+							/>
 						</div>
 					</div>
 				)}
