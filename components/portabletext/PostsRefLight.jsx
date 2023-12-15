@@ -18,7 +18,7 @@ const PostsCardLight = ({ title, slug, image, excerpt }) => {
                <Link className={`${staatliches.className} duration-3 font-rajdhani leading-none text-2xl md:text-2xl tracking-wide text-black transition-colors group-hover:text-gray-800 group-hover:underline`} href={`/posts/${slug}`}>
                   {title}
                </Link>
-               <p className="text-white"> {excerpt}</p>
+               <p className="text-gray-200"> {excerpt}</p>
             </div>
          </div>
       </div>

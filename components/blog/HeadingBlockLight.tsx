@@ -33,7 +33,7 @@ const HeadingBlockLight = ({ block }) => {
 								<span
 									// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 									key={index}
-									className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold bg-black items-center justify-center p-1 pl-2 pr-2  tracking-widest text-white mr-1`}
+									className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold bg-black items-center justify-center p-1 pl-2 pr-2  tracking-widest text-gray-200 mr-1`}
 								>
 									{tag}
 								</span>
@@ -69,7 +69,7 @@ const HeadingBlockLight = ({ block }) => {
 										<span
 											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 											key={index}
-											className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold p-1 pl-2 pr-2  bg-black items-center justify-center p-2 border tracking-wide text-white mr-1`}
+											className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold p-1 pl-2 pr-2  bg-black items-center justify-center p-2 border tracking-wide text-gray-200 mr-1`}
 										>
 											{tag}
 										</span>

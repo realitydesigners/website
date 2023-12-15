@@ -9,7 +9,7 @@ const ImageCard = ({ title, slug, image, className }) => {
             <div className="relative p-4 mb-6 ">
                <div className="relative justify-center rounded-[1.3em] lg:rounded-[1.8em] overflow-hidden  items-center flex h-auto bg-gray-400 w-full ">{image?.image && <ImageBox image={image.image} alt={`Cover Image for ${title}`} classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  contain h-full object-cover" />}</div>
                {image?.team && (
-                  <div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-white">
+                  <div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-gray-200">
                      <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper="mr-2 max-h-[30px] max-w-[30px] rounded-full" />
 
                      <div className=" justify-center relative flex flex-col items-start text-xs uppercase leading-none">

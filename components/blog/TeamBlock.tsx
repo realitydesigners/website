@@ -44,7 +44,7 @@ const TeamBlock = ({ block }) => {
 					<div className="bg-black justify-center flex rounded-lg">
 						<Link
 							href={`/team/${block.team.slug.current}`}
-							className="text-sm uppercase text-white p-2 font-mono font-bold flex items-center"
+							className="text-sm uppercase text-gray-200 p-2 font-mono font-bold flex items-center"
 						>
 							<span>View Profile</span>
 							{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}

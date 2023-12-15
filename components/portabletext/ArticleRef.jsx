@@ -12,10 +12,10 @@ const ArticleCard = ({ title, slug, image, excerpt }) => {
 
             <div className="relative flex w-3/4 flex-col pl-4">
                <p className="mb-2 font-rajdhani text-sm uppercase leading-none tracking-wide text-gray-500">Article</p>
-               <p className="duration-3 font-rajdhani text-xl tracking-wide text-gray-300 transition-colors group-hover:text-white group-hover:underline" href={`/article/${slug}`}>
+               <p className="duration-3 font-rajdhani text-xl tracking-wide text-gray-300 transition-colors group-hover:text-gray-200 group-hover:underline" href={`/article/${slug}`}>
                   {title}
                </p>
-               <p className="text-white"> {excerpt}</p>
+               <p className="text-gray-200"> {excerpt}</p>
             </div>
          </div>
       </div>

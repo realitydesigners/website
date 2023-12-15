@@ -26,15 +26,13 @@ export default function Footer() {
 					</li>
 				</ul>
 			</div>
-			<div className=" w-full  p-4  border-gray-600 border rounded-lg ">
-				<div className="rounded-xl p-4">
-					<NewsletterTwo />
-				</div>
-			</div>
+
+			<NewsletterTwo />
+
 			<div className="w-full p-4  border-gray-600 border rounded-lg  ">
 				<div className="w-full h-full flex justify-center items-center p-4">
 					<p
-						className={`${staatliches.className} text-5xl bold text-center leading-10 text-white uppercase`}
+						className={`${staatliches.className} text-5xl bold text-center leading-10 text-gray-200 uppercase`}
 					>
 						Design
 						<br />
