@@ -1,7 +1,7 @@
 const SplineCard = ({ url }) => {
    return (
       <div className="h-screen w-full">
-         <spline-viewer url={url}></spline-viewer>
+         <spline-viewer url={url} />
       </div>
    );
 };

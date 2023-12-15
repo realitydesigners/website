@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { jura, staatliches } from '@/fonts';
 
-import { ArticleRef, AudioRef, ImageRef, MediaRef, PostsRefLight, QuoteRef, SplineRef, VideoRef } from './index';
+import { ArticleRefBlock, AudioRefBlock, ImageRefBlock, MediaRefBlock, PostsRefBlock, QuoteRefBlock, SplineRefBlock, VideoRefBlock } from './index';
 
 const iFrame = ({ value }) => {
    const { url, width, height } = value;
@@ -69,14 +69,14 @@ const Dark = {
    },
    types: {
       iframe: iFrame,
-      postsRef: PostsRefLight,
-      articleRef: ArticleRef,
-      mediaRef: MediaRef,
-      videoRef: VideoRef,
-      spline: SplineRef,
-      imageRef: ImageRef,
-      audioRef: AudioRef,
-      quoteRef: QuoteRef,
+      postsRef: PostsRefBlock,
+      articleRef: ArticleRefBlock,
+      mediaRef: MediaRefBlock,
+      videoRef: VideoRefBlock,
+      spline: SplineRefBlock,
+      imageRef: ImageRefBlock,
+      audioRef: AudioRefBlock,
+      quoteRef: QuoteRefBlock,
    },
 };
 
@@ -131,14 +131,14 @@ const Light = {
    },
    types: {
       iframe: iFrame,
-      postsRef: PostsRefLight,
-      articleRef: ArticleRef,
-      mediaRef: MediaRef,
-      videoRef: VideoRef,
-      spline: SplineRef,
-      imageRef: ImageRef,
-      audioRef: AudioRef,
-      quoteRef: QuoteRef,
+      postsRef: PostsRefBlock,
+      articleRef: ArticleRefBlock,
+      mediaRef: MediaRefBlock,
+      videoRef: VideoRefBlock,
+      spline: SplineRefBlock,
+      imageRef: ImageRefBlock,
+      audioRef: AudioRefBlock,
+      quoteRef: QuoteRefBlock,
    },
 };
 

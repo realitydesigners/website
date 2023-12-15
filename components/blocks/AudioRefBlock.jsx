@@ -1,4 +1,4 @@
-import AudioPlayer from './Audioplayer.jsx';
+import AudioPlayer from './AudioPlayer.jsx';
 
 const AudioRefWrapper = ({ value }) => {
    const { audioRefData } = value;

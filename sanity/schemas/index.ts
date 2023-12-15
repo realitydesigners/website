@@ -1,0 +1,13 @@
+export { default as posts } from '@/sanity/schemas/posts';
+export { default as team } from '@/sanity/schemas/team';
+export { default as category } from '@/sanity/schemas/category';
+export { default as media } from '@/sanity/schemas/media';
+export { default as img } from '@/sanity/schemas/img';
+export { default as quote } from '@/sanity/schemas/quote';
+export { default as video } from '@/sanity/schemas/video';
+export { default as audio } from '@/sanity/schemas/audio';
+export { default as model } from '@/sanity/schemas/model';
+export { default as library } from '@/sanity/schemas/library';
+export { default as headingBlock } from '@/sanity/schemas/blocks/headingBlock';
+export { default as contentBlock } from '@/sanity/schemas/blocks/contentBlock';
+export { default as teamBlock } from '@/sanity/schemas/blocks/teamBlock';

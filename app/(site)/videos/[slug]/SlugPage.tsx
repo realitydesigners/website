@@ -1,6 +1,6 @@
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import type { PostsPayload, VideoPayload } from "@/types";
-import PortableTextComponent from "@/components/portabletext/PortableTextComponent";
+import PortableTextComponent from "@/components/blocks/PortableTextComponent";
 import { jura, staatliches } from "@/fonts";
 
 import { fileUrlFor } from "@/sanity/lib/utils";
