@@ -2,7 +2,7 @@
 import Link from "next/link";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import type { TeamPayload } from "@/types";
-import PortableTextComponent from "@/components/blocks/PortableTextComponent";
+import Blocks from "@/components/blocks/Blocks";
 import { staatliches } from "@/fonts";
 
 interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
@@ -31,11 +31,11 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 				<script
 					type="module"
 					src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"
-				></script>
+				/>
 				<spline-viewer
 					className="w-full h-[80vh] lg:h-[90vh]"
 					url={scene || ""}
-				></spline-viewer>
+				/>
 			</div>
 			<div className="w-full p-4 flex flex-col justify-center items-center gap-2">
 				<h1
@@ -88,7 +88,7 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 			</div>
 
 			<div className="w-full h-auto bg-black lg:pt-24">
-				<PortableTextComponent content={bio || []} template="team" />
+				<Blocks content={bio || []} template="team" />
 			</div>
 		</div>
 	);

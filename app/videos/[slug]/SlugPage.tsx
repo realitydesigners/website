@@ -1,6 +1,6 @@
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import type { PostsPayload, VideoPayload } from "@/types";
-import PortableTextComponent from "@/components/blocks/PortableTextComponent";
+import Blocks from "@/components/blocks/Blocks";
 import { jura, staatliches } from "@/fonts";
 
 import { fileUrlFor } from "@/sanity/lib/utils";
@@ -38,7 +38,7 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 					{title}
 				</p>
 				<div className="w-full p-2 lg:p-6 ">
-					<PortableTextComponent content={content || []} template="video" />
+					<Blocks content={content || []} template="video" />
 				</div>
 			</div>
 

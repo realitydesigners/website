@@ -214,7 +214,7 @@ const Video = {
    },
 };
 
-const PortableTextComponent = ({ content, template }) => {
+const Blocks = ({ content, template }) => {
    const [chosenComponents, setChosenComponents] = useState(null);
 
    if (!chosenComponents) {
@@ -239,9 +239,9 @@ const PortableTextComponent = ({ content, template }) => {
    return <PortableText value={content} className={`portableText ${template}`} components={chosenComponents} />;
 };
 
-PortableTextComponent.propTypes = {
+Blocks.propTypes = {
    content: PropTypes.array.isRequired,
    template: PropTypes.string.isRequired,
 };
 
-export default PortableTextComponent;
+export default Blocks;

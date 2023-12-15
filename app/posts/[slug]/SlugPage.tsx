@@ -1,7 +1,7 @@
 "use client";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import type { PostsPayload } from "@/types";
-import PortableTextComponent from "@/components/blocks/PortableTextComponent";
+import Blocks from "@/components/blocks/Blocks";
 import HeadingBlockLight from "@/components/blog/HeadingBlockLight";
 import HeadingBlockDark from "@/components/blog/HeadingBlockDark";
 import TeamBlock from "@/components/blog/TeamBlock";
@@ -24,11 +24,11 @@ const Page: React.FC<PageProps> = ({ data }) => {
 		if (!content.content) return null;
 		return content.layout === "dark" ? (
 			<div className="w-full h-auto bg-black lg:pt-24" key={key}>
-				<PortableTextComponent content={content.content} template="dark" />
+				<Blocks content={content.content} template="dark" />
 			</div>
 		) : content.layout === "light" ? (
 			<div className="w-full h-auto bg-gray-200 lg:pt-24" key={key}>
-				<PortableTextComponent content={content.content} template="light" />
+				<Blocks content={content.content} template="light" />
 			</div>
 		) : null;
 	};
