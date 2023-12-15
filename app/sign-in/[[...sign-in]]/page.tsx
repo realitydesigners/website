@@ -1,5 +1,5 @@
 import "@/app/global.css";
-import { SignIn, RedirectToSignIn } from "@clerk/nextjs";
+import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
 	return (
@@ -8,8 +8,7 @@ export default function SignInPage() {
 				<p className="hidden">Animation Goes Here</p>
 			</div>
 			<div className="w-full flex justify-center items-center h-screen lg:h-auto  lg:pr-6 bg-gray-300 lg:w-1/2">
-				<RedirectToSignIn redirectUrl="https://realitydesigners.tv/sign-in" />
-				<SignIn />
+				<SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
 			</div>
 		</div>
 	);
