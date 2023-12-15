@@ -192,7 +192,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<div className="flex mt-4 lg:h-5 lg:mr-4 mr-0 lg:mt-0 justify-center">
 						<SignInButton
 							mode="redirect"
-							redirectUrl="/sign-in"
+							redirectUrl="https://realitydesigners.tv/sign-in"
 							afterSignInUrl="/"
 							afterSignUpUrl="/"
 						>
