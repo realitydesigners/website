@@ -26,7 +26,7 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 					<video
 						controls
 						autoPlay={true}
-						className="w-full h-full border-gray-600 border rounded-lg overflow-hidden"
+						className="w-full h-[50vw] lg:h-[33vw] border-gray-600 border rounded-lg overflow-hidden"
 					>
 						<source src={videoUrl} type="video/mp4" />
 						Your browser does not support this video player
