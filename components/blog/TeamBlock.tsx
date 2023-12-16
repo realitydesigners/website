@@ -13,9 +13,9 @@ const TeamBlock = ({ block }) => {
 		urlForImage(block.team.image)?.height(200).width(200).fit("crop").url();
 
 	return (
-		<div className="w-full h-auto bg-gray-400 p-4 ">
+		<div className="w-full h-auto bg-gray-200 p-4 ">
 			<div className="w-full flex justify-center">
-				<div className="flex flex-col w-11/12 lg:w-1/3 bg-gray-300 mb-12 shadow-lg p-4 border border-gray-400 rounded-lg ">
+				<div className="flex flex-col w-11/12 md:w-1/2 lg:w-1/3 bg-gray-300 mb-12 shadow-lg p-4 rounded-lg ">
 					<div className="flex justify-center items-center">
 						{imageUrl && (
 							<div className="overflow-hidden object-cover rounded-full shadow-2xl">
@@ -30,15 +30,15 @@ const TeamBlock = ({ block }) => {
 							</div>
 						)}
 						<div className="ml-4 flex flex-col">
-							<p className="text-black uppercase leading-none font-bold font-mono tracking-wide text-lg">
+							<p className="text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1">
 								{block?.team.name}
 							</p>
-							<span className="text-black font-mono leading-none uppercase text-xs tracking-widest">
+							<span className="text-black font-bold font-mono leading-none uppercase text-xs tracking-widest">
 								{block?.team.role}
 							</span>
 						</div>
 					</div>
-					<p className="p-2 text-black text-sm font-mono mt-4">
+					<p className=" text-black leading-5 mb-4 font-bold text-sm font-mono mt-4">
 						{block?.team.shortBio}
 					</p>
 					<div className="bg-black justify-center flex rounded-lg">

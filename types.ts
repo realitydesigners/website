@@ -83,9 +83,9 @@ export interface BlockItem {
 }
 
 export interface PostsPayload {
-   title: string;
-   slug: {
-      current: string;
+   title?: string;
+   slug?: {
+      current?: string;
    };
    publicationDate?: string;
    excerpt?: string;

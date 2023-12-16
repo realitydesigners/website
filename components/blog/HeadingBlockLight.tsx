@@ -27,6 +27,7 @@ const HeadingBlockLight = ({ block }) => {
 			publicationDate = blockWithDate.publicationDate;
 		}
 	}
+
 	const formattedDate = publicationDate
 		? new Date(publicationDate).toLocaleDateString("en-US", {
 				year: "numeric",
