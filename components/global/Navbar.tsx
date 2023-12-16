@@ -105,14 +105,14 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 			id="navbar"
 			className="flex bg-gray-200 shadow-lg items-center h-12 lg:h-14 p-2 justify-between fixed w-full z-50 "
 		>
-			<div className=" w-full lg:w-auto justify-center relative flex items-center z-10">
+			<div className="pl-6 w-full lg:w-auto justify-center relative flex items-center z-10">
 				<Link
 					href="/"
 					className={`${staatliches.className} text-black items-center pt-2 pb-2  flex flex-row`}
 					onClick={closeNav}
 				>
 					<div className=" left-2 absolute ">{getIcon("logo")}</div>
-					<div className="w-full ml-6  justify-center items-center flex h-auto flex-col">
+					<div className="w-full   justify-center items-center flex h-auto flex-col">
 						<span className="text-md font-bold tracking-widest leading-none">
 							REALITY
 						</span>
