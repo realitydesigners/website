@@ -8,6 +8,8 @@ import CustomField from './sanity/ui/CustomField';
 import CustomItem from '@/sanity/ui/CustomItem';
 import { posts, team, category, media, img, quote, video, audio, model, library, headingBlock, contentBlock, teamBlock } from '@/sanity/schemas';
 
+import { theme } from 'https://themer.sanity.build/api/hues?default=darkest:000000&primary=59595f;600;lightest:e3e3e3&transparent=7d838c';
+
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Reality Designers';
 
 export default defineConfig({
@@ -15,6 +17,7 @@ export default defineConfig({
    projectId: projectId || '',
    dataset: dataset || '',
    title,
+   theme,
 
    schema: {
       types: [posts, img, audio, video, quote, team, category, media, library, headingBlock, contentBlock, teamBlock, model],
