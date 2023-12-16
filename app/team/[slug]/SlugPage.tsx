@@ -21,12 +21,30 @@ export interface PageProps {
 	encodeDataAttribute?: EncodeDataAttributeCallback;
 }
 
-const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
+// Reusable SocialLink Component
+const SocialLink = ({ href, children }) => (
+	<Link
+		href={href}
+		className="p-3 border border-gray-600/50 text-center rounded-[.25em] hover:bg-gray-200 hover:text-black"
+	>
+		{children}
+	</Link>
+);
+
+const Page: React.FC<PageProps> = ({ data }) => {
 	const { role, name, bio, scene, instagram, twitter, website, tiktok } =
 		data ?? {};
 
+	// Social media links data
+	const socialLinks = [
+		{ name: "Instagram", url: instagram },
+		{ name: "Twitter", url: twitter },
+		{ name: "Website", url: website },
+		{ name: "TikTok", url: tiktok },
+	].filter((link) => link.url); // Filter out undefined URLs
+
 	return (
-		<div className="w-full flex flex-col h-full text-black justify-center flex items-center bg-black ">
+		<div className="w-full flex flex-col h-full text-black justify-center items-center bg-black ">
 			<div className="w-full h-full bg-black block">
 				<spline-viewer
 					className="w-full h-[80vh] lg:h-[90vh]"
@@ -49,43 +67,16 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 			<div
 				className={`${staatliches.className} grid grid-cols-2 md:grid-cols-4 text-gray-200 tracking-wide text-xl font-bold gap-4 p-2 uppercase mb-4`}
 			>
-				{instagram && (
-					<Link
-						href={instagram}
-						className="p-3 border border-gray-600/50 text-center "
-					>
-						Instagram
-					</Link>
-				)}
-				{twitter && (
-					<Link
-						href={twitter}
-						className="p-3 border border-gray-600/50  text-center "
-					>
-						Twitter
-					</Link>
-				)}
-				{website && (
-					<Link
-						href={website}
-						className="p-3 border border-gray-600/50  text-center "
-					>
-						Website
-					</Link>
-				)}
-				{tiktok && (
-					<Link
-						href={tiktok}
-						className="p-3 border border-gray-600/50  text-center "
-					>
-						TikTok
-					</Link>
-				)}
+				{socialLinks.map(({ name, url }) => (
+					<SocialLink key={name} href={url}>
+						{name}
+					</SocialLink>
+				))}
 			</div>
 
-			<div className="w-full h-auto bg-black lg:pt-24">
-				<Blocks content={bio || []} template="team" />
-			</div>
+			{data?.block?.map((block, index) => (
+				<Blocks key={`${block._type}-${index}`} block={block} />
+			))}
 		</div>
 	);
 };

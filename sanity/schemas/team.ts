@@ -48,10 +48,23 @@ export default defineType({
          type: 'url',
       }),
       defineField({
+         name: 'block',
+         title: 'Content Block',
          type: 'array',
-         name: 'bio',
-         title: 'Bio',
-         of: [{ type: 'block' }],
+         of: [
+            {
+               type: 'headingBlock',
+               title: 'Heading',
+            },
+            {
+               type: 'contentBlock',
+               title: 'Content',
+            },
+            {
+               type: 'teamBlock',
+               title: 'Team',
+            },
+         ],
       }),
       defineField({
          name: 'instagram',

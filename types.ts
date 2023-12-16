@@ -164,6 +164,7 @@ export interface VideoPayload {
       title: string;
    }>;
    content?: Array<any>;
+   block?: Array<BlockItem>;
    position: number;
    rotationY: number;
 }

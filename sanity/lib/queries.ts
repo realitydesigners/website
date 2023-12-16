@@ -259,10 +259,27 @@ export const getVideoBySlugQuery = groq`
      name,
      title,
    },
-   content[]{
+   block[]{
     ...,
-   },
-
+    heading,
+    subHeading,
+    image,
+    tags,
+    layout,
+    title,
+    publicationDate,
+     team->{
+    ...,
+    name,
+    role,
+    image,
+    shortBio,
+  },
+  
+      content[]{
+    ...,
+      },
+    },
    
    }`;
 
@@ -273,7 +290,12 @@ export const teamQuery = groq`
  image,
  scene,
  shortBio,
- bio,
+ bio[]{
+  ...,
+ },
+ content[]{
+  ...,
+ }
  slug,
  title,    
 }`;
@@ -285,7 +307,27 @@ export const teamBySlugQuery = groq`
  image,
  scene,
  shortBio,
- bio,
+ block[]{
+  ...,
+  heading,
+  subHeading,
+  image,
+  tags,
+  layout,
+  title,
+  publicationDate,
+   team->{
+  ...,
+  name,
+  role,
+  image,
+  shortBio,
+},
+
+    content[]{
+  ...,
+    },
+  },
  slug,
  title,    
  instagram,

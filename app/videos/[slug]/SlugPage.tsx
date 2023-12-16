@@ -10,7 +10,7 @@ export interface PageProps {
 	encodeDataAttribute?: EncodeDataAttributeCallback;
 }
 
-const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
+const SlugPage: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 	// console.log(data);
 
 	const { title, video, content } = data ?? {};
@@ -20,7 +20,7 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 	return (
 		<div className="bg-black h-auto  w-full flex lg:flex-cols flex-row flex-wrap items-start justify-center pt-24">
 			<div className="w-full lg:w-1/6  h-24 lg:h-screen p-2 hidden lg:block " />
-			<div className="w-11/12 lg:w-4/6 h-auto  p-2">
+			<div className="w-full lg:w-4/6 h-auto flex flex-col justify-center  ">
 				{videoUrl && (
 					// biome-ignore lint/a11y/useMediaCaption: <explanation>
 					<video
@@ -37,9 +37,9 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 				>
 					{title}
 				</p>
-				<div className="w-full p-2 lg:p-6 ">
-					<Blocks content={content || []} template="video" />
-				</div>
+				{data?.block?.map((block, index) => (
+					<Blocks key={`${block._type}-${index}`} block={block} />
+				))}
 			</div>
 
 			<div className="w-full lg:w-1/6 h-screen  p-2" />
@@ -47,4 +47,4 @@ const Page: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 	);
 };
 
-export default Page;
+export default SlugPage;
