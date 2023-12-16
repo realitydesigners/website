@@ -2,11 +2,14 @@ import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { presentationTool } from 'sanity/presentation';
+import { scheduledPublishing } from '@sanity/scheduled-publishing';
+import { media } from 'sanity-plugin-media';
+import { contentGraphView } from 'sanity-plugin-graph-view';
 import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api';
 import { locate } from '@/sanity/plugins/locate';
 import CustomField from './sanity/ui/CustomField';
 import CustomItem from '@/sanity/ui/CustomItem';
-import { posts, team, category, media, img, quote, video, audio, model, library, headingBlock, contentBlock, teamBlock } from '@/sanity/schemas';
+import { posts, team, category, img, quote, video, audio, model, library, headingBlock, contentBlock, teamBlock } from '@/sanity/schemas';
 
 import { theme } from 'https://themer.sanity.build/api/hues?default=darkest:000000&primary=59595f;600;lightest:e3e3e3&transparent=7d838c';
 
@@ -20,7 +23,7 @@ export default defineConfig({
    theme,
 
    schema: {
-      types: [posts, img, audio, video, quote, team, category, media, library, headingBlock, contentBlock, teamBlock, model],
+      types: [posts, img, audio, video, quote, team, category, library, headingBlock, contentBlock, teamBlock, model],
    },
    form: {
       components: {
@@ -40,5 +43,10 @@ export default defineConfig({
          },
       }),
       visionTool({ defaultApiVersion: apiVersion }),
+      scheduledPublishing(),
+      media(),
+      contentGraphView({
+         query: "*[_type in ['posts', 'video', 'quote', 'team', 'audio', 'category', 'team', 'model', 'library']]",
+      }),
    ],
 });

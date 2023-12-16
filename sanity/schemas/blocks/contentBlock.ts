@@ -77,38 +77,7 @@ export default {
                   }),
                ],
             }),
-            defineField({
-               type: 'object',
-               name: 'mediaRef',
-               title: 'Media',
-               preview: {
-                  select: {
-                     imageUrl: 'media.image.asset.url',
-                     title: 'media.title',
-                  },
-               },
-               fields: [
-                  defineField({
-                     type: 'reference',
-                     icon: ImageIcon,
-                     name: 'media',
-                     title: 'Media Item',
-                     to: [{ type: 'media' }],
-                  }),
-                  {
-                     name: 'className',
-                     title: 'CSS Class',
-                     type: 'string',
-                     options: {
-                        list: [
-                           { title: 'Card 1', value: 'card-1' },
-                           { title: 'Card 2', value: 'card-2' },
-                           // Add more class options if needed
-                        ],
-                     },
-                  },
-               ],
-            }),
+
             defineField({
                type: 'object',
                name: 'imageRef',

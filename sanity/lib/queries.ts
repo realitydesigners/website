@@ -108,12 +108,7 @@ export const postsBySlugQuery = groq`
      
          content[]{
        ...,
-       
-       media-> {
-         ...,
-         className->{name},
-         team->,
-       },
+    
        image->{
          ...,
          className->{name},

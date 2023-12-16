@@ -8,7 +8,7 @@ import TeamBlock from '@/components/blog/TeamBlock';
 
 import { jura, staatliches } from '@/fonts';
 
-import { ArticleRefBlock, AudioRefBlock, ImageRefBlock, MediaRefBlock, PostsRefBlock, QuoteRefBlock, SplineRefBlock, VideoRefBlock } from './index';
+import { ArticleRefBlock, AudioRefBlock, ImageRefBlock, PostsRefBlock, QuoteRefBlock, SplineRefBlock, VideoRefBlock } from './index';
 
 const iFrame = ({ value }) => {
    const { url, width, height } = value;
@@ -73,7 +73,6 @@ const Dark = {
       iframe: iFrame,
       postsRef: PostsRefBlock,
       articleRef: ArticleRefBlock,
-      mediaRef: MediaRefBlock,
       videoRef: VideoRefBlock,
       spline: SplineRefBlock,
       imageRef: ImageRefBlock,
@@ -135,7 +134,6 @@ const Light = {
       iframe: iFrame,
       postsRef: PostsRefBlock,
       articleRef: ArticleRefBlock,
-      mediaRef: MediaRefBlock,
       videoRef: VideoRefBlock,
       spline: SplineRefBlock,
       imageRef: ImageRefBlock,
