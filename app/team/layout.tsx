@@ -13,7 +13,7 @@ export default async function TeamLayout({
 	/>;
 	return (
 		<div className="flex min-h-screen flex-col bg-gray-200">
-			<Navbar pageBackground="dark" />
+			<Navbar pageBackground="light" />
 			<Suspense fallback={<Loading />}>{children}</Suspense>
 			<Footer />
 		</div>

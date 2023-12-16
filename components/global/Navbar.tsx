@@ -40,8 +40,8 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 			logo: (
 				// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
 				<svg
-					width="40"
-					height="40"
+					width="35"
+					height="35"
 					viewBox="0 0 80 80"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<path
 						d="M47.1279 70.8731L33.5967 55.3087M43.4729 23.3416L10.6978 28.9689L33.5967 55.3087M43.4729 23.3416L33.5967 55.3087M43.4729 23.3416L68.3831 51.4708L33.5967 55.3087M43.4729 23.3416L30.6805 9.58502"
 						stroke={logoColor}
-						strokeWidth="5"
+						strokeWidth="6"
 					/>
 				</svg>
 			),
@@ -103,22 +103,23 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 	return (
 		<nav
 			id="navbar"
-			className="flex items-center h-16 p-2 justify-between fixed w-full z-50 "
+			className="flex bg-gray-200 shadow-lg items-center h-12 lg:h-14 p-2 justify-between fixed w-full z-50 "
 		>
-			<div className=" relative flex items-center z-10">
-				<Link href="/" className="flex items-center  w-auto p-2">
-					{getIcon("logo")}
-				</Link>
+			<div className=" w-full lg:w-auto justify-center relative flex items-center z-10">
 				<Link
 					href="/"
-					className={`${staatliches.className} text-black pt-2 pb-2 hidden lg:flex flex-col`}
+					className={`${staatliches.className} text-black items-center pt-2 pb-2  flex flex-row`}
+					onClick={closeNav}
 				>
-					<span className="text-md font-bold tracking-widest leading-none">
-						REALITY
-					</span>
-					<span className="text-xs font-bold tracking-widest leading-none">
-						DESIGNERS
-					</span>
+					<div className=" left-2 absolute ">{getIcon("logo")}</div>
+					<div className="w-full ml-6  justify-center items-center flex h-auto flex-col">
+						<span className="text-md font-bold tracking-widest leading-none">
+							REALITY
+						</span>
+						<span className="text-xs font-bold tracking-widest leading-none">
+							DESIGNERS
+						</span>
+					</div>
 				</Link>
 			</div>
 
@@ -202,7 +203,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				</SignedOut>
 
 				<SignedIn>
-					<div className=" lg:flex lg:relative lg:ml-2 ml-0  lg:mr-4 mr-0 lg:mt-0 mt-4 justify-center  lg:p-2 flex ">
+					<div className=" relative lg:ml-2 ml-0  lg:mr-4 mr-0 lg:mt-0 mt-4 justify-center  lg:p-2 flex ">
 						<UserButton afterSignOutUrl="/" />
 					</div>
 				</SignedIn>
