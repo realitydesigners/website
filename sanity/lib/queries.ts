@@ -233,7 +233,7 @@ export const categoryBySlugQuery = groq`
   `;
 
 export const getVideosQuery = groq`
-*[_type == "video"] |  order(_createdAt desc) {
+*[_type == "video"][0..30] |  order(_createdAt desc) {
  title,
  slug,
  url,
