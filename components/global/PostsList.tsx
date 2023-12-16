@@ -76,20 +76,22 @@ export const PostItem: FC<PostItemProps> = ({ post }) => {
 	const { title, image, slug, excerpt } = post;
 
 	return (
-		<article className="mb-4 h-auto border border-gray-800 p-1">
+		<article className=" h-auto border border-gray-300 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
 					<SmallImage
 						image={image}
 						alt={`Cover Image for ${title}`}
-						classesWrapper="w-full h-full object-cover object-contain"
+						classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
 					/>
 				</div>
 			)}
+			<span
+				className={`${staatliches.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
+			>
+				{formattedDate}
+			</span>
 			<div>
-				<p className={`${jura.className} w-10/12 p-2 text-sm text-black`}>
-					{formattedDate}
-				</p>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
 						className={`${staatliches.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
@@ -113,7 +115,7 @@ export const PostsList: FC<PostsListProps> = ({ post }) => {
 	}
 
 	return (
-		<div className="grid grid-cols-1 gap-4 p-4 pt-20 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+		<div className="grid grid-cols-1 gap-4 p-4 pt-20 md:grid-cols-2 lg:grid-cols-3 ">
 			{post.map((post) => (
 				<PostItem key={post.slug?.current} post={post} />
 			))}

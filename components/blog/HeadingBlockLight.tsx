@@ -17,14 +17,33 @@ const HeadingBlockLight = ({ block }) => {
 		block?.team?.image &&
 		urlForImage(block.team.image)?.height(100).width(100).fit("crop").url();
 
+	let publicationDate = block.publicationDate;
+
+	if (!publicationDate && block.block) {
+		const blockWithDate = block.block.find(
+			(blockItem) => blockItem.publicationDate,
+		);
+		if (blockWithDate) {
+			publicationDate = blockWithDate.publicationDate;
+		}
+	}
+	const formattedDate = publicationDate
+		? new Date(publicationDate).toLocaleDateString("en-US", {
+				year: "numeric",
+				month: "long",
+				day: "numeric",
+		  })
+		: "Date not available";
+
 	return (
 		<div className="w-full h-auto bg-gray-200 pt-20 lg:pt-32">
 			<div className="w-full flex justify-center flex-wrap">
 				<div className="w-11/12 flex items-center lg:hidden">
 					<div className="flex w-full">
-						<span className="text-black ml-2 w-auto text-xs font-mono tracking-wide scramble">
-							PUBLISHED ON{" "}
-							{new Date(block.publicationDate).toLocaleDateString()}
+						<span
+							className={`${staatliches.className} text-black ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
+						>
+							PUBLISHED ON {formattedDate}
 						</span>
 					</div>
 					{block.tags && block.tags.length > 0 && (
@@ -59,8 +78,10 @@ const HeadingBlockLight = ({ block }) => {
 					<div className="w-full">
 						<div className="w-full hidden items-center lg:flex mb-6">
 							<div className="flex w-full">
-								<span className="text-black font-mono w-auto text-xs tracking-wide scramble">
-									PUBLISHED ON {block.publicationDate}
+								<span
+									className={`${staatliches.className}  text-black font-mono w-auto text-xs tracking-widest `}
+								>
+									PUBLISHED ON {formattedDate}
 								</span>
 							</div>
 							{block.tags && block.tags.length > 0 && (
