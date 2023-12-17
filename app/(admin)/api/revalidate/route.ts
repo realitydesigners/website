@@ -26,14 +26,14 @@ import { revalidateTag } from 'next/cache';
 import { type NextRequest, NextResponse } from 'next/server';
 import { parseBody } from 'next-sanity/webhook';
 
-import { revalidateSecret } from '@/sanity/lib/api';
+// import { revalidateSecret, hookSecret } from '@/sanity/lib/api';
 
 export async function POST(req: NextRequest) {
    try {
       const { body, isValidSignature } = await parseBody<{
          _type: string;
          slug?: string | undefined;
-      }>(req, revalidateSecret);
+      }>(req, process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET);
       if (!isValidSignature) {
          const message = 'Invalid signature';
          return new Response(message, { status: 401 });

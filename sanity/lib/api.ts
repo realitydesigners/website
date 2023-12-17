@@ -13,6 +13,8 @@ export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2023-06
 // See the app/api/revalidate/route.ts for how this is used
 export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET;
 
+export const hookSecret = process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET;
+
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
    if (v === undefined) {
       throw new Error(errorMessage);
