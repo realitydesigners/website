@@ -45,8 +45,8 @@ export default defineConfig({
       visionTool({ defaultApiVersion: apiVersion }),
       scheduledPublishing(),
       media(),
-      contentGraphView({
-         query: "*[_type in ['posts', 'video', 'quote', 'team', 'audio', 'category', 'team', 'model', 'library']]",
-      }),
+      // contentGraphView({
+      //    query: "*[_type in ['posts', 'video', 'quote', 'team', 'audio', 'category', 'team', 'model', 'library']]",
+      // }),
    ],
 });
