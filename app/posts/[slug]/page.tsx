@@ -29,9 +29,12 @@ export async function generateMetadata(
 	return {
 		title: post?.title,
 		description: post?.excerpt || (await parent).description,
-		openGraph: {
-			images: ogImage ? [ogImage] : [],
-		},
+		openGraph: ogImage
+			? {
+					images: [ogImage, ...((await parent).openGraph?.images || [])],
+			  }
+			: {},
+
 		metadataBase,
 	};
 }
