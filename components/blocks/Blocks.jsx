@@ -254,8 +254,8 @@ const ContentBlock = ({ layout, content, bio }) => {
          classes = 'w-full';
          break;
       default:
-         template = Default;
-         classes = '';
+         template = Dark;
+         classes = 'bg-black w-full';
    }
 
    const textValue = content || bio || [];
