@@ -54,7 +54,7 @@ export const settingsQuery = groq`
 `;
 
 export const postsQuery = groq`
- *[_type == "posts"] | order(_createdAt desc)[0..20] {
+ *[_type == "posts"] | order(_createdAt desc)[0..40] {
    title,
    category,
    excerpt,
