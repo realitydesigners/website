@@ -34,7 +34,6 @@ export async function generateMetadata(
 					images: [ogImage, ...((await parent).openGraph?.images || [])],
 			  }
 			: {},
-
 		metadataBase,
 	};
 }

@@ -160,16 +160,7 @@ export interface TeamPayload {
       current: string;
    };
    bio?: Array<BlockItem>;
-   image?: {
-      _key?: string;
-      _type?: string;
-      alt?: string;
-      asset: {
-         _key?: string;
-         _type?: string;
-         url: string;
-      };
-   };
+   image?: Image;
    scene?: string;
    instagram?: string;
    twitter?: string;
