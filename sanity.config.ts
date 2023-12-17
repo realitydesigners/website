@@ -11,6 +11,8 @@ import CustomField from './sanity/ui/CustomField';
 import CustomItem from '@/sanity/ui/CustomItem';
 import { posts, team, category, img, quote, video, audio, model, library, headingBlock, contentBlock, teamBlock } from '@/sanity/schemas';
 
+import { vercelDeployTool } from 'sanity-plugin-vercel-deploy';
+
 import { theme } from 'https://themer.sanity.build/api/hues?default=darkest:000000&primary=59595f;600;lightest:e3e3e3&transparent=7d838c';
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Reality Designers';
@@ -45,8 +47,6 @@ export default defineConfig({
       visionTool({ defaultApiVersion: apiVersion }),
       scheduledPublishing(),
       media(),
-      // contentGraphView({
-      //    query: "*[_type in ['posts', 'video', 'quote', 'team', 'audio', 'category', 'team', 'model', 'library']]",
-      // }),
+      vercelDeployTool(),
    ],
 });
