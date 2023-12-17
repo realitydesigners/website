@@ -69,7 +69,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		: "Date not available";
 
 	return (
-		<article className=" h-auto border border-gray-300 p-2 rounded-[1em]">
+		<div className=" h-auto border border-gray-300 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
 					<SmallImage
@@ -98,7 +98,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 					{subheading || "no subheading"}
 				</p>
 			</div>
-		</article>
+		</div>
 	);
 };
 
