@@ -51,8 +51,10 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/three": "^0.159.0",
     "@vercel/analytics": "^1.1.1",
+    "aframe": "1.5.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
+    "got": "14.0.0",
     "gsap": "^3.12.3",
     "gsplat": "^0.2.12",
     "leva": "^0.9.35",
@@ -68,7 +70,8 @@
     "sanity-plugin-graph-view": "^2.0.1",
     "sanity-plugin-media": "^2.2.4",
     "server-only": "^0.0.1",
-    "styled-components": "^6.1.1",
-    "three": "^0.159.0"
+    "styled-components": "^5.3.11",
+    "three": "^0.159.0",
+    "xml2js": "0.6.2"
   }
 }
