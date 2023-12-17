@@ -1,9 +1,9 @@
 import 'server-only';
 import { draftMode } from 'next/headers';
 import { client } from '@/sanity/lib/client';
-import { homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery, categoryQuery, categoryBySlugQuery, getVideosQuery, getVideoBySlugQuery, teamQuery, teamBySlugQuery } from '@/sanity/lib/queries';
+import { homePageQuery, pagesBySlugQuery, settingsQuery, postsQuery, postsBySlugQuery, categoryQuery, categoryBySlugQuery, getVideosQuery, getVideoBySlugQuery, teamQuery, teamBySlugQuery } from '@/sanity/lib/queries';
 import { token } from '@/sanity/lib/token';
-import { PagePayload, SettingsPayload, PostsPayload, CategoryPayload, VideoPayload, TeamPayload } from '@/types';
+import { SettingsPayload, PostsPayload, CategoryPayload, VideoPayload, TeamPayload } from '@/types';
 import * as queryStore from '@sanity/react-loader';
 
 const serverClient = client.withConfig({
@@ -48,9 +48,6 @@ export const loadQuery = ((query, params = {}, options = {}) => {
 
 // Settings
 export const loadSettings = () => loadQuery<SettingsPayload>(settingsQuery, {}, { next: { tags: ['settings', 'home', 'page', 'project'] } });
-
-// Pages
-export const loadPage = (slug: string) => loadQuery<PagePayload | null>(pagesBySlugQuery, { slug }, { next: { tags: [`page:${slug}`] } });
 
 // Posts
 export const loadPosts = () => loadQuery<PostsPayload[]>(postsQuery, {}, { next: { tags: ['posts'] } });

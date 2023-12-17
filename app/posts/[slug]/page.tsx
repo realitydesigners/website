@@ -19,17 +19,20 @@ export async function generateMetadata(
 	{ params }: Props,
 	parent: ResolvingMetadata,
 ): Promise<Metadata> {
+	const metadataBaseUrl =
+		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
 	const { data: post } = await loadPostsPage(params.slug);
-	const ogImage = urlForOpenGraphImage(post?.image);
+	//@ts-ignore
+	const ogImage = urlForOpenGraphImage(post?.ogImage);
+	const metadataBase = new URL(metadataBaseUrl);
 
 	return {
 		title: post?.title,
 		description: post?.excerpt || (await parent).description,
-		openGraph: ogImage
-			? {
-					images: [ogImage, ...((await parent).openGraph?.images || [])],
-			  }
-			: {},
+		openGraph: {
+			images: ogImage ? [ogImage] : [],
+		},
+		metadataBase,
 	};
 }
 

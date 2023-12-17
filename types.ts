@@ -1,28 +1,5 @@
 import type { PortableTextBlock } from '@portabletext/types';
 
-export interface PagePayload {
-   body?: PortableTextBlock[];
-   name?: string;
-   overview?: PortableTextBlock[];
-   title?: string;
-   slug?: string;
-}
-
-export interface ProjectPayload {
-   client?: string;
-   coverImage?: Image;
-   description?: PortableTextBlock[];
-   duration?: {
-      start?: string;
-      end?: string;
-   };
-   overview?: PortableTextBlock[];
-   site?: string;
-   slug: string;
-   tags?: string[];
-   title?: string;
-}
-
 export interface SettingsPayload {
    footer?: PortableTextBlock[];
    menuItems?: any;
@@ -89,19 +66,10 @@ export interface PostsPayload {
    };
    publicationDate?: string;
    excerpt?: string;
-   image?: {
-      _key?: string;
-      _type?: string;
-      alt?: string;
-      asset: {
-         _key?: string;
-         _type?: string;
-         url: string;
-      };
-   };
+   image?: Image;
    block?: Array<BlockItem>;
-   content?: Array<any>; // Define this type more accurately based on what content contains
-   // ...other top-level fields you might have
+   content?: Array<any>;
+   ogImage?: Image;
 }
 
 export interface CategoryPayload {
