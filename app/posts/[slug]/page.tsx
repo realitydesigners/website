@@ -20,7 +20,7 @@ export async function generateMetadata(
 	parent: ResolvingMetadata,
 ): Promise<Metadata> {
 	const { data: post } = await loadPostsPage(params.slug);
-	const ogImage = urlForOpenGraphImage(post?.image?.asset);
+	const ogImage = urlForOpenGraphImage(post?.image);
 
 	return {
 		title: post?.title,
