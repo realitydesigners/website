@@ -23,12 +23,12 @@ export async function generateMetadata(
 		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
 	const { data: post } = await loadPostsPage(params.slug);
 	//@ts-ignore
-	const ogImage = urlForOpenGraphImage(post?.image);
+	const ogImage = urlForOpenGraphImage(post?.block?.[0]?.image);
 	const metadataBase = new URL(metadataBaseUrl);
 
 	return {
-		title: post?.title,
-		description: post?.excerpt || (await parent).description,
+		title: post?.block?.[0]?.title,
+		description: post?.block?.[0]?.subheading || (await parent).description,
 		openGraph: ogImage
 			? {
 					images: [ogImage, ...((await parent).openGraph?.images || [])],
