@@ -28,8 +28,6 @@ export default defineType({
          type: 'string',
          name: 'title',
          title: 'Title',
-
-         validation: rule => rule.required(),
       }),
       defineField({
          type: 'slug',
@@ -38,14 +36,12 @@ export default defineType({
          options: {
             source: 'title',
          },
-         validation: rule => rule.required(),
       }),
 
       defineField({
          type: 'text',
          name: 'excerpt',
          title: 'Excerpt',
-         validation: rule => rule.required(),
       }),
       defineField({
          type: 'image',
