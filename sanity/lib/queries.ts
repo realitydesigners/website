@@ -92,7 +92,7 @@ export const postsBySlugQuery = groq`
      block[]{
        ...,
        heading,
-       subHeading,
+       subheading,
        image,
        tags,
        layout,

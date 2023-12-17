@@ -38,7 +38,7 @@ export interface BlockItem {
    _key?: string;
    _type: string;
    heading?: string;
-   subHeading?: string;
+   subheading?: string;
    image?: Image;
    tags?: string[];
    layout?: string;
