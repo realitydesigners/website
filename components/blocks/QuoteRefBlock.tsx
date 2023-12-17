@@ -3,7 +3,6 @@ import { jura, staatliches } from "@/fonts";
 import QuoteImage from "@/components/shared/QuoteImage";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
-import media from "@/sanity/schemas/media";
 
 // interface ImageBoxProps {
 // 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -48,7 +47,7 @@ import media from "@/sanity/schemas/media";
 
 const QuoteCard = ({
 	quote,
-	media,
+
 	image,
 	className,
 	title,
@@ -98,7 +97,6 @@ const QuoteRefWrapper = ({ value }) => {
 	return (
 		<QuoteCard
 			quote={quote.quote}
-			media={quote.mediaRef}
 			className={className}
 			image={quote.image}
 			title={undefined}

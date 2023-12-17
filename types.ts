@@ -89,7 +89,16 @@ export interface PostsPayload {
    };
    publicationDate?: string;
    excerpt?: string;
-   image?: Image;
+   image?: {
+      _key?: string;
+      _type?: string;
+      alt?: string;
+      asset: {
+         _key?: string;
+         _type?: string;
+         url: string;
+      };
+   };
    block?: Array<BlockItem>;
    content?: Array<any>; // Define this type more accurately based on what content contains
    // ...other top-level fields you might have
