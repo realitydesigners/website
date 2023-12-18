@@ -16,17 +16,13 @@ const serverClient = client.withConfig({
 queryStore.setServerClient(serverClient);
 
 const usingCdn = serverClient.config().useCdn;
-// Automatically handle draft mode
+
 export const loadQuery = ((query, params = {}, options = {}) => {
    const { perspective = draftMode().isEnabled ? 'previewDrafts' : 'published' } = options;
-   // Don't cache by default
-   let revalidate: NextFetchRequestConfig['revalidate'] = 0;
-   // If `next.tags` is set, and we're not using the CDN, then it's safe to cache
-   if (!usingCdn && Array.isArray(options.next?.tags)) {
-      revalidate = false;
-   } else if (usingCdn) {
-      revalidate = 60;
-   }
+
+   const cacheMode = process.env.NODE_ENV === 'development' ? 'no-cache' : 'force-cache';
+   const revalidate = !usingCdn && options.next?.tags ? false : usingCdn ? 1 : 0;
+
    return queryStore.loadQuery(query, params, {
       ...options,
       next: {
@@ -34,6 +30,7 @@ export const loadQuery = ((query, params = {}, options = {}) => {
          ...(options.next || {}),
       },
       perspective,
+      cache: cacheMode,
    });
 }) satisfies typeof queryStore.loadQuery;
 
