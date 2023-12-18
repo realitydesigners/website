@@ -116,13 +116,16 @@ const HeadingBlockLight = ({ block }) => {
 						)}
 						<div className="w-full h-auto flex items-center pt-4">
 							{block.team && (
-								<Link href={`/team/${block.team.slug.current}`}>
+								<Link
+									href={`/team/${block.team.slug.current}`}
+									className={`${staatliches.className} `}
+								>
 									<div className="flex items-center p-2 rounded-lg border w-full ">
 										{teamImageUrl && (
 											<div className="overflow-hidden object-cover rounded-full">
 												<Image
 													priority={true}
-													className="object-cover cover h-12 w-12"
+													className="object-cover  h-[30px] w-[30px] rounded-full"
 													alt={`Team member image for ${block.team.name}`}
 													width={60}
 													height={60}
@@ -131,7 +134,7 @@ const HeadingBlockLight = ({ block }) => {
 											</div>
 										)}
 										{block.team.name && (
-											<span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-xs">
+											<span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-sm">
 												By {block.team.name}
 											</span>
 										)}

@@ -47,23 +47,47 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 
    const firstBlock = postData?.block?.[0];
 
+   const teamImage = firstBlock?.team?.image; // Assuming this is the URL or image object
+
+   const formattedDate = firstBlock?.publicationDate
+      ? new Date(firstBlock.publicationDate).toLocaleDateString('en-US', {
+           year: 'numeric',
+           month: 'long',
+           day: 'numeric',
+        })
+      : 'Date not available';
+
    return (
       <div id="popup" className="flex flex-col my-5 items-center justify-center">
          <div className="w-full justify-center relative  h-[50vh] lg:h-[33vh] overflow-auto p-4 bg-gray-300 shadow-lg rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-4">
             {firstBlock && (
                <>
                   {firstBlock.image && (
-                     <div className="relative mb-4 lg:mb-0">
+                     <div className="relative ">
                         <ImageBox image={firstBlock.image} alt={`Cover Image for ${firstBlock.heading}`} classesWrapper="h-[250px] w-full transform rounded-[.5em] object-cover transition-transform duration-300 group-hover:scale-110" />
                      </div>
                   )}
 
                   <div>
+                     <span className={`${staatliches.className} w-full flex h-auto mb-2 text-xs text-black uppercase tracking-widest`}>{formattedDate}</span>
                      <Link href={`/posts/${postData.slug.current}`} className={`${staatliches.className} text-black font-bold text-4xl mb-2`}>
                         {firstBlock.heading}
                      </Link>
 
                      {firstBlock.subheading && <p className={`${jura.className} text-black text-lg mb-4`}>{firstBlock.subheading}</p>}
+
+                     {firstBlock.team && (
+                        <Link href={`/team/${firstBlock.team.slug.current}`} className={`${staatliches.className} `}>
+                           <div className="flex items-center p-2 w-full">
+                              {teamImage && (
+                                 <div className="overflow-hidden object-cover rounded-full">
+                                    <ImageBox image={teamImage} alt={`Team member image for ${firstBlock.team.name}`} classesWrapper="h-[30px] w-[30px] object-cover cover" />
+                                 </div>
+                              )}
+                              {firstBlock.team.name && <span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-sm">By {firstBlock.team.name}</span>}
+                           </div>
+                        </Link>
+                     )}
                   </div>
                </>
             )}
