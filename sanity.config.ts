@@ -45,7 +45,7 @@ export default defineConfig({
          },
       }),
       visionTool({ defaultApiVersion: apiVersion }),
-      scheduledPublishing(),
+
       media(),
       vercelDeployTool(),
    ],
