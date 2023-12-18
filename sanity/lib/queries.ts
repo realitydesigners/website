@@ -84,6 +84,7 @@ export const postsQuery = groq`
  }`;
 
 export const postsBySlugQuery = groq`
+
 *[_type == "posts" && slug.current == $slug][0] {
      title,
      slug,

@@ -56,13 +56,15 @@ export default async function PageSlugRoute({ params }: Props) {
 	// Fetch all posts using the new sanityFetch
 	const allPosts = await sanityFetch<PostsPayload[]>({
 		query: postsBySlugQuery,
-		tags: ["posts"],
+		qParams: { slug: params.slug },
+		tags: [`posts:${params.slug}`],
 	});
 
 	// Filter out the current post from the list of all posts
-	const otherPosts = allPosts.filter(
-		(post) => post.slug?.current !== params.slug,
-	);
+	const otherPosts =
+		allPosts && Array.isArray(allPosts)
+			? allPosts.filter((post) => post.slug?.current !== params.slug)
+			: [];
 
 	return (
 		<>
