@@ -27,8 +27,10 @@ export async function generateMetadata(
 	const metadataBase = new URL(metadataBaseUrl);
 
 	return {
-		title: post?.block?.[0]?.title,
-		description: post?.block?.[0]?.subheading || (await parent).description,
+		//@ts-ignore
+		title: post?.block?.title,
+		//@ts-ignore
+		description: post?.block?.subheading || (await parent).description,
 		openGraph: ogImage
 			? {
 					images: [ogImage, ...((await parent).openGraph?.images || [])],
