@@ -15,8 +15,8 @@ export function generateStaticParams() {
 export default async function PageSlugRoute({ params }: Props) {
 	const video = await sanityFetch<VideoPayload>({
 		query: getVideoBySlugQuery,
+		tags: ["video"],
 		qParams: { slug: params.slug },
-		tags: [`video:${params.slug}`],
 	});
 	return <SlugPage data={video} />;
 }

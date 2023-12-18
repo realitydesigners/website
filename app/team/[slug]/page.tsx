@@ -22,8 +22,8 @@ export async function generateMetadata(
 		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
 	const team = await sanityFetch<TeamPayload>({
 		query: teamBySlugQuery,
+		tags: ["team"],
 		qParams: { slug: params.slug },
-		tags: [`team:${params.slug}`],
 	});
 	//@ts-ignore
 	const ogImage = urlForOpenGraphImage(team?.image);

@@ -15,8 +15,8 @@ export function generateStaticParams() {
 export default async function CategoryPage({ params }: Props) {
 	const category = await sanityFetch<CategoryPayload>({
 		query: categoryBySlugQuery,
+		tags: ["category"],
 		qParams: { slug: params.slug },
-		tags: [`category:${params.slug}`],
 	});
 
 	return (

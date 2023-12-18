@@ -25,8 +25,8 @@ export async function generateMetadata(
 		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
 	const post = await sanityFetch<PostsPayload>({
 		query: postsBySlugQuery,
+		tags: ["post"],
 		qParams: { slug: params.slug },
-		tags: [`posts:${params.slug}`],
 	});
 	//@ts-ignore
 	const ogImage = urlForOpenGraphImage(post?.block?.[0]?.image);
@@ -49,15 +49,15 @@ export default async function PageSlugRoute({ params }: Props) {
 	// Fetch the current post using the new sanityFetch
 	const currentPost = await sanityFetch<PostsPayload>({
 		query: postsBySlugQuery,
+		tags: ["post"],
 		qParams: { slug: params.slug },
-		tags: [`posts:${params.slug}`],
 	});
 
 	// Fetch all posts using the new sanityFetch
 	const allPosts = await sanityFetch<PostsPayload[]>({
 		query: postsBySlugQuery,
+		tags: ["post"],
 		qParams: { slug: params.slug },
-		tags: [`posts:${params.slug}`],
 	});
 
 	// Filter out the current post from the list of all posts
