@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import HeadingBlockDark from '@/components/blog/HeadingBlockDark';
 import HeadingBlockLight from '@/components/blog/HeadingBlockLight';
 import TeamBlock from '@/components/blog/TeamBlock';
+import InternalLink from '@/components/blocks/InternalLink';
 
 import { jura, staatliches } from '@/fonts';
 
@@ -24,7 +25,7 @@ const Dark = {
    block: {
       normal: ({ children }) => (
          <div className="w-full flex justify-center ">
-            <p className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
+            <div className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</div>
          </div>
       ),
       h1: ({ children }) => (
@@ -60,13 +61,7 @@ const Dark = {
    marks: {
       internalLink: ({ value, children }) => {
          const { slug = {} } = value;
-         const href = `/posts/${slug?.current}`;
-
-         return (
-            <Link className="font-extrabold text-black underline " href={href}>
-               {children}
-            </Link>
-         );
+         return <InternalLink slug={slug?.current}>{children}</InternalLink>;
       },
    },
    types: {
@@ -84,8 +79,8 @@ const Dark = {
 const Light = {
    block: {
       normal: ({ children }) => (
-         <div className="w-screen flex justify-center ">
-            <p className={`${jura.className} w-11/12 font-bold text-black leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
+         <div className="w-full flex justify-center">
+            <div className={`${jura.className} w-11/12 font-bold text-black leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6`}>{children}</div>
          </div>
       ),
       h1: ({ children }) => (
@@ -121,15 +116,10 @@ const Light = {
    marks: {
       internalLink: ({ value, children }) => {
          const { slug = {} } = value;
-         const href = `/posts/${slug?.current}`;
-
-         return (
-            <Link className="font-extrabold text-black underline " href={href}>
-               {children}
-            </Link>
-         );
+         return <InternalLink slug={slug?.current}>{children}</InternalLink>;
       },
    },
+
    types: {
       iframe: iFrame,
       postsRef: PostsRefBlock,
@@ -146,7 +136,7 @@ const Team = {
    block: {
       normal: ({ children }) => (
          <div className="w-full flex justify-center ">
-            <p className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</p>
+            <div className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}>{children}</div>
          </div>
       ),
       h1: ({ children }) => (
@@ -182,13 +172,7 @@ const Team = {
    marks: {
       internalLink: ({ value, children }) => {
          const { slug = {} } = value;
-         const href = `/blog/${slug?.current}`;
-
-         return (
-            <Link className="font-extrabold text-black underline " href={href}>
-               {children}
-            </Link>
-         );
+         return <InternalLink slug={slug?.current}>{children}</InternalLink>;
       },
    },
 };
@@ -282,6 +266,7 @@ const Blocks = ({ block }) => {
             return <ContentBlock layout={layout} content={block.content} />;
          case 'teamBlock':
             return <TeamBlock layout block={block} />;
+
          default:
             return null;
       }
