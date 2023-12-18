@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { jura, staatliches } from "@/fonts";
 import { PostsPayload, BlockItem } from "@/types";
-import { PostImage } from "@/components/shared/Images";
+import { PostImage } from "@/components/global/Images";
 
 interface PostItemProps {
 	block: BlockItem;

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-
-import ImageBox from "@/components/shared/ImageBox";
+import { ImageBox, TeamImageBox } from "@/components/global/Images";
 import { jura, staatliches } from "@/fonts";
 import { VideoPayload } from "@/types";
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ImageBox } from '@/components/shared/Images';
+import { ImageBox } from '@/components/global/Images';
 import { staatliches } from '@/fonts';
 
 const PostsCardLight = ({ title, slug, image }) => {

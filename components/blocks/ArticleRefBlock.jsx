@@ -1,4 +1,4 @@
-import ImageBox from '@/components/shared/ImageBox';
+import { ImageBox } from '@/components/global/Images';
 
 const ArticleCard = ({ title, slug, image, excerpt }) => {
    return (

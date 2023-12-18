@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { jura, staatliches } from '@/fonts';
 import { getPostData } from '@/app/api/actions/fetchInternalLink';
-import { ImageBox, TeamImageBox } from '@/components/shared/Images';
+import { ImageBox, TeamImageBox } from '@/components/global/Images';
 
 const InternalLink = ({ slug, children }) => {
    const [isDialogOpen, setDialogOpen] = useState(false);

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SlugPostImage, TeamImageBox } from "@/components/shared/Images";
+import { SlugPostImage, TeamImageBox } from "@/components/global/Images";
 import { jura, staatliches } from "@/fonts";
 
 const HeadingBlockDark = ({ block }) => {

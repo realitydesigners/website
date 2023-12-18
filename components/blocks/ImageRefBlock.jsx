@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import ImageBox from '@/components/shared/ImageBox';
-import SmallImage from '../shared/SmallImage';
+import { ImageBox, TeamImageBox } from '@/components/global/Images';
 
 const ImageCard = ({ title, slug, image, className }) => {
    switch (className) {
@@ -33,7 +32,7 @@ const ImageCard = ({ title, slug, image, className }) => {
 
                {image?.team && (
                   <div className="relative rounded-b-xl -mt-16  pt-4 bottom-0 flex h-auto w-full pl-4  ">
-                     <SmallImage image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper=" border mr-2 max-h-[30px] max-w-[30px] rounded-full" />
+                     <TeamImageBox image={image.team.image} alt={`Cover Image for ${image.team.name}`} classesWrapper=" border mr-2 max-h-[30px] max-w-[30px] rounded-full" />
                      <div className=" justify-center relative flex flex-col items-start text-xs uppercase leading-none">
                         <Link href="/" className="text-gray-400 font-mono text-[10px]">
                            BY

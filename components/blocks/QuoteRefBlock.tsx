@@ -1,8 +1,5 @@
 import Link from "next/link";
 import { jura, staatliches } from "@/fonts";
-import QuoteImage from "@/components/shared/QuoteImage";
-import Image from "next/image";
-import { urlForImage } from "@/sanity/lib/utils";
 
 // interface ImageBoxProps {
 // 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
