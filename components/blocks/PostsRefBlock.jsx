@@ -1,9 +1,8 @@
 import Link from 'next/link';
+import { ImageBox } from '@/components/shared/Images';
+import { staatliches } from '@/fonts';
 
-import ImageBox from '@/components/shared/ImageBox';
-import { jura, staatliches } from '@/fonts';
-
-const PostsCardLight = ({ title, slug, image, excerpt }) => {
+const PostsCardLight = ({ title, slug, image }) => {
    return (
       <div className="flex w-full  items-center justify-center p-4 mb-6 lg:p-16">
          <div className=" bg-gray-300 w-full rounded-lg md:w-1/2 group flex h-auto flex-row p-3 shadow-lg transition-shadow duration-300 hover:shadow-xl lg:w-3/5">
@@ -18,7 +17,6 @@ const PostsCardLight = ({ title, slug, image, excerpt }) => {
                <Link className={`${staatliches.className} duration-3 font-rajdhani leading-none text-2xl md:text-2xl tracking-wide text-black transition-colors group-hover:text-gray-800 group-hover:underline`} href={`/posts/${slug}`}>
                   {title}
                </Link>
-               <p className="text-gray-200"> {excerpt}</p>
             </div>
          </div>
       </div>

@@ -1,12 +1,9 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { jura, staatliches } from '@/fonts';
 import { getPostData } from '@/app/api/actions/fetchInternalLink';
-import Image from 'next/image';
-
-import { urlForImage } from '@/sanity/lib/utils';
+import { ImageBox, TeamImageBox } from '@/components/shared/Images';
 
 const InternalLink = ({ slug, children }) => {
    const [isDialogOpen, setDialogOpen] = useState(false);
@@ -48,8 +45,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
    if (!isOpen || !postData) return null;
 
    const firstBlock = postData?.block?.[0];
-
-   const teamImage = firstBlock?.team?.image; // Assuming this is the URL or image object
+   const teamImage = firstBlock?.team?.image;
 
    const formattedDate = firstBlock?.publicationDate
       ? new Date(firstBlock.publicationDate).toLocaleDateString('en-US', {
@@ -76,7 +72,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
                         {firstBlock.heading}
                      </Link>
 
-                     {firstBlock.subheading && <p className={`${jura.className} text-black text-lg mb-4`}>{firstBlock.subheading}</p>}
+                     {firstBlock.subheading && <p className={`${jura.className} text-black leading-7 text-xl mb-4`}>{firstBlock.subheading}</p>}
 
                      {firstBlock.team && (
                         <Link href={`/team/${firstBlock.team.slug.current}`} className={`${staatliches.className} `}>
@@ -123,25 +119,5 @@ const LoadingIndicator = () => (
       </div>
    </div>
 );
-
-function ImageBox({ image, alt = 'Cover image', width = 1500, height = 1000, size = '100vw', classesWrapper, ...props }) {
-   const imageUrl = image && urlForImage(image)?.height(height).width(width).fit('crop').url();
-
-   return (
-      <div className={`w-full overflow-hidden ${classesWrapper}`} data-sanity={props['data-sanity']}>
-         {imageUrl && <Image priority={true} className="object-cover cover h-full w-full" alt={alt} width={width} height={height} sizes={size} src={imageUrl} />}
-      </div>
-   );
-}
-
-function TeamImageBox({ image, alt = 'Cover image', width = 50, height = 50, size = '100vw', classesWrapper, ...props }) {
-   const imageUrl = image && urlForImage(image)?.height(height).width(width).fit('crop').url();
-
-   return (
-      <div className={`w-full overflow-hidden ${classesWrapper}`} data-sanity={props['data-sanity']}>
-         {imageUrl && <Image priority={true} className="object-cover cover h-full w-full" alt={alt} width={width} height={height} sizes={size} src={imageUrl} />}
-      </div>
-   );
-}
 
 export default InternalLink;

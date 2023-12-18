@@ -2,8 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { jura, staatliches } from "@/fonts";
 import { PostsPayload, BlockItem } from "@/types";
-import Image from "next/image";
-import { urlForImage } from "@/sanity/lib/utils";
+import { PostImage } from "@/components/shared/Images";
 
 interface PostItemProps {
 	block: BlockItem;
@@ -17,44 +16,6 @@ interface PostsListProps {
 	slug?: {
 		current?: string;
 	};
-}
-
-function SmallImage({
-	image,
-	alt = "Cover image",
-	width = 600,
-	height = 600,
-	classesWrapper,
-	"data-sanity": dataSanity,
-}: {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	image?: any;
-	alt?: string;
-	width?: number;
-	height?: number;
-	classesWrapper?: string;
-	"data-sanity"?: string;
-}) {
-	const imageUrl =
-		image && urlForImage(image)?.height(height).width(width).fit("crop").url();
-
-	return (
-		<div
-			className={`w-full h-[50vw] lg:h-[20vw] overflow-hidden ${classesWrapper}`}
-			data-sanity={dataSanity}
-		>
-			{imageUrl && (
-				<Image
-					priority={true}
-					className="object-cover cover h-full w-full"
-					alt={alt}
-					width={width}
-					height={height}
-					src={imageUrl}
-				/>
-			)}
-		</div>
-	);
 }
 
 export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
@@ -72,7 +33,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		<div className=" h-auto border border-gray-300 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
-					<SmallImage
+					<PostImage
 						image={image}
 						alt={`Cover Image for ${heading}`}
 						classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
