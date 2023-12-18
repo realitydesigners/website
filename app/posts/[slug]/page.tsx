@@ -24,7 +24,7 @@ export async function generateMetadata(
 	const metadataBaseUrl =
 		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
 	const post = await sanityFetch<PostsPayload>({
-		query: postsQuery,
+		query: postsBySlugQuery,
 		qParams: { slug: params.slug },
 		tags: [`posts:${params.slug}`],
 	});
