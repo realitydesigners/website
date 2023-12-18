@@ -1,3 +1,4 @@
+'use client';
 import { ImageBox } from '@/components/global/Images';
 
 const ArticleCard = ({ title, slug, image, excerpt }) => {

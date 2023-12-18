@@ -1,3 +1,4 @@
+'use client';
 import AudioPlayer from './AudioPlayer.jsx';
 
 const AudioRefWrapper = ({ value }) => {

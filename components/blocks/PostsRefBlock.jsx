@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { ImageBox } from '@/components/global/Images';
 import { staatliches } from '@/fonts';

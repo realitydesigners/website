@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { FC } from "react";
 import { jura, staatliches } from "@/fonts";
