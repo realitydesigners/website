@@ -1,6 +1,4 @@
-import { loadPosts } from "@/sanity/loader/loadQuery";
 import { PostsList } from "@/components/global/PostsList";
-
 import { sanityFetch } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
@@ -12,6 +10,8 @@ export default async function PostPage() {
 		query: postsQuery,
 		tags: ["posts"],
 	});
+
+	console.log(post);
 
 	return (
 		<>
