@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { jura, staatliches } from '@/fonts';
 import { getPostData } from '@/app/api/actions/fetchInternalLink';
+import Image from 'next/image';
 
-import ImageBox from '@/components/shared/ImageBox';
+import { urlForImage } from '@/sanity/lib/utils';
+
 const InternalLink = ({ slug, children }) => {
    const [isDialogOpen, setDialogOpen] = useState(false);
    const [previewPostData, setPreviewPostData] = useState(null);
@@ -59,7 +61,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 
    return (
       <div id="popup" className="flex flex-col my-5 items-center justify-center">
-         <div className="w-full justify-center relative  h-[50vh] lg:h-[33vh] overflow-auto p-4 bg-gray-300 shadow-lg rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-4">
+         <div className="w-full justify-center relative  h-[66vh] lg:h-[33vh] overflow-auto p-4 bg-gray-300 shadow-lg rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-4">
             {firstBlock && (
                <>
                   {firstBlock.image && (
@@ -81,7 +83,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
                            <div className="flex items-center p-2 w-full">
                               {teamImage && (
                                  <div className="overflow-hidden object-cover rounded-full">
-                                    <ImageBox image={teamImage} alt={`Team member image for ${firstBlock.team.name}`} classesWrapper="h-[30px] w-[30px] object-cover cover" />
+                                    <TeamImageBox image={teamImage} alt={`Team member image for ${firstBlock.team.name}`} classesWrapper="h-[30px] w-[30px] object-cover cover" />
                                  </div>
                               )}
                               {firstBlock.team.name && <span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-sm">By {firstBlock.team.name}</span>}
@@ -111,7 +113,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 
 const LoadingIndicator = () => (
    <div className="flex my-4 items-center justify-center">
-      <div className="w-full max-w-3xl h-[50vh] lg:h-[33vh]  overflow-auto flex justify-center items-center p-4 bg-gray-300 shadow-lg rounded-lg">
+      <div className="w-full max-w-3xl h-[66vh] lg:h-[33vh]  overflow-auto flex justify-center items-center p-4 bg-gray-300 shadow-lg rounded-lg">
          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
          <svg width="100" height="100" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
             <circle cx="25" cy="25" r="20" stroke="#888888" strokeWidth="5" fill="none" strokeDasharray="31.415, 31.415" strokeDashoffset="0">
@@ -121,5 +123,25 @@ const LoadingIndicator = () => (
       </div>
    </div>
 );
+
+function ImageBox({ image, alt = 'Cover image', width = 1500, height = 1000, size = '100vw', classesWrapper, ...props }) {
+   const imageUrl = image && urlForImage(image)?.height(height).width(width).fit('crop').url();
+
+   return (
+      <div className={`w-full overflow-hidden ${classesWrapper}`} data-sanity={props['data-sanity']}>
+         {imageUrl && <Image priority={true} className="object-cover cover h-full w-full" alt={alt} width={width} height={height} sizes={size} src={imageUrl} />}
+      </div>
+   );
+}
+
+function TeamImageBox({ image, alt = 'Cover image', width = 50, height = 50, size = '100vw', classesWrapper, ...props }) {
+   const imageUrl = image && urlForImage(image)?.height(height).width(width).fit('crop').url();
+
+   return (
+      <div className={`w-full overflow-hidden ${classesWrapper}`} data-sanity={props['data-sanity']}>
+         {imageUrl && <Image priority={true} className="object-cover cover h-full w-full" alt={alt} width={width} height={height} sizes={size} src={imageUrl} />}
+      </div>
+   );
+}
 
 export default InternalLink;
