@@ -3,12 +3,16 @@ import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
-import { loadPosts } from "@/sanity/loader/loadQuery";
 import { PostsList } from "@/components/global/PostsList";
+import { sanityFetch } from "@/sanity/lib/client";
+import { postsQuery } from "@/sanity/lib/queries";
+import { PostsPayload } from "@/types";
 
 export default async function IndexPage() {
-	const response = await loadPosts();
-	const post = response.data;
+	const post: PostsPayload[] = await sanityFetch({
+		query: postsQuery,
+		tags: ["posts"],
+	});
 
 	return (
 		<main className="flex flex-col w-full bg-gray-200">

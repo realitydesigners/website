@@ -1,16 +1,26 @@
 import 'server-only';
 import { draftMode } from 'next/headers';
-import { client } from '@/sanity/lib/client';
+import { createClient } from '@sanity/client/stega';
+
+import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api';
 import { settingsQuery, postsQuery, postsBySlugQuery, categoryQuery, categoryBySlugQuery, getVideosQuery, getVideoBySlugQuery, teamQuery, teamBySlugQuery } from '@/sanity/lib/queries';
 import { token } from '@/sanity/lib/token';
 import { SettingsPayload, PostsPayload, CategoryPayload, VideoPayload, TeamPayload } from '@/types';
 import * as queryStore from '@sanity/react-loader';
 
+export const client = createClient({
+   projectId,
+   dataset,
+   apiVersion,
+   useCdn: process.env.NODE_ENV === 'development' ? true : false,
+   perspective: 'published',
+   stega: {
+      studioUrl,
+   },
+});
+
 const serverClient = client.withConfig({
    token,
-   stega: {
-      enabled: process.env.VERCEL_ENV === 'preview',
-   },
 });
 
 queryStore.setServerClient(serverClient);

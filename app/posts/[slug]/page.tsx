@@ -1,4 +1,3 @@
-import { loadPosts, loadPostsPage } from "@/sanity/loader/loadQuery";
 import { toPlainText } from "@portabletext/react";
 import { Metadata, ResolvingMetadata } from "next";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
@@ -6,6 +5,9 @@ import SlugPage from "@/app/posts/[slug]/SlugPage";
 import { PostsList } from "@/components/global/PostsList";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { Suspense } from "react";
+import { postsQuery } from "@/sanity/lib/queries";
+import { PostsPayload } from "@/types";
+import { sanityFetch } from "@/sanity/lib/client";
 
 type Props = {
 	params: { slug: string };
@@ -21,7 +23,11 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	const metadataBaseUrl =
 		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
-	const { data: post } = await loadPostsPage(params.slug);
+	const post = await sanityFetch<PostsPayload>({
+		query: postsQuery,
+		qParams: { slug: params.slug },
+		tags: [`posts:${params.slug}`],
+	});
 	//@ts-ignore
 	const ogImage = urlForOpenGraphImage(post?.block?.[0]?.image);
 	const metadataBase = new URL(metadataBaseUrl);
@@ -39,14 +45,21 @@ export async function generateMetadata(
 		metadataBase,
 	};
 }
-
 export default async function PageSlugRoute({ params }: Props) {
-	const currentPostResponse = await loadPostsPage(params.slug);
-	const currentPost = await currentPostResponse.data;
+	// Fetch the current post using the new sanityFetch
+	const currentPost = await sanityFetch<PostsPayload>({
+		query: postsQuery,
+		qParams: { slug: params.slug },
+		tags: [`posts:${params.slug}`],
+	});
 
-	const allPostsResponse = await loadPosts();
-	const allPosts = allPostsResponse.data;
+	// Fetch all posts using the new sanityFetch
+	const allPosts = await sanityFetch<PostsPayload[]>({
+		query: postsQuery,
+		tags: ["posts"],
+	});
 
+	// Filter out the current post from the list of all posts
 	const otherPosts = allPosts.filter(
 		(post) => post.slug?.current !== params.slug,
 	);

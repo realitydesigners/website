@@ -1,8 +1,10 @@
-import { loadTeamSlugPage } from "@/sanity/loader/loadQuery";
 import SlugPage from "./SlugPage";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { Metadata, ResolvingMetadata } from "next";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
+import { teamBySlugQuery } from "@/sanity/lib/queries";
+import { TeamPayload } from "@/types";
+import { sanityFetch } from "@/sanity/lib/client";
 
 type Props = {
 	params: { slug: string };
@@ -18,7 +20,11 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	const metadataBaseUrl =
 		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
-	const { data: team } = await loadTeamSlugPage(params.slug);
+	const team = await sanityFetch<TeamPayload>({
+		query: teamBySlugQuery,
+		qParams: { slug: params.slug },
+		tags: [`team:${params.slug}`],
+	});
 	//@ts-ignore
 	const ogImage = urlForOpenGraphImage(team?.image);
 	const metadataBase = new URL(metadataBaseUrl);
@@ -36,8 +42,11 @@ export async function generateMetadata(
 }
 
 export default async function PageSlugRoute({ params }: Props) {
-	const response = await loadTeamSlugPage(params.slug);
-	const team = response.data;
+	const team = await sanityFetch<TeamPayload>({
+		query: teamBySlugQuery,
+		qParams: { slug: params.slug },
+		tags: [`category:${params.slug}`],
+	});
 
 	return <SlugPage data={team} />;
 }
