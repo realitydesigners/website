@@ -34,9 +34,9 @@ export async function generateMetadata(
 
 	return {
 		//@ts-ignore
-		title: post?.block?.title,
+		title: post?.block?.[0]?.heading,
 		//@ts-ignore
-		description: post?.block?.subheading || (await parent).description,
+		description: post?.block?.[0]?.subheading || (await parent).description,
 		openGraph: ogImage
 			? {
 					images: [ogImage, ...((await parent).openGraph?.images || [])],

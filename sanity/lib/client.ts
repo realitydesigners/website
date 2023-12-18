@@ -15,6 +15,6 @@ export const client = createClient(config);
 export async function sanityFetch<QueryResponse>({ query, qParams, tags }: { query: string; qParams?: QueryParams; tags: string[] }): Promise<QueryResponse> {
    return client.fetch<QueryResponse>(query, qParams, {
       cache: hookSecret ? 'force-cache' : 'no-cache',
-      next: { tags },
+      next: { revalidate: 5, tags },
    });
 }
