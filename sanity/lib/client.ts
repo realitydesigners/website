@@ -8,7 +8,7 @@ export const client = createClient({
    token,
    dataset,
    apiVersion,
-   useCdn: process.env.NODE_ENV === 'development' ? true : false,
+   useCdn: false,
    perspective: 'published',
    stega: {
       studioUrl,
@@ -17,7 +17,7 @@ export const client = createClient({
 
 export async function sanityFetch<QueryResponse>({ query, qParams, tags }: { query: string; qParams?: QueryParams; tags: string[] }): Promise<QueryResponse> {
    return client.fetch<QueryResponse>(query, qParams, {
-      cache: process.env.NODE_ENV === 'development' ? 'no-cache' : 'force-cache',
+      cache: 'force-cache',
       next: { tags },
    });
 }
