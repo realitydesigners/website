@@ -5,7 +5,7 @@ import SlugPage from "@/app/posts/[slug]/SlugPage";
 import { PostsList } from "@/components/global/PostsList";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { Suspense } from "react";
-import { postsQuery } from "@/sanity/lib/queries";
+import { postsBySlugQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
 import { sanityFetch } from "@/sanity/lib/client";
 
@@ -48,14 +48,14 @@ export async function generateMetadata(
 export default async function PageSlugRoute({ params }: Props) {
 	// Fetch the current post using the new sanityFetch
 	const currentPost = await sanityFetch<PostsPayload>({
-		query: postsQuery,
+		query: postsBySlugQuery,
 		qParams: { slug: params.slug },
 		tags: [`posts:${params.slug}`],
 	});
 
 	// Fetch all posts using the new sanityFetch
 	const allPosts = await sanityFetch<PostsPayload[]>({
-		query: postsQuery,
+		query: postsBySlugQuery,
 		tags: ["posts"],
 	});
 
