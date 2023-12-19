@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity';
+import { groq } from "next-sanity";
 
 export const homePageQuery = groq`
   *[_type == "home"][0]{
@@ -128,14 +128,15 @@ export const postsBySlugQuery = groq`
          "audioTitle": audio->title,
          "audioFileUrl": audio->audioFile.asset->url
        },
-       quote->{
-        ...,
-        quote,
-        "mediaRef": {
-          "layout": mediaRef.layout,
-          "imageUrl": mediaRef.image.asset->url
-        }
+       
+       "quoteRef": {
+        "quoteTitle": quote->quote,
+        "quoteAuthor": quote->author,
+        "quoteImage": quote->mediaRef.image->image,
+        "quoteLayout": quote->mediaRef.layout,
+        ...
       },
+      
       
        markDefs[]{
          ...,

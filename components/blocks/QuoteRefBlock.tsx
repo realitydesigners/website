@@ -1,68 +1,35 @@
 import Link from "next/link";
 import { jura, staatliches } from "@/fonts";
+import { SanityImage } from "@/components/global/Images";
 
-// interface ImageBoxProps {
-// 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-// 	image?: { asset?: any };
-// 	alt?: string;
-// 	width?: number;
-// 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-// 	media?: any;
-// 	height?: number;
-// 	classesWrapper?: string;
-// 	"data-sanity"?: string;
-// }
-
-// function SmallImage({
-// 	image,
-// 	alt = "Cover image",
-// 	width = 600,
-// 	height = 600,
-// 	classesWrapper,
-// 	...props
-// }: ImageBoxProps) {
-// 	const imageUrl = urlForImage(media?)?.url() ?? null;
-
-// 	return (
-// 		<div
-// 			className={`w-full h-[50vw] lg:h-[20vw] overflow-hidden ${classesWrapper}`}
-// 			data-sanity={props["data-sanity"]}
-// 		>
-// 			{imageUrl && (
-// 				<Image
-// 					priority={true}
-// 					className="object-cover cover h-full w-full"
-// 					alt={alt}
-// 					width={width}
-// 					height={height}
-// 					src={imageUrl}
-// 				/>
-// 			)}
-// 		</div>
-// 	);
-// }
-
-const QuoteCard = ({
-	quote,
-
-	image,
-	className,
-	title,
-	height,
-	width,
-}) => {
+const QuoteCard = ({ quote, media, image, className }) => {
 	switch (className) {
 		case "card-1":
 			return (
-				<div className="flex w-full items-center justify-center mb-6 ">
-					<div className="block md:w-4/5 lg:w-1/2 w-11/12 border bg-black rounded-2xl border-gray-600">
-						<div className="relative p-3 z-20">
-							<h4
-								className={`${staatliches.className} text-3xl text-center lg:text-4xl p-6 font-bold uppercase leading-none text-gray-200 flex items-center`}
-							>
-								{quote}
-							</h4>
-						</div>
+				<div className="flex w-full items-center justify-center mb-6">
+					<div className="block md:w-4/5 lg:w-2/3 w-11/12 rounded-2xl overflow-hidden bg-black border rounded-[1em] border-gray-600">
+						{image && (
+							<div className="relative w-full">
+								{/* Image Container */}
+								<SanityImage
+									image={image}
+									alt={`Cover Image for ${quote}`}
+									width={100}
+									height={100}
+									classesWrapper="absolute inset-0 w-full h-full opacity-50 object-cover z-0"
+									priority={true}
+								/>
+
+								{/* Text Container */}
+								<div className="absolute inset-0 z-10 flex items-center justify-center">
+									<h4
+										className={`${staatliches.className} text-3xl sm:text-5xl lg:text-6xl p-4 text-center tracking-wide uppercase leading-none text-gray-200 flex items-center justify-center`}
+									>
+										{quote}
+									</h4>
+								</div>
+							</div>
+						)}
 					</div>
 				</div>
 			);
@@ -85,20 +52,20 @@ const QuoteCard = ({
 };
 
 const QuoteRefWrapper = ({ value }) => {
-	const { quote, className } = value;
+	const { quoteRef, className } = value;
 
-	if (!quote) {
+	if (!quoteRef) {
 		return null;
 	}
 
+	console.log("quoteRef", quoteRef);
+
 	return (
 		<QuoteCard
-			quote={quote.quote}
+			quote={quoteRef.quoteTitle}
+			image={quoteRef.quoteImage}
 			className={className}
-			image={quote.image}
-			title={undefined}
-			height={undefined}
-			width={undefined}
+			media={undefined}
 		/>
 	);
 };

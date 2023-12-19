@@ -173,8 +173,21 @@ export default {
 					icon: BookIcon,
 					preview: {
 						select: {
-							imageUrl: "quote.mediaRef.image.asset.url",
 							title: "quote.quote",
+
+							imageUrl: "quote.mediaRef.image.image", // Access the image URL directly
+							className: "className", // Include the CSS class
+						},
+						prepare(selection) {
+							const { title, imageUrl, className } = selection;
+							const subtitle = className ? `Style: ${className}` : "No class";
+
+							return {
+								title: title || "Untitled",
+								subtitle,
+								media: imageUrl,
+								className, // Include the CSS class in the preview
+							};
 						},
 					},
 					fields: [
@@ -199,6 +212,7 @@ export default {
 						},
 					],
 				}),
+
 				defineField({
 					type: "object",
 					name: "audioRef",
