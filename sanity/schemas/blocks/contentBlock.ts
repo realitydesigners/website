@@ -64,10 +64,18 @@ export default {
                title: 'Post',
                preview: {
                   select: {
-                     imageUrl: 'posts.image.asset.url',
-                     title: 'posts.title',
+                    title: 'posts.title',
+                    imageUrl: 'posts.block[0].image.asset.url',
                   },
-               },
+                  prepare(selection) {
+                    const { title, imageUrl } = selection;
+                    return {
+                      title: title,
+                      subtitle: imageUrl ? 'Has image in first block' : 'No image in first block',
+                      media: imageUrl ? imageUrl.asset : undefined,
+                    };
+                  },
+                },
                fields: [
                   defineField({
                      type: 'reference',
@@ -276,11 +284,15 @@ export default {
          ],
       },
    ],
+
+   
+
    preview: {
       select: {
          contentArray: 'content',
          layout: 'layout',
       },
+      
       // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       prepare(selection: { contentArray: any[]; layout: string }) {
          const { contentArray, layout } = selection;
@@ -307,3 +319,5 @@ export default {
       },
    },
 };
+
+

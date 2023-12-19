@@ -5,7 +5,6 @@ import { jura, staatliches } from "@/fonts";
 import { useState } from "react";
 
 const ImageCard = ({ title, slug, image, className }) => {
-	const [isLoading, setIsLoading] = useState(true);
 	switch (className) {
 		case "card-1":
 			return (

@@ -144,9 +144,10 @@ export const postsBySlugQuery = groq`
          }
        },
        "postsRef": {
-         "postsTitle": posts->title,
+      
+         "postsHeading": posts->block[0].heading,
          "postsSlug": posts->slug.current,
-         "postsImage": posts->image,
+         "postsImage": posts->block[0].image,
          "postsExcerpt": posts->excerpt,
          ...,
        },
