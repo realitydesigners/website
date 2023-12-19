@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FC } from "react";
-import { ImageBox, TeamImageBox } from "@/components/global/Images";
+import { SanityImage } from "@/components/global/Images";
 import { jura, staatliches } from "@/fonts";
 import { VideoPayload } from "@/types";
 
@@ -16,7 +16,10 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 		<article className="mb-4 h-auto border border-gray-800 p-1">
 			{videos && (
 				<div className="relative h-60 w-full">
-					<ImageBox
+					<SanityImage
+						width={500}
+						height={500}
+						priority={true}
 						image={videos.image}
 						alt={`Cover Image for ${title}`}
 						classesWrapper="w-full h-full w-full object-cover "

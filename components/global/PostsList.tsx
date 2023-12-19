@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { jura, staatliches } from "@/fonts";
 import { PostsPayload, BlockItem } from "@/types";
-import { PostImage } from "@/components/global/Images";
+import { SanityImage } from "@/components/global/Images";
 
 interface PostItemProps {
 	block: BlockItem;
@@ -34,7 +34,10 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		<div className=" h-auto border border-gray-300 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
-					<PostImage
+					<SanityImage
+						width={500}
+						height={500}
+						priority={true}
 						image={image}
 						alt={`Cover Image for ${heading}`}
 						classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"

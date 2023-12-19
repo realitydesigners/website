@@ -1,5 +1,5 @@
 'use client';
-import { ImageBox } from '@/components/global/Images';
+import { SanityImage } from '@/components/global/Images';
 
 const ArticleCard = ({ title, slug, image, excerpt }) => {
    return (
@@ -7,7 +7,7 @@ const ArticleCard = ({ title, slug, image, excerpt }) => {
          <div className="transition-border w-full  md:w-1/2 group flex h-auto flex-row border border-gray-500 p-4 transition-shadow duration-300 hover:border-gray-200 hover:shadow-xl lg:w-1/2">
             {image && (
                <div className="relative w-1/4">
-                  <ImageBox image={image} alt={`Cover Image for ${title}`} classesWrapper="h-full w-full transform  rounded-md object-cover transition-transform duration-300 group-hover:scale-110" />
+                  <SanityImage image={image} alt={`Cover Image for ${title}`} width={500} height={500} priority={true} classesWrapper="h-full w-full transform  rounded-md object-cover transition-transform duration-300 group-hover:scale-110" />
                </div>
             )}
 

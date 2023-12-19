@@ -1,42 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { urlForImage } from "@/sanity/lib/utils";
+import { SanityImage } from "@/components/global/Images";
 
 const TeamBlock = ({ block }) => {
 	if (block?._type !== "teamBlock") {
 		return null;
 	}
 
-	const imageUrl =
-		block?.team?.image &&
-		urlForImage(block.team.image)?.height(200).width(200).fit("crop").url();
-
 	return (
 		<div className="w-full h-auto bg-gray-200 p-4 ">
 			<div className="w-full flex justify-center">
 				<div className="flex flex-col w-11/12 md:w-1/2 lg:w-1/3 bg-gray-300 mb-12 shadow-lg p-4 rounded-lg ">
 					<div className="flex justify-center items-center">
-						{imageUrl && (
-							<div className="overflow-hidden object-cover rounded-full shadow-2xl">
-								<Image
-									priority={true}
-									className="object-cover cover h-24 w-24"
-									alt="Team member image"
+						{block.team?.image && (
+							<div className="flex items-center">
+								<SanityImage
+									image={block.team.image}
+									alt={`Team member image for ${block.team.name}`}
 									width={100}
 									height={100}
-									src={imageUrl}
+									priority={true}
+									classesWrapper=" h-[50px] w-[50px] object-cover cover rounded-[2em] "
 								/>
+								<div className="ml-4 flex flex-col">
+									<p className="text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1">
+										{block?.team.name}
+									</p>
+									<span className="text-black font-bold font-mono leading-none uppercase text-xs tracking-widest">
+										{block?.team.role}
+									</span>
+								</div>
 							</div>
 						)}
-						<div className="ml-4 flex flex-col">
-							<p className="text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1">
-								{block?.team.name}
-							</p>
-							<span className="text-black font-bold font-mono leading-none uppercase text-xs tracking-widest">
-								{block?.team.role}
-							</span>
-						</div>
 					</div>
 					<p className=" text-black leading-5 mb-4 font-bold text-sm font-mono mt-4">
 						{block?.team.shortBio}

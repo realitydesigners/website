@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { SlugPostImage, TeamImageBox } from "@/components/global/Images";
+import { SanityImage } from "@/components/global/Images";
 import { jura, staatliches } from "@/fonts";
 
 const HeadingBlockLight = ({ block }) => {
@@ -55,8 +55,11 @@ const HeadingBlockLight = ({ block }) => {
 				{block.image && (
 					<div className="w-full flex-wrap lg:w-1/2 p-4 flex">
 						<div className="w-full h-full object-cover object-contain">
-							<SlugPostImage
+							<SanityImage
 								image={block.image}
+								width={1000}
+								height={1000}
+								priority={true}
 								alt={`Cover Image for ${block.title}`}
 								classesWrapper="h-full w-full rounded-[1em]"
 							/>
@@ -110,10 +113,13 @@ const HeadingBlockLight = ({ block }) => {
 									<div className="flex items-center p-2 w-full">
 										{block.team?.image && (
 											<div className="flex items-center">
-												<TeamImageBox
+												<SanityImage
 													image={block.team.image}
 													alt={`Team member image for ${block.team.name}`}
-													classesWrapper="h-[30px] w-[30px] object-cover cover rounded-full"
+													width={100}
+													height={100}
+													priority={true}
+													classesWrapper=" h-[50px] w-[50px] object-cover cover rounded-[2em] "
 												/>
 												{block.team.name && (
 													<span className="ml-2 uppercase text-black tracking-wide text-sm">
