@@ -53,7 +53,7 @@ export function SanityImage({
 }
 
 const LoadingIndicator = () => (
-	<div className="absolute inset-0 bg-gray-300 flex items-center justify-center">
+	<div className="absolute inset-0 bg-gray-200 flex flex-col items-center justify-center">
 		<div className="animate-pulse w-16 h-10 bg-gray-300 rounded" />
 		<p className="text-gray-400 font-mono text-sm uppercase tracking-widest mt-2">
 			Loading...
