@@ -63,28 +63,34 @@ export default {
                name: 'postsRef',
                title: 'Post',
                preview: {
-                  select: {
-                    title: 'posts.title',
-                    imageUrl: 'posts.block[0].image.asset.url',
-                  },
-                  prepare(selection) {
-                    const { title, imageUrl } = selection;
-                    return {
-                      title: title,
-                      subtitle: imageUrl ? 'Has image in first block' : 'No image in first block',
-                      media: imageUrl ? imageUrl.asset : undefined,
-                    };
-                  },
-                },
+                 select: {
+                   title: 'posts.block.0.heading',
+                   excerpt: 'posts.block.0.subheading',
+                   publicationDate: 'posts.block.0.publicationDate',
+                   media: 'posts.block.0.image',
+                 },
+                 prepare(selection) {
+                   const { title, excerpt, publicationDate,  media } = selection;
+                   const formattedDate = publicationDate ? new Date(publicationDate).toLocaleDateString() : 'No date';
+
+                   const subtitle = `${excerpt ? excerpt : 'No excerpt'} | ${formattedDate}`;
+                   return {
+                     title: title || 'Untitled',
+                     subtitle: subtitle,
+                     media: media,
+                   };
+                 },
+               },
                fields: [
-                  defineField({
-                     type: 'reference',
-                     name: 'posts',
-                     title: 'Referenced Post',
-                     to: [{ type: 'posts' }],
-                  }),
+                 defineField({
+                   type: 'reference',
+                   name: 'posts',
+                   title: 'Referenced Post',
+                   to: [{ type: 'posts' }],
+                 }),
                ],
-            }),
+             }),
+             
 
             defineField({
                type: 'object',
@@ -291,11 +297,13 @@ export default {
       select: {
          contentArray: 'content',
          layout: 'layout',
+         media: 'block.0.image',
       },
       
       // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       prepare(selection: { contentArray: any[]; layout: string }) {
-         const { contentArray, layout } = selection;
+         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const  { contentArray, layout, media } = selection as { contentArray: any[]; layout: string; media: any };
 
          const firstContentType = contentArray.length > 0 ? contentArray[0]._type : 'Unknown';
 
@@ -315,6 +323,7 @@ export default {
          return {
             title: firstWords || firstContentType,
             subtitle: `${contentArray.length} items | ${contentDiversity} | ${layout}`,
+            media: media,
          };
       },
    },

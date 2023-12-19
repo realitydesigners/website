@@ -1,68 +1,57 @@
-import { defineArrayMember, defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
-   type: 'document',
-   name: 'posts',
-   title: 'Posts',
-   fields: [
-      defineField({
-         name: 'block',
-         title: 'Content Block',
-         type: 'array',
-         of: [
-            {
-               type: 'headingBlock',
-               title: 'Heading',
-            },
-            {
-               type: 'contentBlock',
-               title: 'Content',
-            },
-            {
-               type: 'teamBlock',
-               title: 'Team',
-            },
-         ],
-      }),
-      defineField({
-         type: 'string',
-         name: 'title',
-         title: 'Title',
-      }),
-      defineField({
-         type: 'slug',
-         name: 'slug',
-         title: 'Slug',
-         options: {
-            source: 'title',
-         },
-      }),
-
-      defineField({
-         type: 'text',
-         name: 'excerpt',
-         title: 'Excerpt',
-      }),
-      defineField({
-         type: 'image',
-         name: 'image',
-         title: 'Image',
-         fields: [
-            {
-               name: 'alt',
-               title: 'Alt Text',
-               type: 'string',
-            },
-         ],
-         options: {
-            hotspot: true,
-         },
-      }),
-      defineField({
-         name: 'subcategories',
-         title: 'Subcategories',
-         type: 'array',
-         of: [{ type: 'reference', to: { type: 'category' } }],
-      }),
-   ],
+	type: "document",
+	name: "posts",
+	title: "Posts",
+	fields: [
+		defineField({
+			type: "slug",
+			name: "slug",
+			title: "Slug",
+			options: {
+				source: "block.0.heading",
+			},
+		}),
+		defineField({
+			name: "block",
+			title: "Content Block",
+			type: "array",
+			of: [
+				{
+					type: "headingBlock",
+					title: "Heading",
+				},
+				{
+					type: "contentBlock",
+					title: "Content",
+				},
+				{
+					type: "teamBlock",
+					title: "Team",
+				},
+			],
+		}),
+		defineField({
+			name: "subcategories",
+			title: "Subcategories",
+			type: "array",
+			of: [{ type: "reference", to: { type: "category" } }],
+		}),
+	],
+	preview: {
+		select: {
+			title: "block.0.heading",
+			subheading: "block.0.subheading",
+			media: "block.0.image",
+		},
+		prepare(selection) {
+			const { title, media, subheading } = selection;
+			return {
+				title: title || "Untitled",
+				media: media,
+				subtitle: subheading,
+			};
+		},
+	},
 });
