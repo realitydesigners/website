@@ -6,17 +6,28 @@ export interface SettingsPayload {
 	ogImage?: Image;
 }
 
-export interface ImageAsset {
-	_key?: string;
-	_type?: string;
-	url: string;
-}
-
 export interface Image {
+	image?: {
+		_id: string;
+		_key?: string;
+		_type?: string;
+		alt?: string;
+		asset: {
+			_key?: string;
+			_type?: string;
+			url: string;
+		};
+	};
+
 	_key?: string;
+	_id?: string;
 	_type?: string;
 	alt?: string;
-	asset: ImageAsset;
+	block?: Array<BlockItem>;
+	slug?: {
+		_type: string;
+		current: string;
+	};
 }
 
 export interface TeamMember {
@@ -123,6 +134,7 @@ export interface RefPostPayload {
 }
 
 export interface VideoPayload {
+	_id: string;
 	_type: string;
 	title: string;
 	slug: {

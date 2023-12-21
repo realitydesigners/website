@@ -24,7 +24,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		: "Date not available";
 
 	return (
-		<div className=" w-full h-[500px]  border border-gray-300 p-2 rounded-[1em]">
+		<div className=" w-full h-auto  border border-gray-300 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
 					<SanityImage

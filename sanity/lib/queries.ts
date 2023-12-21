@@ -54,7 +54,7 @@ export const settingsQuery = groq`
 `;
 
 export const feedQuery = groq`
-*[(_type == "posts" || _type == "video")] | order(_createdAt desc) {
+*[(_type == "posts" || _type == "video" || _type =="img")] | order(_createdAt desc) {
   _type,
   title,
   category,

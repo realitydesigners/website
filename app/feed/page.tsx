@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { sanityFetch } from "@/sanity/lib/client";
 import { feedQuery, postsQuery, getVideosQuery } from "@/sanity/lib/queries";
-import { PostsPayload, VideoPayload } from "@/types";
+import { PostsPayload, VideoPayload, Image } from "@/types";
 import PostItem from "@/components/feed/PostItem";
 import VideoItem from "@/components/feed/VideoItem";
+import ImageItem from "@/components/feed/ImageItem";
 
-type FeedItem = PostsPayload | VideoPayload;
+type FeedItem = PostsPayload | VideoPayload | Image;
 
 export default function FeedPage() {
 	const [items, setItems] = useState<FeedItem[]>([]);
@@ -17,6 +18,7 @@ export default function FeedPage() {
 				query: feedQuery,
 				tags: ["post"],
 			});
+			console.log(feedItems);
 
 			setItems(feedItems);
 		}
@@ -25,26 +27,18 @@ export default function FeedPage() {
 	}, []);
 
 	return (
-		<div className="w-full p-2">
+		<div className="w-full p-2 grid grid-cols-1 lg:grid-cols-3 gap-4">
 			{items.map((feedItem, index) => {
-				const block =
-					feedItem.block && feedItem.block.length > 0
-						? feedItem.block[0]
-						: null;
-
-				if (!block) {
-					return null;
-				}
-
 				if (feedItem._type === "posts") {
+					const block =
+						feedItem.block && feedItem.block.length > 0
+							? feedItem.block[0]
+							: null;
+					if (!block) return null;
 					return (
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						<div key={index}>
-							<PostItem
-								key={feedItem.slug?.current}
-								block={block}
-								slug={feedItem.slug}
-							/>
+							<PostItem block={block} slug={feedItem.slug} />
 						</div>
 					);
 				}
@@ -52,10 +46,15 @@ export default function FeedPage() {
 					return (
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						<div key={index}>
-							<VideoItem
-								key={feedItem.slug?.current}
-								videos={feedItem as VideoPayload}
-							/>
+							<VideoItem videos={feedItem as VideoPayload} />
+						</div>
+					);
+				}
+				if (feedItem._type === "img") {
+					return (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<div key={index}>
+							<ImageItem image={feedItem as Image} />
 						</div>
 					);
 				}
