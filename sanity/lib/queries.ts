@@ -69,17 +69,28 @@ export const postsQuery = groq`
    },
    
    publicationDate,
-   block[]{
-     ...,
-     heading,
-     subHeading,
+   title,
+     slug,
+     excerpt,
      image,
-     tags,
-     layout,
-     title,
-     publicationDate,
-    
- },
+     block[]{
+       ...,
+       heading,
+       subheading,
+       image,
+       tags,
+       layout,
+       title,
+       publicationDate,
+        team->{
+       ...,
+       name,
+       role,
+       image,
+       shortBio,
+     },
+    },
+     
    
  }`;
 
