@@ -35,6 +35,17 @@ export default {
 						{ title: "Bullet", value: "bullet" },
 						{ title: "Numbered", value: "number" },
 					],
+
+					styles: [
+						{ title: "Normal", value: "normal" },
+						{ title: "Quote", value: "blockquote" },
+						{ title: "H1", value: "h1" },
+						{ title: "H2", value: "h2" },
+						{ title: "H3", value: "h3" },
+						{ title: "H4", value: "h4" },
+						{ title: "H5", value: "h5" },
+						{ title: "H6", value: "h6" },
+					],
 					marks: {
 						annotations: [
 							{
@@ -53,16 +64,6 @@ export default {
 							},
 						],
 					},
-					styles: [
-						{ title: "Normal", value: "normal" },
-						{ title: "Quote", value: "blockquote" },
-						{ title: "H1", value: "h1" },
-						{ title: "H2", value: "h2" },
-						{ title: "H3", value: "h3" },
-						{ title: "H4", value: "h4" },
-						{ title: "H5", value: "h5" },
-						{ title: "H6", value: "h6" },
-					],
 				},
 				defineField({
 					type: "object",
@@ -180,7 +181,9 @@ export default {
 						},
 						prepare(selection) {
 							const { title, imageUrl, className } = selection;
-							const subtitle = className ? `Style: ${className}` : "No class";
+							const subtitle = className
+								? `Classname: ${className}`
+								: "No class";
 
 							return {
 								title: title || "Untitled",
