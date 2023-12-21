@@ -2,7 +2,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { presentationTool } from "sanity/presentation";
-import { scheduledPublishing } from "@sanity/scheduled-publishing";
+
 import { media } from "sanity-plugin-media";
 import { contentGraphView } from "sanity-plugin-graph-view";
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
