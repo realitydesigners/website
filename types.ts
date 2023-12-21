@@ -60,6 +60,7 @@ export interface BlockItem {
 }
 
 export interface PostsPayload {
+	_id: string;
 	_type: string;
 	title?: string;
 	slug?: {

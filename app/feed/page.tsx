@@ -1,51 +1,66 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { PostsList } from "@/components/global/PostsList";
 import { sanityFetch } from "@/sanity/lib/client";
-import { postsQuery, getVideosQuery } from "@/sanity/lib/queries";
+import { feedQuery, postsQuery, getVideosQuery } from "@/sanity/lib/queries";
 import { PostsPayload, VideoPayload } from "@/types";
 import PostItem from "@/components/feed/PostItem";
 import VideoItem from "@/components/feed/VideoItem";
 
-type FeedItem = PostsPayload | VideoPayload; // Adjust based on actual structure
+type FeedItem = PostsPayload | VideoPayload;
 
 export default function FeedPage() {
 	const [items, setItems] = useState<FeedItem[]>([]);
 
 	useEffect(() => {
 		async function fetchData() {
-			const posts: PostsPayload[] = await sanityFetch({
-				query: postsQuery,
+			const feedItems: FeedItem[] = await sanityFetch({
+				query: feedQuery,
 				tags: ["post"],
 			});
-			console.log("posts", posts);
-			const videos: VideoPayload[] = await sanityFetch({
-				query: getVideosQuery,
-				tags: ["video"],
-			});
 
-			const combinedItems: FeedItem[] = [...posts, ...videos].sort(
-				(a, b) =>
-					new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime(),
-			);
-
-			setItems(combinedItems);
+			setItems(feedItems);
 		}
 
 		fetchData();
 	}, []);
 
 	return (
-		<div>
-			{items.map((post) => {
+		<div className="w-full p-2">
+			{items.map((feedItem, index) => {
 				const block =
-					post.block && post.block.length > 0 ? post.block[0] : null;
+					feedItem.block && feedItem.block.length > 0
+						? feedItem.block[0]
+						: null;
+
 				if (!block) {
 					return null;
 				}
-				return (
-					<PostItem key={post.slug?.current} block={block} slug={post.slug} />
-				);
+
+				if (feedItem._type === "posts") {
+					return (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<div key={index}>
+							<PostItem
+								key={feedItem.slug?.current}
+								block={block}
+								slug={feedItem.slug}
+							/>
+						</div>
+					);
+				}
+				if (feedItem._type === "video") {
+					return (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<div key={index}>
+							<VideoItem
+								key={feedItem.slug?.current}
+								videos={feedItem as VideoPayload}
+							/>
+						</div>
+					);
+				}
+
+				return null;
 			})}
 		</div>
 	);

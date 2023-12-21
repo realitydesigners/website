@@ -13,7 +13,7 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 	const { title, image, slug } = videos;
 
 	return (
-		<article className="mb-4 h-auto border border-gray-800 p-1">
+		<article className="mb-4 h-auto border  p-4">
 			{videos && (
 				<div className="relative h-60 w-full">
 					<SanityImage
@@ -22,7 +22,7 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 						priority={true}
 						image={videos.image}
 						alt={`Cover Image for ${title}`}
-						classesWrapper="w-full h-full w-full object-cover "
+						classesWrapper="w-full h-full w-full object-cover rounded-[1em] "
 					/>
 				</div>
 			)}
