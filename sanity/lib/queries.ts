@@ -53,6 +53,46 @@ export const settingsQuery = groq`
   }
 `;
 
+export const feedQuery = groq`
+*[(_type == "posts" || _type == "video" || _type =="img")] | order(_createdAt desc) {
+  _type,
+  title,
+  category,
+  excerpt,
+  tags,
+  slug,
+  image,
+  subcategories[]->{
+    ...,
+    name,
+    title,
+  },
+  publicationDate,
+  title,
+  slug,
+  excerpt,
+  image,
+  block[]{
+    ...,
+    heading,
+    subheading,
+    image,
+    tags,
+    layout,
+    title,
+    publicationDate,
+    team->{
+      ...,
+      name,
+      role,
+      image,
+      shortBio,
+    },
+  },
+}
+
+`;
+
 export const postsQuery = groq`
  *[_type == "posts"] | order(_createdAt desc)[0..40] {
    title,
@@ -69,17 +109,28 @@ export const postsQuery = groq`
    },
    
    publicationDate,
-   block[]{
-     ...,
-     heading,
-     subHeading,
+   title,
+     slug,
+     excerpt,
      image,
-     tags,
-     layout,
-     title,
-     publicationDate,
-    
- },
+     block[]{
+       ...,
+       heading,
+       subheading,
+       image,
+       tags,
+       layout,
+       title,
+       publicationDate,
+        team->{
+       ...,
+       name,
+       role,
+       image,
+       shortBio,
+     },
+    },
+     
    
  }`;
 
