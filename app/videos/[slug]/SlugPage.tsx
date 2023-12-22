@@ -1,7 +1,7 @@
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import type { PostsPayload, VideoPayload } from "@/types";
 import Blocks from "@/components/blocks/Blocks";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 
 import { fileUrlFor } from "@/sanity/lib/utils";
 

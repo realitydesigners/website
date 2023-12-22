@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { staatliches, jura } from "@/fonts";
+import { staatliches, cairo } from "@/fonts";
 
 type SubmissionStatus = "success" | "error" | "submitting" | null;
 

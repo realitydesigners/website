@@ -1,5 +1,5 @@
 "use client";
-import { staatliches, jura } from "@/fonts";
+import { staatliches, cairo } from "@/fonts";
 import Newsletter from "@/components/email/Newsletter";
 
 export default function StoryPage() {
@@ -13,7 +13,7 @@ export default function StoryPage() {
 			</div>
 
 			<div className="lg:w-1/2 w-11/12 pt-32 pb-20">
-				<div className={`${jura.className} text-xl font-bold text-gray-400 `}>
+				<div className={`${cairo.className} text-xl font-bold text-gray-400 `}>
 					<h1
 						className={`${staatliches.className} text-gray-200 text-6xl lg:text-7xl font-bold text-center mb-6`}
 					>

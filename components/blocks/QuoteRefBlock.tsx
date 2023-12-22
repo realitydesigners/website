@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { SanityImage } from "@/components/global/Images";
 
 const QuoteCard = ({ quote, media, image, className }) => {

@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
-
-import { staatliches } from "@/fonts";
+import { bebe, staatliches } from "@/fonts";
 
 interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
 	url: string;
@@ -108,15 +106,15 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 			<div className="pl-6 w-full lg:w-auto justify-center relative flex items-center z-10">
 				<Link
 					href="/"
-					className={`${staatliches.className} text-black items-center pt-2 pb-2  flex flex-row`}
+					className={`${bebe.className} text-black items-center pt-2 pb-2  flex flex-row`}
 					onClick={closeNav}
 				>
 					<div className=" left-2 absolute ">{getIcon("logo")}</div>
-					<div className="w-full   justify-center items-center flex h-auto flex-col">
-						<span className="text-md font-bold tracking-widest leading-none">
+					<div className="w-full  mt-[5px]  justify-center items-center flex h-auto flex-col">
+						<span className="text-xl font-bold tracking-wide leading-none">
 							REALITY
 						</span>
-						<span className="text-xs font-bold tracking-widest leading-none">
+						<span className="text-md -mt-[3px] font-bold tracking-normal leading-none">
 							DESIGNERS
 						</span>
 					</div>
@@ -155,7 +153,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<li>
 						<Link
 							href="/library"
-							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`}
+							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 							onClick={closeNav}
 						>
 							Library
@@ -164,7 +162,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<li>
 						<Link
 							href="/posts"
-							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`}
+							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 							onClick={closeNav}
 						>
 							Posts
@@ -173,7 +171,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<li>
 						<Link
 							href="/videos"
-							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`}
+							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 p-2 rounded-lg transition-all duration-200 ease-in-out`}
 							onClick={closeNav}
 						>
 							Videos
@@ -182,7 +180,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<li>
 						<Link
 							href="/story"
-							className={`${staatliches.className} text-black  text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 hover:text-gray-200 p-2 rounded-lg transition-all duration-200 ease-in-out`}
+							className={`${staatliches.className} text-black  text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 							onClick={closeNav}
 						>
 							Story

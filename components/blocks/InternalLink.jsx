@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { getPostData } from "@/app/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
 
@@ -101,7 +101,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 
 							{firstBlock.subheading && (
 								<p
-									className={`${jura.className} text-black leading-7 text-xl mb-4`}
+									className={`${cairo.className} text-black leading-7 text-xl mb-4`}
 								>
 									{firstBlock.subheading}
 								</p>
