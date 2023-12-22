@@ -58,37 +58,6 @@ export default defineConfig({
 		components: {
 			item: CustomItem,
 			field: CustomField,
-			blockEditor: {
-				insertMenuItems: [
-					{
-						title: "Heading",
-						value: "headingBlock",
-						icon: () => "H",
-						// This is used by the Sanity.io UI
-						blockEditor: {
-							render: CustomField,
-						},
-					},
-					{
-						title: "Content",
-						value: "contentBlock",
-						icon: () => "C",
-						// This is used by the Sanity.io UI
-						blockEditor: {
-							render: CustomField,
-						},
-					},
-					{
-						title: "Team",
-						value: "teamBlock",
-						icon: () => "T",
-						// This is used by the Sanity.io UI
-						blockEditor: {
-							render: CustomField,
-						},
-					},
-				],
-			},
 		},
 	},
 	plugins: [
