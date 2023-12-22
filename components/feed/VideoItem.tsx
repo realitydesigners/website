@@ -15,10 +15,10 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 	return (
 		<article className="mb-4 h-auto border  p-4">
 			{videos && (
-				<div className="relative h-60 w-full">
+				<div className="relative h-auto w-full">
 					<SanityImage
 						width={500}
-						height={500}
+						height={300}
 						priority={true}
 						image={videos.image}
 						alt={`Cover Image for ${title}`}

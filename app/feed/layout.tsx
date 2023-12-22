@@ -10,7 +10,7 @@ export default async function PostsLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-screen h-auto bg-gray-200">
+		<div className="w-screen bg-gray-200">
 			<Navbar pageBackground="light" />
 			<Suspense fallback={<Loading />}>{children}</Suspense>
 			<Footer />
