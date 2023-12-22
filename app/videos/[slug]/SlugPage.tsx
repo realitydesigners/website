@@ -11,10 +11,8 @@ export interface PageProps {
 }
 
 const SlugPage: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
-	// console.log(data);
-
 	const { title, video, content } = data ?? {};
-	//console.log('video', video);
+
 	const videoUrl = video ? fileUrlFor(video.asset._ref) : "";
 
 	return (

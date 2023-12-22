@@ -3,6 +3,7 @@ import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { categoryBySlugQuery } from "@/sanity/lib/queries";
 import { CategoryPayload } from "@/types";
 import { sanityFetch } from "@/sanity/lib/client";
+import { category } from "@/sanity/schemas";
 
 type Props = {
 	params: { slug: string };

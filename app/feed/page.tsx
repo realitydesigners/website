@@ -18,7 +18,6 @@ export default function FeedPage() {
 				query: feedQuery,
 				tags: ["post"],
 			});
-			console.log(feedItems);
 
 			setItems(feedItems);
 		}

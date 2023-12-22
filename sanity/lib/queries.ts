@@ -238,8 +238,7 @@ export const categoryQuery = groq`
        tags,
        category,
        publicationDate,
-       lightLayout,
-       darkLayout,
+      
      }
    },
   }
@@ -260,6 +259,7 @@ export const categoryBySlugQuery = groq`
      _id,
      _type,
      title,
+     
      slug,
      isMain,
      model->{...,
@@ -269,13 +269,24 @@ export const categoryBySlugQuery = groq`
        _id,
        title,
        slug,
-       excerpt,
-       author,
-       tags,
-       category,
-       publicationDate,
-       lightLayout,
-       darkLayout,
+     
+       block[]{
+        ...,
+        heading,
+        subheading,
+        image,
+        tags,
+        layout,
+        title,
+        publicationDate,
+         team->{
+        ...,
+        name,
+        role,
+        image,
+        shortBio,
+      },
+    },
      }
    },
   }
