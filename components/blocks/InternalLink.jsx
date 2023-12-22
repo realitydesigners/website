@@ -33,12 +33,17 @@ const InternalLink = ({ slug, children }) => {
 
 	return (
 		<>
-			<Link
-				href="#popup"
-				onClick={openDialog}
-				className={`${staatliches.className} text-xl text-black underline`}
-			>
-				{children}
+			<Link href="#popup" onClick={openDialog} className=" ">
+				<span
+					className={`${staatliches.className} p-1 pr-2 pl-2 mr-2 text-[14px] bg-purple-200 rounded-full`}
+				>
+					POST
+				</span>
+				<span
+					className={`${staatliches.className} text-xl  text-black underline`}
+				>
+					{children}
+				</span>
 			</Link>
 			{isDialogOpen &&
 				(isLoading ? (
@@ -77,8 +82,8 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 							<div className="relative ">
 								<SanityImage
 									image={firstBlock.image}
-									width={250}
-									height={250}
+									width={500}
+									height={500}
 									priority={true}
 									alt={`Cover Image for ${firstBlock.heading}`}
 									classesWrapper="h-[250px] w-full transform rounded-[.5em] object-cover transition-transform duration-300 group-hover:scale-110"
@@ -151,7 +156,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 				<button
 					onClick={onClose}
-					className="px-4 py-2 text-black font-bold rounded hover:bg-gray-300 transition-colors"
+					className={`${cairo.className} px-4 py-2 text-black  uppercase rounded hover:bg-gray-300 transition-colors`}
 				>
 					Close X
 				</button>
