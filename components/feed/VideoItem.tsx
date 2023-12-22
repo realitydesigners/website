@@ -13,7 +13,7 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 	const { title, image, slug } = videos;
 
 	return (
-		<article className="mb-4 h-auto border  p-4">
+		<article className=" mb-4 h-auto border  p-4">
 			{videos && (
 				<div className="relative h-auto w-full">
 					<SanityImage
