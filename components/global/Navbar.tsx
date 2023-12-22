@@ -152,6 +152,15 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				<ul className="flex justify-center items-center gap-4 flex-col lg:flex-row lg:space-x-2 mt-4 lg:mt-0">
 					<li>
 						<Link
+							href="/feed"
+							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+							onClick={closeNav}
+						>
+							Feed
+						</Link>
+					</li>
+					<li>
+						<Link
 							href="/library"
 							className={`${staatliches.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 							onClick={closeNav}
