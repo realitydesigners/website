@@ -5,6 +5,7 @@ import {
 	Jura,
 	Jost,
 	Cairo,
+	Monomaniac_One,
 	Bebas_Neue,
 } from "next/font/google";
 
@@ -46,6 +47,12 @@ export const jost = Jost({
 
 export const cairo = Cairo({
 	weight: ["400", "500", "700"],
+	subsets: ["latin"],
+	display: "swap",
+});
+
+export const monomaniac = Monomaniac_One({
+	weight: ["400"],
 	subsets: ["latin"],
 	display: "swap",
 });
