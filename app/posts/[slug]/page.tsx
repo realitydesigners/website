@@ -69,9 +69,9 @@ export default async function PageSlugRoute({ params }: Props) {
 	return (
 		<>
 			<SlugPage data={currentPost} />
-			<Suspense fallback={<div>Loading more posts...</div>}>
+			{/* <Suspense fallback={<div>Loading more posts...</div>}>
 				<PostsList post={otherPosts} />
-			</Suspense>
+			</Suspense> */}
 		</>
 	);
 }

@@ -366,7 +366,7 @@ const Blocks = ({ block }) => {
 				return <TeamBlock layout block={block} />;
 
 			case "imageCanvasBlock":
-				return <ImageCanvasBlock block={block} />;
+				return <ImageCanvasBlock block={{ ...block, className: layout }} />;
 
 			default:
 				return null;
