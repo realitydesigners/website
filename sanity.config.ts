@@ -22,6 +22,7 @@ import {
 	headingBlock,
 	contentBlock,
 	teamBlock,
+	imageCanvasBlock,
 } from "@/sanity/schemas";
 
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
@@ -48,10 +49,11 @@ export default defineConfig({
 			team,
 			category,
 			library,
+			model,
 			headingBlock,
 			contentBlock,
 			teamBlock,
-			model,
+			imageCanvasBlock,
 		],
 	},
 	form: {

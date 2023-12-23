@@ -156,17 +156,21 @@ export const postsBySlugQuery = groq`
        role,
        image,
        shortBio,
-     },
-     
+
+      },
+      image->{
+        ...,
+        className->{name},
+        team->,
+      },
          content[]{
        ...,
-    
        image->{
          ...,
          className->{name},
          team->,
        },
-    
+
           "videoRef": {
             "videoTitle": video->title,
             "videoFileUrl": video->video.asset->url,
@@ -187,8 +191,6 @@ export const postsBySlugQuery = groq`
         "quoteLayout": quote->mediaRef.layout,
         ...
       },
-      
-      
        markDefs[]{
          ...,
          _type == "internalLink" => {

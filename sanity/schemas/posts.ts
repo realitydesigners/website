@@ -30,6 +30,10 @@ export default defineType({
 					type: "teamBlock",
 					title: "Team",
 				},
+				{
+					title: "Image Canvas",
+					type: "imageCanvasBlock",
+				},
 			],
 		}),
 		defineField({

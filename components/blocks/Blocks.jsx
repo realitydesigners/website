@@ -5,6 +5,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import TeamBlock from "@/components/blockstyles/TeamBlock";
 import HeadingBlock from "../blockstyles/HeadingBlock";
+import ImageCanvasBlock from "../blockstyles/ImageCanvasBlock";
 
 import InternalLink from "@/components/blocks/InternalLink";
 
@@ -363,6 +364,9 @@ const Blocks = ({ block }) => {
 				return <ContentBlock layout={layout} content={block.content} />;
 			case "teamBlock":
 				return <TeamBlock layout block={block} />;
+
+			case "imageCanvasBlock":
+				return <ImageCanvasBlock block={block} />;
 
 			default:
 				return null;
