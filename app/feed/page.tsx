@@ -22,10 +22,6 @@ export default function FeedPage() {
 				query: feedQuery,
 				tags: ["post"],
 			});
-<<<<<<< HEAD
-
-=======
->>>>>>> feed
 			setItems(feedItems);
 		}
 
