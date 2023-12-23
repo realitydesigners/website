@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { SanityImage } from "@/components/global/Images";
 
 const QuoteCard = ({ quote, media, image, className }) => {
@@ -14,8 +14,8 @@ const QuoteCard = ({ quote, media, image, className }) => {
 								<SanityImage
 									image={image}
 									alt={`Cover Image for ${quote}`}
-									width={100}
-									height={100}
+									width={800}
+									height={800}
 									classesWrapper="absolute inset-0 w-full h-full opacity-50 object-cover z-0"
 									priority={true}
 								/>

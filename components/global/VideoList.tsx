@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { FC } from "react";
 import { SanityImage } from "@/components/global/Images";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { VideoPayload } from "@/types";
 
 interface VideoitemProps {

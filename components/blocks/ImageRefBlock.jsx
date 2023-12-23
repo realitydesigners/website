@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { SanityImage } from "@/components/global/Images";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { useState } from "react";
 
 const ImageCard = ({ title, slug, image, className }) => {

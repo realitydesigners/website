@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { SanityImage } from "@/components/global/Images";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 
 const HeadingBlock = ({ block }) => {
 	const { className } = block;
@@ -103,7 +103,7 @@ const HeadingBlock = ({ block }) => {
 								)}
 								{block.subheading && (
 									<p
-										className={`${jura.className}  w-full font-bold text-2xl  text-black leading-7 tracking-wide `}
+										className={`${cairo.className}  w-full  text-2xl  text-black leading-7 tracking-wide `}
 									>
 										{block.subheading}
 									</p>
@@ -241,7 +241,7 @@ const HeadingBlock = ({ block }) => {
 								)}
 								{block.subheading && (
 									<p
-										className={`${jura.className}  w-full font-bold text-2xl  text-gray-400 leading-7 tracking-wide `}
+										className={`${cairo.className}  w-full  text-2xl  text-gray-400 leading-7 tracking-wide `}
 									>
 										{block.subheading}
 									</p>

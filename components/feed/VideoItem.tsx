@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { FC } from "react";
 import { SanityImage } from "@/components/global/Images";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { VideoPayload } from "@/types";
 
 interface VideoitemProps {
@@ -13,11 +13,11 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 	const { title, image, slug } = videos;
 
 	return (
-		<article className="mb-4 h-auto border  p-4">
+		<article className=" mb-4 h-auto border  p-4">
 			{videos && (
-				<div className="relative h-60 w-full">
+				<div className="relative h-auto w-full">
 					<SanityImage
-						width={500}
+						width={800}
 						height={500}
 						priority={true}
 						image={videos.image}

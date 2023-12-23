@@ -1,5 +1,5 @@
 "use client";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import PropTypes from "prop-types";
@@ -39,7 +39,7 @@ const Dark = {
 		normal: ({ children }) => (
 			<div className="w-full flex justify-center ">
 				<div
-					className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
+					className={`${cairo.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
 				>
 					{children}
 				</div>
@@ -78,7 +78,7 @@ const Dark = {
 		bullet: ({ children }) => (
 			<div className="w-screen flex justify-center">
 				<ul
-					className={`${jura.className} w-11/12  text-black leading-7  text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
+					className={`${cairo.className} w-11/12  text-black leading-7  text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
 				>
 					{children}
 				</ul>
@@ -87,7 +87,7 @@ const Dark = {
 		number: ({ children }) => (
 			<div className="w-screen flex justify-center">
 				<ol
-					className={`${jura.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
+					className={`${cairo.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
 				>
 					{children}
 				</ol>
@@ -118,7 +118,7 @@ const Light = {
 		normal: ({ children }) => (
 			<div className="w-full flex justify-center">
 				<div
-					className={`${jura.className} w-11/12 font-bold text-black leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6`}
+					className={`${cairo.className} w-11/12  text-black leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6`}
 				>
 					{children}
 				</div>
@@ -157,7 +157,7 @@ const Light = {
 		bullet: ({ children }) => (
 			<div className="w-screen flex justify-center">
 				<ul
-					className={`${jura.className} w-11/12  text-black leading-7 text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
+					className={`${cairo.className} w-11/12  text-black leading-7 text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
 				>
 					{children}
 				</ul>
@@ -166,7 +166,7 @@ const Light = {
 		number: ({ children }) => (
 			<div className="w-screen flex justify-center">
 				<ol
-					className={`${jura.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
+					className={`${cairo.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
 				>
 					{children}
 				</ol>
@@ -198,7 +198,7 @@ const Team = {
 		normal: ({ children }) => (
 			<div className="w-full flex justify-center ">
 				<div
-					className={`${jura.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
+					className={`${cairo.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
 				>
 					{children}
 				</div>
@@ -238,7 +238,7 @@ const Team = {
 		bullet: ({ children }) => (
 			<div className="w-screen flex justify-center">
 				<ul
-					className={`${jura.className} w-11/12  text-black leading-7  text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
+					className={`${cairo.className} w-11/12  text-black leading-7  text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
 				>
 					{children}
 				</ul>
@@ -247,7 +247,7 @@ const Team = {
 		number: ({ children }) => (
 			<div className="w-screen flex justify-center">
 				<ol
-					className={`${jura.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
+					className={`${cairo.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
 				>
 					{children}
 				</ol>
@@ -267,7 +267,7 @@ const Video = {
 		normal: ({ children }) => (
 			<div className="w-full flex justify-center ">
 				<p
-					className={`${jura.className} w-11/12 font-bold text-gray-400 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
+					className={`${cairo.className} w-11/12 font-bold text-gray-400 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
 				>
 					{children}
 				</p>

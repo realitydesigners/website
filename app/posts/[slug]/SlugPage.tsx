@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
-import type { PostsPayload } from "@/types"; // Add the import for BlockItem
+import type { PostsPayload } from "@/types";
 import Blocks from "@/components/blocks/Blocks";
 
 export interface PageProps {

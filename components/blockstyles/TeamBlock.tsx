@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { cairo, staatliches } from "@/fonts";
 
 import { SanityImage } from "@/components/global/Images";
 
@@ -24,17 +25,19 @@ const TeamBlock = ({ block }) => {
 									classesWrapper=" h-[50px] w-[50px] object-cover cover rounded-[2em] "
 								/>
 								<div className="ml-4 flex flex-col">
-									<p className="text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1">
+									<p
+										className={`${staatliches.className}  text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1`}
+									>
 										{block?.team.name}
 									</p>
-									<span className="text-black font-bold font-mono leading-none uppercase text-xs tracking-widest">
+									<span className="text-black font-mono leading-none uppercase text-xs tracking-widest">
 										{block?.team.role}
 									</span>
 								</div>
 							</div>
 						)}
 					</div>
-					<p className=" text-black leading-5 mb-4 font-bold text-sm font-mono mt-4">
+					<p className=" text-black text-md leading-5 mb-4   mt-4">
 						{block?.team.shortBio}
 					</p>
 					<div className="bg-black justify-center flex rounded-lg">

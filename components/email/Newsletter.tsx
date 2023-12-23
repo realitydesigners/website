@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { staatliches, jura } from "@/fonts";
+import { staatliches, cairo } from "@/fonts";
 
 const EmailForm = () => {
 	const handleSubmit = async (event) => {

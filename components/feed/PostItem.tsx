@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FC } from "react";
-import { jura, staatliches } from "@/fonts";
+import { cairo, staatliches } from "@/fonts";
 import { PostsPayload, BlockItem } from "@/types";
 import { SanityImage } from "@/components/global/Images";
 
@@ -51,7 +51,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 					</h2>
 				</Link>
 				<p
-					className={`${jura.className} p-2 text-md font-bold leading-tight text-black`}
+					className={`${cairo.className} p-2 text-md font-bold leading-tight text-black`}
 				>
 					{subheading || "no subheading"}
 				</p>

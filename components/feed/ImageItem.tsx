@@ -5,16 +5,16 @@ import { SanityImage } from "@/components/global/Images";
 
 export const ImageItem: FC<{ image: Image }> = ({ image }) => {
 	return (
-		<div className="w-full h-auto border border-gray-300 p-2 rounded-[1em]">
+		<div className=" w-full h-full border border-gray-300 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
 					<SanityImage
-						width={500}
-						height={500}
+						width={800}
+						height={800}
 						priority={true}
 						image={image.image}
 						alt="image"
-						classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] bg-black object-cover object-contain rounded-[.7em]"
+						classesWrapper="w-full h-full bg-black object-cover object-contain rounded-[.7em]"
 					/>
 				</div>
 			)}
