@@ -33,16 +33,16 @@ const InternalLink = ({ slug, children }) => {
 
 	return (
 		<>
-			<Link href="#popup" onClick={openDialog} className=" ">
+			<Link href="#popup" onClick={openDialog} className="">
 				<span
-					className={`${staatliches.className} p-1 pr-2 pl-2 mr-2 text-[14px] bg-purple-200 rounded-full`}
-				>
-					POST
-				</span>
-				<span
-					className={`${staatliches.className} text-xl  text-black underline`}
+					className={`${staatliches.className} text-xl text-black underline`}
 				>
 					{children}
+				</span>
+				<span
+					className={`${staatliches.className} p-1 pr-2 pl-2 ml-2 text-[16px] bg-[#c4b5fd] rounded-full`}
+				>
+					POST
 				</span>
 			</Link>
 			{isDialogOpen &&
@@ -131,7 +131,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 											</div>
 										)}
 										{firstBlock.team.name && (
-											<span className="ml-2 uppercase text-black font-semibold tracking-wide font-mono text-sm">
+											<span className="ml-2 uppercase text-black tracking-wide font-mono text-sm">
 												By {firstBlock.team.name}
 											</span>
 										)}
@@ -145,9 +145,9 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 				<div className="flex w-full justify-between items-center col-span-1 lg:col-span-2">
 					<Link
 						href={`/posts/${postData.slug.current}`}
-						className="w-full flex justify-center items-center px-6 py-2 bg-black text-white font-bold rounded hover:bg-black/75 transition-colors"
+						className={`${cairo.className}  w-full flex text-lg justify-center items-center px-6 py-2 bg-black text-white uppercase  rounded hover:bg-black/75 transition-colors`}
 					>
-						Read Now
+						Read Now -&gt;
 					</Link>
 				</div>
 			</div>
@@ -156,7 +156,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 				<button
 					onClick={onClose}
-					className={`${cairo.className} px-4 py-2 text-black  uppercase rounded hover:bg-gray-300 transition-colors`}
+					className={`${cairo.className} px-4 py-2 text-black text-md  uppercase rounded hover:bg-gray-300 transition-colors`}
 				>
 					Close X
 				</button>
