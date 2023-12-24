@@ -9,6 +9,7 @@ export default authMiddleware({
 		"/videos",
 		"/posts",
 		"/api/send",
+		"/api/discord",
 		"/posts/:slug*",
 		"/videos/:slug*",
 		"/team/:slug*",
