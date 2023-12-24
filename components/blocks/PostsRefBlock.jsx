@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SanityImage } from "@/components/global/Images";
 import { staatliches } from "@/fonts";
 
-const PostsCardLight = ({ title, slug, heading, image, subheading }) => {
+const PostsCardLight = ({ slug, heading, image }) => {
 	return (
 		<div className="flex w-full  items-center justify-center p-4 mb-6 lg:p-16">
 			<div className=" bg-gray-300 w-full rounded-lg md:w-1/2 group flex h-auto flex-row p-3 shadow-lg transition-shadow duration-300 hover:shadow-xl lg:w-3/5">
@@ -14,7 +14,7 @@ const PostsCardLight = ({ title, slug, heading, image, subheading }) => {
 							width={250}
 							height={250}
 							priority={true}
-							alt={`Cover Image for ${title}`}
+							alt={`Cover Image for ${heading}`}
 							classesWrapper="h-full w-full transform rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
 						/>
 					</div>

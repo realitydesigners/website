@@ -58,8 +58,6 @@ const QuoteRefWrapper = ({ value }) => {
 		return null;
 	}
 
-	console.log("quoteRef", quoteRef);
-
 	return (
 		<QuoteCard
 			quote={quoteRef.quoteTitle}

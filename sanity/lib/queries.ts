@@ -137,77 +137,67 @@ export const postsQuery = groq`
 export const postsBySlugQuery = groq`
 
 *[_type == "posts" && slug.current == $slug][0] {
-     title,
-     slug,
-     excerpt,
-     image,
-     block[]{
-       ...,
-       heading,
-       subheading,
-       image,
-       tags,
-       layout,
-       title,
-       publicationDate,
-        team->{
-       ...,
-       name,
-       role,
-       image,
-       shortBio,
-      },
-      _type == "imageCanvasBlock" => {
-        layout, 
-        image->,
-        team->, 
-      },
-         content[]{
-       ...,
-       image->{
-         ...,
-         className->{name},
-         team->,
-       },
+    slug,
+    block[] {
+        ...,
+        heading,
+        subheading,
+        image,
+        tags,
+        layout,
+        publicationDate,
+        team->,
 
-          "videoRef": {
-            "videoTitle": video->title,
-            "videoFileUrl": video->video.asset->url,
-            "videoImage": video->image.asset->url,
-            "videoTeam": video->team,
-            team->,
+        _type == "imageCanvasBlock" => {
+            layout, 
+            image->,
+            team->, 
         },
-       
-       "audioRefData": {
-         "audioTitle": audio->title,
-         "audioFileUrl": audio->audioFile.asset->url
-       },
-       
-       "quoteRef": {
-        "quoteTitle": quote->quote,
-        "quoteAuthor": quote->author,
-        "quoteImage": quote->mediaRef.image->image,
-        "quoteLayout": quote->mediaRef.layout,
-        ...
-      },
-       markDefs[]{
-         ...,
-         _type == "internalLink" => {
-           "slug": @.reference->slug
-         }
-       },
-       "postsRef": {
-      
-         "postsHeading": posts->block[0].heading,
-         "postsSlug": posts->slug.current,
-         "postsImage": posts->block[0].image,
-         "postsExcerpt": posts->excerpt,
-         ...,
-       },
-     },
-   },
-  
-   }
+
+        content[] {
+            ...,
+            image-> {
+                ...,
+                className->{name},
+                team->,
+            },
+
+            "videoRef": {
+                "videoTitle": video->title,
+                "videoFileUrl": video->video.asset->url,
+                "videoImage": video->image.asset->url,
+                "videoTeam": video->team,
+            },
+            
+            "audioRefData": {
+                "audioTitle": audio->title,
+                "audioFileUrl": audio->audioFile.asset->url
+            },
+            
+            "quoteRef": {
+                "quoteTitle": quote->quote,
+                "quoteAuthor": quote->author,
+                "quoteImage": quote->mediaRef.image->image,
+                "quoteLayout": quote->mediaRef.layout,
+
+            },
+
+            markDefs[] {
+                ...,
+                _type == "internalLink" => {
+                    "slug": @.reference->slug
+                }
+            },
+
+            "postsRef": {
+                "postsHeading": posts->block[0].heading,
+                "postsSlug": posts->slug.current,
+                "postsImage": posts->block[0].image,
+            },
+        },
+    },
+}
+
  `;
 
 export const categoryQuery = groq`
