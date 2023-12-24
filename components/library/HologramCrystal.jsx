@@ -88,6 +88,10 @@ const Crystal = ({
 					max: 50,
 					step: 0.01,
 				},
+				side: {
+					options: ["front", "back", "double"],
+					value: "front",
+				},
 		  })
 		: {};
 
@@ -156,7 +160,7 @@ const Crystal = ({
 				transitionPatternSize={controls.fadePatternSize}
 				transitionSize={controls.fadeOffset}
 				patternIntensity={controls.patternIntensity}
-				side="both"
+				side={controls.side}
 			/>
 		</mesh>
 	);

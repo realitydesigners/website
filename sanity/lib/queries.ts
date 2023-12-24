@@ -1,46 +1,5 @@
 import { groq } from "next-sanity";
 
-export const homePageQuery = groq`
-  *[_type == "home"][0]{
-    _id,
-    overview,
-    showcaseProjects[]->{
-      _type,
-      coverImage,
-      overview,
-      "slug": slug.current,
-      tags,
-      title,
-    },
-    title,
-  }
-`;
-
-export const pagesBySlugQuery = groq`
-  *[_type == "page" && slug.current == $slug][0] {
-    _id,
-    body,
-    overview,
-    title,
-    "slug": slug.current,
-  }
-`;
-
-export const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug][0] {
-    _id,
-    client,
-    coverImage,
-    description,
-    duration,
-    overview,
-    site,
-    "slug": slug.current,
-    tags,
-    title,
-  }
-`;
-
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
     footer,
@@ -95,24 +54,12 @@ export const feedQuery = groq`
 
 export const postsQuery = groq`
  *[_type == "posts"] | order(_createdAt desc)[0..40] {
-   title,
-   category,
-   excerpt,
-   tags,
-   slug,
-   image,
-
-   subcategories[]->{
+    slug,
+    subcategories[]->{
      ...,
      name,
      title,
-   },
-   
-   publicationDate,
-   title,
-     slug,
-     excerpt,
-     image,
+     },
      block[]{
        ...,
        heading,
@@ -122,7 +69,7 @@ export const postsQuery = groq`
        layout,
        title,
        publicationDate,
-        team->{
+      team->{
        ...,
        name,
        role,
@@ -152,6 +99,8 @@ export const postsBySlugQuery = groq`
             layout, 
             image->,
             team->, 
+            alt,
+            
         },
 
         content[] {
@@ -160,6 +109,13 @@ export const postsBySlugQuery = groq`
                 ...,
                 className->{name},
                 team->,
+            },
+
+            markDefs[] {
+                ...,
+                _type == "internalLink" => {
+                    "slug": @.reference->slug
+                }
             },
 
             "videoRef": {
@@ -180,13 +136,6 @@ export const postsBySlugQuery = groq`
                 "quoteImage": quote->mediaRef.image->image,
                 "quoteLayout": quote->mediaRef.layout,
 
-            },
-
-            markDefs[] {
-                ...,
-                _type == "internalLink" => {
-                    "slug": @.reference->slug
-                }
             },
 
             "postsRef": {
