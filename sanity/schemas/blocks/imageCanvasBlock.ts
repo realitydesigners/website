@@ -17,6 +17,7 @@ export default {
 				],
 			},
 		}),
+
 		defineField({
 			name: "image",
 			title: "Image",

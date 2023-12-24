@@ -156,12 +156,11 @@ export const postsBySlugQuery = groq`
        role,
        image,
        shortBio,
-
       },
-      image->{
-        ...,
-        className->{name},
-        team->,
+      _type == "imageCanvasBlock" => {
+        layout, 
+        image->,
+        team->, 
       },
          content[]{
        ...,
