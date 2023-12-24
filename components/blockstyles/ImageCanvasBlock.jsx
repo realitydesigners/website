@@ -38,14 +38,12 @@ const ImageBlock = ({ block, className }) => {
 		fresnelColor: "#03aaff",
 		fresnelAmt: 0.9,
 		rimAlpha: 1.0,
-
 		colorIntensity: 3,
 		flashingDirection: "down",
 		intensity: 3,
 		colorAlpha: 1,
 		fadeAmount: animatedFadeProgress,
 		fadeDirection: "up",
-
 		side: "front",
 	};
 
@@ -55,9 +53,7 @@ const ImageBlock = ({ block, className }) => {
 		);
 
 		const texture = useTexture(urlForImage(block.image?.image).url());
-
 		const altText = block?.image?.alt || "No description available";
-
 		const textColor = className === "dark" ? "white" : "white";
 
 		if (texture) {
@@ -122,7 +118,7 @@ const ImageCanvasBlock = ({ block }) => {
 		};
 	}, []);
 
-	const cameraPosition = windowWidth < 768 ? [0, 0, 50] : [0, 0, 35];
+	const cameraPosition = windowWidth < 768 ? [0, 0, 45] : [0, 0, 35];
 
 	if (block?._type !== "imageCanvasBlock") {
 		return null;
@@ -142,13 +138,7 @@ const ImageCanvasBlock = ({ block }) => {
 								maxDistance={2}
 							/>
 							<OrbitControls />
-							<ambientLight intensity={0.5} />
-							<Center />
-							<BGImage
-								block={block}
-								title={block.title}
-								className={className}
-							/>
+							<BGImage block={block} title={block.title} />
 							<ImageBlock block={block} className={block.layout} />
 						</Canvas>
 					</div>
@@ -158,7 +148,7 @@ const ImageCanvasBlock = ({ block }) => {
 		case "light":
 			return (
 				<div className="relative  flex justify-center items-center w-full h-auto mb-6">
-					<div className="w-11/12 bg-gray-300 lg:w-5/6 h-[40vh] lg:h-[66vh]   rounded-[1.5em] overflow-hidden">
+					<div className="w-11/12 bg-gray-300 lg:w-5/6 h-[50vh] lg:h-[66vh]   rounded-[1.5em] overflow-hidden">
 						<Canvas>
 							<PerspectiveCamera
 								makeDefault
@@ -168,9 +158,6 @@ const ImageCanvasBlock = ({ block }) => {
 								maxDistance={2}
 							/>
 							<OrbitControls />
-
-							<ambientLight intensity={0.5} />
-							<Center />
 							<BGImage block={block} title={block.title} />
 							<ImageBlock block={block} className={block.layout} />
 						</Canvas>
@@ -192,7 +179,6 @@ const BGImage = ({ block }) => {
 	const meshRef = useRef();
 
 	useFrame(() => {
-		// Rotate the mesh on the y-axis (you can adjust the speed by changing the value)
 		meshRef.current.rotation.y += 0.001;
 	});
 
