@@ -5,6 +5,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
 	try {
+		if (request.headers.get("content-type") !== "application/json") {
+			throw new Error("Invalid Content-Type. Expected application/json");
+		}
+
 		const postData = await request.json();
 		const heading = postData.heading || "New Blog Post";
 		const subheading = postData.subheading || "No Subheading";
@@ -18,12 +22,16 @@ export async function POST(request) {
 
 		const recipients = ["raymond.luke.spartz@gmail.com"]; // Replace with subscriber list
 
-		const { data, error } = await resend.emails.send({
+		// Define the email message with relevant content
+		const emailMessage = {
 			from: "Reality Designers <info@realitydesigners.tv>",
 			to: recipients,
 			subject: `New Blog Post: ${heading}`,
 			react: emailContent as React.ReactElement,
-		});
+		};
+
+		// Send the email
+		const { data, error } = await resend.emails.send(emailMessage);
 
 		if (error) {
 			return Response.json({ error });
