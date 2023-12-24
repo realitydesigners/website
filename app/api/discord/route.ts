@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
 	const heading = postData.heading || "No Heading";
 	const slug = postData.slug || "no-slug";
-	const messageContent = `**New Blog Post**: *${heading}*\n[Read More](https://www.realitydesigners.tv/posts/${slug})`;
+	const messageContent = `**New Post**: *${heading}*\n[Read More](https://www.realitydesigners.tv/posts/${slug})`;
 
 	const discordWebhookUrl =
 		"https://discord.com/api/webhooks/1188395854185386016/jln9i7US53mkJWEgWzu_v0LxiYYodBsgZHY8fbx5-GJ3ka6NWRAHsZXtE-Okz_HRfagb";
