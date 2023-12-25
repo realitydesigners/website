@@ -4,9 +4,9 @@ import { useTexture, Text, Billboard } from "@react-three/drei";
 import { urlForImage } from "@/sanity/lib/utils";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, OrbitControls, Center } from "@react-three/drei";
-import { useSpring, animated } from "@react-spring/three";
+
 import HologramMaterial from "../materials/HologramMaterial";
-import { useControls } from "leva";
+
 import * as THREE from "three";
 
 const ImageBlock = ({ block, className }) => {
@@ -15,7 +15,7 @@ const ImageBlock = ({ block, className }) => {
 
 	useEffect(() => {
 		let animationFrameId;
-		const duration = 3000;
+		const duration = 500;
 		const start = performance.now();
 
 		const animate = (time) => {
@@ -36,14 +36,12 @@ const ImageBlock = ({ block, className }) => {
 
 	const hologramMaterialProps = {
 		fresnelColor: "#03aaff",
-		fresnelAmt: 0.9,
+		fresnelAmt: 0.2,
 		rimAlpha: 1.0,
 		colorIntensity: 3,
 		flashingDirection: "down",
-		intensity: 3,
-		colorAlpha: 1,
 		fadeAmount: animatedFadeProgress,
-		fadeDirection: "up",
+		fadeDirection: "down",
 		side: "front",
 	};
 
@@ -85,7 +83,6 @@ const ImageBlock = ({ block, className }) => {
 						<boxGeometry args={[aspectRatio * 30, 30, 0.5]} />
 						<HologramMaterial
 							attach="material"
-							map={texture}
 							transparent
 							scanLines="/textures/HologramLines_Cool.png"
 							{...hologramMaterialProps}
@@ -127,7 +124,7 @@ const ImageCanvasBlock = ({ block }) => {
 	switch (className) {
 		case "dark":
 			return (
-				<div className="relative flex justify-center items-center w-full h-auto mb-6">
+				<div className="relative flex justify-center items-center w-full h-auto mb-6 lg:mb-0">
 					<div className="w-11/12  bg-black lg:3/4  h-[50vh] lg:h-[80vh]">
 						<Canvas>
 							<PerspectiveCamera
@@ -147,8 +144,8 @@ const ImageCanvasBlock = ({ block }) => {
 
 		case "light":
 			return (
-				<div className="relative  flex justify-center items-center w-full h-auto mb-6">
-					<div className="w-11/12 bg-gray-300 lg:w-5/6 h-[50vh] lg:h-[66vh]   rounded-[1.5em] overflow-hidden">
+				<div className="relative  flex justify-center items-center w-full h-auto mb-6 lg:mb-0">
+					<div className="w-11/12 bg-gray-300 lg:w-5/6 h-[50vh] lg:h-[66vh]   rounded-[1.5em] overflow-hidden shadow-xl">
 						<Canvas>
 							<PerspectiveCamera
 								makeDefault
@@ -173,8 +170,6 @@ const ImageCanvasBlock = ({ block }) => {
 	}
 };
 
-export default ImageCanvasBlock;
-
 const BGImage = ({ block }) => {
 	const meshRef = useRef();
 
@@ -184,15 +179,13 @@ const BGImage = ({ block }) => {
 
 	if (block?.image?.image) {
 		const texture = useTexture(urlForImage(block.image?.image).url());
-
 		const textureWidth = texture.image.width;
 		const textureHeight = texture.image.height;
 		const aspectRatio = textureWidth / textureHeight;
-
 		const radius = 75;
 
 		return (
-			<animated.group position={[0, 0, 0]}>
+			<group position={[0, 0, 0]}>
 				<mesh ref={meshRef}>
 					<sphereGeometry args={[aspectRatio * radius, 64, 64]} />
 					<meshBasicMaterial
@@ -201,9 +194,11 @@ const BGImage = ({ block }) => {
 						side={THREE.BackSide}
 					/>
 				</mesh>
-			</animated.group>
+			</group>
 		);
 	}
 
 	return null;
 };
+
+export default ImageCanvasBlock;
