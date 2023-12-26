@@ -64,18 +64,7 @@ export default defineConfig({
 	},
 	plugins: [
 		deskTool({}),
-		presentationTool({
-			locate,
-			previewUrl: {
-				origin:
-					typeof location === "undefined"
-						? "http://localhost:3000"
-						: location.origin,
-				draftMode: {
-					enable: "/api/draft",
-				},
-			},
-		}),
+
 		visionTool({ defaultApiVersion: apiVersion }),
 
 		media(),
