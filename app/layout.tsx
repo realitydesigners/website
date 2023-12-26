@@ -16,6 +16,10 @@ export default async function ROotLayout({
 	return (
 		<ClerkProvider>
 			<html lang="en" className={`${cairo.className} `}>
+				<head>
+
+					<link rel="icon" href="/favicon.ico" sizes="any" />
+				</head>
 				<body>
 					{children}
 					<Analytics />
