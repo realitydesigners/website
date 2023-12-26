@@ -1,12 +1,12 @@
 import {
+	Bebas_Neue,
+	Cairo,
 	Inter,
+	Jost,
+	Jura,
+	Monomaniac_One,
 	Roboto,
 	Staatliches,
-	Jura,
-	Jost,
-	Cairo,
-	Monomaniac_One,
-	Bebas_Neue,
 } from "next/font/google";
 
 export const roboto = Roboto({

@@ -1,6 +1,6 @@
+import { cairo, staatliches } from "@/fonts";
 import Image from "next/image";
 import Link from "next/link";
-import { cairo, staatliches } from "@/fonts";
 
 import { SanityImage } from "@/components/global/Images";
 

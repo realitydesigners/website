@@ -1,7 +1,7 @@
-import "tailwindcss/tailwind.css";
-import { Suspense } from "react";
-import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
+import Navbar from "@/components/global/Navbar";
+import { Suspense } from "react";
+import "tailwindcss/tailwind.css";
 import Loading from "./loading";
 
 export default async function TeamLayout({

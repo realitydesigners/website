@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { cairo, staatliches } from "@/fonts";
 import { getPostData } from "@/app/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
+import { cairo, staatliches } from "@/fonts";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 const InternalLink = ({ slug, children }) => {
 	const [isDialogOpen, setDialogOpen] = useState(false);

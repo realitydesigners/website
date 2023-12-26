@@ -1,6 +1,6 @@
 "use client";
-import { staatliches } from "@/fonts";
 import NewsletterTwo from "@/components/email/NewsletterTwo";
+import { staatliches } from "@/fonts";
 import Link from "next/link";
 
 export default function Footer() {

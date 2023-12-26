@@ -1,16 +1,16 @@
 import {
 	apiVersion,
 	dataset,
-	projectId,
 	hookSecret,
+	projectId,
 	studioUrl,
 	token,
 } from "@/sanity/lib/api";
 
 import {
-	createClient,
 	type ClientConfig,
 	type QueryParams,
+	createClient,
 } from "@sanity/client";
 
 const config: ClientConfig = {

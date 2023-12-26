@@ -1,9 +1,9 @@
 "use client";
+import TeamBlock from "@/components/blockstyles/TeamBlock";
 import { cairo, staatliches } from "@/fonts";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import TeamBlock from "@/components/blockstyles/TeamBlock";
 import HeadingBlock from "../blockstyles/HeadingBlock";
 import ImageCanvasBlock from "../blockstyles/ImageCanvasBlock";
 

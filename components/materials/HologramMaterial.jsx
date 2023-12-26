@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
 import { shaderMaterial, useTexture } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import { Vector2, Color, DoubleSide, FrontSide, BackSide } from "three";
+import React, { useRef } from "react";
+import { BackSide, Color, DoubleSide, FrontSide, Vector2 } from "three";
 
 export default function HologramMaterial({
 	fresnelColor = 0x02feff, // rim light color

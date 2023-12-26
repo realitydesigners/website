@@ -1,9 +1,9 @@
 import {
+	BookIcon,
 	ImageIcon,
 	LinkIcon,
-	UserIcon,
 	PlayIcon,
-	BookIcon,
+	UserIcon,
 } from "@sanity/icons";
 import { defineField } from "sanity";
 

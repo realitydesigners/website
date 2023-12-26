@@ -1,7 +1,7 @@
 "use client";
-import Link from "next/link";
 import { SanityImage } from "@/components/global/Images";
 import { cairo, staatliches } from "@/fonts";
+import Link from "next/link";
 
 const HeadingBlock = ({ block }) => {
 	const { className } = block;

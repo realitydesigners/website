@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { cairo, staatliches } from "@/fonts";
 import { SanityImage } from "@/components/global/Images";
+import { cairo, staatliches } from "@/fonts";
+import Link from "next/link";
 
 const QuoteCard = ({ quote, media, image, className }) => {
 	switch (className) {

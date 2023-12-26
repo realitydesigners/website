@@ -3,27 +3,27 @@ import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { presentationTool } from "sanity/presentation";
 
-import { media } from "sanity-plugin-media";
-import { contentGraphView } from "sanity-plugin-graph-view";
 import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
 import { locate } from "@/sanity/plugins/locate";
-import CustomField from "./sanity/ui/CustomField";
-import CustomItem from "@/sanity/ui/CustomItem";
 import {
-	posts,
-	team,
-	category,
-	img,
-	quote,
-	video,
 	audio,
-	model,
-	library,
-	headingBlock,
+	category,
 	contentBlock,
-	teamBlock,
+	headingBlock,
 	imageCanvasBlock,
+	img,
+	library,
+	model,
+	posts,
+	quote,
+	team,
+	teamBlock,
+	video,
 } from "@/sanity/schemas";
+import CustomItem from "@/sanity/ui/CustomItem";
+import { contentGraphView } from "sanity-plugin-graph-view";
+import { media } from "sanity-plugin-media";
+import CustomField from "./sanity/ui/CustomField";
 
 import { vercelDeployTool } from "sanity-plugin-vercel-deploy";
 
@@ -64,18 +64,7 @@ export default defineConfig({
 	},
 	plugins: [
 		deskTool({}),
-		presentationTool({
-			locate,
-			previewUrl: {
-				origin:
-					typeof location === "undefined"
-						? "http://localhost:3000"
-						: location.origin,
-				draftMode: {
-					enable: "/api/draft",
-				},
-			},
-		}),
+
 		visionTool({ defaultApiVersion: apiVersion }),
 
 		media(),

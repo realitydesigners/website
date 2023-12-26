@@ -1,9 +1,9 @@
 "use client";
+import { SanityImage } from "@/components/global/Images";
+import { cairo, staatliches } from "@/fonts";
+import { BlockItem, PostsPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
-import { cairo, staatliches } from "@/fonts";
-import { PostsPayload, BlockItem } from "@/types";
-import { SanityImage } from "@/components/global/Images";
 
 interface PostItemProps {
 	block: BlockItem;
@@ -19,6 +19,24 @@ interface PostsListProps {
 	};
 }
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
+	if (!image) return null;
+
+	return (
+		<div className="relative">
+			<SanityImage
+				width={500}
+				height={500}
+				priority={true}
+				image={image}
+				alt={`Cover Image for ${heading}`}
+				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
+			/>
+		</div>
+	);
+};
+
 export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, subheading, publicationDate } = block;
 
@@ -30,20 +48,17 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		  })
 		: "Date not available";
 
+	const renderHeading = () => {
+		return heading || "no title";
+	};
+
+	const renderSubheading = () => {
+		return subheading || "no subheading";
+	};
+
 	return (
-		<div className=" h-auto border border-gray-300 p-2 rounded-[1em]">
-			{image && (
-				<div className="relative">
-					<SanityImage
-						width={500}
-						height={500}
-						priority={true}
-						image={image}
-						alt={`Cover Image for ${heading}`}
-						classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
-					/>
-				</div>
-			)}
+		<div className="h-auto border border-gray-300 p-2 rounded-[1em]">
+			<PostImage image={image} heading={heading} />
 			<span
 				className={`${staatliches.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
 			>
@@ -54,13 +69,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 					<h2
 						className={`${staatliches.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
 					>
-						{heading || "no title"}
+						{renderHeading()}
 					</h2>
 				</Link>
 				<p
 					className={`${cairo.className} p-2 text-lg leading-tight text-black`}
 				>
-					{subheading || "no subheading"}
+					{renderSubheading()}
 				</p>
 			</div>
 		</div>

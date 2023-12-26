@@ -1,7 +1,7 @@
 "use client";
-import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/utils";
-import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export function SanityImage({
 	image,

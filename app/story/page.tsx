@@ -1,6 +1,6 @@
 "use client";
-import { staatliches, cairo } from "@/fonts";
 import Newsletter from "@/components/email/Newsletter";
+import { cairo, staatliches } from "@/fonts";
 
 export default function StoryPage() {
 	return (
