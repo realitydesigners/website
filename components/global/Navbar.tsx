@@ -1,8 +1,8 @@
 "use client";
+import { bebe, monomaniac, staatliches } from "@/fonts";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React, { useState } from "react";
-import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
-import { bebe, staatliches, monomaniac } from "@/fonts";
 
 interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
 	url: string;

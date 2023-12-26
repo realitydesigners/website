@@ -1,13 +1,13 @@
-import "tailwindcss/tailwind.css";
-import type { Metadata } from 'next';
-import { Analytics } from "@vercel/analytics/react";
+import { cairo, staatliches } from "@/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
-import { staatliches, cairo } from "@/fonts";
-
+import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
+import "tailwindcss/tailwind.css";
 
 export const metadata: Metadata = {
-	title: 'Reality Designers',
-	description: 'Reality Designers is a collective of artists, designers, and engineers who are building the next generation of immersive experiences.',
+	title: "Reality Designers",
+	description:
+		"Reality Designers is a collective of artists, designers, and engineers who are building the next generation of immersive experiences.",
 };
 
 export default async function ROotLayout({
@@ -17,7 +17,6 @@ export default async function ROotLayout({
 		<ClerkProvider>
 			<html lang="en" className={`${cairo.className} `}>
 				<head>
-
 					<link rel="icon" href="/favicon.ico" sizes="any" />
 				</head>
 				<body>

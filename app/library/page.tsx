@@ -1,7 +1,7 @@
 import LibraryScene from "@/components/library/LibraryScene";
+import { sanityFetch } from "@/sanity/lib/client";
 import { categoryQuery } from "@/sanity/lib/queries";
 import { CategoryPayload } from "@/types";
-import { sanityFetch } from "@/sanity/lib/client";
 
 export default async function CategoryPage() {
 	const categories: CategoryPayload[] = await sanityFetch({

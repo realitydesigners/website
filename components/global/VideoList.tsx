@@ -1,9 +1,9 @@
 "use client";
-import Link from "next/link";
-import { FC } from "react";
 import { SanityImage } from "@/components/global/Images";
 import { cairo, staatliches } from "@/fonts";
 import { VideoPayload } from "@/types";
+import Link from "next/link";
+import { FC } from "react";
 
 interface VideoitemProps {
 	videos: VideoPayload;

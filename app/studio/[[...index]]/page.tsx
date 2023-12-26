@@ -7,13 +7,13 @@
  * https://github.com/sanity-io/next-sanity
  */
 
-import Studio from './Studio'
+import Studio from "./Studio";
 
-export const dynamic = 'force-static'
+export const dynamic = "force-static";
 
-export { metadata } from 'next-sanity/studio/metadata'
-export { viewport } from 'next-sanity/studio/viewport'
+export { metadata } from "next-sanity/studio/metadata";
+export { viewport } from "next-sanity/studio/viewport";
 
 export default function StudioPage() {
-  return <Studio />
+	return <Studio />;
 }

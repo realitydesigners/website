@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
 import HologramMaterial from "@/components/materials/HologramMaterial";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
+import React, { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 
 const CustomDodecahedronGeometry = new THREE.DodecahedronGeometry(1, 0);
 

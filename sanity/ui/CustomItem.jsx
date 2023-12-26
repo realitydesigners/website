@@ -1,9 +1,9 @@
 import {
+	ClipboardIcon,
 	DashboardIcon,
 	ImageIcon,
 	MasterDetailIcon,
 	UserIcon,
-	ClipboardIcon,
 } from "@sanity/icons";
 
 function CustomItem(props) {

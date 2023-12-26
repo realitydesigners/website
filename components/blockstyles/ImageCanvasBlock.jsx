@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
-import { useTexture, Text, Billboard } from "@react-three/drei";
 import { urlForImage } from "@/sanity/lib/utils";
+import { Billboard, Text, useTexture } from "@react-three/drei";
+import { Center, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls, Center } from "@react-three/drei";
+import React, { useEffect, useRef, useState } from "react";
 
 import HologramMaterial from "../materials/HologramMaterial";
 

@@ -1,4 +1,5 @@
 "use client";
+import { VideoPayload } from "@/types";
 import {
 	Box,
 	Line,
@@ -7,10 +8,9 @@ import {
 	Text,
 	useTexture,
 } from "@react-three/drei";
-import * as THREE from "three";
 import Link from "next/link";
-import { VideoPayload } from "@/types";
-import { FC, useRef, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
+import * as THREE from "three";
 
 import { Canvas, useThree } from "@react-three/fiber";
 

@@ -1,8 +1,8 @@
-import SlugPage from "./SlugPage";
-import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
-import { getVideoBySlugQuery } from "@/sanity/lib/queries";
-import { VideoPayload } from "@/types";
 import { sanityFetch } from "@/sanity/lib/client";
+import { getVideoBySlugQuery } from "@/sanity/lib/queries";
+import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
+import { VideoPayload } from "@/types";
+import SlugPage from "./SlugPage";
 
 type Props = {
 	params: { slug: string };

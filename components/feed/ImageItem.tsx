@@ -1,7 +1,7 @@
 "use client";
-import React, { FC } from "react";
-import { Image } from "@/types"; // Corrected the quotes
 import { SanityImage } from "@/components/global/Images";
+import { Image } from "@/types"; // Corrected the quotes
+import React, { FC } from "react";
 
 export const ImageItem: FC<{ image: Image }> = ({ image }) => {
 	return (

@@ -1,9 +1,9 @@
 "use client";
-import Link from "next/link";
-import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
-import type { TeamPayload } from "@/types";
 import Blocks from "@/components/blocks/Blocks";
 import { staatliches } from "@/fonts";
+import type { TeamPayload } from "@/types";
+import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
+import Link from "next/link";
 
 interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
 	url: string;

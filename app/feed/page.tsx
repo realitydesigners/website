@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
-import { sanityFetch } from "@/sanity/lib/client";
-import { feedQuery } from "@/sanity/lib/queries";
-import { PostsPayload, VideoPayload, Image } from "@/types";
+import { useAnimateOnScroll } from "@/components/effects/useAnimateOnScroll";
+import ImageItem from "@/components/feed/ImageItem";
 import PostItem from "@/components/feed/PostItem";
 import VideoItem from "@/components/feed/VideoItem";
-import ImageItem from "@/components/feed/ImageItem";
-import { useAnimateOnScroll } from "@/components/effects/useAnimateOnScroll";
+import { sanityFetch } from "@/sanity/lib/client";
+import { feedQuery } from "@/sanity/lib/queries";
+import { Image, PostsPayload, VideoPayload } from "@/types";
+import React, { useEffect, useRef, useState } from "react";
 
 type FeedItem = PostsPayload | VideoPayload | Image;
 

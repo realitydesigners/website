@@ -1,9 +1,9 @@
 "use client";
+import { SanityImage } from "@/components/global/Images";
+import { cairo, staatliches } from "@/fonts";
+import { BlockItem, PostsPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
-import { cairo, staatliches } from "@/fonts";
-import { PostsPayload, BlockItem } from "@/types";
-import { SanityImage } from "@/components/global/Images";
 
 interface PostItemProps {
 	block: BlockItem;

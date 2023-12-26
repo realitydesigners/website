@@ -16,7 +16,7 @@ export const feedQuery = groq`
 *[(_type == "posts" || _type == "video" || _type =="img")] | order(_createdAt desc) {
   _type,
   title,
-  category,
+  category,  
   excerpt,
   tags,
   slug,
@@ -199,7 +199,6 @@ export const categoryBySlugQuery = groq`
      _id,
      _type,
      title,
-     
      slug,
      isMain,
      model->{...,

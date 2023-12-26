@@ -1,12 +1,12 @@
-import "tailwindcss/tailwind.css";
-import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
-import { Suspense } from "react";
-import Loading from "./loading";
+import Navbar from "@/components/global/Navbar";
 import { PostsList } from "@/components/global/PostsList";
 import { sanityFetch } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
+import { Suspense } from "react";
+import "tailwindcss/tailwind.css";
+import Loading from "./loading";
 
 export default async function IndexPage() {
 	const post: PostsPayload[] = await sanityFetch({

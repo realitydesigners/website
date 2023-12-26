@@ -1,10 +1,10 @@
-import SlugPage from "./SlugPage";
-import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
-import { Metadata, ResolvingMetadata } from "next";
-import { urlForOpenGraphImage } from "@/sanity/lib/utils";
-import { teamBySlugQuery } from "@/sanity/lib/queries";
-import { TeamPayload } from "@/types";
 import { sanityFetch } from "@/sanity/lib/client";
+import { teamBySlugQuery } from "@/sanity/lib/queries";
+import { urlForOpenGraphImage } from "@/sanity/lib/utils";
+import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
+import { TeamPayload } from "@/types";
+import { Metadata, ResolvingMetadata } from "next";
+import SlugPage from "./SlugPage";
 
 type Props = {
 	params: { slug: string };
