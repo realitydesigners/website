@@ -1,9 +1,16 @@
 import "tailwindcss/tailwind.css";
+import type { Metadata } from 'next';
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { staatliches, cairo } from "@/fonts";
 
-export default async function Layout({
+
+export const metadata: Metadata = {
+	title: 'Reality Designers',
+	description: 'Reality Designers is a collective of artists, designers, and engineers who are building the next generation of immersive experiences.',
+};
+
+export default async function ROotLayout({
 	children,
 }: { children: React.ReactNode }) {
 	return (
