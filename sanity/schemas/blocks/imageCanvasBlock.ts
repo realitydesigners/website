@@ -33,9 +33,16 @@ export default {
 	],
 	preview: {
 		select: {
-			title: "heading",
-			subtitle: "subheading",
-			media: "image",
+			title: "layout",
+			media: "block.0.img.image",
+		},
+		prepare(selection) {
+			const { title, media } = selection;
+
+			return {
+				title: title || "No Title",
+				media: media, // This uses the selected image for the preview
+			};
 		},
 	},
 };

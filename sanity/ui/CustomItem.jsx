@@ -3,6 +3,7 @@ import {
 	ImageIcon,
 	MasterDetailIcon,
 	UserIcon,
+	ClipboardIcon,
 } from "@sanity/icons";
 
 function CustomItem(props) {
@@ -55,10 +56,20 @@ function CustomItem(props) {
 				}}
 			/>
 		),
+		imageCanvasBlock: (
+			<UserIcon
+				style={{
+					display: "flex",
+					width: "100%",
+					height: "100%",
+					color: "#777",
+				}}
+			/>
+		),
 	};
 
 	const defaultIcon = (
-		<ImageIcon
+		<ClipboardIcon
 			style={{
 				display: "flex",
 				width: "100%",
