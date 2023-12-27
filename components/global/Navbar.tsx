@@ -141,10 +141,6 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				} lg:translate-x-0 flex flex-col lg:flex-row justify-start lg:justify-end p-3  lg:p-0`}
 			>
 				<div className="w-full mb-2 rounded-lg block lg:hidden mt-12 bg-black h-[250px]">
-					<script
-						type="module"
-						src="https://unpkg.com/@splinetool/viewer@0.9.506/build/spline-viewer.js"
-					/>
 					<Link href="/" onClick={closeNav}>
 						<spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode" />
 					</Link>

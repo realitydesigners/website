@@ -1,13 +1,13 @@
-import { toPlainText } from "@portabletext/react";
-import { Metadata, ResolvingMetadata } from "next";
-import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import SlugPage from "@/app/posts/[slug]/SlugPage";
 import { PostsList } from "@/components/global/PostsList";
-import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
-import { Suspense } from "react";
-import { postsBySlugQuery } from "@/sanity/lib/queries";
-import { PostsPayload } from "@/types";
 import { sanityFetch } from "@/sanity/lib/client";
+import { postsBySlugQuery, postsQuery } from "@/sanity/lib/queries";
+import { urlForOpenGraphImage } from "@/sanity/lib/utils";
+import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
+import { PostsPayload } from "@/types";
+import { toPlainText } from "@portabletext/react";
+import { Metadata, ResolvingMetadata } from "next";
+import { Suspense } from "react";
 
 type Props = {
 	params: { slug: string };
@@ -55,7 +55,7 @@ export default async function PageSlugRoute({ params }: Props) {
 
 	// Fetch all posts using the new sanityFetch
 	const allPosts = await sanityFetch<PostsPayload[]>({
-		query: postsBySlugQuery,
+		query: postsQuery,
 		tags: ["post"],
 		qParams: { slug: params.slug },
 	});
@@ -69,9 +69,9 @@ export default async function PageSlugRoute({ params }: Props) {
 	return (
 		<>
 			<SlugPage data={currentPost} />
-			{/* <Suspense fallback={<div>Loading more posts...</div>}>
+			<Suspense fallback={<div>Loading more posts...</div>}>
 				<PostsList post={otherPosts} />
-			</Suspense> */}
+			</Suspense>
 		</>
 	);
 }

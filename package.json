@@ -48,7 +48,7 @@
     "@sanity/vision": "^3.23.2",
     "@splinetool/loader": "^0.9.523",
     "@splinetool/r3f-spline": "^1.0.2",
-    "@splinetool/runtime": "^0.9.523",
+    "@splinetool/runtime": "^1.0.17",
     "@splinetool/viewer": "^0.9.523",
     "@tailwindcss/typography": "^0.5.10",
     "@types/three": "^0.159.0",

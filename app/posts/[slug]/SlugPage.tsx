@@ -1,8 +1,7 @@
-"use client";
-import React from "react";
-import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
-import type { PostsPayload } from "@/types";
 import Blocks from "@/components/blocks/Blocks";
+import type { PostsPayload } from "@/types";
+import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
+import React from "react";
 
 export interface PageProps {
 	data: PostsPayload | null;
@@ -10,6 +9,7 @@ export interface PageProps {
 }
 
 const SlugPage: React.FC<PageProps> = ({ data }) => {
+	console.log(data);
 	return (
 		<main>
 			{data?.block?.map((block, index) => (
