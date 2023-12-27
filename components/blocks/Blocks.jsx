@@ -41,7 +41,7 @@ const Dark = {
 		normal: ({ children }) => (
 			<div className="w-full flex justify-center ">
 				<div
-					className={`${cairo.className} w-11/12 text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
+					className={`${cairo.className} w-11/12 text-gray-300 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
 				>
 					{children}
 				</div>

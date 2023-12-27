@@ -76,14 +76,14 @@ const HeadingSplineBlock = ({ block }) => {
 										href={`/team/${block.team.slug.current}`}
 										className={`${staatliches.className} `}
 									>
-										<div className="flex items-center p-2 w-full">
+										<div className="flex p-2 w-auto">
 											{block.team?.image && (
 												<div className="flex items-center">
 													<SanityImage
 														image={block.team.image}
 														alt={`Team member image for ${block.team.name}`}
-														width={100}
-														height={100}
+														width={80}
+														height={80}
 														priority={true}
 														classesWrapper=" h-[30px] w-[30px] object-cover cover rounded-[2em] "
 													/>
