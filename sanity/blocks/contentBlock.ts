@@ -101,15 +101,27 @@ export default {
 						}),
 					],
 				}),
-
 				defineField({
 					type: "object",
 					name: "imageRef",
 					title: "Image",
 					preview: {
 						select: {
-							imageUrl: "image.image.asset.url",
+							imageUrl: "image.image",
 							title: "image.title",
+							className: "className",
+						},
+						prepare(selection) {
+							const { title, imageUrl, className } = selection;
+							const subtitle = className
+								? `Classname: ${className}`
+								: "No class selected";
+
+							return {
+								title: title || "Untitled",
+								subtitle,
+								media: imageUrl,
+							};
 						},
 					},
 
@@ -127,14 +139,14 @@ export default {
 							type: "string",
 							options: {
 								list: [
-									{ title: "Card 1", value: "card-1" },
-									{ title: "Card 2", value: "card-2" },
-									// Add more class options if needed
+									{ title: "Image | Team Name Below", value: "image-standard" },
+									{ title: "Image | Team Inset", value: "image-inset" },
 								],
 							},
 						},
 					],
 				}),
+
 				defineField({
 					type: "object",
 					name: "videoRef",
@@ -175,9 +187,8 @@ export default {
 					preview: {
 						select: {
 							title: "quote.quote",
-
-							imageUrl: "quote.mediaRef.image.image", // Access the image URL directly
-							className: "className", // Include the CSS class
+							imageUrl: "quote.mediaRef.image.image",
+							className: "className",
 						},
 						prepare(selection) {
 							const { title, imageUrl, className } = selection;
@@ -189,7 +200,7 @@ export default {
 								title: title || "Untitled",
 								subtitle,
 								media: imageUrl,
-								className, // Include the CSS class in the preview
+								className,
 							};
 						},
 					},

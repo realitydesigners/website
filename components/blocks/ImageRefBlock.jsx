@@ -8,7 +8,7 @@ const ImageRefCard = ({ title, slug, alt, image, className }) => {
 	console.log(title, alt);
 
 	switch (className) {
-		case "card-1":
+		case "image-standard":
 			return (
 				<div className="relative p-4 mb-6 ">
 					<div className="relative justify-center rounded-[1.3em] lg:rounded-[1.8em] overflow-hidden  items-center flex h-auto bg-gray-400 w-full ">
@@ -53,7 +53,7 @@ const ImageRefCard = ({ title, slug, alt, image, className }) => {
 				</div>
 			);
 
-		case "card-2":
+		case "image-inset":
 			return (
 				<div className="flex justify-center items-center flex-col p-4 mb-6 ">
 					<div className="relative justify-center rounded-[1.2em]  overflow-hidden border border-t border-gray-600  items-center flex h-auto bg-gray-400 w-full lg:w-3/4 ">
