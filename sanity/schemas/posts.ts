@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { SchemaTypeDefinition } from "sanity"; // Import the SchemaTypeDefinition type
 
 export default defineType({
 	type: "document",

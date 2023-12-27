@@ -7,8 +7,3 @@ export { default as video } from "@/sanity/schemas/video";
 export { default as audio } from "@/sanity/schemas/audio";
 export { default as model } from "@/sanity/schemas/model";
 export { default as library } from "@/sanity/schemas/library";
-export { default as headingBlock } from "@/sanity/schemas/blocks/headingBlock";
-export { default as contentBlock } from "@/sanity/schemas/blocks/contentBlock";
-export { default as teamBlock } from "@/sanity/schemas/blocks/teamBlock";
-export { default as imageCanvasBlock } from "@/sanity/schemas/blocks/imageCanvasBlock";
-export { default as headingSplineBlock } from "@/sanity/schemas/blocks/headingSplineBlock";

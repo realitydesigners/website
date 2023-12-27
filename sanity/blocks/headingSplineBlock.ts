@@ -1,10 +1,10 @@
 import { defineField } from "sanity";
-import categoryType from "../category";
-import teamType from "../team";
+import categoryType from "../schemas/category";
+import teamType from "../schemas/team";
 
 export default {
 	type: "object",
-	name: "headingBlock",
+	name: "headingSplineBlock",
 	title: "Heading",
 	fields: [
 		defineField({
@@ -36,6 +36,14 @@ export default {
 				dateFormat: "DD-MM-YYYY",
 			},
 		}),
+
+		defineField({
+			type: "url",
+			name: "url",
+			title: "URL",
+			validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+		}),
+
 		defineField({
 			type: "image",
 			name: "image",
