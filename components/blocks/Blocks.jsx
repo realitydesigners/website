@@ -5,6 +5,7 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import HeadingBlock from "../blockstyles/HeadingBlock";
+import HeadingSplineBlock from "../blockstyles/HeadingSplineBlock";
 import ImageCanvasBlock from "../blockstyles/ImageCanvasBlock";
 
 import InternalLink from "@/components/blocks/InternalLink";
@@ -40,7 +41,7 @@ const Dark = {
 		normal: ({ children }) => (
 			<div className="w-full flex justify-center ">
 				<div
-					className={`${cairo.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
+					className={`${cairo.className} w-11/12 text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
 				>
 					{children}
 				</div>
@@ -360,6 +361,8 @@ const Blocks = ({ block }) => {
 		switch (_type) {
 			case "headingBlock":
 				return <HeadingBlock block={{ ...block, className: layout }} />;
+			case "headingSplineBlock":
+				return <HeadingSplineBlock block={{ ...block, className: layout }} />;
 			case "contentBlock":
 				return <ContentBlock layout={layout} content={block.content} />;
 			case "teamBlock":
