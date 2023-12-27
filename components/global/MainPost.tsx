@@ -12,11 +12,8 @@ interface PostItemProps {
 	};
 }
 
-interface PostsListProps {
-	post: PostsPayload[];
-	slug?: {
-		current?: string;
-	};
+interface MainPostProps {
+	post: PostsPayload;
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -48,14 +45,6 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		  })
 		: "Date not available";
 
-	const renderHeading = () => {
-		return heading || "no title";
-	};
-
-	const renderSubheading = () => {
-		return subheading || "no subheading";
-	};
-
 	return (
 		<div className="h-auto border border-gray-300 p-2 rounded-[1em]">
 			<PostImage image={image} heading={heading} />
@@ -69,43 +58,29 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 					<h2
 						className={`${staatliches.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
 					>
-						{renderHeading()}
+						{heading || "no title"}
 					</h2>
 				</Link>
 				<p
 					className={`${cairo.className} p-2 text-lg leading-tight text-black`}
 				>
-					{renderSubheading()}
+					{subheading || "no subheading"}
 				</p>
 			</div>
 		</div>
 	);
 };
 
-const PostsList: FC<PostsListProps> = ({ post }) => {
-	if (!post) {
-		return <div>No posts available</div>;
+export const MainPost: FC<MainPostProps> = ({ post }) => {
+	if (!post || !post.block) {
+		return <div>No post available</div>;
 	}
 
 	return (
 		<div className="grid grid-cols-1 gap-4 p-4 pt-20 md:grid-cols-2 lg:grid-cols-3">
-			{post.map((postItem) =>
-				postItem.block?.map((block, index) =>
-					block.heading && block.image ? (
-						<PostItem
-							key={`${postItem.slug?.current}-${index}`}
-							block={block}
-							slug={
-								postItem.slug?.current
-									? { current: postItem.slug.current }
-									: undefined
-							}
-						/>
-					) : null,
-				),
-			)}
+			<PostItem block={post.block[0]} slug={post.slug} />
 		</div>
 	);
 };
 
-export default PostsList;
+export default MainPost;

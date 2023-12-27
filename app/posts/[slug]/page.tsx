@@ -1,5 +1,5 @@
 import SlugPage from "@/app/posts/[slug]/SlugPage";
-import { PostsList } from "@/components/global/PostsList";
+import PostsList from "@/components/global/PostsList";
 import { sanityFetch } from "@/sanity/lib/client";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib/queries";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
