@@ -4,7 +4,9 @@ import { cairo, staatliches } from "@/fonts";
 import Link from "next/link";
 import { useState } from "react";
 
-const ImageCard = ({ title, slug, image, className }) => {
+const ImageRefCard = ({ title, slug, alt, image, className }) => {
+	console.log(title, alt);
+
 	switch (className) {
 		case "card-1":
 			return (
@@ -13,9 +15,9 @@ const ImageCard = ({ title, slug, image, className }) => {
 						{image?.image && (
 							<SanityImage
 								image={image.image}
-								width={1500}
-								height={1500}
-								priority={true}
+								width={2000}
+								height={2000}
+								priority={false}
 								alt={`Cover Image for ${title}`}
 								classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  contain h-full object-cover"
 							/>
@@ -28,7 +30,7 @@ const ImageCard = ({ title, slug, image, className }) => {
 								alt={`Cover Image for ${image.team.name}`}
 								width={100}
 								height={100}
-								priority={true}
+								priority={false}
 								classesWrapper="mr-2 max-h-[30px] max-w-[30px] rounded-full"
 							/>
 
@@ -53,33 +55,40 @@ const ImageCard = ({ title, slug, image, className }) => {
 
 		case "card-2":
 			return (
-				<div className="relative p-4 mb-6 ">
-					<div className="relative justify-center rounded-[1.3em] lg:rounded-[1.8em] overflow-hidden  items-center flex h-auto bg-gray-400 w-full ">
+				<div className="flex justify-center items-center flex-col p-4 mb-6 ">
+					<div className="relative justify-center rounded-[1.2em]  overflow-hidden border border-t border-gray-600  items-center flex h-auto bg-gray-400 w-full lg:w-3/4 ">
 						{image?.image && (
-							<SanityImage
-								image={image.image}
-								width={500}
-								height={500}
-								priority={true}
-								alt={`Cover Image for ${title}`}
-								classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full  contain h-full object-cover"
-							/>
+							<>
+								<SanityImage
+									image={image.image}
+									width={2000}
+									height={2000}
+									priority={false}
+									alt={`Cover Image for ${title}`}
+									classesWrapper=" h-[325px] md:h-[600px] lg:h-[800px] w-full border border-gray-600   contain h-full object-cover"
+								/>
+
+								<p className="font-mono text-gray-600 uppercase tracking-wide ">
+									{title}
+								</p>
+							</>
 						)}
 					</div>
 
 					{image?.team && (
-						<div className="relative rounded-b-xl -mt-16  pt-4 bottom-0 flex h-auto w-full pl-4  ">
+						<div className="relative rounded-b-[1.2em] pl-3 -mt-[50px] bg-gradient-to-t from-black to-transparent bottom-0 flex h-auto pt-3 pb-3 w-full lg:w-3/4">
 							<SanityImage
 								image={image.team.image}
 								width={100}
 								height={100}
-								priority={true}
+								priority={false}
 								alt={`Cover Image for ${image.team.name}`}
-								classesWrapper=" border mr-2 max-h-[30px] max-w-[30px] rounded-full"
+								classesWrapper="border mr-2 max-h-[30px] max-w-[30px] rounded-[2em]"
 							/>
-							<div className=" justify-center relative flex flex-col items-start text-xs uppercase leading-none">
+
+							<div className="justify-center relative flex flex-col items-start text-xs uppercase leading-none">
 								<Link href="/" className="text-gray-400 font-mono text-[10px]">
-									BY
+									POSTED BY
 								</Link>
 								<Link
 									href="/"
@@ -95,16 +104,16 @@ const ImageCard = ({ title, slug, image, className }) => {
 	}
 };
 
-const ImageRefWrapper = ({ value }) => {
+const ImageRefBlock = ({ value }) => {
 	const { image, className } = value;
 
 	return (
 		<div>
 			<div className={className}>
-				<ImageCard image={image} className={className} />
+				<ImageRefCard image={image} className={className} />
 			</div>
 		</div>
 	);
 };
 
-export default ImageRefWrapper;
+export default ImageRefBlock;

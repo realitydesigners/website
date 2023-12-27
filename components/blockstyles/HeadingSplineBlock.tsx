@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const HeadingSplineBlock = ({ block }) => {
 	const { className, url } = block;
-	console.log(block);
 
 	switch (className) {
 		case "dark": {
