@@ -32,6 +32,9 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 		setIsNavOpen(false); // Close the navigation
 		document.body.style.overflow = "auto"; // Enable scrolling
 	};
+	const handleBackdropClick = () => {
+		closeNav();
+	};
 
 	const getIcon = (name) => {
 		const icons = {
@@ -99,118 +102,130 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 	};
 
 	return (
-		<nav
-			id="navbar"
-			className="flex bg-gray-200 shadow-lg items-center h-12 lg:h-14 p-2 justify-between fixed w-full z-50 "
-		>
-			<div className="pl-6 w-full lg:w-auto justify-center relative flex items-center z-10">
-				<Link
-					href="/"
-					className={`${monomaniac.className} text-black items-center pt-2 pb-2  flex flex-row`}
-					onClick={closeNav}
-				>
-					<div className=" left-2 absolute ">{getIcon("logo")}</div>
-					<div className="w-full   justify-center items-center flex h-auto flex-col">
-						<span className="text-lg font-bold tracking-wide leading-none">
-							REALITY
-						</span>
-						<span className="text-sm -mt-[1px] font-bold tracking-wide leading-none">
-							DESIGNERS
-						</span>
-					</div>
-				</Link>
-			</div>
+		<>
+			{isNavOpen && (
+				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+				<div
+					className="fixed inset-0 bg-black/10 backdrop-blur-[.1em] z-40"
+					onClick={handleBackdropClick}
+				/>
+			)}
 
-			<div className="relative lg:pl-0">
-				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-				<button
-					id="nav-toggle"
-					className="flex items-center h-10 w-10  justify-center relative  z-20 lg:hidden"
-					aria-label="Toggle Menu"
-					onClick={toggleNav}
-				>
-					{getIcon("menu")}
-				</button>
-			</div>
-
-			<div
-				id="nav-content"
-				role="menu"
-				className={`absolute lg:relative top-0 left-0 w-full bg-gray-200 lg:bg-transparent lg:w-auto h-screen lg:h-auto overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${
-					isNavOpen ? "translate-x-0" : "-translate-x-full"
-				} lg:translate-x-0 flex flex-col lg:flex-row justify-start lg:justify-end p-3  lg:p-0`}
+			<nav
+				id="navbar"
+				className="flex  bg-gray-200  shadow-lg items-center h-12 p-2 justify-between fixed w-full z-50 "
 			>
-				<div className="w-full mb-2 rounded-lg block lg:hidden mt-12 bg-black h-[250px]">
-					<Link href="/" onClick={closeNav}>
-						<spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode" />
+				<div className="pl-6 w-full justify-center relative flex items-center z-10">
+					<Link
+						href="/"
+						className={`${monomaniac.className} text-black items-center pt-2 pb-2  flex flex-row`}
+						onClick={closeNav}
+					>
+						<div className=" left-2 absolute ">{getIcon("logo")}</div>
+						<div className="w-full   justify-center items-center flex h-auto flex-col">
+							<span className="text-lg font-bold tracking-wide leading-none">
+								REALITY
+							</span>
+							<span className="text-sm -mt-[1px] font-bold tracking-wide leading-none">
+								DESIGNERS
+							</span>
+						</div>
 					</Link>
 				</div>
-				<ul className="flex justify-center uppercase items-center gap-4 flex-col lg:flex-row lg:space-x-2 mt-4 lg:mt-0">
-					<li>
-						<Link
-							href="/feed"
-							className={`${monomaniac.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
-							onClick={closeNav}
-						>
-							Feed
-						</Link>
-					</li>
-					<li>
-						<Link
-							href="/library"
-							className={`${monomaniac.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
-							onClick={closeNav}
-						>
-							Library
-						</Link>
-					</li>
-					<li>
-						<Link
-							href="/posts"
-							className={`${monomaniac.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
-							onClick={closeNav}
-						>
-							Posts
-						</Link>
-					</li>
-					<li>
-						<Link
-							href="/videos"
-							className={`${monomaniac.className} text-black text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30 p-2 rounded-lg transition-all duration-200 ease-in-out`}
-							onClick={closeNav}
-						>
-							Videos
-						</Link>
-					</li>
-					<li>
-						<Link
-							href="/story"
-							className={`${monomaniac.className} text-black  text-6xl lg:text-[1.3em] font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
-							onClick={closeNav}
-						>
-							Story
-						</Link>
-					</li>
-				</ul>
-				<SignedOut>
-					<div className="flex mt-4 lg:h-5 lg:mr-4 mr-0 lg:mt-0 justify-center">
-						<SignInButton>
-							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-							<button className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black">
-								<span className={`${staatliches.className}  whitespace-nowrap`}>
-									Sign-In
-								</span>
-							</button>
-						</SignInButton>
-					</div>
-				</SignedOut>
 
-				<SignedIn>
-					<div className=" relative lg:ml-2 ml-0  lg:mr-4 mr-0 lg:mt-0 mt-4 justify-center  lg:p-2 flex ">
-						<UserButton afterSignOutUrl="/" />
+				<div className="relative ">
+					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+					<button
+						id="nav-toggle"
+						className="flex items-center h-10 w-10  justify-center relative  z-20 "
+						aria-label="Toggle Menu"
+						onClick={toggleNav}
+					>
+						{getIcon("menu")}
+					</button>
+				</div>
+
+				<div
+					id="nav-content"
+					role="menu"
+					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-gray-200 lg:right-4 right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
+						isNavOpen ? "translate-x-0" : "translate-x-full"
+					}  flex flex-col justify-start p-3 `}
+				>
+					<div className="w-full mb-2 rounded-lg block   bg-black h-[250px]">
+						<Link href="/" onClick={closeNav}>
+							<spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode" />
+						</Link>
 					</div>
-				</SignedIn>
-			</div>
-		</nav>
+					<ul className="flex justify-center uppercase items-center gap-4 flex-col  mt-4">
+						<li>
+							<Link
+								href="/feed"
+								className={`${monomaniac.className} text-black text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								onClick={closeNav}
+							>
+								Feed
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/library"
+								className={`${monomaniac.className} text-black text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								onClick={closeNav}
+							>
+								Library
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/posts"
+								className={`${monomaniac.className} text-black text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								onClick={closeNav}
+							>
+								Posts
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/videos"
+								className={`${monomaniac.className} text-black text-5xl font-bold hover:bg-gray-600/30 p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								onClick={closeNav}
+							>
+								Videos
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/story"
+								className={`${monomaniac.className} text-black  text-5xl font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								onClick={closeNav}
+							>
+								Story
+							</Link>
+						</li>
+					</ul>
+					<SignedOut>
+						<div className="flex mt-4  mr-0 justify-center">
+							<SignInButton>
+								{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+								<button className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black">
+									<span
+										className={`${staatliches.className}  whitespace-nowrap`}
+									>
+										Sign-In
+									</span>
+								</button>
+							</SignInButton>
+						</div>
+					</SignedOut>
+
+					<SignedIn>
+						<div className=" relative mt-4 justify-center   flex ">
+							<UserButton afterSignOutUrl="/" />
+						</div>
+					</SignedIn>
+				</div>
+			</nav>
+		</>
 	);
 }
