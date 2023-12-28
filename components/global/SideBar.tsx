@@ -31,7 +31,7 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
+				classesWrapper="w-full h-[250px] lg:h-[175px] object-cover object-contain rounded-[.7em]"
 			/>
 		</div>
 	);
@@ -67,13 +67,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${staatliches.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
+						className={`${staatliches.className} p-2 text-3xl uppercase leading-none text-black cursor-pointer`}
 					>
 						{renderHeading()}
 					</h2>
 				</Link>
 				<p
-					className={`${cairo.className} p-2 text-lg leading-tight text-black`}
+					className={`${cairo.className} p-2 text-md leading-tight text-black`}
 				>
 					{renderSubheading()}
 				</p>
@@ -82,13 +82,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	);
 };
 
-const PostsList: FC<PostsListProps> = ({ post }) => {
+const SideBar: FC<PostsListProps> = ({ post }) => {
 	if (!post) {
 		return <div>No posts available</div>;
 	}
 
 	return (
-		<div className="grid grid-cols-1 gap-4 pt-20 md:grid-cols-2 lg:grid-cols-3">
+		<div className="lg:w-1/4 gap-4 flex flex-col">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -108,4 +108,4 @@ const PostsList: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-export default PostsList;
+export default SideBar;

@@ -23,12 +23,12 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 	return (
 		<div className="relative">
 			<SanityImage
-				width={500}
-				height={500}
+				width={1000}
+				height={1000}
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
+				classesWrapper="w-full h-[350px]  lg:h-[33vw] object-cover object-contain rounded-[.7em]"
 			/>
 		</div>
 	);
@@ -56,13 +56,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${staatliches.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
+						className={`${staatliches.className} p-2 text-6xl uppercase leading-none text-black cursor-pointer`}
 					>
 						{heading || "no title"}
 					</h2>
 				</Link>
 				<p
-					className={`${cairo.className} p-2 text-lg leading-tight text-black`}
+					className={`${cairo.className} p-2 text-xl leading-tight text-black`}
 				>
 					{subheading || "no subheading"}
 				</p>
@@ -77,7 +77,7 @@ export const MainPost: FC<MainPostProps> = ({ post }) => {
 	}
 
 	return (
-		<div className="grid grid-cols-1 gap-4 p-4 pt-20 md:grid-cols-2 lg:grid-cols-3">
+		<div className="flex lg:w-1/2 w-full px-0 my-4 lg:my-0 lg:px-4">
 			<PostItem block={post.block[0]} slug={post.slug} />
 		</div>
 	);

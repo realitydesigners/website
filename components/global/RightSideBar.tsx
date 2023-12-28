@@ -31,7 +31,7 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
+				classesWrapper="w-[100px] h-[100px] object-cover object-contain rounded-[.7em]"
 			/>
 		</div>
 	);
@@ -52,43 +52,36 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		return heading || "no title";
 	};
 
-	const renderSubheading = () => {
-		return subheading || "no subheading";
-	};
-
 	return (
-		<div className="h-auto border border-gray-300 p-2 rounded-[1em]">
+		<div className="h-auto flex flex-row border border-gray-300 p-2 rounded-[1em]">
 			<PostImage image={image} heading={heading} />
-			<span
-				className={`${staatliches.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
-			>
-				{formattedDate}
-			</span>
-			<div>
-				<Link href={`/posts/${slug?.current}`}>
-					<h2
-						className={`${staatliches.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
-					>
-						{renderHeading()}
-					</h2>
-				</Link>
-				<p
-					className={`${cairo.className} p-2 text-lg leading-tight text-black`}
+			<div className="w-full flex flex-col">
+				<span
+					className={`${staatliches.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
 				>
-					{renderSubheading()}
-				</p>
+					{formattedDate}
+				</span>
+				<div>
+					<Link href={`/posts/${slug?.current}`}>
+						<h2
+							className={`${staatliches.className} pl-2 text-2xl uppercase leading-none text-black cursor-pointer`}
+						>
+							{renderHeading()}
+						</h2>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);
 };
 
-const PostsList: FC<PostsListProps> = ({ post }) => {
+const RightSideBar: FC<PostsListProps> = ({ post }) => {
 	if (!post) {
 		return <div>No posts available</div>;
 	}
 
 	return (
-		<div className="grid grid-cols-1 gap-4 pt-20 md:grid-cols-2 lg:grid-cols-3">
+		<div className="lg:w-1/4 gap-4 flex flex-col">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -108,4 +101,4 @@ const PostsList: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-export default PostsList;
+export default RightSideBar;
