@@ -10,8 +10,8 @@ const ImageRefCard = ({ title, slug, alt, image, className }) => {
 	switch (className) {
 		case "image-standard":
 			return (
-				<div className="relative p-4 mb-6 ">
-					<div className="relative justify-center rounded-[1.3em] lg:rounded-[1.8em] overflow-hidden  items-center flex h-auto bg-gray-400 w-full ">
+				<div className="flex justify-center items-center flex-col p-4  ">
+					<div className="relative justify-center rounded-[1.3em] lg:rounded-[1.8em] overflow-hidden  items-center flex h-auto bg-gray-400 w-full lg:w-3/4 ">
 						{image?.image && (
 							<SanityImage
 								image={image.image}
@@ -24,7 +24,7 @@ const ImageRefCard = ({ title, slug, alt, image, className }) => {
 						)}
 					</div>
 					{image?.team && (
-						<div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-gray-200">
+						<div className="relative rounded-b-xl   pt-4 bottom-0 flex h-auto w-full pl-4  text-gray-200 lg:w-3/4">
 							<SanityImage
 								image={image.team.image}
 								alt={`Cover Image for ${image.team.name}`}
@@ -55,7 +55,7 @@ const ImageRefCard = ({ title, slug, alt, image, className }) => {
 
 		case "image-inset":
 			return (
-				<div className="flex justify-center items-center flex-col p-4 mb-6 ">
+				<div className="flex justify-center items-center flex-col p-4">
 					<div className="relative justify-center rounded-[1.2em]  overflow-hidden border border-t border-gray-600  items-center flex h-auto bg-gray-400 w-full lg:w-3/4 ">
 						{image?.image && (
 							<>
