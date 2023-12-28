@@ -7,7 +7,8 @@ export async function POST(req: NextRequest) {
 		const { body, isValidSignature } = await parseBody<{
 			_type: string;
 			slug?: string | undefined;
-		}>(req, process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET);
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		}>(req as any, process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET);
 
 		if (!isValidSignature) {
 			return new Response("Invalid Signature", { status: 401 });
