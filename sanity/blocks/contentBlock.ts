@@ -154,8 +154,25 @@ export default {
 					title: "Video",
 					preview: {
 						select: {
-							imageUrl: "video.image.asset.url",
+							imageUrl: "video.image",
 							title: "video.title",
+							className: "className", // Select the className field
+						},
+						prepare(selection) {
+							const { title, imageUrl, className } = selection;
+							const classNameTitles = {
+								"card-1": "Video | Dark ",
+								"card-2": "Card 2",
+								// Add other class mappings as needed
+							};
+							const classNameTitle =
+								classNameTitles[className] || "No class selected";
+
+							return {
+								title: title || "Untitled",
+								subtitle: classNameTitle, // Use the corresponding title as the subtitle
+								media: imageUrl, // Assuming imageUrl is a direct URL to the image
+							};
 						},
 					},
 					fields: [
@@ -172,7 +189,7 @@ export default {
 							type: "string",
 							options: {
 								list: [
-									{ title: "Card 1", value: "card-1" },
+									{ title: "Video | Dark ", value: "card-1" },
 									{ title: "Card 2", value: "card-2" },
 									// Add more class options if needed
 								],
@@ -237,6 +254,21 @@ export default {
 					preview: {
 						select: {
 							title: "audio.title",
+							className: "className",
+						},
+						prepare(selection) {
+							const { title, className } = selection;
+							const classNameTitles = {
+								"class-1": "Audio | Style 1",
+								"class-2": "Audio | Style 2",
+							};
+							const classNameTitle =
+								classNameTitles[className] || "No class selected";
+
+							return {
+								title: title || "Untitled",
+								subtitle: classNameTitle,
+							};
 						},
 					},
 					fields: [
@@ -245,11 +277,20 @@ export default {
 							name: "audio",
 							title: "Audio File",
 							to: [{ type: "audio" }],
-							// This references the 'audio' schema
 						}),
+						{
+							name: "className",
+							title: "CSS Class",
+							type: "string",
+							options: {
+								list: [
+									{ title: "Audio | Style 1", value: "class-1" },
+									{ title: "Audio | Style 2", value: "class-2" },
+								],
+							},
+						},
 					],
 				}),
-
 				defineField({
 					type: "image",
 					icon: ImageIcon,
@@ -258,12 +299,7 @@ export default {
 					options: {
 						hotspot: true,
 					},
-					preview: {
-						select: {
-							media: "asset",
-							title: "alt",
-						},
-					},
+
 					fields: [
 						defineField({
 							name: "alt",
@@ -279,15 +315,33 @@ export default {
 							options: {
 								list: [
 									{ title: "img-dark", value: "img-dark" },
-									{
-										title: "img-light",
-										value: "img-light",
-									},
-									// Add more class options if needed
+									{ title: "img-light", value: "img-light" },
 								],
 							},
 						},
 					],
+					preview: {
+						select: {
+							media: "asset",
+							title: "alt",
+							className: "className",
+						},
+						prepare(selection) {
+							const { title, media, className } = selection;
+							const classNameTitles = {
+								"img-dark": "img-dark",
+								"img-light": "img-light",
+							};
+							const classNameTitle =
+								classNameTitles[className] || "No class selected";
+
+							return {
+								title: title || "Untitled",
+								subtitle: classNameTitle,
+								media,
+							};
+						},
+					},
 				}),
 				defineField({
 					type: "object",
