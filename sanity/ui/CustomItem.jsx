@@ -1,143 +1,74 @@
 import {
 	ClipboardIcon,
 	DashboardIcon,
-	ImageIcon,
+	DatabaseIcon,
 	MasterDetailIcon,
 	UserIcon,
 } from "@sanity/icons";
 
-function CustomItem(props) {
-	const { title, ...restProps } = props;
+const iconStyle = {
+	display: "flex",
+	width: "100%",
+	height: "100%",
+	color: "#999",
+};
 
-	// Determine the type based on the block's schema type
-	const type = props.value._type || "";
+const iconMap = {
+	headingBlock: <MasterDetailIcon style={iconStyle} />,
+	contentBlock: <DashboardIcon style={iconStyle} />,
+	teamBlock: <UserIcon style={iconStyle} />,
+	imageCanvasBlock: <UserIcon style={iconStyle} />,
+	headingSplineBlock: <DatabaseIcon style={iconStyle} />,
+};
 
+const defaultIcon = <ClipboardIcon style={{ ...iconStyle, color: "#999" }} />;
+
+function CustomItem({ title, value, renderDefault, ...restProps }) {
 	const handleDragStart = (e) => {
-		e.dataTransfer.setData("item", JSON.stringify(props.value));
+		e.dataTransfer.setData("item", JSON.stringify(value));
 	};
 
-	const handleDragOver = (e) => {
-		e.preventDefault();
+	const iconComponent = iconMap[value._type] || defaultIcon;
+
+	const containerStyle = {
+		width: "auto",
+		display: "flex",
+		height: "100%",
+		paddingLeft: "1em",
+		paddingRight: "1em",
+		marginBottom: "1em",
+		alignItems: "center",
 	};
 
-	const handleDrop = (e) => {
-		e.preventDefault();
-		e.stopPropagation(); // Stop propagation to prevent the "Can't Upload File Here" error
+	const iconContainerStyle = {
+		width: "70px",
+		height: "70px",
+		display: "flex",
+		flexDirection: "column",
+		padding: "0.5em",
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "#1e1e1e",
+		borderRadius: ".5em",
 	};
 
-	const iconMap = {
-		headingBlock: (
-			<MasterDetailIcon
-				style={{
-					display: "flex",
-					width: "100%",
-					height: "100%",
-					color: "#777",
-				}}
-			/>
-		),
-		contentBlock: (
-			<DashboardIcon
-				style={{
-					display: "flex",
-					width: "100%",
-					height: "100%",
-					color: "#777",
-				}}
-			/>
-		),
-		teamBlock: (
-			<UserIcon
-				style={{
-					display: "flex",
-					width: "100%",
-					height: "100%",
-					color: "#777",
-				}}
-			/>
-		),
-		imageCanvasBlock: (
-			<UserIcon
-				style={{
-					display: "flex",
-					width: "100%",
-					height: "100%",
-					color: "#777",
-				}}
-			/>
-		),
+	const titleStyle = {
+		color: "#999",
+		fontSize: "0.5em",
+		fontWeight: "bold",
+		marginBottom: ".5em",
+		textAlign: "center",
 	};
-
-	const defaultIcon = (
-		<ClipboardIcon
-			style={{
-				display: "flex",
-				width: "100%",
-				height: "100%",
-				color: "#000",
-			}}
-		/>
-	);
-
-	const iconComponent = iconMap[type] || defaultIcon;
 
 	return (
-		<div
-			draggable="true"
-			onDragStart={handleDragStart}
-			onDragOver={handleDragOver}
-			onDrop={handleDrop}
-			style={{
-				width: "auto",
-				display: "flex",
-				height: "100%",
-
-				paddingLeft: "1em",
-				paddingRight: "1em",
-				marginBottom: "1em",
-				alignItems: "center",
-			}}
-		>
-			<div
-				style={{
-					display: "flex",
-					width: "100%",
-					alignItems: "center",
-				}}
-			>
-				<div
-					style={{
-						width: "90%",
-						height: "100%",
-					}}
-				>
-					{props.renderDefault(restProps)}
-				</div>
-				<div
-					style={{
-						width: "70px",
-						height: "70px",
-						display: "flex",
-						flexDirection: "column",
-						padding: "0.5em",
-						alignItems: "center",
-						justifyContent: "center",
-						backgroundColor: "#1e1e1e",
-						borderRadius: ".5em",
-					}}
-				>
+		<div draggable="true" onDragStart={handleDragStart} style={containerStyle}>
+			<div style={{ display: "flex", width: "100%", alignItems: "center" }}>
+				<div style={iconContainerStyle}>
 					{iconComponent}
-					<div
-						style={{
-							color: "#777",
-							fontSize: "0.5em",
-							fontWeight: "bold",
-							marginBottom: ".5em",
-							textAlign: "center",
-						}}
-					>
-						{title?.toUpperCase()}
-					</div>
+					<div style={titleStyle}>{title?.toUpperCase()}</div>
+				</div>
+				<div style={{ width: "90%", height: "100%" }}>
+					{renderDefault({ value, ...restProps })}
 				</div>
 			</div>
 		</div>

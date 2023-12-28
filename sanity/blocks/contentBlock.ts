@@ -105,26 +105,6 @@ export default {
 					type: "object",
 					name: "imageRef",
 					title: "Image",
-					preview: {
-						select: {
-							imageUrl: "image.image",
-							title: "image.title",
-							className: "className",
-						},
-						prepare(selection) {
-							const { title, imageUrl, className } = selection;
-							const subtitle = className
-								? `Classname: ${className}`
-								: "No class selected";
-
-							return {
-								title: title || "Untitled",
-								subtitle,
-								media: imageUrl,
-							};
-						},
-					},
-
 					fields: [
 						defineField({
 							type: "reference",
@@ -145,8 +125,29 @@ export default {
 							},
 						},
 					],
-				}),
+					preview: {
+						select: {
+							imageUrl: "image.image",
+							title: "image.title",
+							className: "className",
+						},
+						prepare(selection) {
+							const { title, imageUrl, className } = selection;
+							const classNameTitles = {
+								"image-standard": "Image | Team Name Below",
+								"image-inset": "Image | Team Inset",
+							};
+							const classNameTitle =
+								classNameTitles[className] || "No class selected";
 
+							return {
+								title: title || "Untitled",
+								subtitle: classNameTitle,
+								media: imageUrl,
+							};
+						},
+					},
+				}),
 				defineField({
 					type: "object",
 					name: "videoRef",
@@ -184,26 +185,6 @@ export default {
 					name: "quoteRef",
 					title: "Quote",
 					icon: BookIcon,
-					preview: {
-						select: {
-							title: "quote.quote",
-							imageUrl: "quote.mediaRef.image.image",
-							className: "className",
-						},
-						prepare(selection) {
-							const { title, imageUrl, className } = selection;
-							const subtitle = className
-								? `Classname: ${className}`
-								: "No class";
-
-							return {
-								title: title || "Untitled",
-								subtitle,
-								media: imageUrl,
-								className,
-							};
-						},
-					},
 					fields: [
 						defineField({
 							type: "reference",
@@ -220,11 +201,32 @@ export default {
 								list: [
 									{ title: "Card 1", value: "card-1" },
 									{ title: "Card 2", value: "card-2" },
-									// Add more class options if needed
 								],
 							},
 						},
 					],
+					preview: {
+						select: {
+							title: "quote.quote",
+							imageUrl: "quote.mediaRef.image.image",
+							className: "className",
+						},
+						prepare(selection) {
+							const { title, imageUrl, className } = selection;
+							const classNameTitles = {
+								"card-1": "Card 1",
+								"card-2": "Card 2",
+							};
+							const classNameTitle =
+								classNameTitles[className] || "No class selected";
+
+							return {
+								title: title || "Untitled",
+								subtitle: classNameTitle,
+								media: imageUrl,
+							};
+						},
+					},
 				}),
 
 				defineField({
