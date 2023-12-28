@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 const ImageRefCard = ({ title, slug, alt, image, className }) => {
-	console.log(title, alt);
-
 	switch (className) {
 		case "image-standard":
 			return (

@@ -9,7 +9,6 @@ export interface PageProps {
 }
 
 const SlugPage: React.FC<PageProps> = ({ data }) => {
-	console.log(data);
 	return (
 		<main>
 			{data?.block?.map((block, index) => (

@@ -10,7 +10,6 @@ import HologramMaterial from "../materials/HologramMaterial";
 import * as THREE from "three";
 
 const ImageBlock = ({ block, className }) => {
-	console.log("block", block);
 	const [animatedFadeProgress, setAnimatedFadeProgress] = useState(0);
 
 	useEffect(() => {
