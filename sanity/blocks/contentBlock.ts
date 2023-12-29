@@ -120,6 +120,10 @@ export default {
 							options: {
 								list: [
 									{ title: "Image | Team Name Below", value: "image-standard" },
+									{
+										title: "Image | Team Name Below",
+										value: "image-standard-dark",
+									},
 									{ title: "Image | Team Inset", value: "image-inset" },
 								],
 							},
