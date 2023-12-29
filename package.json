@@ -31,7 +31,7 @@
     "@portabletext/react": "^3.0.11",
     "@react-email/components": "^0.0.12",
     "@react-spring/three": "^9.7.3",
-    "@react-three/drei": "^9.92.4",
+    "@react-three/drei": "^9.92.7",
     "@react-three/fiber": "^8.15.12",
     "@react-three/postprocessing": "^2.15.11",
     "@sanity/demo": "^1.0.2",
@@ -48,7 +48,7 @@
     "@splinetool/runtime": "^1.0.17",
     "@splinetool/viewer": "^1.0.17",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/three": "^0.159.0",
+    "@types/three": "^0.160.0",
     "@vercel/analytics": "^1.1.1",
     "aframe": "^1.5.0",
     "classnames": "^2.3.2",
@@ -58,7 +58,7 @@
     "gsplat": "^1.0.0",
     "leva": "^0.9.35",
     "million": "^2.6.4",
-    "next": "canary",
+    "next": "latest",
     "next-sanity": "^7.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -71,6 +71,6 @@
     "sanity-plugin-vercel-deploy": "^3.3.4",
     "server-only": "^0.0.1",
     "styled-components": "^6.1.6",
-    "three": "^0.159.0"
+    "three": "^0.160.0"
   }
 }
