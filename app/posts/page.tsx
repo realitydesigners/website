@@ -14,7 +14,7 @@ export default async function PostPage() {
 
 	const mainPostData = posts[0];
 	const sidePostData = posts.slice(1, 3);
-	const rightPostData = posts.slice(4, 8);
+	const rightPostData = posts.slice(4, 9);
 	const postsListData = posts.slice(9, 20);
 
 	return (

@@ -31,7 +31,7 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-[100px] h-[100px] object-cover object-contain rounded-[.7em]"
+				classesWrapper="min-w-[100px] h-[100px] object-cover object-contain rounded-[.7em]"
 			/>
 		</div>
 	);
@@ -55,7 +55,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	return (
 		<div className="h-auto flex flex-row border border-gray-300 p-2 rounded-[1em]">
 			<PostImage image={image} heading={heading} />
-			<div className="w-full flex flex-col">
+			<div className="pl-1 pr-2 w-auto flex flex-col">
 				<span
 					className={`${staatliches.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
 				>
