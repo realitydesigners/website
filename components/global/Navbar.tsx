@@ -148,8 +148,8 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-gray-200 lg:right-4 right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
-						isNavOpen ? "translate-x-0" : "translate-x-full"
+					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-gray-200  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
+						isNavOpen ? "translate-x-0 right-4" : "translate-x-full"
 					}  flex flex-col justify-start p-3 `}
 				>
 					<div className="w-full mb-2 rounded-lg block   bg-black h-[250px]">
