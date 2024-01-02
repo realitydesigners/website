@@ -1,13 +1,13 @@
 import SlugPage from "@/app/posts/[slug]/SlugPage";
-import PostsList from "@/components/global/PostsList";
 import { sanityFetch } from "@/sanity/lib/client";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib/queries";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { PostsPayload } from "@/types";
-import { toPlainText } from "@portabletext/react";
 import { Metadata, ResolvingMetadata } from "next";
-import { Suspense } from "react";
+import React from "react";
+
+const PostsList = React.lazy(() => import("@/components/global/PostsList")); // Lazy import
 
 type Props = {
 	params: { slug: string };
@@ -45,33 +45,35 @@ export async function generateMetadata(
 		metadataBase,
 	};
 }
-export default async function PageSlugRoute({ params }: Props) {
-	// Fetch the current post using the new sanityFetch
+
+export default async function PageSlugRoute({ params }) {
+	// Fetch the current post
 	const currentPost = await sanityFetch<PostsPayload>({
 		query: postsBySlugQuery,
 		tags: ["post"],
 		qParams: { slug: params.slug },
 	});
 
-	// Fetch all posts using the new sanityFetch
-	const allPosts = await sanityFetch<PostsPayload[]>({
-		query: postsQuery,
-		tags: ["post"],
-		qParams: { slug: params.slug },
-	});
+	let otherPosts;
 
-	// Filter out the current post from the list of all posts
-	const otherPosts =
-		allPosts && Array.isArray(allPosts)
-			? allPosts.filter((post) => post.slug?.current !== params.slug)
-			: [];
+	// Conditionally fetch other posts only if current post is fetched
+	if (currentPost) {
+		const allPosts = await sanityFetch<PostsPayload[]>({
+			query: postsQuery,
+			tags: ["post"],
+		});
+
+		otherPosts = allPosts.filter((post) => post.slug?.current !== params.slug);
+	}
 
 	return (
 		<>
 			<SlugPage data={currentPost} />
-			<Suspense fallback={<div>Loading more posts...</div>}>
-				<PostsList post={otherPosts} />
-			</Suspense>
+			{currentPost && otherPosts && (
+				<div>
+					<PostsList post={otherPosts} />
+				</div>
+			)}
 		</>
 	);
 }
