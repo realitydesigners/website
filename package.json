@@ -32,7 +32,7 @@
     "@react-email/components": "^0.0.12",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.92.7",
-    "@react-three/fiber": "^8.15.12",
+    "@react-three/fiber": "^8.15.13",
     "@react-three/postprocessing": "^2.15.11",
     "@sanity/demo": "^1.0.2",
     "@sanity/icons": "^2.8.0",
