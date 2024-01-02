@@ -10,6 +10,7 @@ const EmailForm = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		setSubmissionStatus("submitting"); // Set the state to 'submitting' as soon as the form is submitted
 		const email = event.target.email.value;
 		const name = event.target.name.value;
 
@@ -42,8 +43,12 @@ const EmailForm = () => {
 
 	return (
 		<div className=" w-full  p-6  border-gray-600 border rounded-lg ">
-			{submissionStatus === "success" ? (
+			{submissionStatus === "submitting" ? (
+				<FeedbackMessage message="Sending..." />
+			) : submissionStatus === "success" ? (
 				<FeedbackMessage message="Thank you for subscribing!" />
+			) : submissionStatus === "error" ? (
+				<FeedbackMessage message="Error submitting the form. Please try again." />
 			) : (
 				<form
 					onSubmit={handleSubmit}
@@ -79,15 +84,6 @@ const EmailForm = () => {
 						Send
 					</button>
 				</form>
-			)}
-			{(submissionStatus === "submitting" || submissionStatus === "error") && (
-				<FeedbackMessage
-					message={
-						submissionStatus === "submitting"
-							? "Sending..."
-							: "Error submitting the form. Please try again."
-					}
-				/>
 			)}
 		</div>
 	);
