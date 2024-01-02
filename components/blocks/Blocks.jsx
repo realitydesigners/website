@@ -67,7 +67,7 @@ const Blocks = ({ block }) => {
 			case "imageCanvasBlock":
 				return (
 					<div>
-						<ImageCanvasBlock block={block} />
+						<ImageCanvasBlock block={{ ...block, className: layout }} />
 					</div>
 				);
 			default:

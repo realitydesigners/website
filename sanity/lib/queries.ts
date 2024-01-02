@@ -96,7 +96,7 @@ export const postsBySlugQuery = groq`
         team->,
 
         _type == "imageCanvasBlock" => {
-            layout, 
+            layout,
             image->,
             team->, 
             alt,
