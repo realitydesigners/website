@@ -37,16 +37,4 @@ export default defineType({
 			],
 		}),
 	],
-
-	preview: {
-		select: {
-			title: "quote",
-		},
-		prepare({ title }) {
-			return {
-				subtitle: "Page",
-				title: title,
-			};
-		},
-	},
 });

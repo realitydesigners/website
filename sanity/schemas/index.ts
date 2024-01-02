@@ -7,3 +7,4 @@ export { default as video } from "@/sanity/schemas/video";
 export { default as audio } from "@/sanity/schemas/audio";
 export { default as model } from "@/sanity/schemas/model";
 export { default as library } from "@/sanity/schemas/library";
+export { default as glossary } from "@/sanity/schemas/glossary";

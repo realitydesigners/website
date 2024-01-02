@@ -14,6 +14,7 @@ import { apiVersion, dataset, projectId, studioUrl } from "@/sanity/lib/api";
 import {
 	audio,
 	category,
+	glossary,
 	img,
 	library,
 	model,
@@ -50,6 +51,7 @@ export default defineConfig({
 			category,
 			library,
 			model,
+			glossary,
 			headingBlock,
 			headingSplineBlock,
 			contentBlock,

@@ -121,7 +121,7 @@ export default {
 								list: [
 									{ title: "Image | Team Name Below", value: "image-standard" },
 									{
-										title: "Image | Team Name Below",
+										title: "Image | Team Name Below Dark",
 										value: "image-standard-dark",
 									},
 									{ title: "Image | Team Inset", value: "image-inset" },
@@ -139,6 +139,7 @@ export default {
 							const { title, imageUrl, className } = selection;
 							const classNameTitles = {
 								"image-standard": "Image | Team Name Below",
+								"image-standard-dark": "Image | Team Name Below Dark",
 								"image-inset": "Image | Team Inset",
 							};
 							const classNameTitle =
