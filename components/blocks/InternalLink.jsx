@@ -113,12 +113,15 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 		: "Date not available";
 
 	return (
-		<div id="popup" className="flex flex-col my-5 items-center justify-center">
-			<div className="w-full flex justify-center relative  h-[auto]  overflow-auto p-1 bg-gray-300 shadow-lg rounded-lg grid grid-cols-1 ">
+		<div
+			id="popup"
+			className="flex flex-col my-5 items-center h-auto w-full justify-center"
+		>
+			<div className="w-full flex justify-center relative  h-auto   p-1 bg-gray-300 shadow-lg rounded-lg grid grid-cols-1 ">
 				{firstBlock && (
 					<>
 						{firstBlock.image && (
-							<div className="relative flex  h-full bg-gray-200/50 p-1 rounded-lg    w-full  justify-between ">
+							<div className=" top-2 flex  h-auto bg-gray-200/50 p-1 rounded-lg    w-full  justify-between ">
 								<SanityImage
 									image={firstBlock.image}
 									width={500}
@@ -148,7 +151,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 							</div>
 						)}
 
-						<div>
+						<div className="w-full h-full  ">
 							<p
 								className={`${cairo.className} text-black leading-7 p-4 text-xl mb-4`}
 							>
@@ -174,7 +177,7 @@ export const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 
 const LoadingIndicator = () => (
 	<div className="flex my-4 items-center justify-center">
-		<div className="w-full max-w-3xl h-[66vh] lg:h-[33vh]  overflow-auto flex justify-center items-center p-4 bg-gray-300 shadow-lg rounded-lg">
+		<div className="w-full max-w-3xl h-auto flex justify-center items-center p-4 bg-gray-300 shadow-lg rounded-lg">
 			{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
 			<svg
 				width="100"
