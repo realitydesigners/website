@@ -109,9 +109,19 @@ export const DarkTemplate = {
 				/>
 			);
 		},
+		videoRef: ({ value }) => {
+			const { videoTitle, videoFileUrl, image, className } = value.videoRef;
+			return (
+				<VideoRefBlock
+					videoTitle={videoTitle}
+					videoFileUrl={videoFileUrl}
+					image={image?.asset?.url}
+					className={className}
+				/>
+			);
+		},
 		iframe: iFrame,
 		articleRef: ArticleRefBlock,
-		videoRef: VideoRefBlock,
 		spline: SplineRefBlock,
 		imageRef: ImageRefBlock,
 		audioRef: AudioRefBlock,
@@ -200,9 +210,19 @@ export const LightTemplate = {
 				/>
 			);
 		},
+		videoRef: ({ value }) => {
+			const { videoTitle, videoFileUrl, image, className } = value.videoRef;
+			return (
+				<VideoRefBlock
+					videoTitle={videoTitle}
+					videoFileUrl={videoFileUrl}
+					image={image?.asset?.url}
+					className={className}
+				/>
+			);
+		},
 		iframe: iFrame,
 		articleRef: ArticleRefBlock,
-		videoRef: VideoRefBlock,
 		spline: SplineRefBlock,
 		imageRef: ImageRefBlock,
 		audioRef: AudioRefBlock,

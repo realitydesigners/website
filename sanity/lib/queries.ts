@@ -119,6 +119,7 @@ export const postsBySlugQuery = groq`
             },
 
             "videoRef": {
+              ...,
                 "videoTitle": video->title,
                 "videoFileUrl": video->video.asset->url,
                 "videoImage": video->image.asset->url,

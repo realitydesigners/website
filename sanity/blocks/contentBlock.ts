@@ -200,8 +200,8 @@ export default {
 						prepare(selection) {
 							const { title, imageUrl, className } = selection;
 							const classNameTitles = {
-								"card-1": "Video | Dark ",
-								"card-2": "Card 2",
+								light: "Video | Light",
+								dark: "Video | Dark",
 								// Add other class mappings as needed
 							};
 							const classNameTitle =
@@ -228,8 +228,8 @@ export default {
 							type: "string",
 							options: {
 								list: [
-									{ title: "Video | Dark ", value: "card-1" },
-									{ title: "Card 2", value: "card-2" },
+									{ title: "Video | Light ", value: "light" },
+									{ title: "Video | Dark", value: "dark" },
 									// Add more class options if needed
 								],
 							},

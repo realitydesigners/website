@@ -1,59 +1,59 @@
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac, staatliches } from "@/fonts";
 
-const VideoRefWrapper = ({ value }) => {
-	const { videoRef, className, image } = value;
-
-	if (!videoRef) {
-		return <p>Video file not found.</p>;
-	}
-
-	const videoFileUrl = videoRef?.videoFileUrl;
-	const videoTitle = videoRef?.videoTitle;
-	const videoThumbnail = videoRef?.image?.asset?.url;
-
+const VideoRefBlock = ({ videoTitle, videoFileUrl, image, className }) => {
 	if (!videoFileUrl) {
 		return <p>Video URL is not available.</p>;
 	}
 
 	switch (className) {
-		case "card-1":
+		case "light":
 			return (
-				<div className="flex justify-center w-full mb-6">
-					<div className=" w-full lg:w-3/4 ">
-						{/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
+				<div className="flex p-2  justify-center w-full mb-6">
+					<div className=" w-full bg-gray-300 p-2 pb-4 rounded-[.7em]  items-end flex flex-col lg:w-3/4 shadow-lg ">
+						<span
+							className={`${monomaniac.className} pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full mb-2`}
+						>
+							VIDEO
+						</span>
 						<video
 							controls
-							poster={videoThumbnail}
+							poster={image}
 							preload="true"
-							className="w-full h-auto "
+							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
 						>
 							<source src={videoFileUrl} type="video/mp4" />
+							<track src="captions.vtt" kind="captions" label="English" />
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${staatliches.className} ml-2 uppercase text-4xl text-center tracking-wide pt-4 font-mono text-black font-bold`}
+							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4 font-mono text-black`}
 						>
 							{videoTitle}
 						</p>
 					</div>
 				</div>
 			);
-		case "card-2":
+		case "dark":
 			return (
-				<div className="flex justify-center w-full mb-6">
-					<div className=" w-full lg:w-3/4 ">
-						{/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
+				<div className="flex p-2  justify-center w-full mb-6">
+					<div className=" w-full bg-[#111] p-2 pb-4 rounded-[.7em]  items-end flex flex-col lg:w-3/4 shadow-lg ">
+						<span
+							className={`${monomaniac.className} pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full mb-2`}
+						>
+							VIDEO
+						</span>
 						<video
 							controls
-							poster={videoThumbnail}
+							poster={image}
 							preload="true"
-							className="w-full h-auto "
+							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
 						>
 							<source src={videoFileUrl} type="video/mp4" />
+							<track src="captions.vtt" kind="captions" label="English" />
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${staatliches.className} ml-2 uppercase text-4xl text-center tracking-wide pt-4 font-mono text-gray-200 font-bold`}
+							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4 font-mono text-gray-200`}
 						>
 							{videoTitle}
 						</p>
@@ -62,19 +62,25 @@ const VideoRefWrapper = ({ value }) => {
 			);
 		default:
 			return (
-				<div className="flex justify-center w-full mb-6">
-					<div className=" w-full lg:w-3/4 ">
-						{/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
+				<div className="flex p-2  justify-center w-full mb-6">
+					<div className=" w-full bg-gray-300 p-2 pb-4 rounded-[.7em]  items-end flex flex-col lg:w-3/4 shadow-lg ">
+						<span
+							className={`${monomaniac.className} pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full mb-2`}
+						>
+							VIDEO
+						</span>
 						<video
 							controls
-							poster={videoThumbnail}
-							className="w-full h-auto rounded-x bg-black shadow-xl "
+							poster={image}
+							preload="true"
+							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
 						>
 							<source src={videoFileUrl} type="video/mp4" />
+							<track src="captions.vtt" kind="captions" label="English" />
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${staatliches.className} ml-2 uppercase text-4xl text-center tracking-wide pt-4 font-mono text-black font-bold`}
+							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4 font-mono text-black`}
 						>
 							{videoTitle}
 						</p>
@@ -84,4 +90,4 @@ const VideoRefWrapper = ({ value }) => {
 	}
 };
 
-export default VideoRefWrapper;
+export default VideoRefBlock;

@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { staatliches } from "@/fonts";
+import { monomaniac, staatliches } from "@/fonts";
 import Link from "next/link";
 
 const PostsCardLight = ({ slug, heading, image }) => {
@@ -22,13 +22,13 @@ const PostsCardLight = ({ slug, heading, image }) => {
 
 				<div className="relative flex w-3/4 flex-col pl-4">
 					<p
-						className={`${staatliches.className}  pt-2 mb-2 font-rajdhani text-xs uppercase leading-none tracking-wide text-black`}
+						className={`${monomaniac.className}  pt-2 mb-2 font-rajdhani text-xs uppercase leading-none tracking-wide text-black`}
 					>
 						Related Post
 					</p>
 
 					<Link
-						className={`${staatliches.className} duration-3 font-rajdhani leading-none text-2xl md:text-3xl tracking-wide text-black transition-colors group-hover:text-gray-800 group-hover:underline`}
+						className={`${monomaniac.className} duration-3 font-rajdhani leading-none text-2xl md:text-3xl tracking-wide text-black transition-colors group-hover:text-gray-800 group-hover:underline`}
 						href={`/posts/${slug}`}
 					>
 						{heading}
