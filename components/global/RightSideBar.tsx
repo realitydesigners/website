@@ -81,7 +81,7 @@ const RightSideBar: FC<PostsListProps> = ({ post }) => {
 	}
 
 	return (
-		<div className="lg:w-1/4 gap-4 flex flex-col">
+		<div className="lg:w-1/4 w-full gap-4 flex flex-col">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (

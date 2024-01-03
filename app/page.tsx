@@ -20,7 +20,7 @@ export default async function IndexPage() {
 	const mainPostData = posts[0];
 	const sidePostData = posts.slice(1, 3);
 	const rightPostData = posts.slice(4, 9);
-	const postsListData = posts.slice(13, 20);
+	const postsListData = posts.slice(13, 30);
 	const topPostData = posts.slice(9, 13);
 
 	return (
