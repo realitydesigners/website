@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const PostsCardLight = ({ slug, heading, image }) => {
 	return (
-		<div className="flex w-full  items-center justify-center p-4 mb-6 lg:p-16">
+		<div className="flex w-full  items-center justify-center p-4 mb-2 lg:p-16">
 			<div className=" bg-gray-300 w-full rounded-lg md:w-1/2 group flex h-auto flex-row p-3 shadow-lg transition-shadow duration-300 hover:shadow-xl lg:w-3/5">
 				{image && (
 					<div className="relative w-1/3">
