@@ -48,9 +48,9 @@ export default {
 					],
 					marks: {
 						annotations: [
-							{
-								name: "internalLink",
+							defineField({
 								type: "object",
+								name: "internalLink",
 								title: "Internal link",
 								icon: UserIcon,
 								fields: [
@@ -60,11 +60,45 @@ export default {
 										title: "Reference",
 										to: [{ type: "posts" }],
 									},
+									{
+										name: "theme",
+										type: "string",
+										title: "Theme",
+										options: {
+											list: [
+												{ title: "Internal Link | Light", value: "light" },
+												{ title: "Internal Link | Dark", value: "dark" },
+											],
+										},
+									},
 								],
-							},
+								preview: {
+									select: {
+										title: "reference.title", // Adjust the reference path according to your schema
+										media: "reference.mainImage", // Adjust the reference path according to your schema
+										theme: "theme",
+									},
+									prepare(selection) {
+										const { title, media, theme } = selection;
+										const themeTitles = {
+											light: "Internal Link | Light",
+											dark: "Internal Link | Dark",
+										};
+										const themeTitle =
+											themeTitles[theme] || "No theme selected";
+
+										return {
+											title: title || "Untitled",
+											subtitle: themeTitle,
+											media: media,
+										};
+									},
+								},
+							}),
 						],
 					},
 				},
+
 				defineField({
 					type: "object",
 					name: "postsRef",

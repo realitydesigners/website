@@ -5,6 +5,36 @@ import { cairo, monomaniac, staatliches } from "@/fonts";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
+const getThemeClasses = (theme) => {
+	switch (theme) {
+		case "light":
+			return {
+				textColor: "text-black",
+				backgroundColor: "bg-gray-300",
+				topBackgroundColor: "bg-gray-200/50",
+				buttonTextColor: "text-gray-200",
+				buttonBackgroundColor: "bg-black hover:bg-black/80",
+			};
+		case "dark":
+			return {
+				textColor: "text-gray-200",
+				backgroundColor: "bg-[#111]",
+				topBackgroundColor: "bg-[#222]",
+				buttonTextColor: "text-black",
+				buttonBackgroundColor: "bg-gray-200 hover:bg-gray-200/80",
+			};
+
+		default:
+			return {
+				textColor: "text-black",
+				backgroundColor: "bg-gray-300",
+				topBackgroundColor: "bg-gray-200/50",
+				buttonTextColor: "text-gray-200",
+				buttonBackgroundColor: "bg-black hover:bg-black/80",
+			};
+	}
+};
+
 const formatDate = (dateString) => {
 	return dateString
 		? new Date(dateString).toLocaleDateString("en-US", {
@@ -25,7 +55,8 @@ const DialogButton = ({ onClose }) => (
 	</button>
 );
 
-const TeamLink = ({ team }) => {
+const TeamLink = ({ team, theme }) => {
+	const themeClasses = getThemeClasses(theme);
 	if (!team) return null;
 
 	return (
@@ -33,7 +64,7 @@ const TeamLink = ({ team }) => {
 			href={`/team/${team.slug.current}`}
 			className={`${monomaniac.className}`}
 		>
-			<div className="flex items-center p-2 w-auto">
+			<div className={`flex items-center p-2 w-auto ${themeClasses.textColor}`}>
 				{team.image && (
 					<SanityImage
 						image={team.image}
@@ -44,7 +75,7 @@ const TeamLink = ({ team }) => {
 						classesWrapper="h-[30px] max-w-[30px] object-cover rounded-[1em]"
 					/>
 				)}
-				<span className="ml-2 uppercase text-black tracking-wide font-mono text-sm">
+				<span className="ml-2 uppercase tracking-wide font-mono text-sm">
 					{team.name || "no title"}
 				</span>
 			</div>
@@ -52,18 +83,23 @@ const TeamLink = ({ team }) => {
 	);
 };
 
-const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
+const ArticlePreviewDialog = ({ isOpen, onClose, postData, theme }) => {
 	if (!isOpen || !postData) return null;
 
+	const themeClasses = getThemeClasses(theme);
 	const { block = [] } = postData;
 	const [firstBlock] = block;
 
 	return (
 		<div id="popup" className="my-5 items-center w-full justify-center">
-			<div className="w-full justify-center p-2 bg-gray-300 shadow-lg rounded-[.7em] grid grid-cols-1">
+			<div
+				className={`w-full justify-center p-2 shadow-lg rounded-[.7em] grid grid-cols-1  ${themeClasses.backgroundColor}`}
+			>
 				{firstBlock && (
 					<>
-						<div className="flex bg-gray-200/50 p-1 rounded-[.6em]  h-auto w-full justify-between">
+						<div
+							className={`flex  p-1 rounded-[.6em] h-auto w-full justify-between  ${themeClasses.topBackgroundColor} `}
+						>
 							<SanityImage
 								image={firstBlock.image}
 								width={200}
@@ -74,30 +110,30 @@ const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 							/>
 							<Link
 								href={`/posts/${postData.slug.current}`}
-								className={`${monomaniac.className} pl-2 text-black flex items-center leading-[1em] font-bold text-sm lg:text-md w-1/2`}
+								className={`${monomaniac.className} ${themeClasses.textColor} pl-2 flex items-center leading-[1em] font-bold text-sm lg:text-md w-1/2`}
 							>
 								{firstBlock.heading || "no title"}
 							</Link>
 							<span
-								className={`${monomaniac.className} w-auto pl-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] text-black uppercase tracking-widest`}
+								className={`${monomaniac.className} ${themeClasses.textColor} w-auto pl-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] uppercase tracking-widest`}
 							>
 								{formatDate(firstBlock.publicationDate)}
 							</span>
-							<DialogButton onClose={onClose} />
+							<DialogButton onClose={onClose} theme={theme} />
 						</div>
 
 						<div className="w-full h-auto flex flex-col relative">
 							<h4
-								className={`${cairo.className} text-black leading-7 p-4 text-xl `}
+								className={`${cairo.className} ${themeClasses.textColor} leading-7 p-4 text-xl`}
 							>
 								{firstBlock.subheading || "no title"}
 							</h4>
 
-							<div className="flex relative justify-between items-center ">
-								<TeamLink team={firstBlock?.team} />
+							<div className="flex relative justify-between items-center">
+								<TeamLink team={firstBlock?.team} theme={theme} />
 								<Link
 									href={`/posts/${postData.slug.current}`}
-									className={`${monomaniac.className} right-2 absolute bottom-1 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 bg-black text-white rounded hover:bg-black/75 transition-colors`}
+									className={`${monomaniac.className} ${themeClasses.buttonTextColor} ${themeClasses.buttonBackgroundColor} right-2 absolute bottom-1 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 hover:transition-colors`}
 								>
 									Read -&gt;
 								</Link>
@@ -110,44 +146,11 @@ const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 	);
 };
 
-const LoadingIndicator = () => (
-	<div className="flex my-4 items-center justify-center">
-		<div className="w-full h-auto flex justify-center items-center p-4 bg-gray-300 shadow-lg rounded-lg">
-			{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
-			<svg
-				width="100"
-				height="100"
-				viewBox="0 0 50 50"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<circle
-					cx="25"
-					cy="25"
-					r="20"
-					stroke="#888888"
-					strokeWidth="5"
-					fill="none"
-					strokeDasharray="31.415, 31.415"
-					strokeDashoffset="0"
-				>
-					<animateTransform
-						attributeName="transform"
-						type="rotate"
-						from="0 25 25"
-						to="360 25 25"
-						dur="1s"
-						repeatCount="indefinite"
-					/>
-				</circle>
-			</svg>
-		</div>
-	</div>
-);
-
-const InternalLink = ({ slug, children }) => {
+const InternalLink = ({ slug, children, theme }) => {
 	const [isDialogOpen, setDialogOpen] = useState(false);
 	const [previewPostData, setPreviewPostData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const themeClasses = getThemeClasses(theme);
 
 	const openDialog = async (e) => {
 		e.preventDefault();
@@ -188,6 +191,7 @@ const InternalLink = ({ slug, children }) => {
 				isOpen={isDialogOpen}
 				onClose={() => setDialogOpen(false)}
 				postData={previewPostData}
+				theme={theme}
 			/>
 			{isDialogOpen && isLoading && <LoadingIndicator />}
 		</>
@@ -195,3 +199,37 @@ const InternalLink = ({ slug, children }) => {
 };
 
 export default InternalLink;
+
+const LoadingIndicator = () => (
+	<div className="flex my-4 items-center justify-center">
+		<div className="w-full h-auto flex justify-center items-center p-4 bg-gray-300 shadow-lg rounded-lg">
+			{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
+			<svg
+				width="100"
+				height="100"
+				viewBox="0 0 50 50"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<circle
+					cx="25"
+					cy="25"
+					r="20"
+					stroke="#888888"
+					strokeWidth="5"
+					fill="none"
+					strokeDasharray="31.415, 31.415"
+					strokeDashoffset="0"
+				>
+					<animateTransform
+						attributeName="transform"
+						type="rotate"
+						from="0 25 25"
+						to="360 25 25"
+						dur="1s"
+						repeatCount="indefinite"
+					/>
+				</circle>
+			</svg>
+		</div>
+	</div>
+);

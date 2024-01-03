@@ -181,8 +181,12 @@ export const LightTemplate = {
 
 	marks: {
 		internalLink: ({ value, children }) => {
-			const { slug = {} } = value;
-			return <InternalLink slug={slug?.current}>{children}</InternalLink>;
+			const { slug = {}, theme } = value;
+			return (
+				<InternalLink slug={slug?.current} theme={theme}>
+					{children}
+				</InternalLink>
+			);
 		},
 	},
 
