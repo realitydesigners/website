@@ -16,8 +16,8 @@ const formatDate = (dateString) => {
 };
 
 const DialogButton = ({ onClose }) => (
-	// biome-ignore lint/a11y/useButtonType: <explanation>
 	<button
+		type="button"
 		onClick={onClose}
 		className={`${cairo.className} px-2 py-2 text-gray-400 text-2xl font-bold uppercase rounded hover:bg-gray-300 transition-colors`}
 	>
@@ -33,7 +33,7 @@ const TeamLink = ({ team }) => {
 			href={`/team/${team.slug.current}`}
 			className={`${monomaniac.className}`}
 		>
-			<div className="flex items-center p-2 w-full">
+			<div className="flex items-center p-2 w-auto">
 				{team.image && (
 					<SanityImage
 						image={team.image}
@@ -87,17 +87,17 @@ const ArticlePreviewDialog = ({ isOpen, onClose, postData }) => {
 						</div>
 
 						<div className="w-full h-auto flex flex-col relative">
-							<p
+							<h4
 								className={`${cairo.className} text-black leading-7 p-4 text-xl `}
 							>
 								{firstBlock.subheading || "no title"}
-							</p>
+							</h4>
 
-							<TeamLink team={firstBlock?.team} />
-							<div className="flex relative justify-between items-center col-span-1 lg:col-span-2">
+							<div className="flex relative justify-between items-center ">
+								<TeamLink team={firstBlock?.team} />
 								<Link
 									href={`/posts/${postData.slug.current}`}
-									className={`${monomaniac.className} right-2 absolute bottom-2 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 bg-black text-white rounded hover:bg-black/75 transition-colors`}
+									className={`${monomaniac.className} right-2 absolute bottom-1 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 bg-black text-white rounded hover:bg-black/75 transition-colors`}
 								>
 									Read -&gt;
 								</Link>
