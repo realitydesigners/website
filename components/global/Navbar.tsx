@@ -115,7 +115,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				id="navbar"
 				className="flex  bg-gray-200  shadow-lg items-center h-12 p-2 justify-between fixed w-full z-50 "
 			>
-				<div className="pl-6 w-full justify-center relative flex items-center z-10">
+				<div className="pl-[2.3em] w-full justify-center relative flex items-center z-10">
 					<Link
 						href="/"
 						className={`${monomaniac.className} text-black items-center pt-2 pb-2  flex flex-row`}

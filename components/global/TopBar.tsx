@@ -24,14 +24,14 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 	if (!image) return null;
 
 	return (
-		<div className="flex">
+		<div className="flex w-full lg:w-auto h-full mb-3 lg:m-0 lg:h-[4em] m-0">
 			<SanityImage
 				width={500}
 				height={500}
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="h-[6em] w-[5em]  object-cover object-contain rounded-[.7em]"
+				classesWrapper="h-[8em] w-auto  h-full  lg:h-[4em] lg:w-[4em] object-cover rounded-[.7em] m-0"
 			/>
 		</div>
 	);
@@ -40,48 +40,33 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, subheading, publicationDate } = block;
 
-	const formattedDate = publicationDate
-		? new Date(publicationDate).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "long",
-				day: "numeric",
-		  })
-		: "Date not available";
-
 	const renderHeading = () => {
 		return heading || "no title";
 	};
 
 	return (
-		<div className="h-auto w-full flex flex-row border border-gray-300 p-2 rounded-[1em]">
-			<PostImage image={image} heading={heading} />
-			<div className="pl-1 pr-2 w-full flex flex-col">
-				<span
-					className={`${staatliches.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
-				>
-					{formattedDate}
-				</span>
-				<div>
-					<Link href={`/posts/${slug?.current}`}>
-						<h2
-							className={`${staatliches.className} pl-2 text-2xl uppercase leading-none text-black cursor-pointer`}
-						>
-							{renderHeading()}
-						</h2>
-					</Link>
-				</div>
+		<div className=" w-full flex flex-col-reverse lg:flex-row border border-gray-300 p-2 rounded-[1em] lg:items-center ">
+			<div className="w-full lg:pl-1 lg:pr-2">
+				<Link href={`/posts/${slug?.current}`}>
+					<h2
+						className={`${staatliches.className} pl-2 text-xl uppercase leading-none text-black cursor-pointer`}
+					>
+						{renderHeading()}
+					</h2>
+				</Link>
 			</div>
+			<PostImage image={image} heading={heading} />
 		</div>
 	);
 };
 
-const RightSideBar: FC<PostsListProps> = ({ post }) => {
+const TopBar: FC<PostsListProps> = ({ post }) => {
 	if (!post) {
 		return <div>No posts available</div>;
 	}
 
 	return (
-		<div className="lg:w-1/4 gap-4 flex flex-col">
+		<div className="w-full gap-2 lg:gap-4 grid grid-cols-2 lg:grid-cols-4 mb-4">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -101,4 +86,4 @@ const RightSideBar: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-export default RightSideBar;
+export default TopBar;

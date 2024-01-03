@@ -70,7 +70,7 @@ export default async function PageSlugRoute({ params }) {
 		<>
 			<SlugPage data={currentPost} />
 			{currentPost && otherPosts && (
-				<div>
+				<div className="w-full mb-6 flex h-auto flex-cols px-2 lg:px-6">
 					<PostsList post={otherPosts} />
 				</div>
 			)}
