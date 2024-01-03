@@ -1,5 +1,5 @@
 import InternalLink from "@/components/blocks/InternalLink";
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac, staatliches } from "@/fonts";
 import React from "react";
 
 import {

@@ -1,4 +1,4 @@
-import { cairo, monomaniac, staatliches } from "@/fonts";
+import { monomaniac } from "@/fonts";
 
 const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 	if (!videoFileUrl) {
@@ -19,7 +19,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							controls
 							poster={videoImage}
 							preload="false"
-							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
+							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl bg-black/50 "
 						>
 							<source src={videoFileUrl} type="video/mp4" />
 							<track src="captions.vtt" kind="captions" label="English" />
@@ -45,8 +45,8 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 						<video
 							controls
 							poster={videoImage}
-							preload="true"
-							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
+							preload="false"
+							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl bg-{#111}"
 						>
 							<source src={videoFileUrl} type="video/mp4" />
 							<track src="captions.vtt" kind="captions" label="English" />
@@ -71,9 +71,9 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 						</span>
 						<video
 							controls
-							poster={image}
-							preload="true"
-							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
+							poster={videoImage}
+							preload="false"
+							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl bg-black/50 "
 						>
 							<source src={videoFileUrl} type="video/mp4" />
 							<track src="captions.vtt" kind="captions" label="English" />
