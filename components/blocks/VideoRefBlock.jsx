@@ -1,6 +1,6 @@
 import { cairo, monomaniac, staatliches } from "@/fonts";
 
-const VideoRefBlock = ({ videoTitle, videoFileUrl, image, className }) => {
+const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 	if (!videoFileUrl) {
 		return <p>Video URL is not available.</p>;
 	}
@@ -17,8 +17,8 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, image, className }) => {
 						</span>
 						<video
 							controls
-							poster={image}
-							preload="true"
+							poster={videoImage}
+							preload="false"
 							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
 						>
 							<source src={videoFileUrl} type="video/mp4" />
@@ -44,7 +44,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, image, className }) => {
 						</span>
 						<video
 							controls
-							poster={image}
+							poster={videoImage}
 							preload="true"
 							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl "
 						>

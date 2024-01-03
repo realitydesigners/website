@@ -110,12 +110,14 @@ export const DarkTemplate = {
 			);
 		},
 		videoRef: ({ value }) => {
-			const { videoTitle, videoFileUrl, image, className } = value.videoRef;
+			const { videoTitle, videoFileUrl, videoImage, className } =
+				value.videoRef;
+
 			return (
 				<VideoRefBlock
 					videoTitle={videoTitle}
 					videoFileUrl={videoFileUrl}
-					image={image?.asset?.url}
+					image={videoImage}
 					className={className}
 				/>
 			);
@@ -211,12 +213,14 @@ export const LightTemplate = {
 			);
 		},
 		videoRef: ({ value }) => {
-			const { videoTitle, videoFileUrl, image, className } = value.videoRef;
+			const { videoTitle, videoFileUrl, videoImage, className } =
+				value.videoRef;
+
 			return (
 				<VideoRefBlock
 					videoTitle={videoTitle}
 					videoFileUrl={videoFileUrl}
-					image={image?.asset?.url}
+					image={videoImage}
 					className={className}
 				/>
 			);

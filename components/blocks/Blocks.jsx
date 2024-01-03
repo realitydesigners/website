@@ -15,6 +15,7 @@ import ImageCanvasBlock from "../blockstyles/ImageCanvasBlock";
 const Blocks = ({ block }) => {
 	const { _type, layout } = block;
 
+	console.log(block);
 	let template;
 	let classes;
 	switch (layout) {
