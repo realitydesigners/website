@@ -1,4 +1,4 @@
-import { NewPost } from "@/components/email/new-post";
+import { NewPost } from "@/app/api/email/new-post";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);

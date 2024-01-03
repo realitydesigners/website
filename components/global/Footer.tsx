@@ -1,5 +1,5 @@
 "use client";
-import NewsletterTwo from "@/components/email/NewsletterTwo";
+import Newsletter from "@/app/api/email/Newsletter";
 import { staatliches } from "@/fonts";
 import Link from "next/link";
 
@@ -26,7 +26,7 @@ export default function Footer() {
 					</li>
 				</ul>
 			</div>
-			<NewsletterTwo />
+			<Newsletter />
 			<div className="w-full p-4  border-gray-600 border rounded-lg  ">
 				<div className="w-full h-full flex justify-center items-center p-4">
 					<p

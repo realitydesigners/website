@@ -1,5 +1,4 @@
 "use client";
-import Newsletter from "@/components/email/Newsletter";
 import { cairo, staatliches } from "@/fonts";
 
 export default function StoryPage() {
