@@ -28,7 +28,7 @@ const PostsCardLight = ({ slug, heading, image }) => {
 					</p>
 
 					<Link
-						className={`${staatliches.className} duration-3 font-rajdhani leading-none text-2xl md:text-2xl tracking-wide text-black transition-colors group-hover:text-gray-800 group-hover:underline`}
+						className={`${staatliches.className} duration-3 font-rajdhani leading-none text-2xl md:text-3xl tracking-wide text-black transition-colors group-hover:text-gray-800 group-hover:underline`}
 						href={`/posts/${slug}`}
 					>
 						{heading}
@@ -39,18 +39,10 @@ const PostsCardLight = ({ slug, heading, image }) => {
 	);
 };
 
-const PostsRefWrapper = ({ value }) => {
-	const { postsRef } = value;
+const PostsRefBlock = ({ slug, heading, image }) => {
+	if (!slug || !heading || !image) return null;
 
-	if (!postsRef || !postsRef.postsHeading || !postsRef.postsSlug) return null;
-
-	return (
-		<PostsCardLight
-			heading={postsRef.postsHeading}
-			slug={postsRef.postsSlug}
-			image={postsRef.postsImage}
-		/>
-	);
+	return <PostsCardLight slug={slug} heading={heading} image={image} />;
 };
 
-export default PostsRefWrapper;
+export default PostsRefBlock;

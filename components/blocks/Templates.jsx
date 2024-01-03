@@ -28,17 +28,6 @@ const iFrame = ({ value }) => {
 	);
 };
 
-const withWrapper = (template, wrapperClass) => {
-	return Object.keys(template).reduce((wrappedTemplate, key) => {
-		wrappedTemplate[key] = ({ children, ...rest }) => (
-			<div className={wrapperClass}>
-				{React.createElement(template[key], { children, ...rest })}
-			</div>
-		);
-		return wrappedTemplate;
-	}, {});
-};
-
 export const DarkTemplate = {
 	block: {
 		normal: ({ children }) => (
@@ -99,16 +88,28 @@ export const DarkTemplate = {
 			</div>
 		),
 	},
-
 	marks: {
 		internalLink: ({ value, children }) => {
-			const { slug = {} } = value;
-			return <InternalLink slug={slug?.current}>{children}</InternalLink>;
+			const { slug = {}, theme } = value;
+			return (
+				<InternalLink slug={slug?.current} theme={theme}>
+					{children}
+				</InternalLink>
+			);
 		},
 	},
 	types: {
+		postsRef: ({ value }) => {
+			const { postsHeading, postsSlug, postsImage } = value.postsRef;
+			return (
+				<PostsRefBlock
+					slug={postsSlug}
+					heading={postsHeading}
+					image={postsImage}
+				/>
+			);
+		},
 		iframe: iFrame,
-		postsRef: PostsRefBlock,
 		articleRef: ArticleRefBlock,
 		videoRef: VideoRefBlock,
 		spline: SplineRefBlock,
@@ -178,7 +179,6 @@ export const LightTemplate = {
 			</div>
 		),
 	},
-
 	marks: {
 		internalLink: ({ value, children }) => {
 			const { slug = {}, theme } = value;
@@ -189,10 +189,18 @@ export const LightTemplate = {
 			);
 		},
 	},
-
 	types: {
+		postsRef: ({ value }) => {
+			const { postsHeading, postsSlug, postsImage } = value.postsRef;
+			return (
+				<PostsRefBlock
+					slug={postsSlug}
+					heading={postsHeading}
+					image={postsImage}
+				/>
+			);
+		},
 		iframe: iFrame,
-		postsRef: PostsRefBlock,
 		articleRef: ArticleRefBlock,
 		videoRef: VideoRefBlock,
 		spline: SplineRefBlock,
