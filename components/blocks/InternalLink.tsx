@@ -148,8 +148,6 @@ const ArticlePreviewDialog = ({
 	);
 };
 
-// ... (Other imports and components)
-
 const InternalLink: React.FC<{
 	slug: string;
 	theme: Theme;
