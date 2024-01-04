@@ -1,5 +1,5 @@
 import { SanityImage } from "@/components/global/Images";
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
 
 const QuoteCard = ({ quote, media, image, className }) => {
@@ -23,7 +23,7 @@ const QuoteCard = ({ quote, media, image, className }) => {
 								{/* Text Container */}
 								<div className="absolute inset-0 z-10 flex items-center justify-center">
 									<h4
-										className={`${staatliches.className} text-3xl sm:text-5xl lg:text-6xl p-4 text-center tracking-wide uppercase leading-none text-gray-200 flex items-center justify-center`}
+										className={`${monomaniac.className} text-3xl sm:text-5xl lg:text-6xl p-4 text-center tracking-wide uppercase leading-none text-gray-200 flex items-center justify-center`}
 									>
 										{quote}
 									</h4>
@@ -40,7 +40,7 @@ const QuoteCard = ({ quote, media, image, className }) => {
 					<div className="block md:w-4/5 lg:w-1/2 w-11/12 border bg-black rounded-2xl border-gray-600">
 						<div className="relative p-3 z-20">
 							<h4
-								className={`${staatliches.className} text-3xl text-center lg:text-4xl p-6 font-bold uppercase leading-none text-gray-200 flex items-center`}
+								className={`${monomaniac.className} text-3xl text-center lg:text-4xl p-6 font-bold uppercase leading-none text-gray-200 flex items-center`}
 							>
 								{quote}
 							</h4>

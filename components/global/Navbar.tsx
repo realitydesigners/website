@@ -1,5 +1,5 @@
 "use client";
-import { bebe, monomaniac, staatliches } from "@/fonts";
+import { bebe, monomaniac } from "@/fonts";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -210,7 +210,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 								{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 								<button className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black">
 									<span
-										className={`${staatliches.className}  whitespace-nowrap`}
+										className={`${monomaniac.className}  whitespace-nowrap`}
 									>
 										Sign-In
 									</span>

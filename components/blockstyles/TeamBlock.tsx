@@ -1,4 +1,4 @@
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +25,7 @@ const TeamBlock = ({ block }) => {
 							/>
 							<div className="ml-4 flex flex-col">
 								<p
-									className={`${staatliches.className}  text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1`}
+									className={`${monomaniac.className}  text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1`}
 								>
 									{block?.team.name}
 								</p>

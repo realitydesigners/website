@@ -1,5 +1,5 @@
 "use client";
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 
 export default function StoryPage() {
 	return (
@@ -14,7 +14,7 @@ export default function StoryPage() {
 			<div className="lg:w-1/2 w-11/12 pt-32 pb-20">
 				<div className={`${cairo.className} text-xl font-bold text-gray-400 `}>
 					<h1
-						className={`${staatliches.className} text-gray-200 text-6xl lg:text-7xl font-bold text-center mb-6`}
+						className={`${monomaniac.className} text-gray-200 text-6xl lg:text-7xl font-bold text-center mb-6`}
 					>
 						A NEW REALITY IS BEING DESIGNED
 					</h1>
@@ -120,7 +120,7 @@ export default function StoryPage() {
 					</p>
 				</div>
 				<h1
-					className={`${staatliches.className}  text-4xl font-bold text-center`}
+					className={`${monomaniac.className}  text-4xl font-bold text-center`}
 				>
 					WE ARE THE REALITY DESIGNERS.
 				</h1>

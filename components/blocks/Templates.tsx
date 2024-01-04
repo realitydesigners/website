@@ -1,4 +1,4 @@
-import { cairo, monomaniac, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import React from "react";
 
 import {
@@ -16,13 +16,13 @@ import {
 type Theme = "dark" | "light";
 
 const headingStyles: Record<Theme, string> = {
-	dark: `${staatliches.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
-	light: `${staatliches.className} my-3 w-10/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	dark: `${monomaniac.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	light: `${monomaniac.className} my-3 w-10/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 };
 
 const listStyles: Record<Theme, string> = {
-	dark: `${cairo.className} w-11/12 text-gray-300 leading-7 md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`,
-	light: `${cairo.className} w-11/12 text-black leading-7 md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`,
+	dark: `${cairo.className} w-11/12 text-gray-300 leading-7 md:w-3/4 lg:w-1/2 text-xl list-decimal list-inside space-y-6 mb-6`,
+	light: `${cairo.className} w-11/12 text-black leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
 };
 
 const normalTextStyles: Record<Theme, string> = {

@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
 
 const HeadingBlock = ({ block }) => {
@@ -37,7 +37,7 @@ const HeadingBlock = ({ block }) => {
 						<div className="w-11/12 flex items-center lg:hidden">
 							<div className="flex w-full">
 								<span
-									className={`${staatliches.className} text-black ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
+									className={`${monomaniac.className} text-black ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
 								>
 									PUBLISHED ON {formattedDate}
 								</span>
@@ -48,7 +48,7 @@ const HeadingBlock = ({ block }) => {
 										<span
 											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 											key={index}
-											className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold bg-black items-center justify-center p-1 pl-2 pr-2  tracking-widest text-gray-200 mr-1`}
+											className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold bg-black items-center justify-center p-1 pl-2 pr-2  tracking-widest text-gray-200 mr-1`}
 										>
 											{tag}
 										</span>
@@ -75,7 +75,7 @@ const HeadingBlock = ({ block }) => {
 								<div className="w-full hidden items-center lg:flex mb-6">
 									<div className="flex w-full">
 										<span
-											className={`${staatliches.className}  text-black font-mono w-auto text-xs tracking-widest `}
+											className={`${monomaniac.className}  text-black font-mono w-auto text-xs tracking-widest `}
 										>
 											PUBLISHED ON {formattedDate}
 										</span>
@@ -86,7 +86,7 @@ const HeadingBlock = ({ block }) => {
 												<span
 													// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 													key={index}
-													className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold p-1 pl-2 pr-2  bg-black items-center justify-center p-2 border tracking-wide text-gray-200 mr-1`}
+													className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold p-1 pl-2 pr-2  bg-black items-center justify-center p-2 border tracking-wide text-gray-200 mr-1`}
 												>
 													{tag}
 												</span>
@@ -96,7 +96,7 @@ const HeadingBlock = ({ block }) => {
 								</div>
 								{block.heading && (
 									<h1
-										className={`${staatliches.className} text-5xl text-black leading-tightest mb-4 lg:text-6xl `}
+										className={`${monomaniac.className} text-5xl text-black capitalize leading-tightest mb-4 lg:text-6xl `}
 									>
 										{block.heading}
 									</h1>
@@ -112,7 +112,7 @@ const HeadingBlock = ({ block }) => {
 									{block.team && (
 										<Link
 											href={`/team/${block.team.slug.current}`}
-											className={`${staatliches.className} `}
+											className={`${monomaniac.className} `}
 										>
 											<div className="flex items-center p-2 w-full">
 												{block.team?.image && (
@@ -168,7 +168,7 @@ const HeadingBlock = ({ block }) => {
 						<div className="w-11/12 flex items-center lg:hidden">
 							<div className="flex w-full">
 								<span
-									className={`${staatliches.className} text-gray-200 ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
+									className={`${monomaniac.className} text-gray-200 ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
 								>
 									PUBLISHED ON {formattedDate}
 								</span>
@@ -179,7 +179,7 @@ const HeadingBlock = ({ block }) => {
 										<span
 											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 											key={index}
-											className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2  tracking-widest text-black mr-1`}
+											className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2  tracking-widest text-black mr-1`}
 										>
 											{tag}
 										</span>
@@ -189,7 +189,7 @@ const HeadingBlock = ({ block }) => {
 						</div>
 						{block.heading && (
 							<h1
-								className={`${staatliches.className} text-5xl md:text-7xl p-4  text-gray-200 leading-tightest  lg:hidden `}
+								className={`${monomaniac.className} text-5xl md:text-7xl p-4  text-gray-200 leading-tightest  lg:hidden `}
 							>
 								{block.heading}
 							</h1>
@@ -213,7 +213,7 @@ const HeadingBlock = ({ block }) => {
 								<div className="w-full hidden items-center lg:flex mb-6">
 									<div className="flex w-full">
 										<span
-											className={`${staatliches.className}  text-gray-200 font-mono w-auto text-xs tracking-widest `}
+											className={`${monomaniac.className}  text-gray-200 font-mono w-auto text-xs tracking-widest `}
 										>
 											PUBLISHED ON {formattedDate}
 										</span>
@@ -224,7 +224,7 @@ const HeadingBlock = ({ block }) => {
 												<span
 													// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 													key={index}
-													className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold p-1 pl-2 pr-2  bg-gray-200 items-center justify-center p-2 border tracking-wide text-black mr-1`}
+													className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold p-1 pl-2 pr-2  bg-gray-200 items-center justify-center p-2 border tracking-wide text-black mr-1`}
 												>
 													{tag}
 												</span>
@@ -234,7 +234,7 @@ const HeadingBlock = ({ block }) => {
 								</div>
 								{block.heading && (
 									<h1
-										className={`${staatliches.className} text-5xl text-gray-200 leading-tightest mb-4 hidden lg:flex lg:text-6xl `}
+										className={`${monomaniac.className} text-5xl capitalize text-gray-200 leading-tightest mb-4 hidden lg:flex lg:text-6xl `}
 									>
 										{block.heading}
 									</h1>
@@ -250,7 +250,7 @@ const HeadingBlock = ({ block }) => {
 									{block.team && (
 										<Link
 											href={`/team/${block.team.slug.current}`}
-											className={`${staatliches.className} `}
+											className={`${monomaniac.className} `}
 										>
 											<div className="flex items-center p-2 w-full">
 												{block.team?.image && (

@@ -1,5 +1,5 @@
 import Blocks from "@/components/blocks/Blocks";
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import type { PostsPayload, VideoPayload } from "@/types";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 
@@ -31,7 +31,7 @@ const SlugPage: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 					</video>
 				)}
 				<p
-					className={`${staatliches.className}  uppercase text-4xl my-4 tracking-wide pt-4 text-gray-200 font-bold`}
+					className={`${monomaniac.className}  uppercase text-4xl my-4 tracking-wide pt-4 text-gray-200 font-bold`}
 				>
 					{title}
 				</p>

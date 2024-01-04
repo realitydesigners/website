@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
 
 const HeadingSplineBlock = ({ block }) => {
@@ -33,7 +33,7 @@ const HeadingSplineBlock = ({ block }) => {
 						<div className="w-11/12 flex items-center justify-evenly  ">
 							<div className="flex w-full lg:w-auto">
 								<span
-									className={`${staatliches.className} text-gray-200 ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
+									className={`${monomaniac.className} text-gray-200 ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
 								>
 									PUBLISHED ON {formattedDate}
 								</span>
@@ -44,7 +44,7 @@ const HeadingSplineBlock = ({ block }) => {
 										<span
 											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 											key={index}
-											className={`${staatliches.className} text-xs h-auto flex uppercase font-mono font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2  tracking-widest text-black mr-1`}
+											className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2  tracking-widest text-black mr-1`}
 										>
 											{tag}
 										</span>
@@ -55,7 +55,7 @@ const HeadingSplineBlock = ({ block }) => {
 						<div className="w-full lg:w-1/2 flex-col">
 							{block.heading && (
 								<h1
-									className={`${staatliches.className} text-5xl md:text-7xl p-4  text-gray-200 leading-tightest`}
+									className={`${monomaniac.className} text-5xl md:text-7xl p-4  text-gray-200 leading-tightest`}
 								>
 									{block.heading}
 								</h1>
@@ -73,7 +73,7 @@ const HeadingSplineBlock = ({ block }) => {
 								{block.team && (
 									<Link
 										href={`/team/${block.team.slug.current}`}
-										className={`${staatliches.className} `}
+										className={`${monomaniac.className} `}
 									>
 										<div className="flex p-2 w-auto">
 											{block.team?.image && (

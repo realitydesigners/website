@@ -1,13 +1,13 @@
 "use client";
 import Newsletter from "@/app/api/email/Newsletter";
-import { staatliches } from "@/fonts";
+import { monomaniac } from "@/fonts";
 import Link from "next/link";
 
 export default function Footer() {
 	return (
 		<div className="w-full grid lg:grid-cols-3 grid-cols-1 flex-wrap items-start bg-black gap-4 p-4 lg:p-6">
 			<div className="w-full  border-gray-600 border rounded-lg p-4 ">
-				<ul className={`${staatliches.className} w-1/2 text-gray-200 text-2xl`}>
+				<ul className={`${monomaniac.className} w-1/2 text-gray-200 text-2xl`}>
 					<li>
 						<Link href="https://www.youtube.com/@realitydesigners">
 							YouTube
@@ -30,7 +30,7 @@ export default function Footer() {
 			<div className="w-full p-4  border-gray-600 border rounded-lg  ">
 				<div className="w-full h-full flex justify-center items-center p-4">
 					<p
-						className={`${staatliches.className} text-5xl bold text-center leading-10 text-gray-200 uppercase`}
+						className={`${monomaniac.className} text-5xl bold text-center leading-10 text-gray-200 uppercase`}
 					>
 						Design
 						<br />

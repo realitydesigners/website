@@ -1,6 +1,6 @@
 "use client";
 import Blocks from "@/components/blocks/Blocks";
-import { staatliches } from "@/fonts";
+import { monomaniac } from "@/fonts";
 import type { TeamPayload } from "@/types";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import Link from "next/link";
@@ -53,19 +53,19 @@ const Page: React.FC<PageProps> = ({ data }) => {
 			</div>
 			<div className="w-full p-4 flex flex-col justify-center items-center gap-2">
 				<h1
-					className={`${staatliches.className} text-6xl font-bold text-gray-200`}
+					className={`${monomaniac.className} text-6xl font-bold text-gray-200`}
 				>
 					{name}
 				</h1>
 				<h2
-					className={`${staatliches.className} text-3xl font-normal text-gray-400`}
+					className={`${monomaniac.className} text-3xl font-normal text-gray-400`}
 				>
 					{role}
 				</h2>
 			</div>
 
 			<div
-				className={`${staatliches.className} grid grid-cols-2 md:grid-cols-4 text-gray-200 tracking-wide text-xl font-bold gap-4 p-2 uppercase mb-4`}
+				className={`${monomaniac.className} grid grid-cols-2 md:grid-cols-4 text-gray-200 tracking-wide text-xl font-bold gap-4 p-2 uppercase mb-4`}
 			>
 				{socialLinks.map(({ name, url }) => (
 					<SocialLink key={name} href={url}>

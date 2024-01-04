@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, staatliches } from "@/fonts";
+import { monomaniac } from "@/fonts";
 import Link from "next/link";
 
 const PostsCardLight = ({ slug, heading, image }) => {

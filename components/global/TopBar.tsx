@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
@@ -50,7 +50,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			<div className="w-full flex items-center lg:pl-1 lg:pr-2">
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${staatliches.className} pl-2 text-xl uppercase leading-none text-black cursor-pointer`}
+						className={`${monomaniac.className} pl-2 text-xl capitalize leading-none text-black cursor-pointer`}
 					>
 						{renderHeading()}
 					</h2>

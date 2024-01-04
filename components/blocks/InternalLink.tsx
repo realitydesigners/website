@@ -1,7 +1,7 @@
 "use client";
 import { getPostData } from "@/app/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, monomaniac, staatliches } from "@/fonts";
+import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -185,7 +185,7 @@ const InternalLink: React.FC<{
 	return (
 		<>
 			<Link href="#popup" onClick={openDialog}>
-				<span className={`${monomaniac.className} text-xl  underline`}>
+				<span className={`${monomaniac.className} text-xl capitalize `}>
 					{children}
 				</span>
 				<span
