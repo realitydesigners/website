@@ -143,8 +143,8 @@ const ImageCanvasBlock = ({ block }) => {
 
 		case "light":
 			return (
-				<div className="relative  flex justify-center items-center w-full h-auto mb-6 lg:mb-0">
-					<div className="w-11/12 bg-gray-300 lg:w-5/6 h-[50vh] lg:h-[66vh]   rounded-[1.5em] overflow-hidden shadow-xl">
+				<div className="relative  flex justify-center items-center w-full h-auto p-4  ">
+					<div className="w-full lg:w-5/6 h-[50vh] lg:h-[66vh]   rounded-[1.5em] overflow-hidden shadow-xl">
 						<Canvas>
 							<PerspectiveCamera
 								makeDefault

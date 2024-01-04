@@ -28,65 +28,87 @@ const iFrame = ({ value }) => {
 	);
 };
 
+const Heading = ({ level, children, theme }) => {
+	const Tag = `h${level}`;
+	let className;
+
+	switch (theme) {
+		case "dark":
+			className = `${staatliches.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`;
+			break;
+		case "light":
+			className = `${staatliches.className} my-3 w-10/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`;
+			break;
+		default:
+			return null;
+	}
+
+	return (
+		<div className="w-screen flex justify-center">
+			<Tag className={className}>{children}</Tag>
+		</div>
+	);
+};
+
+const List = ({ type, children, theme }) => {
+	const Tag = type === "bullet" ? "ul" : "ol";
+	let className;
+
+	switch (theme) {
+		case "dark":
+			className = `${cairo.className} w-11/12 text-gray-300 leading-7 ${
+				type === "bullet" ? "text-lg" : "text-2xl"
+			} md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`;
+			break;
+		case "light":
+			className = `${cairo.className} w-11/12 text-black leading-7 ${
+				type === "bullet" ? "text-lg" : "text-2xl"
+			} md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`;
+			break;
+		default:
+			return null;
+	}
+
+	return (
+		<div className="w-screen flex justify-center">
+			<Tag className={className}>{children}</Tag>
+		</div>
+	);
+};
+
+const NormalText = ({ children, theme }) => {
+	let className;
+
+	switch (theme) {
+		case "dark":
+			className = `${cairo.className} text-gray-300 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`;
+
+			break;
+		case "light":
+			className = `${cairo.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`;
+
+			break;
+		default:
+			return null;
+	}
+
+	return (
+		<div className="w-full p-4  flex justify-center">
+			<div className={`${className}`}>{children}</div>
+		</div>
+	);
+};
+
 export const DarkTemplate = {
 	block: {
-		normal: ({ children }) => (
-			<div className="w-full flex justify-center ">
-				<div
-					className={`${cairo.className} w-11/12 text-gray-300 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl my-3 `}
-				>
-					{children}
-				</div>
-			</div>
-		),
-		h1: ({ children }) => (
-			<div className="w-full flex justify-center ">
-				<h1
-					className={`${staatliches.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h1>
-			</div>
-		),
-
-		h2: ({ children }) => (
-			<div className="w-full  flex justify-center ">
-				<h2
-					className={`${staatliches.className} my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
-		h3: ({ children }) => (
-			<div className="w-full flex justify-center">
-				<h2
-					className={`${staatliches.className} my-5  w-11/12 text-4xl text-gray-200  font-bold  leading-none tracking-wide md:w-3/4   lg:w-1/2 lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
+		normal: (props) => <NormalText {...props} theme="dark" />,
+		h1: (props) => <Heading level={1} {...props} theme="dark" />,
+		h2: (props) => <Heading level={2} {...props} theme="dark" />,
+		h3: (props) => <Heading level={3} {...props} theme="dark" />,
 	},
 	list: {
-		bullet: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<ul
-					className={`${cairo.className} w-11/12  text-black leading-7  text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
-				>
-					{children}
-				</ul>
-			</div>
-		),
-		number: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<ol
-					className={`${cairo.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
-				>
-					{children}
-				</ol>
-			</div>
-		),
+		bullet: (props) => <List type="bullet" {...props} theme="dark" />,
+		number: (props) => <List type="number" {...props} theme="dark" />,
 	},
 	marks: {
 		internalLink: ({ value, children }) => {
@@ -133,63 +155,14 @@ export const DarkTemplate = {
 
 export const LightTemplate = {
 	block: {
-		normal: ({ children }) => (
-			<div className="w-full flex justify-center">
-				<div
-					className={`${cairo.className} w-11/12  text-black leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl my-3`}
-				>
-					{children}
-				</div>
-			</div>
-		),
-		h1: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h1
-					className={`${staatliches.className} my-3 w-10/12 text-black text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h1>
-			</div>
-		),
-
-		h2: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h2
-					className={`${staatliches.className} my-3 w-11/12 text-black text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
-		h3: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h2
-					className={`${staatliches.className} my-5  w-11/12 text-4xl font-bold  leading-none tracking-wide md:w-3/4   lg:w-1/2 lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
+		normal: (props) => <NormalText {...props} theme="light" />,
+		h1: (props) => <Heading level={1} {...props} theme="light" />,
+		h2: (props) => <Heading level={2} {...props} theme="light" />,
+		h3: (props) => <Heading level={3} {...props} theme="light" />,
 	},
 	list: {
-		bullet: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<ul
-					className={`${cairo.className} w-11/12  text-black leading-7 text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
-				>
-					{children}
-				</ul>
-			</div>
-		),
-		number: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<ol
-					className={`${cairo.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
-				>
-					{children}
-				</ol>
-			</div>
-		),
+		bullet: (props) => <List type="bullet" {...props} theme="light" />,
+		number: (props) => <List type="number" {...props} theme="light" />,
 	},
 	marks: {
 		internalLink: ({ value, children }) => {
@@ -236,124 +209,26 @@ export const LightTemplate = {
 
 export const VideoTemplate = {
 	block: {
-		normal: ({ children }) => (
-			<div className="w-full flex justify-center ">
-				<p
-					className={`${cairo.className} w-11/12 font-bold text-gray-400 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
-				>
-					{children}
-				</p>
-			</div>
-		),
-		h1: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h1
-					className={`${staatliches.className} mb-6 w-10/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h1>
-			</div>
-		),
-
-		h2: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h2
-					className={`${staatliches.className} mb-6 w-11/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
-		h3: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h2
-					className={`${staatliches.className} mb-6  w-11/12 text-4xl text-gray-200  font-bold  leading-none tracking-wide md:w-3/4   lg:w-1/2 lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
+		normal: (props) => <NormalText {...props} theme="light" />,
+		h1: (props) => <Heading level={1} {...props} theme="light" />,
+		h2: (props) => <Heading level={2} {...props} theme="light" />,
+		h3: (props) => <Heading level={3} {...props} theme="light" />,
 	},
-
-	marks: {
-		internalLink: ({ value, children }) => {
-			const { slug = {} } = value;
-			const href = `/blog/${slug?.current}`;
-
-			return (
-				<Link className="font-extrabold text-black underline " href={href}>
-					{children}
-				</Link>
-			);
-		},
+	list: {
+		bullet: (props) => <List type="bullet" {...props} theme="light" />,
+		number: (props) => <List type="number" {...props} theme="light" />,
 	},
 };
 
 export const TeamTemplate = {
 	block: {
-		normal: ({ children }) => (
-			<div className="w-full flex justify-center ">
-				<div
-					className={`${cairo.className} w-11/12 font-bold text-gray-200 leading-7 tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl mb-6 `}
-				>
-					{children}
-				</div>
-			</div>
-		),
-		h1: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h1
-					className={`${staatliches.className} mb-6 w-10/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h1>
-			</div>
-		),
-
-		h2: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h2
-					className={`${staatliches.className} mb-6 w-11/12 text-gray-200 text-4xl font-bold uppercase  leading-none tracking-wide md:w-3/4   lg:w-1/2  lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
-		h3: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<h2
-					className={`${staatliches.className} mb-6  w-11/12 text-4xl text-gray-200  font-bold  leading-none tracking-wide md:w-3/4   lg:w-1/2 lg:text-5xl`}
-				>
-					{children}
-				</h2>
-			</div>
-		),
+		normal: (props) => <NormalText {...props} theme="dark" />,
+		h1: (props) => <Heading level={1} {...props} theme="dark" />,
+		h2: (props) => <Heading level={2} {...props} theme="dark" />,
+		h3: (props) => <Heading level={3} {...props} theme="dark" />,
 	},
-
 	list: {
-		bullet: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<ul
-					className={`${cairo.className} w-11/12  text-black leading-7  text-lg md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`}
-				>
-					{children}
-				</ul>
-			</div>
-		),
-		number: ({ children }) => (
-			<div className="w-screen flex justify-center">
-				<ol
-					className={`${cairo.className} w-11/12 text-black leading-7 text-2xl md:w-3/4 lg:w-1/2 lg:text-2xl list-decimal list-inside space-y-6 mb-6`}
-				>
-					{children}
-				</ol>
-			</div>
-		),
-	},
-	marks: {
-		internalLink: ({ value, children }) => {
-			const { slug = {} } = value;
-			return <InternalLink slug={slug?.current}>{children}</InternalLink>;
-		},
+		bullet: (props) => <List type="bullet" {...props} theme="dark" />,
+		number: (props) => <List type="number" {...props} theme="dark" />,
 	},
 };

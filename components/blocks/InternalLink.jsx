@@ -176,9 +176,7 @@ const InternalLink = ({ slug, children, theme }) => {
 	return (
 		<>
 			<Link href="#popup" onClick={openDialog}>
-				<span
-					className={`${monomaniac.className} text-xl text-black underline`}
-				>
+				<span className={`${monomaniac.className} text-xl  underline`}>
 					{children}
 				</span>
 				<span
