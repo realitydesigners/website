@@ -180,7 +180,7 @@ const InternalLink = ({ slug, children, theme }) => {
 					{children}
 				</span>
 				<span
-					className={`${monomaniac.className} pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#c4b5fd] rounded-full`}
+					className={`${monomaniac.className} pt-[3px] pb-[5px] text-black pr-2 pl-2 ml-2 text-[16px] bg-[#c4b5fd] rounded-full`}
 				>
 					POST
 				</span>

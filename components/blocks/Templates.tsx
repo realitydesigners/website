@@ -5,6 +5,7 @@ import React from "react";
 import {
 	ArticleRefBlock,
 	AudioRefBlock,
+	IframeBlock,
 	ImageRefBlock,
 	PostsRefBlock,
 	QuoteRefBlock,
@@ -12,36 +13,30 @@ import {
 	VideoRefBlock,
 } from "./index";
 
-const iFrame = ({ value }) => {
-	const { url, width, height } = value;
+type Theme = "dark" | "light";
 
-	return (
-		<div className="iframe-container">
-			<iframe
-				title="iframe"
-				src={url}
-				width={width}
-				height={height}
-				allowFullScreen
-			/>
-		</div>
-	);
+const headingStyles: Record<Theme, string> = {
+	dark: `${staatliches.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	light: `${staatliches.className} my-3 w-10/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 };
 
-const Heading = ({ level, children, theme }) => {
+const listStyles: Record<Theme, string> = {
+	dark: `${cairo.className} w-11/12 text-gray-300 leading-7 md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`,
+	light: `${cairo.className} w-11/12 text-black leading-7 md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`,
+};
+
+const normalTextStyles: Record<Theme, string> = {
+	dark: `${cairo.className} text-gray-300 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+	light: `${cairo.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+};
+
+const Heading = ({
+	level,
+	children,
+	theme = "light",
+}: { level: number; children: React.ReactNode; theme: Theme }) => {
 	const Tag = `h${level}`;
-	let className;
-
-	switch (theme) {
-		case "dark":
-			className = `${staatliches.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`;
-			break;
-		case "light":
-			className = `${staatliches.className} my-3 w-10/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`;
-			break;
-		default:
-			return null;
-	}
+	const className = headingStyles[theme];
 
 	return (
 		<div className="w-screen flex justify-center">
@@ -50,24 +45,13 @@ const Heading = ({ level, children, theme }) => {
 	);
 };
 
-const List = ({ type, children, theme }) => {
+const List = ({
+	type,
+	children,
+	theme = "light",
+}: { type: "bullet" | "number"; children: React.ReactNode; theme: Theme }) => {
 	const Tag = type === "bullet" ? "ul" : "ol";
-	let className;
-
-	switch (theme) {
-		case "dark":
-			className = `${cairo.className} w-11/12 text-gray-300 leading-7 ${
-				type === "bullet" ? "text-lg" : "text-2xl"
-			} md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`;
-			break;
-		case "light":
-			className = `${cairo.className} w-11/12 text-black leading-7 ${
-				type === "bullet" ? "text-lg" : "text-2xl"
-			} md:w-3/4 lg:w-1/2 lg:text-xl list-decimal list-inside space-y-6 mb-6`;
-			break;
-		default:
-			return null;
-	}
+	const className = listStyles[theme];
 
 	return (
 		<div className="w-screen flex justify-center">
@@ -76,25 +60,15 @@ const List = ({ type, children, theme }) => {
 	);
 };
 
-const NormalText = ({ children, theme }) => {
-	let className;
-
-	switch (theme) {
-		case "dark":
-			className = `${cairo.className} text-gray-300 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`;
-
-			break;
-		case "light":
-			className = `${cairo.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`;
-
-			break;
-		default:
-			return null;
-	}
+const NormalText = ({
+	children,
+	theme = "light",
+}: { children: React.ReactNode; theme: Theme }) => {
+	const className = normalTextStyles[theme];
 
 	return (
-		<div className="w-full p-4  flex justify-center">
-			<div className={`${className}`}>{children}</div>
+		<div className="w-full p-4 flex justify-center">
+			<div className={className}>{children}</div>
 		</div>
 	);
 };
@@ -139,12 +113,12 @@ export const DarkTemplate = {
 				<VideoRefBlock
 					videoTitle={videoTitle}
 					videoFileUrl={videoFileUrl}
-					image={videoImage}
+					videoImage={videoImage}
 					className={className}
 				/>
 			);
 		},
-		iframe: iFrame,
+		iframe: IframeBlock,
 		articleRef: ArticleRefBlock,
 		spline: SplineRefBlock,
 		imageRef: ImageRefBlock,
@@ -193,12 +167,12 @@ export const LightTemplate = {
 				<VideoRefBlock
 					videoTitle={videoTitle}
 					videoFileUrl={videoFileUrl}
-					image={videoImage}
+					videoImage={videoImage}
 					className={className}
 				/>
 			);
 		},
-		iframe: iFrame,
+		iframe: IframeBlock,
 		articleRef: ArticleRefBlock,
 		spline: SplineRefBlock,
 		imageRef: ImageRefBlock,

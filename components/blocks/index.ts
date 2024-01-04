@@ -5,3 +5,4 @@ export { default as PostsRefBlock } from "./PostsRefBlock";
 export { default as QuoteRefBlock } from "./QuoteRefBlock";
 export { default as SplineRefBlock } from "./SplineRefBlock";
 export { default as VideoRefBlock } from "./VideoRefBlock";
+export { default as IframeBlock } from "./IframeBlock";
