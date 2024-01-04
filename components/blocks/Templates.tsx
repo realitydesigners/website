@@ -1,4 +1,3 @@
-import InternalLink from "@/components/blocks/InternalLink";
 import { cairo, monomaniac, staatliches } from "@/fonts";
 import React from "react";
 
@@ -7,6 +6,7 @@ import {
 	AudioRefBlock,
 	IframeBlock,
 	ImageRefBlock,
+	InternalLink,
 	PostsRefBlock,
 	QuoteRefBlock,
 	SplineRefBlock,
@@ -30,17 +30,17 @@ const normalTextStyles: Record<Theme, string> = {
 	light: `${cairo.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 };
 
-const Heading = ({
-	level,
-	children,
-	theme = "light",
-}: { level: number; children: React.ReactNode; theme: Theme }) => {
-	const Tag = `h${level}`;
+const Heading: React.FC<{
+	level: number;
+	children: React.ReactNode;
+	theme: Theme;
+}> = ({ level, children, theme }) => {
 	const className = headingStyles[theme];
+	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 
 	return (
 		<div className="w-screen flex justify-center">
-			<Tag className={className}>{children}</Tag>
+			{React.createElement(Tag, { className }, children)}
 		</div>
 	);
 };

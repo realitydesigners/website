@@ -5,34 +5,30 @@ import { cairo, monomaniac, staatliches } from "@/fonts";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const getThemeClasses = (theme) => {
-	switch (theme) {
-		case "light":
-			return {
-				textColor: "text-black",
-				backgroundColor: "bg-gray-300",
-				topBackgroundColor: "bg-gray-200/50",
-				buttonTextColor: "text-gray-200",
-				buttonBackgroundColor: "bg-black hover:bg-black/80",
-			};
-		case "dark":
-			return {
-				textColor: "text-gray-200",
-				backgroundColor: "bg-[#111]",
-				topBackgroundColor: "bg-[#222]",
-				buttonTextColor: "text-black",
-				buttonBackgroundColor: "bg-gray-200 hover:bg-gray-200/80",
-			};
+type Theme = "light" | "dark";
+type ThemeStyle = {
+	textColor: string;
+	backgroundColor: string;
+	topBackgroundColor: string;
+	buttonTextColor: string;
+	buttonBackgroundColor: string;
+};
 
-		default:
-			return {
-				textColor: "text-black",
-				backgroundColor: "bg-gray-300",
-				topBackgroundColor: "bg-gray-200/50",
-				buttonTextColor: "text-gray-200",
-				buttonBackgroundColor: "bg-black hover:bg-black/80",
-			};
-	}
+const themeClasses: Record<Theme, ThemeStyle> = {
+	light: {
+		textColor: "text-black",
+		backgroundColor: "bg-gray-300",
+		topBackgroundColor: "bg-gray-200/50",
+		buttonTextColor: "text-gray-200",
+		buttonBackgroundColor: "bg-black hover:bg-black/80",
+	},
+	dark: {
+		textColor: "text-gray-200",
+		backgroundColor: "bg-[#111]",
+		topBackgroundColor: "bg-[#222]",
+		buttonTextColor: "text-black",
+		buttonBackgroundColor: "bg-gray-200 hover:bg-gray-200/80",
+	},
 };
 
 const formatDate = (dateString) => {
@@ -55,16 +51,17 @@ const DialogButton = ({ onClose }) => (
 	</button>
 );
 
-const TeamLink = ({ team, theme }) => {
-	const themeClasses = getThemeClasses(theme);
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const TeamLink = ({ team, theme }: { team: any; theme: Theme }) => {
 	if (!team) return null;
+	const style = themeClasses[theme];
 
 	return (
 		<Link
 			href={`/team/${team.slug.current}`}
 			className={`${monomaniac.className}`}
 		>
-			<div className={`flex items-center p-2 w-auto ${themeClasses.textColor}`}>
+			<div className={`flex items-center p-2 w-auto ${style.textColor}`}>
 				{team.image && (
 					<SanityImage
 						image={team.image}
@@ -83,22 +80,27 @@ const TeamLink = ({ team, theme }) => {
 	);
 };
 
-const ArticlePreviewDialog = ({ isOpen, onClose, postData, theme }) => {
+const ArticlePreviewDialog = ({
+	isOpen,
+	onClose,
+	postData,
+	theme,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+}: { isOpen: boolean; onClose: () => void; postData: any; theme: Theme }) => {
 	if (!isOpen || !postData) return null;
-
-	const themeClasses = getThemeClasses(theme);
 	const { block = [] } = postData;
 	const [firstBlock] = block;
+	const style = themeClasses[theme];
 
 	return (
 		<div id="popup" className="my-5 items-center w-full justify-center">
 			<div
-				className={`w-full justify-center p-2 shadow-lg rounded-[.7em] grid grid-cols-1  ${themeClasses.backgroundColor}`}
+				className={`w-full justify-center p-2 shadow-lg rounded-[.7em] grid grid-cols-1  ${style.backgroundColor}`}
 			>
 				{firstBlock && (
 					<>
 						<div
-							className={`flex  p-1 rounded-[.6em] h-auto w-full justify-between  ${themeClasses.topBackgroundColor} `}
+							className={`flex  p-1 rounded-[.6em] h-auto w-full justify-between  ${style.topBackgroundColor} `}
 						>
 							<SanityImage
 								image={firstBlock.image}
@@ -110,21 +112,21 @@ const ArticlePreviewDialog = ({ isOpen, onClose, postData, theme }) => {
 							/>
 							<Link
 								href={`/posts/${postData.slug.current}`}
-								className={`${monomaniac.className} ${themeClasses.textColor} pl-2 flex items-center leading-[1em] font-bold text-sm lg:text-md w-1/2`}
+								className={`${monomaniac.className} ${style.textColor} pl-2 flex items-center leading-[1em] font-bold text-sm lg:text-md w-1/2`}
 							>
 								{firstBlock.heading || "no title"}
 							</Link>
 							<span
-								className={`${monomaniac.className} ${themeClasses.textColor} w-auto pl-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] uppercase tracking-widest`}
+								className={`${monomaniac.className} ${style.textColor} w-auto pl-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] uppercase tracking-widest`}
 							>
 								{formatDate(firstBlock.publicationDate)}
 							</span>
-							<DialogButton onClose={onClose} theme={theme} />
+							<DialogButton onClose={onClose} />
 						</div>
 
 						<div className="w-full h-auto flex flex-col relative">
 							<h4
-								className={`${cairo.className} ${themeClasses.textColor} leading-7 p-4 text-xl`}
+								className={`${cairo.className} ${style.textColor} leading-7 p-4 text-xl`}
 							>
 								{firstBlock.subheading || "no title"}
 							</h4>
@@ -133,7 +135,7 @@ const ArticlePreviewDialog = ({ isOpen, onClose, postData, theme }) => {
 								<TeamLink team={firstBlock?.team} theme={theme} />
 								<Link
 									href={`/posts/${postData.slug.current}`}
-									className={`${monomaniac.className} ${themeClasses.buttonTextColor} ${themeClasses.buttonBackgroundColor} right-2 absolute bottom-1 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 hover:transition-colors`}
+									className={`${monomaniac.className} ${style.buttonTextColor} ${style.buttonBackgroundColor} right-2 absolute bottom-1 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 hover:transition-colors`}
 								>
 									Read -&gt;
 								</Link>
@@ -146,13 +148,21 @@ const ArticlePreviewDialog = ({ isOpen, onClose, postData, theme }) => {
 	);
 };
 
-const InternalLink = ({ slug, children, theme }) => {
+// ... (Other imports and components)
+
+const InternalLink: React.FC<{
+	slug: string;
+	theme: Theme;
+	children: React.ReactNode;
+}> = ({ slug, children, theme }) => {
 	const [isDialogOpen, setDialogOpen] = useState(false);
 	const [previewPostData, setPreviewPostData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const themeClasses = getThemeClasses(theme);
+	const currentThemeClasses = themeClasses[theme];
 
-	const openDialog = async (e) => {
+	const openDialog = async (
+		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+	) => {
 		e.preventDefault();
 		setIsLoading(true);
 		setDialogOpen(true);
@@ -165,7 +175,8 @@ const InternalLink = ({ slug, children, theme }) => {
 
 		try {
 			const data = await getPostData(slug);
-			setPreviewPostData(data);
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			setPreviewPostData(data as any);
 		} catch (error) {
 			console.error("Failed to fetch post data:", error);
 		} finally {
