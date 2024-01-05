@@ -1,5 +1,5 @@
 "use client";
-import Blocks from "@/components/blocks/Blocks";
+import Blocks, { BlockProps } from "@/components/blocks/Blocks";
 import { monomaniac } from "@/fonts";
 import type { TeamPayload } from "@/types";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
@@ -75,7 +75,7 @@ const Page: React.FC<PageProps> = ({ data }) => {
 			</div>
 
 			{data?.block?.map((block, index) => (
-				<Blocks key={`${block._type}-${index}`} block={block} />
+				<Blocks key={`${block._type}-${index}`} block={block as BlockProps} />
 			))}
 		</div>
 	);

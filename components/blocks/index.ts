@@ -1,4 +1,3 @@
-export { default as ArticleRefBlock } from "./ArticleRefBlock";
 export { default as AudioRefBlock } from "./AudioRefBlock";
 export { default as ImageRefBlock } from "./ImageRefBlock";
 export { default as PostsRefBlock } from "./PostsRefBlock";

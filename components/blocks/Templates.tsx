@@ -2,7 +2,6 @@ import { cairo, monomaniac } from "@/fonts";
 import React from "react";
 
 import {
-	ArticleRefBlock,
 	AudioRefBlock,
 	IframeBlock,
 	ImageRefBlock,
@@ -119,7 +118,6 @@ export const DarkTemplate = {
 			);
 		},
 		iframe: IframeBlock,
-		articleRef: ArticleRefBlock,
 		spline: SplineRefBlock,
 		imageRef: ImageRefBlock,
 		audioRef: AudioRefBlock,
@@ -173,7 +171,6 @@ export const LightTemplate = {
 			);
 		},
 		iframe: IframeBlock,
-		articleRef: ArticleRefBlock,
 		spline: SplineRefBlock,
 		imageRef: ImageRefBlock,
 		audioRef: AudioRefBlock,

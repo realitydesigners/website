@@ -1,4 +1,4 @@
-import Blocks from "@/components/blocks/Blocks";
+import Blocks, { BlockProps } from "@/components/blocks/Blocks";
 import type { PostsPayload } from "@/types";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import React from "react";
@@ -9,11 +9,10 @@ export interface PageProps {
 }
 
 const SlugPage: React.FC<PageProps> = ({ data }) => {
-	console.log(data);
 	return (
 		<main>
 			{data?.block?.map((block, index) => (
-				<Blocks key={`${block._type}-${index}`} block={block} />
+				<Blocks key={`${block._type}-${index}`} block={block as BlockProps} />
 			))}
 		</main>
 	);
