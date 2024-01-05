@@ -1,4 +1,5 @@
-import Blocks, { BlockProps } from "@/components/blocks/Blocks";
+import Blocks from "@/components/blocks/Blocks";
+import { BlockProps } from "@/components/blocks/types";
 import type { PostsPayload } from "@/types";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import React from "react";

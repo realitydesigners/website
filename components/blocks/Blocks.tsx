@@ -1,4 +1,5 @@
 "use client";
+import { BlockProps, BlockType, LayoutTheme } from "@/components/blocks/types";
 import {
 	ContentBlock,
 	HeadingBlock,
@@ -7,28 +8,12 @@ import {
 	TeamBlock,
 } from "@/components/blockstyles/index";
 import { PortableTextComponents } from "@portabletext/react";
-import type { PortableTextBlock } from "@portabletext/types";
 import {
 	DarkTemplate,
 	LightTemplate,
 	TeamTemplate,
 	VideoTemplate,
 } from "./Templates";
-
-type LayoutTheme = "dark" | "light" | "team" | "video";
-type BlockType =
-	| "headingBlock"
-	| "headingSplineBlock"
-	| "contentBlock"
-	| "teamBlock"
-	| "imageCanvasBlock";
-
-export interface BlockProps {
-	_type: BlockType;
-	layout?: LayoutTheme;
-
-	content?: PortableTextBlock[];
-}
 
 const templateComponents: Record<LayoutTheme, PortableTextComponents> = {
 	dark: DarkTemplate as PortableTextComponents,

@@ -1,6 +1,6 @@
+import { TemplateTheme } from "@/components/blocks/types";
 import { cairo, monomaniac } from "@/fonts";
 import React from "react";
-
 import {
 	AudioRefBlock,
 	IframeBlock,
@@ -12,19 +12,17 @@ import {
 	VideoRefBlock,
 } from "./index";
 
-type Theme = "dark" | "light";
-
-const headingStyles: Record<Theme, string> = {
+const headingStyles: Record<TemplateTheme, string> = {
 	dark: `${monomaniac.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 	light: `${monomaniac.className} my-3 w-10/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 };
 
-const listStyles: Record<Theme, string> = {
+const listStyles: Record<TemplateTheme, string> = {
 	dark: `${cairo.className} w-11/12 text-gray-300 leading-7 md:w-3/4 lg:w-1/2 text-xl list-decimal list-inside space-y-6 mb-6`,
 	light: `${cairo.className} w-11/12 text-black leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
 };
 
-const normalTextStyles: Record<Theme, string> = {
+const normalTextStyles: Record<TemplateTheme, string> = {
 	dark: `${cairo.className} text-gray-300 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 	light: `${cairo.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 };
@@ -32,7 +30,7 @@ const normalTextStyles: Record<Theme, string> = {
 const Heading: React.FC<{
 	level: number;
 	children: React.ReactNode;
-	theme: Theme;
+	theme: TemplateTheme;
 }> = ({ level, children, theme }) => {
 	const className = headingStyles[theme];
 	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
@@ -48,7 +46,11 @@ const List = ({
 	type,
 	children,
 	theme = "light",
-}: { type: "bullet" | "number"; children: React.ReactNode; theme: Theme }) => {
+}: {
+	type: "bullet" | "number";
+	children: React.ReactNode;
+	theme: TemplateTheme;
+}) => {
 	const Tag = type === "bullet" ? "ul" : "ol";
 	const className = listStyles[theme];
 
@@ -62,7 +64,7 @@ const List = ({
 const NormalText = ({
 	children,
 	theme = "light",
-}: { children: React.ReactNode; theme: Theme }) => {
+}: { children: React.ReactNode; theme: TemplateTheme }) => {
 	const className = normalTextStyles[theme];
 
 	return (
