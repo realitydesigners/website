@@ -1,6 +1,6 @@
 import { sanityFetch } from "@/sanity/lib/client";
+import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { getVideoBySlugQuery } from "@/sanity/lib/queries";
-import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { VideoPayload } from "@/types";
 import SlugPage from "./SlugPage";
 

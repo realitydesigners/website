@@ -1,11 +1,5 @@
 import type { PortableTextBlock } from "@portabletext/types";
 
-export interface SettingsPayload {
-	footer?: PortableTextBlock[];
-	menuItems?: any;
-	ogImage?: Image;
-}
-
 interface BaseItem {
 	_id: string;
 	_type: string;

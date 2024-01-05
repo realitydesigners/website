@@ -1,9 +1,8 @@
 import SlugPage from "@/app/library/[slug]/SlugPage";
-import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
+import { sanityFetch } from "@/sanity/lib/client";
+import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { categoryBySlugQuery } from "@/sanity/lib/queries";
 import { CategoryPayload } from "@/types";
-import { sanityFetch } from "@/sanity/lib/client";
-import { category } from "@/sanity/schemas";
 
 type Props = {
 	params: { slug: string };

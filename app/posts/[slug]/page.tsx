@@ -1,8 +1,8 @@
 import SlugPage from "@/app/posts/[slug]/SlugPage";
+import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
-import { postsBySlugQuery, postsQuery } from "@/sanity/lib/queries";
+import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
-import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { PostsPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import React from "react";

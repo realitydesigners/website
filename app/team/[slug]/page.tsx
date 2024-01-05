@@ -1,7 +1,7 @@
+import { teamBySlugQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
-import { teamBySlugQuery } from "@/sanity/lib/queries";
+import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
-import { generateStaticSlugs } from "@/sanity/loader/generateStaticSlugs";
 import { TeamPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import SlugPage from "./SlugPage";
