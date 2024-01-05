@@ -3,7 +3,9 @@ import type { PortableTextBlock } from "@portabletext/types";
 interface BaseItem {
 	_id: string;
 	_type: string;
+	_createdAt: string;
 	title: string;
+	name: string;
 	slug?: {
 		_type: string;
 		current: string;
@@ -22,7 +24,6 @@ export interface Image {
 			url: string;
 		};
 	};
-
 	_key?: string;
 	_id?: string;
 	_type?: string;
@@ -34,10 +35,7 @@ export interface Image {
 	};
 }
 
-export interface TeamMember {
-	_id?: string;
-	_type?: string;
-	name: string;
+export interface TeamMember extends BaseItem {
 	role: string;
 	image: Image;
 	shortBio: string;
@@ -48,29 +46,25 @@ export interface MediaRef {
 	image?: Image;
 }
 
-export interface BlockItem {
-	_id: string;
-	_key?: string;
-	_type: string;
+export interface BlockItem extends BaseItem {
 	heading?: string;
 	subheading?: string;
 	image?: Image;
 	tags?: string[];
 	layout?: string;
-	title?: string;
 	publicationDate?: string;
 	team?: TeamMember;
-	media?: any; // Adjust based on actual media content
-	videoRefData?: Array<VideoPayload>; // Simplify as per your requirement
-	audioRefData?: any; // Simplify as per your requirement
+	media?: any;
+	videoRefData?: Array<VideoPayload>;
+	audioRefData?: any;
 	quote?: {
 		_key?: string;
 		_type?: string;
 		quote: string;
 		mediaRef?: MediaRef;
 	};
-	markDefs?: any; // Simplify as per your requirement
-	postsRef?: any; // Simplify as per your requirement
+	markDefs?: any;
+	postsRef?: any;
 	content?: PortableTextBlock[];
 }
 
@@ -81,14 +75,13 @@ export interface PostsPayload extends BaseItem {
 	block?: Array<BlockItem>;
 	content?: PortableTextBlock[];
 	ogImage?: Image;
-	_createdAt: string;
 }
 
 export interface CategoryPayload extends BaseItem {
 	category?: string;
 	isMain?: boolean;
 	model?: {
-		file?: any; // Replace 'any' with the appropriate type if known
+		file?: any;
 	};
 	sceneIdentifier?: string;
 	subCategories?: SubCategoryPayload[];
@@ -105,39 +98,23 @@ export interface SubCategoryPayload extends BaseItem {
 }
 
 export interface VideoPayload extends BaseItem {
-	url: string;
-	image?: {
-		_key?: string;
-		_type?: string;
-		alt?: string;
-		asset: {
-			_key?: string;
-			_type?: string;
-			url: string;
-		};
-	};
+	image?: Image;
 	video: any;
 	subcategories: Array<{
 		name: string;
 		title: string;
 	}>;
-	content?: Array<any>;
+	content?: PortableTextBlock[];
 	block?: Array<BlockItem>;
 	position: number;
 	rotationY: number;
-	_createdAt: string;
 }
 
 export interface TeamPayload extends BaseItem {
-	name: string;
 	role: string;
 	shortBio: string;
 	block?: Array<BlockItem>;
 	content?: PortableTextBlock[];
-	slug: {
-		_type: string;
-		current: string;
-	};
 	bio?: PortableTextBlock[];
 	image?: Image;
 	scene?: string;

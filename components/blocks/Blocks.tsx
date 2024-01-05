@@ -6,7 +6,8 @@ import {
 	ImageCanvasBlock,
 	TeamBlock,
 } from "@/components/blockstyles/index";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
+import type { PortableTextBlock } from "@portabletext/types";
 import {
 	DarkTemplate,
 	LightTemplate,
@@ -25,8 +26,8 @@ type BlockType =
 export interface BlockProps {
 	_type: BlockType;
 	layout?: LayoutTheme;
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	content?: any;
+
+	content?: PortableTextBlock[];
 }
 
 const templateComponents: Record<LayoutTheme, PortableTextComponents> = {
@@ -48,7 +49,7 @@ const blockTypeComponents: Record<
 	),
 	contentBlock: ({ layout, content }) => (
 		<ContentBlock
-			content={content}
+			content={content || []}
 			className={layout === "dark" ? "bg-black" : "bg-gray-200"}
 			components={templateComponents[layout || "light"]}
 		/>

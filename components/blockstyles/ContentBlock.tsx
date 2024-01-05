@@ -1,9 +1,9 @@
 import { PortableText, PortableTextComponents } from "@portabletext/react";
+import type { PortableTextBlock } from "@portabletext/types";
 import React from "react";
 
 type ContentBlockProps = {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	content: any;
+	content: PortableTextBlock[];
 	className: string;
 	components: PortableTextComponents;
 };
