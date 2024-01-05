@@ -6,6 +6,16 @@ export interface SettingsPayload {
 	ogImage?: Image;
 }
 
+interface BaseItem {
+	_id: string;
+	_type: string;
+	title: string;
+	slug?: {
+		_type: string;
+		current: string;
+	};
+}
+
 export interface Image {
 	image?: {
 		_id: string;
@@ -67,79 +77,40 @@ export interface BlockItem {
 	};
 	markDefs?: any; // Simplify as per your requirement
 	postsRef?: any; // Simplify as per your requirement
-	content?: Array<any>;
+	content?: PortableTextBlock[];
 }
 
-export interface PostsPayload {
-	_id: string;
-	_type: string;
-	title?: string;
-	slug?: {
-		current?: string;
-	};
+export interface PostsPayload extends BaseItem {
 	publicationDate?: string;
 	excerpt?: string;
 	image?: Image;
 	block?: Array<BlockItem>;
-	content?: Array<any>;
+	content?: PortableTextBlock[];
 	ogImage?: Image;
 	_createdAt: string;
 }
 
-export interface CategoryPayload {
-	_id?: string;
-	_type?: string;
-	title?: string;
+export interface CategoryPayload extends BaseItem {
 	category?: string;
 	isMain?: boolean;
-	slug?: {
-		_type: string;
-		current: string;
-	};
 	model?: {
 		file?: any; // Replace 'any' with the appropriate type if known
-		// ... other properties of model
 	};
 	sceneIdentifier?: string;
 	subCategories?: SubCategoryPayload[];
 }
 
-export interface SubCategoryPayload {
-	_id?: string;
-	_type?: string;
-	title?: string;
-	slug?: {
-		_type: string;
-		current: string;
-	};
+export interface SubCategoryPayload extends BaseItem {
 	isMain?: boolean;
 	sceneIdentifier?: string;
 	model?: {
-		file?: any; // Replace 'any' with the appropriate type if known
-		// ... other properties of model
+		file?: any;
+		l;
 	};
-	refPosts?: RefPostPayload[];
-	// ... other properties if there are any
+	refPosts?: PostsPayload[];
 }
 
-export interface RefPostPayload {
-	_id: string;
-	title: string;
-	slug: {
-		_type: string;
-		current: string;
-	};
-	excerpt?: string;
-	// ... other properties of posts
-}
-
-export interface VideoPayload {
-	_id: string;
-	_type: string;
-	title: string;
-	slug: {
-		current?: string;
-	};
+export interface VideoPayload extends BaseItem {
 	url: string;
 	image?: {
 		_key?: string;
@@ -163,20 +134,17 @@ export interface VideoPayload {
 	_createdAt: string;
 }
 
-export interface TeamPayload {
-	_id: string;
-	_type: string;
-	title: string;
+export interface TeamPayload extends BaseItem {
 	name: string;
 	role: string;
 	shortBio: string;
 	block?: Array<BlockItem>;
-	content?: Array<any>; // Define this more accurately
+	content?: PortableTextBlock[];
 	slug: {
 		_type: string;
 		current: string;
 	};
-	bio?: Array<BlockItem>;
+	bio?: PortableTextBlock[];
 	image?: Image;
 	scene?: string;
 	instagram?: string;

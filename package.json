@@ -29,6 +29,7 @@
     "@clerk/nextjs": "^4.29.1",
     "@gsap/react": "^2.0.2",
     "@portabletext/react": "^3.0.11",
+    "@portabletext/types": "^2.0.8",
     "@react-email/components": "^0.0.12",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.92.7",
