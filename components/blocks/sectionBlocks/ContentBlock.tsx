@@ -1,21 +1,39 @@
+import {
+	DarkTemplate,
+	LightTemplate,
+	TeamTemplate,
+	VideoTemplate,
+} from "@/components/blocks/templates/Templates";
+import {
+	ContentBlockProps,
+	LayoutTheme,
+	TemplateTheme,
+} from "@/components/blocks/types";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import type { PortableTextBlock } from "@portabletext/types";
 import React from "react";
 
-type ContentBlockProps = {
-	content: PortableTextBlock[];
-	className: string;
-	components: PortableTextComponents;
+const templateStyles: Record<TemplateTheme, string> = {
+	dark: " w-11/12 bg-black",
+	light: "w-11/12 bg-gray-200",
 };
 
-const ContentBlock: React.FC<ContentBlockProps> = ({
-	content,
-	className,
-	components,
-}) => {
+const templateComponents: Record<LayoutTheme, PortableTextComponents> = {
+	dark: DarkTemplate as PortableTextComponents,
+	light: LightTemplate as PortableTextComponents,
+	team: TeamTemplate as PortableTextComponents,
+	video: VideoTemplate as PortableTextComponents,
+};
+
+const ContentBlock: React.FC<ContentBlockProps> = ({ block }) => {
+	const { content, layout } = block;
+	const theme = layout || "light";
+	const styles = templateStyles[theme];
+
+	console.log("ContentBlock", block);
+
 	return (
-		<div className={`h-auto ${className} w-full`}>
-			<PortableText value={content} components={components} />
+		<div className={`h-auto ${styles} w-full`}>
+			<PortableText value={content} components={templateComponents[theme]} />
 		</div>
 	);
 };

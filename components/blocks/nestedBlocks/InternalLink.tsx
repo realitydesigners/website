@@ -156,7 +156,6 @@ const InternalLink: React.FC<{
 	const [isDialogOpen, setDialogOpen] = useState(false);
 	const [previewPostData, setPreviewPostData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const currentThemeClasses = themeClasses[theme];
 
 	const openDialog = async (
 		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,

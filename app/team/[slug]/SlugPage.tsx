@@ -5,7 +5,7 @@ import { monomaniac } from "@/fonts";
 import type { TeamPayload } from "@/types";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 import Link from "next/link";
-
+import { useMemo } from "react";
 interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
 	url: string;
 }
@@ -22,7 +22,6 @@ export interface PageProps {
 	encodeDataAttribute?: EncodeDataAttributeCallback;
 }
 
-// Reusable SocialLink Component
 const SocialLink = ({ href, children }) => (
 	<Link
 		href={href}
@@ -36,13 +35,20 @@ const Page: React.FC<PageProps> = ({ data }) => {
 	const { role, name, bio, scene, instagram, twitter, website, tiktok } =
 		data ?? {};
 
-	// Social media links data
+	const blocks = useMemo(() => {
+		return data?.block;
+	}, [data]);
+
+	if (!data || !data.block) {
+		return <div>Loading...</div>;
+	}
+
 	const socialLinks = [
 		{ name: "Instagram", url: instagram },
 		{ name: "Twitter", url: twitter },
 		{ name: "Website", url: website },
 		{ name: "TikTok", url: tiktok },
-	].filter((link) => link.url); // Filter out undefined URLs
+	].filter((link) => link.url);
 
 	return (
 		<div className="w-full flex flex-col h-full text-black justify-center items-center bg-black ">
@@ -75,8 +81,8 @@ const Page: React.FC<PageProps> = ({ data }) => {
 				))}
 			</div>
 
-			{data?.block?.map((block, index) => (
-				<Blocks key={`${block._type}-${index}`} block={block as BlockProps} />
+			{blocks?.map((block) => (
+				<Blocks block={block as BlockProps} />
 			))}
 		</div>
 	);

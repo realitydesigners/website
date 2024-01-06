@@ -1,19 +1,25 @@
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/types";
 import type { PostsPayload } from "@/types";
-import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
-import React from "react";
+import React, { useMemo } from "react";
 
 export interface PageProps {
 	data: PostsPayload | null;
-	encodeDataAttribute?: EncodeDataAttributeCallback;
 }
 
 const SlugPage: React.FC<PageProps> = ({ data }) => {
+	const blocks = useMemo(() => {
+		return data?.block;
+	}, [data]);
+
+	if (!data || !data.block) {
+		return <div>Loading...</div>;
+	}
+
 	return (
 		<main>
-			{data?.block?.map((block, index) => (
-				<Blocks key={`${block._type}-${index}`} block={block as BlockProps} />
+			{blocks?.map((block) => (
+				<Blocks block={block as BlockProps} />
 			))}
 		</main>
 	);

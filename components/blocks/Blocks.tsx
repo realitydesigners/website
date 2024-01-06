@@ -6,60 +6,42 @@ import {
 	ImageCanvasBlock,
 	TeamBlock,
 } from "@/components/blocks/sectionBlocks/index";
-import {
-	DarkTemplate,
-	LightTemplate,
-	TeamTemplate,
-	VideoTemplate,
-} from "@/components/blocks/templates/Templates";
-import { BlockProps, BlockType, LayoutTheme } from "@/components/blocks/types";
-import { PortableTextComponents } from "@portabletext/react";
 
-const templateComponents: Record<LayoutTheme, PortableTextComponents> = {
-	dark: DarkTemplate as PortableTextComponents,
-	light: LightTemplate as PortableTextComponents,
-	team: TeamTemplate as PortableTextComponents,
-	video: VideoTemplate as PortableTextComponents,
-};
+import { BlockProps, BlockType } from "@/components/blocks/types";
 
 const blockTypeComponents: Record<
 	BlockType,
 	(props: BlockProps) => JSX.Element | null
 > = {
 	headingBlock: (props) => (
-		<>
-			<HeadingBlock block={{ ...props, className: props.layout }} />
-		</>
+		<HeadingBlock block={{ ...props, className: props.layout }} />
 	),
 	headingSplineBlock: (props) => (
-		<>
-			<HeadingSplineBlock block={{ ...props, className: props.layout }} />
-		</>
+		<HeadingSplineBlock block={{ ...props, className: props.layout }} />
 	),
-	contentBlock: ({ layout, content }) => (
-		<>
-			<ContentBlock
-				content={content || []}
-				className={layout === "dark" ? "bg-black" : "bg-gray-200"}
-				components={templateComponents[layout || "light"]}
-			/>
-		</>
+	contentBlock: (props) => (
+		<ContentBlock
+			block={{
+				...props,
+				layout: props.layout,
+				content: props.content || [],
+			}}
+		/>
 	),
-	teamBlock: (props) => (
-		<>
-			<TeamBlock block={props} />
-		</>
-	),
+	teamBlock: (props) => <TeamBlock block={props} />,
 	imageCanvasBlock: (props) => (
-		<>
-			<ImageCanvasBlock block={{ ...props, className: props.layout }} />
-		</>
+		<ImageCanvasBlock block={{ ...props, className: props.layout }} />
 	),
 };
-
 const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
 	const BlockComponent = blockTypeComponents[block._type];
-	return <>{BlockComponent ? BlockComponent(block) : null}</>;
+	return (
+		<>
+			{BlockComponent ? (
+				<BlockComponent {...block} layout={block.layout} />
+			) : null}
+		</>
+	);
 };
 
 export default Blocks;

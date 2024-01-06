@@ -1,10 +1,11 @@
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/types";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac } from "@/fonts";
 import type { PostsPayload, VideoPayload } from "@/types";
 import type { EncodeDataAttributeCallback } from "@sanity/react-loader/rsc";
 
 import { fileUrlFor } from "@/sanity/lib/utils";
+import { useMemo } from "react";
 
 export interface PageProps {
 	data: VideoPayload | null;
@@ -15,6 +16,13 @@ const SlugPage: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 	const { title, video, content } = data ?? {};
 
 	const videoUrl = video ? fileUrlFor(video.asset._ref) : "";
+	const blocks = useMemo(() => {
+		return data?.block;
+	}, [data]);
+
+	if (!data || !data.block) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<div className="bg-black h-auto  w-full flex lg:flex-cols flex-row flex-wrap items-start justify-center pt-24">
@@ -36,8 +44,8 @@ const SlugPage: React.FC<PageProps> = ({ data, encodeDataAttribute }) => {
 				>
 					{title}
 				</p>
-				{data?.block?.map((block, index) => (
-					<Blocks key={`${block._type}-${index}`} block={block as BlockProps} />
+				{blocks?.map((block) => (
+					<Blocks block={block as BlockProps} />
 				))}
 			</div>
 

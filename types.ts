@@ -47,6 +47,7 @@ export interface MediaRef {
 }
 
 export interface BlockItem extends BaseItem {
+	_key: string;
 	heading?: string;
 	subheading?: string;
 	image?: Image;

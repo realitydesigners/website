@@ -34,6 +34,6 @@ export async function sanityFetch<QueryResponse>({
 }): Promise<QueryResponse> {
 	return client.fetch<QueryResponse>(query, qParams, {
 		cache: hookSecret ? "no-cache" : "default",
-		next: { revalidate: 60, tags },
+		next: { revalidate: 5, tags },
 	});
 }

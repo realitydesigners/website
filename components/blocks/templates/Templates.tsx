@@ -23,7 +23,7 @@ const listStyles: Record<TemplateTheme, string> = {
 };
 
 const normalTextStyles: Record<TemplateTheme, string> = {
-	dark: `${cairo.className} text-gray-300 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+	dark: `${cairo.className} text-gray-200 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 	light: `${cairo.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 };
 
