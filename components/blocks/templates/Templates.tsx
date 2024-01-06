@@ -13,8 +13,8 @@ import {
 } from "../nestedBlocks/index";
 
 const headingStyles: Record<TemplateTheme, string> = {
-	dark: `${monomaniac.className} my-3 w-10/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
-	light: `${monomaniac.className} my-3 w-10/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	dark: `${monomaniac.className} my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	light: `${monomaniac.className} my-3 w-11/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 };
 
 const listStyles: Record<TemplateTheme, string> = {

@@ -185,7 +185,7 @@ const InternalLink: React.FC<{
 	return (
 		<>
 			<Link href="#popup" onClick={openDialog}>
-				<span className={`${monomaniac.className} text-xl capitalize `}>
+				<span className={`${monomaniac.className} text-2xl capitalize `}>
 					{children}
 				</span>
 				<span
