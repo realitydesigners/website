@@ -1,5 +1,5 @@
 import { monomaniac } from "@/fonts";
-
+import React from "react";
 const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 	if (!videoFileUrl) {
 		return <p>Video URL is not available.</p>;
@@ -90,4 +90,4 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 	}
 };
 
-export default VideoRefBlock;
+export default React.memo(VideoRefBlock);

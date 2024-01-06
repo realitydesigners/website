@@ -1,3 +1,5 @@
+import React from "react";
+
 const SplineCard = ({ url }) => {
 	return (
 		<div className="h-screen w-full">
@@ -6,11 +8,11 @@ const SplineCard = ({ url }) => {
 	);
 };
 
-const SplineRefWrapper = ({ value }) => {
+const SplineRefBlock = ({ value }) => {
 	const { url } = value;
 	if (!url) return null;
 
 	return <SplineCard url={url} />;
 };
 
-export default SplineRefWrapper;
+export default React.memo(SplineRefBlock);

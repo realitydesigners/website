@@ -1,6 +1,7 @@
 import { SanityImage } from "@/components/global/Images";
 import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
+import React from "react";
 
 const QuoteCard = ({ quote, media, image, className }) => {
 	switch (className) {
@@ -51,7 +52,7 @@ const QuoteCard = ({ quote, media, image, className }) => {
 	}
 };
 
-const QuoteRefWrapper = ({ value }) => {
+const QuoteRefBlock = ({ value }) => {
 	const { quoteRef, className } = value;
 
 	if (!quoteRef) {
@@ -68,4 +69,4 @@ const QuoteRefWrapper = ({ value }) => {
 	);
 };
 
-export default QuoteRefWrapper;
+export default React.memo(QuoteRefBlock);

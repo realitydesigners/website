@@ -2,6 +2,7 @@
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac } from "@/fonts";
 import Link from "next/link";
+import React from "react";
 
 const PostsCardLight = ({ slug, heading, image }) => {
 	return (
@@ -45,4 +46,4 @@ const PostsRefBlock = ({ slug, heading, image }) => {
 	return <PostsCardLight slug={slug} heading={heading} image={image} />;
 };
 
-export default PostsRefBlock;
+export default React.memo(PostsRefBlock);

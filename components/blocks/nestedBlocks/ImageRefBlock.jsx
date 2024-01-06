@@ -1,6 +1,7 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
 import Link from "next/link";
+import React from "react";
 
 // Define default constants
 const DEFAULT_IMAGE =
@@ -112,4 +113,4 @@ const ImageRefBlock = ({ value }) => {
 	);
 };
 
-export default ImageRefBlock;
+export default React.memo(ImageRefBlock);

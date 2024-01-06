@@ -1,6 +1,6 @@
 import { cairo, monomaniac } from "@/fonts";
-import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 import { SanityImage } from "@/components/global/Images";
 
@@ -61,4 +61,4 @@ const TeamBlock = ({ block }) => {
 	);
 };
 
-export default TeamBlock;
+export default React.memo(TeamBlock);

@@ -2,6 +2,7 @@
 import { SanityImage } from "@/components/global/Images";
 import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
+import React from "react";
 
 const HeadingBlock = ({ block }) => {
 	const { className } = block;
@@ -283,4 +284,4 @@ const HeadingBlock = ({ block }) => {
 	}
 };
 
-export default HeadingBlock;
+export default React.memo(HeadingBlock);

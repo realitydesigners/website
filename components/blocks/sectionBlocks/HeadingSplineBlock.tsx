@@ -2,6 +2,7 @@
 import { SanityImage } from "@/components/global/Images";
 import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
+import React from "react";
 
 const HeadingSplineBlock = ({ block }) => {
 	const { className, url } = block;
@@ -111,4 +112,4 @@ const HeadingSplineBlock = ({ block }) => {
 	}
 };
 
-export default HeadingSplineBlock;
+export default React.memo(HeadingSplineBlock);

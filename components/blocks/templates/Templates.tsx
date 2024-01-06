@@ -31,50 +31,43 @@ const Heading: React.FC<{
 	level: number;
 	children: React.ReactNode;
 	theme: TemplateTheme;
-}> = ({ level, children, theme }) => {
+}> = React.memo(({ level, children, theme }) => {
 	const className = headingStyles[theme];
 	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-
 	return (
 		<div className="w-screen flex justify-center">
 			{React.createElement(Tag, { className }, children)}
 		</div>
 	);
-};
+});
 
-const List = ({
-	type,
-	children,
-	theme = "light",
-}: {
+const List: React.FC<{
 	type: "bullet" | "number";
 	children: React.ReactNode;
 	theme: TemplateTheme;
-}) => {
+}> = React.memo(({ type, children, theme }) => {
 	const Tag = type === "bullet" ? "ul" : "ol";
 	const className = listStyles[theme];
-
 	return (
 		<div className="w-screen flex justify-center">
 			<Tag className={className}>{children}</Tag>
 		</div>
 	);
-};
+});
 
-const NormalText = ({
-	children,
-	theme = "light",
-}: { children: React.ReactNode; theme: TemplateTheme }) => {
+const NormalText: React.FC<{
+	children: React.ReactNode;
+	theme: TemplateTheme;
+}> = React.memo(({ children, theme }) => {
 	const className = normalTextStyles[theme];
-
 	return (
 		<div className="w-full p-4 flex justify-center">
 			<div className={className}>{children}</div>
 		</div>
 	);
-};
+});
 
-export const DarkTemplate = {
+const DarkTemplate = {
 	block: {
 		normal: (props) => <NormalText {...props} theme="dark" />,
 		h1: (props) => <Heading level={1} {...props} theme="dark" />,
@@ -127,7 +120,7 @@ export const DarkTemplate = {
 	},
 };
 
-export const LightTemplate = {
+const LightTemplate = {
 	block: {
 		normal: (props) => <NormalText {...props} theme="light" />,
 		h1: (props) => <Heading level={1} {...props} theme="light" />,
@@ -180,7 +173,7 @@ export const LightTemplate = {
 	},
 };
 
-export const VideoTemplate = {
+const VideoTemplate = {
 	block: {
 		normal: (props) => <NormalText {...props} theme="light" />,
 		h1: (props) => <Heading level={1} {...props} theme="light" />,
@@ -193,7 +186,7 @@ export const VideoTemplate = {
 	},
 };
 
-export const TeamTemplate = {
+const TeamTemplate = {
 	block: {
 		normal: (props) => <NormalText {...props} theme="dark" />,
 		h1: (props) => <Heading level={1} {...props} theme="dark" />,
@@ -205,3 +198,5 @@ export const TeamTemplate = {
 		number: (props) => <List type="number" {...props} theme="dark" />,
 	},
 };
+
+export { DarkTemplate, LightTemplate, TeamTemplate, VideoTemplate };

@@ -200,4 +200,4 @@ const BGImage = ({ block }) => {
 	return null;
 };
 
-export default ImageCanvasBlock;
+export default React.memo(ImageCanvasBlock);

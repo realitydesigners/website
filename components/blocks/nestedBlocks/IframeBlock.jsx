@@ -1,3 +1,4 @@
+import React from "react";
 const iFrame = ({ value }) => {
 	const { url, width, height } = value;
 
@@ -14,4 +15,4 @@ const iFrame = ({ value }) => {
 	);
 };
 
-export default iFrame;  
+export default React.memo(iFrame);
