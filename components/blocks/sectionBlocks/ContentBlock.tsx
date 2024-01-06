@@ -29,8 +29,6 @@ const ContentBlock: React.FC<ContentBlockProps> = ({ block }) => {
 	const theme = layout || "light";
 	const styles = templateStyles[theme];
 
-	console.log("ContentBlock", block);
-
 	return (
 		<div className={`h-auto ${styles} w-full`}>
 			<PortableText value={content} components={templateComponents[theme]} />
