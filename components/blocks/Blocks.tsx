@@ -1,19 +1,19 @@
 "use client";
-import { BlockProps, BlockType, LayoutTheme } from "@/components/blocks/types";
 import {
 	ContentBlock,
 	HeadingBlock,
 	HeadingSplineBlock,
 	ImageCanvasBlock,
 	TeamBlock,
-} from "@/components/blockstyles/index";
-import { PortableTextComponents } from "@portabletext/react";
+} from "@/components/blocks/sectionBlocks/index";
 import {
 	DarkTemplate,
 	LightTemplate,
 	TeamTemplate,
 	VideoTemplate,
-} from "./Templates";
+} from "@/components/blocks/templates/Templates";
+import { BlockProps, BlockType, LayoutTheme } from "@/components/blocks/types";
+import { PortableTextComponents } from "@portabletext/react";
 
 const templateComponents: Record<LayoutTheme, PortableTextComponents> = {
 	dark: DarkTemplate as PortableTextComponents,
@@ -27,21 +27,33 @@ const blockTypeComponents: Record<
 	(props: BlockProps) => JSX.Element | null
 > = {
 	headingBlock: (props) => (
-		<HeadingBlock block={{ ...props, className: props.layout }} />
+		<>
+			<HeadingBlock block={{ ...props, className: props.layout }} />
+		</>
 	),
 	headingSplineBlock: (props) => (
-		<HeadingSplineBlock block={{ ...props, className: props.layout }} />
+		<>
+			<HeadingSplineBlock block={{ ...props, className: props.layout }} />
+		</>
 	),
 	contentBlock: ({ layout, content }) => (
-		<ContentBlock
-			content={content || []}
-			className={layout === "dark" ? "bg-black" : "bg-gray-200"}
-			components={templateComponents[layout || "light"]}
-		/>
+		<>
+			<ContentBlock
+				content={content || []}
+				className={layout === "dark" ? "bg-black" : "bg-gray-200"}
+				components={templateComponents[layout || "light"]}
+			/>
+		</>
 	),
-	teamBlock: (props) => <TeamBlock block={props} />,
+	teamBlock: (props) => (
+		<>
+			<TeamBlock block={props} />
+		</>
+	),
 	imageCanvasBlock: (props) => (
-		<ImageCanvasBlock block={{ ...props, className: props.layout }} />
+		<>
+			<ImageCanvasBlock block={{ ...props, className: props.layout }} />
+		</>
 	),
 };
 
