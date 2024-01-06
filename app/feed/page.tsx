@@ -1,8 +1,8 @@
 "use client";
-import { useAnimateOnScroll } from "@/components/effects/useAnimateOnScroll";
 import ImageItem from "@/components/feed/ImageItem";
 import PostItem from "@/components/feed/PostItem";
 import VideoItem from "@/components/feed/VideoItem";
+import { useAnimateOnScroll } from "@/components/global/effects/useAnimateOnScroll";
 import { sanityFetch } from "@/sanity/lib/client";
 import { feedQuery } from "@/sanity/lib/queries";
 import { Image, PostsPayload, VideoPayload } from "@/types";

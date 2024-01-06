@@ -1,5 +1,5 @@
 "use client";
-import HologramMaterial from "@/components/materials/HologramMaterial";
+import HologramMaterial from "@/components/library/materials/HologramMaterial";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 import React, { useEffect, useRef, useState } from "react";
