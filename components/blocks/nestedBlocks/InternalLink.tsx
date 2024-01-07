@@ -89,7 +89,7 @@ const ArticlePreviewDialog = ({
 }: { isOpen: boolean; onClose: () => void; postData: any; theme: Theme }) => {
 	if (!isOpen || !postData) return null;
 	const { block = [] } = postData;
-	const [firstBlock] = block;
+	const [content] = block;
 	const style = themeClasses[theme];
 
 	return (
@@ -97,29 +97,29 @@ const ArticlePreviewDialog = ({
 			<div
 				className={`w-full justify-center p-2 shadow-lg rounded-[.7em] grid grid-cols-1  ${style.backgroundColor}`}
 			>
-				{firstBlock && (
+				{content && (
 					<>
 						<div
 							className={`flex  p-1 rounded-[.6em] h-auto w-full justify-between  ${style.topBackgroundColor} `}
 						>
 							<SanityImage
-								image={firstBlock.image}
+								image={content.image}
 								width={200}
 								height={200}
 								priority={true}
-								alt={firstBlock.image?.alt || "no title"}
+								alt={content.image?.alt || "no title"}
 								classesWrapper="h-[50px] max-w-[50px] object-cover rounded-[.5em]"
 							/>
 							<Link
 								href={`/posts/${postData.slug.current}`}
 								className={`${monomaniac.className} ${style.textColor} pl-2 flex items-center leading-[1em] font-bold text-sm lg:text-md w-1/2`}
 							>
-								{firstBlock.heading || "no title"}
+								{content.heading || "no title"}
 							</Link>
 							<span
 								className={`${monomaniac.className} ${style.textColor} w-auto pl-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] uppercase tracking-widest`}
 							>
-								{formatDate(firstBlock.publicationDate)}
+								{formatDate(content.publicationDate)}
 							</span>
 							<DialogButton onClose={onClose} />
 						</div>
@@ -128,11 +128,11 @@ const ArticlePreviewDialog = ({
 							<h4
 								className={`${cairo.className} ${style.textColor} leading-7 p-4 text-xl`}
 							>
-								{firstBlock.subheading || "no title"}
+								{content.subheading || "no title"}
 							</h4>
 
 							<div className="flex relative justify-between items-center">
-								<TeamLink team={firstBlock?.team} theme={theme} />
+								<TeamLink team={content?.team} theme={theme} />
 								<Link
 									href={`/posts/${postData.slug.current}`}
 									className={`${monomaniac.className} ${style.buttonTextColor} ${style.buttonBackgroundColor} right-2 absolute bottom-1 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 hover:transition-colors`}
@@ -204,7 +204,7 @@ const InternalLink: React.FC<{
 	);
 };
 
-export default InternalLink;
+export default React.memo(InternalLink);
 
 const LoadingIndicator = () => (
 	<div className="flex my-4 items-center justify-center">
