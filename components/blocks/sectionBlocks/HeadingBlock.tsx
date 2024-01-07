@@ -62,7 +62,8 @@ const renderTags = (tags, tagBg, tagText) =>
 		</div>
 	);
 
-const TeamSection = ({ team, textColor }) => {
+const TeamSection = ({ team, theme }) => {
+	// Use theme prop instead of textColor
 	if (!team) return null;
 
 	return (
@@ -81,14 +82,13 @@ const TeamSection = ({ team, textColor }) => {
 								height={100}
 								priority={true}
 								classesWrapper="h-[50px] w-[50px] object-cover cover rounded-[2em]"
+								theme={theme} // Pass theme to SanityImage
 							/>
-							{team.name && (
-								<span
-									className={`ml-2 uppercase tracking-wide text-sm ${textColor}`}
-								>
-									{team.name}
-								</span>
-							)}
+							<span
+								className={`ml-2 uppercase tracking-wide text-sm ${themeClasses[theme].textColor}`}
+							>
+								{team.name}
+							</span>
 						</div>
 					)}
 				</div>
@@ -130,6 +130,7 @@ const HeadingBlock = ({ block }) => {
 								priority={true}
 								alt={`Cover Image for ${block.title}`}
 								classesWrapper="h-full w-full rounded-[1em]"
+								theme={className}
 							/>
 						</div>
 					</div>
@@ -160,7 +161,7 @@ const HeadingBlock = ({ block }) => {
 								{block.subheading}
 							</p>
 						)}
-						<TeamSection team={block.team} textColor={style.textColor} />
+						<TeamSection team={block.team} theme={className} />
 					</div>
 				</div>
 			</div>

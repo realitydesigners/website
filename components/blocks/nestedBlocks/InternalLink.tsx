@@ -51,8 +51,7 @@ const DialogButton = ({ onClose }) => (
 	</button>
 );
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const TeamLink = ({ team, theme }: { team: any; theme: Theme }) => {
+const TeamLink = ({ team, theme }) => {
 	if (!team) return null;
 	const style = themeClasses[theme];
 
@@ -70,6 +69,7 @@ const TeamLink = ({ team, theme }: { team: any; theme: Theme }) => {
 						priority={true}
 						alt="Team Image"
 						classesWrapper="h-[30px] max-w-[30px] object-cover rounded-[1em]"
+						theme={theme} // Pass theme here
 					/>
 				)}
 				<span className="ml-2 uppercase tracking-wide font-mono text-sm">
@@ -80,7 +80,7 @@ const TeamLink = ({ team, theme }: { team: any; theme: Theme }) => {
 	);
 };
 
-const ArticlePreviewDialog = ({
+const PostPreviewDialog = ({
 	isOpen,
 	onClose,
 	postData,
@@ -109,6 +109,7 @@ const ArticlePreviewDialog = ({
 								priority={true}
 								alt={content.image?.alt || "no title"}
 								classesWrapper="h-[50px] max-w-[50px] object-cover rounded-[.5em]"
+								theme={theme} // Pass theme here
 							/>
 							<Link
 								href={`/posts/${postData.slug.current}`}
@@ -193,7 +194,7 @@ const InternalLink: React.FC<{
 					POST
 				</span>
 			</Link>
-			<ArticlePreviewDialog
+			<PostPreviewDialog
 				isOpen={isDialogOpen}
 				onClose={() => setDialogOpen(false)}
 				postData={previewPostData}
