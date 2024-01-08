@@ -33,11 +33,10 @@ export function SanityImage({
 	theme = "light",
 }: SanityImageProps) {
 	const [isLoading, setIsLoading] = useState(true);
-	const [hasError, setHasError] = useState(false);
+
 	const imageUrl =
 		image && urlForImage(image)?.height(height).width(width).fit("crop").url();
 
-	// Use the record to get the loading background color
 	const loadingBgColor = loadingBgColors[theme];
 
 	const handleImageLoad = () => {
@@ -46,8 +45,8 @@ export function SanityImage({
 
 	return (
 		<div className={`relative w-full overflow-hidden ${classesWrapper}`}>
-			{isLoading && !hasError && <LoadingIndicator bgColor={loadingBgColor} />}
-			{imageUrl && !hasError && (
+			{isLoading && <LoadingIndicator bgColor={loadingBgColor} />}
+			{imageUrl && (
 				<Image
 					priority={priority}
 					className="object-cover cover h-full w-full"
@@ -58,16 +57,13 @@ export function SanityImage({
 					onLoad={handleImageLoad}
 				/>
 			)}
-			{hasError && <p>Image failed to load.</p>}
 		</div>
 	);
 }
 
 const LoadingIndicator = ({ bgColor }: { bgColor: string }) => (
-	<div
-		className={`absolute inset-0 flex items-center justify-center ${bgColor}`}
-	>
-		<div className="animate-pulse w-full h-full rounded" />
+	<div className="absolute inset-0 flex items-center justify-center">
+		<div className={`animate-pulse w-full h-full rounded ${bgColor}`} />
 	</div>
 );
 
