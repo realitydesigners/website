@@ -31,7 +31,10 @@ const ContentBlock: React.FC<ContentBlockProps> = ({ block }) => {
 
 	return (
 		<div className={`h-auto ${styles} w-full`}>
-			<PortableText value={content} components={templateComponents[theme]} />
+			<PortableText
+				value={content}
+				components={templateComponents[theme] || templateComponents.light}
+			/>
 		</div>
 	);
 };

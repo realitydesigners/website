@@ -4,15 +4,9 @@ import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 
-type Theme = "light" | "dark";
-type ThemeStyle = {
-	textColor: string;
-	containerBg: string;
-	tagBg: string;
-	tagText: string;
-};
+import { TemplateTheme, ThemeProps } from "@/components/blocks/types";
 
-const themeClasses: Record<Theme, ThemeStyle> = {
+const themeClasses: Record<TemplateTheme, ThemeProps> = {
 	light: {
 		containerBg: "bg-gray-200",
 		textColor: "text-black",

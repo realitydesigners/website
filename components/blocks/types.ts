@@ -1,8 +1,5 @@
 import type { PortableTextBlock } from "@portabletext/types";
 
-export type LayoutTheme = "dark" | "light" | "team" | "video";
-export type TemplateTheme = "dark" | "light";
-
 export type BlockType =
 	| "headingBlock"
 	| "headingSplineBlock"
@@ -24,4 +21,19 @@ export interface ContentBlockProps {
 		layout?: LayoutTheme;
 	};
 	layout?: string | undefined;
+	theme?: string | undefined;
+}
+
+export type LayoutTheme = "dark" | "light" | "team" | "video";
+export type TemplateTheme = "dark" | "light";
+export interface ThemeProps {
+	textColor?: string;
+	isInset?: boolean;
+	containerBg?: string;
+	tagBg?: string;
+	tagText?: string;
+	backgroundColor?: string;
+	topBackgroundColor?: string;
+	buttonTextColor?: string;
+	buttonBackgroundColor?: string;
 }

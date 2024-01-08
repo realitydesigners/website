@@ -5,16 +5,9 @@ import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-type Theme = "light" | "dark";
-type ThemeStyle = {
-	textColor: string;
-	backgroundColor: string;
-	topBackgroundColor: string;
-	buttonTextColor: string;
-	buttonBackgroundColor: string;
-};
+import { TemplateTheme, ThemeProps } from "@/components/blocks/types";
 
-const themeClasses: Record<Theme, ThemeStyle> = {
+const themeClasses: Record<TemplateTheme, ThemeProps> = {
 	light: {
 		textColor: "text-black",
 		backgroundColor: "bg-gray-300",
@@ -85,8 +78,13 @@ const PostPreviewDialog = ({
 	onClose,
 	postData,
 	theme,
+}: {
+	isOpen: boolean;
+	onClose: () => void;
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-}: { isOpen: boolean; onClose: () => void; postData: any; theme: Theme }) => {
+	postData: any;
+	theme: TemplateTheme;
+}) => {
 	if (!isOpen || !postData) return null;
 	const { block = [] } = postData;
 	const [content] = block;
@@ -151,7 +149,7 @@ const PostPreviewDialog = ({
 
 const InternalLink: React.FC<{
 	slug: string;
-	theme: Theme;
+	theme: TemplateTheme;
 	children: React.ReactNode;
 }> = ({ slug, children, theme }) => {
 	const [isDialogOpen, setDialogOpen] = useState(false);

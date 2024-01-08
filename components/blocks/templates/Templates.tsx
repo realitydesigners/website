@@ -114,7 +114,12 @@ const DarkTemplate = {
 		},
 		iframe: IframeBlock,
 		spline: SplineRefBlock,
-		imageRef: ImageRefBlock,
+		imageRef: ({ value }) => {
+			const { image, className } = value;
+
+			return <ImageRefBlock image={image} className={className} />;
+		},
+
 		audioRef: AudioRefBlock,
 		quoteRef: QuoteRefBlock,
 	},
@@ -167,7 +172,11 @@ const LightTemplate = {
 		},
 		iframe: IframeBlock,
 		spline: SplineRefBlock,
-		imageRef: ImageRefBlock,
+		imageRef: ({ value }) => {
+			const { image, className } = value;
+
+			return <ImageRefBlock image={image} className={className} />;
+		},
 		audioRef: AudioRefBlock,
 		quoteRef: QuoteRefBlock,
 	},
