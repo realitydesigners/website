@@ -17,7 +17,7 @@ const config: ClientConfig = {
 	projectId,
 	dataset,
 	apiVersion,
-	useCdn: hookSecret ? false : true, // set CDN to live API when webhook secret is undefined
+	useCdn: hookSecret ? false : true,
 	token,
 };
 
@@ -33,7 +33,7 @@ export async function sanityFetch<QueryResponse>({
 	tags: string[];
 }): Promise<QueryResponse> {
 	return client.fetch<QueryResponse>(query, qParams, {
-		cache: hookSecret ? "no-cache" : "default",
-		next: { revalidate: 5, tags },
+		// cache: hookSecret ? "no-cache" : "default",
+		next: { revalidate: 60, tags },
 	});
 }
