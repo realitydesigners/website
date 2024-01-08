@@ -9,7 +9,6 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
 import { Suspense } from "react";
-import Loading from "./loading";
 
 export default async function IndexPage() {
 	const posts: PostsPayload[] = await sanityFetch({
@@ -26,17 +25,17 @@ export default async function IndexPage() {
 	return (
 		<main className="flex flex-col w-full bg-gray-200">
 			<Navbar pageBackground="light" />
-			<Suspense fallback={<Loading />}>
-				<div className="w-full pt-[80px] h-auto flex flex-cols px-2 lg:px-6  flex-wrap">
-					<TopBar post={topPostData} />
-					<SideBar post={sidePostData} />
-					<MainPost post={mainPostData} />
-					<RightSideBar post={rightPostData} />
-				</div>
-				<div className="w-full   mb-6  flex h-auto flex-cols px-2 lg:px-6">
-					<PostsList post={postsListData} />
-				</div>
-			</Suspense>
+
+			<div className="w-full pt-[80px] h-auto flex flex-cols px-2 lg:px-6  flex-wrap">
+				<TopBar post={topPostData} />
+				<SideBar post={sidePostData} />
+				<MainPost post={mainPostData} />
+				<RightSideBar post={rightPostData} />
+			</div>
+			<div className="w-full   mb-6  flex h-auto flex-cols px-2 lg:px-6">
+				<PostsList post={postsListData} />
+			</div>
+
 			<Footer />
 		</main>
 	);
