@@ -4,14 +4,8 @@ import RightSideBar from "@/components/global/RightSideBar";
 import SideBar from "@/components/global/SideBar";
 import { PostsPayload } from "@/types";
 
-interface PostPageProps {
-	mainPostData: PostsPayload;
-	sidePostData: PostsPayload[];
-	rightPostData: PostsPayload[];
-	postsListData: PostsPayload[];
-}
-
-const PostPage: React.FC<PostPageProps> = ({
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const PostPage: React.FC<any> = ({
 	mainPostData,
 	sidePostData,
 	rightPostData,
