@@ -22,7 +22,6 @@ type SanityImageProps = {
 	priority?: boolean;
 	theme?: Theme;
 };
-
 export function SanityImage({
 	image,
 	alt,
@@ -33,10 +32,8 @@ export function SanityImage({
 	theme = "light",
 }: SanityImageProps) {
 	const [isLoading, setIsLoading] = useState(true);
-
 	const imageUrl =
 		image && urlForImage(image)?.height(height).width(width).fit("crop").url();
-
 	const loadingBgColor = loadingBgColors[theme];
 
 	const handleImageLoad = () => {
@@ -62,9 +59,9 @@ export function SanityImage({
 }
 
 const LoadingIndicator = ({ bgColor }: { bgColor: string }) => (
-	<div className="absolute inset-0 flex items-center justify-center">
-		<div className={`animate-pulse w-full h-full rounded ${bgColor}`} />
+	<div
+		className={`absolute inset-0 flex items-center justify-center ${bgColor}`}
+	>
+		<div className="animate-pulse w-full h-full rounded" />
 	</div>
 );
-
-export default SanityImage;
