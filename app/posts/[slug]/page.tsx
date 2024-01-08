@@ -5,7 +5,7 @@ import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
-import React from "react";
+import React, { Suspense } from "react";
 
 const PostsList = React.lazy(() => import("@/components/global/PostsList")); // Lazy import
 
@@ -69,11 +69,13 @@ export default async function PageSlugRoute({ params }) {
 	return (
 		<>
 			<SlugPage data={currentPost} />
-			{currentPost && otherPosts && (
-				<div className="w-full mb-6 flex h-auto flex-cols px-2 lg:px-6">
-					<PostsList post={otherPosts} />
-				</div>
-			)}
+			<Suspense fallback={<div>Loading...</div>}>
+				{currentPost && otherPosts && (
+					<div className="w-full mb-6 flex h-auto flex-cols px-2 lg:px-6">
+						<PostsList post={otherPosts} />
+					</div>
+				)}
+			</Suspense>
 		</>
 	);
 }
