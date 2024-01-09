@@ -61,7 +61,7 @@ export const Category = (props) => {
 			<Text
 				ref={textRef}
 				position={[0, 0, -1]}
-				color="black"
+				color="#fff"
 				fontSize={1.5}
 				font="/Staatliches.ttf"
 				anchorY="middle"

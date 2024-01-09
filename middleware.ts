@@ -13,6 +13,8 @@ export default authMiddleware({
 		"api/revalidate",
 		"api/sanityWebhook",
 		"/api/discord",
+		"/library",
+		"/library/:slug*",
 		"/posts/:slug*",
 		"/videos/:slug*",
 		"/team/:slug*",

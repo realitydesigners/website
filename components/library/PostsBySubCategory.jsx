@@ -48,7 +48,7 @@ export const SubCategory = (props) => {
 			<Text
 				ref={textRef}
 				position={[0, 0, -3]}
-				color="black"
+				color="#fff"
 				fontSize={1.5}
 				font="/Staatliches.ttf"
 				anchorY="middle"
@@ -58,7 +58,7 @@ export const SubCategory = (props) => {
 			>
 				{title}
 			</Text>
-			<Line
+			{/* <Line
 				points={[
 					[-textWidth / 2, textHeight / 2, 0],
 					[textWidth / 2, textHeight / 2, 0],
@@ -70,7 +70,7 @@ export const SubCategory = (props) => {
 				color="gray"
 				lineWidth={2}
 				dashed={false}
-			/>
+			/> */}
 		</group>
 	);
 };
@@ -153,7 +153,7 @@ export const RefPost = (props) => {
 			<Text
 				ref={textRef}
 				position={[0, 0, -3]}
-				color="black"
+				color="#fff"
 				fontSize={0.5}
 				font="/Staatliches.ttf"
 				textAlign="center"

@@ -9,7 +9,7 @@ export default async function LibraryLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-screen h-screen bg-gray-200">
+		<div className="w-screen h-screen bg-black">
 			<Navbar pageBackground="light" />
 			{children}
 			<Footer />

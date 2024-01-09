@@ -20,7 +20,7 @@ export default async function CategoryPage({ params }: Props) {
 	});
 
 	return (
-		<div className="w-screen h-screen bg-gray-200">
+		<div className="w-screen h-screen bg-black">
 			<SlugPage category={category} />
 		</div>
 	);

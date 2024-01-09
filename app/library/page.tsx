@@ -10,7 +10,7 @@ export default async function CategoryPage() {
 	});
 
 	return (
-		<div className="w-screen h-screen bg-gray-200">
+		<div className="w-screen h-screen bg-black">
 			<LibraryScene category={categories} />
 		</div>
 	);
