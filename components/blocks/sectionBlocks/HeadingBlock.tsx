@@ -9,12 +9,14 @@ import { TemplateTheme, ThemeProps } from "@/components/blocks/types";
 const themeClasses: Record<TemplateTheme, ThemeProps> = {
 	light: {
 		containerBg: "bg-gray-200",
+		containerBorder: "border border-gray-600/50",
 		textColor: "text-black",
 		tagBg: "bg-black",
 		tagText: "text-gray-200",
 	},
 	dark: {
 		containerBg: "bg-black",
+		containerBorder: " border border-gray-600/50",
 		textColor: "text-gray-200",
 		tagBg: "bg-gray-200",
 		tagText: "text-black",
@@ -109,21 +111,21 @@ const HeadingBlock = ({ block }) => {
 					<span
 						className={`${monomaniac.className} ml-2 uppercase w-auto text-xs font-mono tracking-widest`}
 					>
-						PUBLISHED ON {formattedDate}
+						POSTED ON {formattedDate}
 					</span>
 					{renderTags(block.tags, style.tagBg, style.tagText)}
 				</div>
 
 				{block.image && (
 					<div className="w-full flex-wrap lg:w-1/2 p-4 flex">
-						<div className="w-full h-full object-cover object-contain">
+						<div className={" w-full h-full object-cover object-contain "}>
 							<SanityImage
 								image={block.image}
 								width={1000}
 								height={1000}
 								priority={true}
 								alt={`Cover Image for ${block.title}`}
-								classesWrapper="h-full w-full rounded-[1em]"
+								classesWrapper={`h-full w-full rounded-[1em] ${style.containerBorder} `}
 								theme={className}
 							/>
 						</div>
@@ -135,9 +137,9 @@ const HeadingBlock = ({ block }) => {
 							className={`w-full hidden justify-between items-center lg:flex mb-6 ${style.textColor}`}
 						>
 							<span
-								className={`${monomaniac.className} font-mono w-auto text-xs tracking-widest`}
+								className={`${monomaniac.className} uppercase font-mono w-auto text-xs tracking-widest`}
 							>
-								PUBLISHED ON {formattedDate}
+								POSTED {formattedDate}
 							</span>
 							{renderTags(block.tags, style.tagBg, style.tagText)}
 						</div>

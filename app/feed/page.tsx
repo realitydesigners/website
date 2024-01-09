@@ -14,7 +14,7 @@ export default function FeedPage() {
 	const [items, setItems] = useState<FeedItem[]>([]);
 	const containerRef = useRef<HTMLDivElement | null>(null);
 
-	useAnimateOnScroll(".feed-item", {}, process.env.NODE_ENV === "development");
+	useAnimateOnScroll(".feed-", {}, process.env.NODE_ENV === "development");
 
 	useEffect(() => {
 		async function fetchData() {

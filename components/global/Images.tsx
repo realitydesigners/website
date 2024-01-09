@@ -9,8 +9,8 @@ type Theme = "light" | "dark";
 type LoadingBgColors = Record<Theme, string>;
 
 const loadingBgColors: LoadingBgColors = {
-	light: "bg-gray-300",
-	dark: "bg-gray-600/20", // Adjust this value as needed for the dark theme
+	light: "bg-gray-300/50",
+	dark: "bg-gray-600/50", // Adjust this value as needed for the dark theme
 };
 
 type SanityImageProps = {
@@ -30,7 +30,7 @@ export function SanityImage({
 	height,
 	classesWrapper,
 	priority = false,
-	theme = "light",
+	theme = "dark",
 }: SanityImageProps) {
 	const [isLoading, setIsLoading] = useState(true);
 	const imageUrl =

@@ -36,4 +36,5 @@ export interface ThemeProps {
 	topBackgroundColor?: string;
 	buttonTextColor?: string;
 	buttonBackgroundColor?: string;
+	containerBorder?: string;
 }

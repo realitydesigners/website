@@ -15,7 +15,7 @@ export default async function ROotLayout({
 }: { children: React.ReactNode }) {
 	return (
 		<ClerkProvider>
-			<html lang="en" className={`${cairo.className} `}>
+			<html lang="en" className={`${cairo.className} bg-black`}>
 				<head>
 					<link rel="icon" href="/favicon.ico" sizes="any" />
 					<script

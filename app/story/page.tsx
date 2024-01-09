@@ -4,7 +4,7 @@ import { cairo, monomaniac } from "@/fonts";
 export default function StoryPage() {
 	return (
 		<div className="flex flex-col flex-wrap items-center w-screen h-auto justify-center bg-black">
-			<div className="w-full block h-screen  bg-gray-200 overflow-hidden">
+			<div className="w-full block h-screen  overflow-hidden">
 				<spline-viewer
 					url="https://prod.spline.design/iKmFxJxXHvp6KcMb/scene.splinecode"
 					className="rounded-[1.5em] w-full h-full"

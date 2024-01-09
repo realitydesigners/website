@@ -38,12 +38,12 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 };
 
 export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
-	const { image, heading, subheading, publicationDate } = block;
+	const { image, heading, publicationDate } = block;
 
 	const formattedDate = publicationDate
 		? new Date(publicationDate).toLocaleDateString("en-US", {
 				year: "numeric",
-				month: "long",
+				month: "short",
 				day: "numeric",
 		  })
 		: "Date not available";
@@ -53,18 +53,18 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	};
 
 	return (
-		<div className="h-auto w-full flex flex-row border border-gray-300 p-2 rounded-[1em]">
+		<div className="h-auto w-full flex flex-row border border-gray-600/50 p-2 rounded-[1em]">
 			<PostImage image={image} heading={heading} />
 			<div className="pl-1 pr-2 w-full flex flex-col">
 				<span
-					className={`${monomaniac.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
+					className={`${monomaniac.className} w-full p-2  h-auto  text-xs text-gray-400  uppercase tracking-widest`}
 				>
 					{formattedDate}
 				</span>
 				<div>
 					<Link href={`/posts/${slug?.current}`}>
 						<h2
-							className={`${monomaniac.className} pl-2 text-2xl capitalize leading-none text-black cursor-pointer`}
+							className={`${monomaniac.className} pl-2 text-xl capitalize leading-none text-gray-200 cursor-pointer`}
 						>
 							{renderHeading()}
 						</h2>

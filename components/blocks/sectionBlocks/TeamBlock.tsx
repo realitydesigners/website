@@ -10,9 +10,9 @@ const TeamBlock = ({ block }) => {
 	}
 
 	return (
-		<div className="w-full flex justify-center h-auto bg-gray-200 my-6 ">
-			<div className="flex flex-col w-11/12 md:w-1/2 lg:w-1/3 bg-gray-300  shadow-lg p-4 rounded-lg ">
-				<div className="flex justify-center items-center">
+		<div className="w-full flex justify-center h-auto bg-black py-6 ">
+			<div className="flex flex-col w-11/12 md:w-1/2 lg:w-1/4 bg-gray-600/25  shadow-lg p-4 rounded-lg ">
+				<div className="flex justify-start w-full items-center">
 					{block.team?.image && (
 						<div className="flex items-center">
 							<SanityImage
@@ -25,18 +25,18 @@ const TeamBlock = ({ block }) => {
 							/>
 							<div className="ml-4 flex flex-col">
 								<p
-									className={`${monomaniac.className}  text-black uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1`}
+									className={`${monomaniac.className}  text-gray-200 uppercase font-bold leading-none font-bold font-mono tracking-wide text-xl mb-1`}
 								>
 									{block?.team.name}
 								</p>
-								<span className="text-black font-mono leading-none uppercase text-xs tracking-widest">
+								<span className="text-gray-400 font-mono leading-none uppercase text-xs tracking-widest">
 									{block?.team.role}
 								</span>
 							</div>
 						</div>
 					)}
 				</div>
-				<p className=" text-black text-md leading-5 mb-4   mt-4">
+				<p className=" text-gray-400 text-md leading-6 mb-4   pt-4">
 					{block?.team.shortBio}
 				</p>
 				<div className="bg-black justify-center flex rounded-lg">

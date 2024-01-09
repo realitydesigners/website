@@ -1,4 +1,5 @@
 import SlugPage from "@/app/posts/[slug]/SlugPage";
+import { cairo, monomaniac } from "@/fonts";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
@@ -71,8 +72,13 @@ export default async function PageSlugRoute({ params }) {
 			<SlugPage data={currentPost} />
 			<Suspense fallback={<div>Loading...</div>}>
 				{currentPost && otherPosts && (
-					<div className="w-full mb-6 flex h-auto flex-cols px-2 lg:px-6">
-						<PostsList post={otherPosts} />
+					<div className="w-full pb-6 flex flex-col h-auto flex-cols p-4  lg:px-6">
+						<h4 className={`${monomaniac.className} text-gray-200  text-4xl `}>
+							More Posts
+						</h4>
+						<div className="w-full py-12 ">
+							<PostsList post={otherPosts} />
+						</div>
 					</div>
 				)}
 			</Suspense>

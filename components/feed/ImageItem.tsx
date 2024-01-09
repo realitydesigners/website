@@ -5,7 +5,7 @@ import React, { FC } from "react";
 
 export const ImageItem: FC<{ image: Image }> = ({ image }) => {
 	return (
-		<div className=" w-full h-full border border-gray-300 p-2 rounded-[1em]">
+		<div className=" w-full h-full border border-gray-600/50 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
 					<SanityImage

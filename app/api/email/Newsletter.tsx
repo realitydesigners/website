@@ -42,7 +42,7 @@ const EmailForm = () => {
 	);
 
 	return (
-		<div className=" w-full  p-6  border-gray-600 border rounded-lg ">
+		<div className=" w-full  p-6  border-gray-600/50 border rounded-lg ">
 			{submissionStatus === "submitting" ? (
 				<FeedbackMessage message="Sending..." />
 			) : submissionStatus === "success" ? (
@@ -65,7 +65,7 @@ const EmailForm = () => {
 						id="name"
 						required
 						placeholder="Your Name"
-						className="p-2 bg-gray-200 border border-gray-500 rounded-md"
+						className="p-2 bg-gray-600/25 border border-gray-600/50 rounded-md"
 					/>
 
 					<input
@@ -74,12 +74,12 @@ const EmailForm = () => {
 						id="email"
 						required
 						placeholder="yourname@example.com"
-						className="p-2 bg-gray-200 border border-gray-500 rounded-md"
+						className="p-2 bg-gray-600/25 border border-gray-600/50  rounded-md"
 					/>
 
 					<button
 						type="submit"
-						className="border uppercase tracking-wide bg-black border-gray-200 text-gray-200 py-2 px-4 rounded-md hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+						className="border uppercase tracking-wide bg-gray-200 border border-gray-600/50 text-black py-2 px-4 rounded-md hover:bg-gray-600/75 focus:outline-none focus:ring-1 focus:ring-gray-200/50 focus:ring-opacity-50"
 					>
 						Send
 					</button>

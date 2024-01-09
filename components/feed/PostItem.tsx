@@ -18,13 +18,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const formattedDate = publicationDate
 		? new Date(publicationDate).toLocaleDateString("en-US", {
 				year: "numeric",
-				month: "long",
+				month: "short",
 				day: "numeric",
 		  })
 		: "Date not available";
 
 	return (
-		<div className=" w-full h-auto  border border-gray-300 p-2 rounded-[1em]">
+		<div className=" w-full h-auto flex flex-col border border-gray-600/50 p-2 rounded-[1em]">
 			{image && (
 				<div className="relative">
 					<SanityImage
@@ -38,20 +38,20 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				</div>
 			)}
 			<span
-				className={`${monomaniac.className} w-10/12 p-2 text-xs text-black uppercase tracking-widest`}
+				className={`${monomaniac.className} w-full p-2 pt-4 h-auto  text-xs text-gray-400  uppercase tracking-widest`}
 			>
 				{formattedDate}
 			</span>
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
+						className={`${monomaniac.className} p-2 text-4xl capitalize leading-none text-gray-200 cursor-pointer`}
 					>
 						{heading || "no title"}
 					</h2>
 				</Link>
 				<p
-					className={`${cairo.className} p-2 text-md font-bold leading-tight text-black`}
+					className={`${cairo.className} p-2 text-md leading-tight text-gray-400`}
 				>
 					{subheading || "no subheading"}
 				</p>

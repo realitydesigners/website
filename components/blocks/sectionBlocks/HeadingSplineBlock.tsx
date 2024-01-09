@@ -36,7 +36,7 @@ const HeadingSplineBlock = ({ block }) => {
 								<span
 									className={`${monomaniac.className} text-gray-200 ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
 								>
-									PUBLISHED ON {formattedDate}
+									POSTED ON {formattedDate}
 								</span>
 							</div>
 							{block.tags && block.tags.length > 0 && (

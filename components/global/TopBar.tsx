@@ -45,12 +45,12 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	};
 
 	return (
-		<div className="w-full lg:flex p-2 lg:flex-row lg:block border border-gray-300 lg:flex-row-reverse rounded-[.7em]">
+		<div className="w-full lg:flex p-2 lg:flex-row lg:block border border-gray-600/50 lg:flex-row-reverse rounded-[.7em]">
 			<PostImage image={image} heading={heading} />
 			<div className="w-full flex items-center lg:pl-1 lg:pr-2">
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} pl-2 text-xl capitalize leading-none text-black cursor-pointer`}
+						className={`${monomaniac.className} pl-2 text-lg capitalize leading-none text-gray-200 cursor-pointer`}
 					>
 						{renderHeading()}
 					</h2>

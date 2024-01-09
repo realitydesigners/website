@@ -49,7 +49,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				>
 					<path
 						d="M47.1279 70.8731L33.5967 55.3087M43.4729 23.3416L10.6978 28.9689L33.5967 55.3087M43.4729 23.3416L33.5967 55.3087M43.4729 23.3416L68.3831 51.4708L33.5967 55.3087M43.4729 23.3416L30.6805 9.58502"
-						stroke={logoColor}
+						stroke="#fff" //{logoColor}
 						strokeWidth="6"
 					/>
 				</svg>
@@ -61,7 +61,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					height="35"
 					fill="none"
 					viewBox="0 0 24 24"
-					stroke={logoColor}
+					stroke="#fff" //{logoColor}
 				>
 					<path
 						strokeLinecap="round"
@@ -106,19 +106,19 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 			{isNavOpen && (
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 				<div
-					className="fixed inset-0 bg-black/10 backdrop-blur-[.1em] z-40"
+					className="fixed inset-0 bg-black/20 backdrop-blur-[.2em] z-40"
 					onClick={handleBackdropClick}
 				/>
 			)}
 
 			<nav
 				id="navbar"
-				className="flex  bg-gray-200  shadow-lg items-center h-12 p-2 justify-between fixed w-full z-50 "
+				className="flex  bg-black/80  shadow-xl items-center h-12 p-2 justify-between fixed w-full z-50 "
 			>
 				<div className="pl-[2.3em] w-full justify-center relative flex items-center z-10">
 					<Link
 						href="/"
-						className={`${monomaniac.className} text-black items-center pt-2 pb-2  flex flex-row`}
+						className={`${monomaniac.className} text-gray-200 items-center pt-2 pb-2  flex flex-row`}
 						onClick={closeNav}
 					>
 						<div className=" left-2 absolute ">{getIcon("logo")}</div>
@@ -134,12 +134,12 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				</div>
 
 				<div className="relative ">
-					{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 					<button
 						id="nav-toggle"
 						className="flex items-center h-10 w-10  justify-center relative  z-20 "
 						aria-label="Toggle Menu"
 						onClick={toggleNav}
+						type="button"
 					>
 						{getIcon("menu")}
 					</button>
@@ -148,20 +148,22 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-gray-200  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
-						isNavOpen ? "translate-x-0 right-0 lg:right-4" : "translate-x-full"
+					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
+						isNavOpen
+							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/50 lg:shadow-lg"
+							: "translate-x-full"
 					}  flex flex-col justify-start p-3 `}
 				>
-					<div className="w-full mb-2 rounded-lg block   bg-black h-[250px]">
+					<div className="w-full mb-2 rounded-lg block border border-gray-600/50   h-[250px]">
 						<Link href="/" onClick={closeNav}>
 							<spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode" />
 						</Link>
 					</div>
-					<ul className="flex justify-center uppercase items-center gap-4 flex-col  mt-4">
+					<ul className="flex justify-center text-gray-200 uppercase items-center gap-4 flex-col  mt-4">
 						<li>
 							<Link
 								href="/feed"
-								className={`${monomaniac.className} text-black text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								className={`${monomaniac.className}  text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 								onClick={closeNav}
 							>
 								Feed
@@ -170,7 +172,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 						<li>
 							<Link
 								href="/library"
-								className={`${monomaniac.className} text-black text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								className={`${monomaniac.className} text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 								onClick={closeNav}
 							>
 								Library
@@ -179,7 +181,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 						<li>
 							<Link
 								href="/posts"
-								className={`${monomaniac.className} text-black text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								className={`${monomaniac.className} text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 								onClick={closeNav}
 							>
 								Posts
@@ -188,7 +190,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 						<li>
 							<Link
 								href="/videos"
-								className={`${monomaniac.className} text-black text-5xl font-bold hover:bg-gray-600/30 p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								className={`${monomaniac.className}  text-5xl font-bold hover:bg-gray-600/30 p-2 rounded-lg transition-all duration-200 ease-in-out`}
 								onClick={closeNav}
 							>
 								Videos
@@ -197,7 +199,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 						<li>
 							<Link
 								href="/story"
-								className={`${monomaniac.className} text-black  text-5xl font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
+								className={`${monomaniac.className}  text-5xl font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
 								onClick={closeNav}
 							>
 								Story
@@ -207,8 +209,10 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<SignedOut>
 						<div className="flex mt-4  mr-0 justify-center">
 							<SignInButton>
-								{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-								<button className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black">
+								<button
+									type="button"
+									className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black"
+								>
 									<span
 										className={`${monomaniac.className}  whitespace-nowrap`}
 									>

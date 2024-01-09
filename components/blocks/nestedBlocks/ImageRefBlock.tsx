@@ -1,4 +1,5 @@
 import { SanityImage } from "@/components/global/Images";
+import { cairo, monomaniac } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 
@@ -21,7 +22,7 @@ const themeClasses: Record<string, ThemeProps> = {
 
 const ImageDisplay = ({ image, alt, className }) => {
 	const { isInset } = themeClasses[className] || themeClasses["image-standard"];
-	const insetStyles = isInset ? "border border-t border-gray-600" : "";
+	const insetStyles = isInset ? "border border-t border-gray-600/50" : "";
 
 	return (
 		<div
@@ -61,7 +62,7 @@ const ArtistInfo = ({ artist, className }) => {
 			<div className="flex flex-col items-start justify-center text-xs uppercase leading-none">
 				<Link
 					href={`/team/${artist.slug.current}`}
-					className="font-mono font-bold text-md"
+					className={`${monomaniac.className} pl-1  font-bold text-md`}
 				>
 					{artist.name}
 				</Link>
