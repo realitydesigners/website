@@ -8,7 +8,6 @@ import TopBar from "@/components/global/TopBar";
 import { sanityFetch } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
-import { Suspense } from "react";
 
 export default async function IndexPage() {
 	const posts: PostsPayload[] = await sanityFetch({
@@ -35,7 +34,6 @@ export default async function IndexPage() {
 			<div className="w-full   p-4  py-12  flex h-auto flex-cols px-2 lg:px-6">
 				<PostsList post={postsListData} />
 			</div>
-
 			<Footer />
 		</main>
 	);

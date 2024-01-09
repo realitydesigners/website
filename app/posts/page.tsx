@@ -1,29 +1,38 @@
 import MainPost from "@/components/global/MainPost";
+import Navbar from "@/components/global/Navbar";
 import PostsList from "@/components/global/PostsList";
 import RightSideBar from "@/components/global/RightSideBar";
 import SideBar from "@/components/global/SideBar";
+import TopBar from "@/components/global/TopBar";
+import { sanityFetch } from "@/sanity/lib/client";
+import { postsQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const PostPage: React.FC<any> = ({
-	mainPostData,
-	sidePostData,
-	rightPostData,
-	postsListData,
-}) => {
+export default async function PostsPage() {
+	const posts: PostsPayload[] = await sanityFetch({
+		query: postsQuery,
+		tags: ["posts"],
+	});
+
+	const mainPostData = posts[0];
+	const sidePostData = posts.slice(1, 3);
+	const rightPostData = posts.slice(4, 9);
+	const postsListData = posts.slice(13, 30);
+	const topPostData = posts.slice(9, 13);
+
 	return (
-		<>
-			<div className="w-full pt-[80px] h-auto flex flex-cols px-2 lg:px-6 flex-wrap">
+		<main className="flex justify-center items-center flex-col w-full bg-black">
+			<Navbar pageBackground="light" />
+
+			<div className="w-full pt-[80px] h-auto flex flex-cols p-4 lg:w-5/6 flex-wrap">
+				<TopBar post={topPostData} />
 				<SideBar post={sidePostData} />
 				<MainPost post={mainPostData} />
 				<RightSideBar post={rightPostData} />
 			</div>
-
-			<div className="w-full flex h-auto flex-cols px-2 lg:px-6">
+			<div className="w-full lg:w-5/6   p-4  py-12  flex h-auto flex-cols px-2 ">
 				<PostsList post={postsListData} />
 			</div>
-		</>
+		</main>
 	);
-};
-
-export default PostPage;
+}

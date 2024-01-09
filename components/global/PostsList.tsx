@@ -31,7 +31,7 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[20vw] object-cover object-contain rounded-[.7em]"
+				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[15vw] object-cover object-contain rounded-[.7em]"
 			/>
 		</div>
 	);
