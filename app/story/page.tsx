@@ -2,11 +2,14 @@
 import { monomaniac, play } from "@/fonts";
 
 import Spline from "@splinetool/react-spline";
+import { Suspense } from "react";
 
 function SplineScene() {
 	return (
 		<>
-			<Spline scene="https://prod.spline.design/iKmFxJxXHvp6KcMb/scene.splinecode" />
+			<Suspense fallback={""}>
+				<Spline scene="https://prod.spline.design/iKmFxJxXHvp6KcMb/scene.splinecode" />
+			</Suspense>
 		</>
 	);
 }
