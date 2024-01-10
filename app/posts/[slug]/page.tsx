@@ -1,5 +1,5 @@
 import SlugPage from "@/app/posts/[slug]/SlugPage";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";

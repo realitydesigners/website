@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import { VideoPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";

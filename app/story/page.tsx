@@ -1,5 +1,5 @@
 "use client";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 
 import Spline from "@splinetool/react-spline";
 
@@ -19,7 +19,7 @@ export default function StoryPage() {
 			</div>
 
 			<div className="lg:w-1/2 w-11/12 pt-32 pb-20">
-				<div className={`${cairo.className} text-xl font-bold text-gray-400 `}>
+				<div className={`${play.className} text-xl font-bold text-gray-400 `}>
 					<h1
 						className={`${monomaniac.className} text-gray-200 text-6xl lg:text-7xl font-bold text-center mb-6`}
 					>

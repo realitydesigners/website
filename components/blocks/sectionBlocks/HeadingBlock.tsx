@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 
@@ -152,7 +152,7 @@ const HeadingBlock = ({ block }) => {
 						)}
 						{block.subheading && (
 							<p
-								className={`${cairo.className} w-full text-2xl ${style.textColor} leading-7 tracking-wide`}
+								className={`${play.className} w-full text-2xl ${style.textColor} leading-7 tracking-wide`}
 							>
 								{block.subheading}
 							</p>

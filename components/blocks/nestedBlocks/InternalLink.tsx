@@ -1,7 +1,7 @@
 "use client";
 import { getPostData } from "@/app/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -38,7 +38,7 @@ const DialogButton = ({ onClose }) => (
 	<button
 		type="button"
 		onClick={onClose}
-		className={`${cairo.className} px-2 py-2 text-gray-400 text-2xl font-bold uppercase rounded hover:bg-gray-300 transition-colors`}
+		className={`${play.className} px-2 py-2 text-gray-400 text-2xl font-bold uppercase rounded hover:bg-gray-300 transition-colors`}
 	>
 		X
 	</button>
@@ -125,7 +125,7 @@ const PostPreviewDialog = ({
 
 						<div className="w-full h-auto flex flex-col relative">
 							<h4
-								className={`${cairo.className} ${style.textColor} leading-7 p-4 text-xl`}
+								className={`${play.className} ${style.textColor} leading-7 p-4 text-xl`}
 							>
 								{content.subheading || "no title"}
 							</h4>

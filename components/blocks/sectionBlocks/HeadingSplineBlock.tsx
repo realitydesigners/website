@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 
@@ -63,7 +63,7 @@ const HeadingSplineBlock = ({ block }) => {
 							)}
 							{block.subheading && (
 								<h2
-									className={`${cairo.className}  w-full p-4  text-2xl  text-gray-300 leading-7 tracking-wide `}
+									className={`${play.className}  w-full p-4  text-2xl  text-gray-300 leading-7 tracking-wide `}
 								>
 									{block.subheading}
 								</h2>

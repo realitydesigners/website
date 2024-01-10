@@ -1,4 +1,4 @@
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 

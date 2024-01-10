@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
@@ -73,7 +73,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 					</h2>
 				</Link>
 				<p
-					className={`${cairo.className} p-2 text-lg leading-tight text-gray-400`}
+					className={`${play.className} p-2 text-lg leading-tight text-gray-400`}
 				>
 					{renderSubheading()}
 				</p>

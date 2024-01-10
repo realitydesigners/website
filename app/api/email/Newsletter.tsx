@@ -1,5 +1,5 @@
 "use client";
-import { cairo, monomaniac } from "@/fonts";
+import { monomaniac, play } from "@/fonts";
 import React, { useState } from "react";
 
 type SubmissionStatus = "success" | "error" | "submitting" | null;

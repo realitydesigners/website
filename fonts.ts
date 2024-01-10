@@ -5,6 +5,7 @@ import {
 	Jost,
 	Jura,
 	Monomaniac_One,
+	Play,
 	Roboto,
 	Staatliches,
 } from "next/font/google";
@@ -12,6 +13,11 @@ import {
 export const roboto = Roboto({
 	weight: ["400", "700"],
 	style: ["normal", "italic"],
+	subsets: ["latin"],
+	display: "swap",
+});
+export const play = Play({
+	weight: ["400", "700"],
 	subsets: ["latin"],
 	display: "swap",
 });
