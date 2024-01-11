@@ -129,11 +129,6 @@ export default function StoryPage() {
 						THE FRAMEWORK FOR REMEMBERING.
 					</p>
 				</div>
-				<h1
-					className={`${monomaniac.className}  text-4xl font-bold text-center`}
-				>
-					WE ARE THE REALITY DESIGNERS.
-				</h1>
 			</div>
 		</div>
 	);
