@@ -123,8 +123,8 @@ const ImageCanvasBlock = ({ block }) => {
 	switch (className) {
 		case "dark":
 			return (
-				<div className="relative flex justify-center items-center w-full h-auto mb-6 lg:mb-0">
-					<div className="w-11/12  bg-black lg:3/4  h-[50vh] lg:h-[80vh]">
+				<div className="relative flex bg-black justify-center items-center w-full h-auto pb-6 lg:mb-0">
+					<div className="w-full lg:w-1/2 rounded-[1em] overflow-hidden bg-black lg:3/4  h-[50vh] lg:h-[80vh]">
 						<Canvas>
 							<PerspectiveCamera
 								makeDefault
@@ -143,7 +143,7 @@ const ImageCanvasBlock = ({ block }) => {
 
 		case "light":
 			return (
-				<div className="relative  flex justify-center items-center w-full h-auto p-4  ">
+				<div className="relative bg-gray-200  flex justify-center items-center w-full h-auto p-4  ">
 					<div className="w-full lg:w-5/6 h-[50vh] lg:h-[66vh]   rounded-[1.5em] overflow-hidden shadow-xl">
 						<Canvas>
 							<PerspectiveCamera
