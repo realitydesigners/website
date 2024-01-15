@@ -10,8 +10,8 @@ const TeamBlock = ({ block }) => {
 	}
 
 	return (
-		<div className="w-full flex justify-center h-auto bg-black py-6 ">
-			<div className="flex flex-col w-11/12 md:w-1/2 lg:w-1/4 bg-gray-600/25  shadow-lg p-4 rounded-lg ">
+		<div className="w-full flex justify-center h-full py-6 m-0 ">
+			<div className="flex flex-col w-11/12 md:w-1/2 lg:w-1/3 bg-gray-600/25  shadow-lg p-4 rounded-lg ">
 				<div className="flex justify-start w-full items-center">
 					{block.team?.image && (
 						<div className="flex items-center">

@@ -22,6 +22,13 @@ const themeClasses: Record<TemplateTheme, ThemeProps> = {
 		buttonTextColor: "text-black",
 		buttonBackgroundColor: "bg-gray-200 hover:bg-gray-200/80",
 	},
+	transparent: {
+		textColor: "text-gray-200",
+		backgroundColor: "bg-[#111]",
+		topBackgroundColor: "bg-[#222]",
+		buttonTextColor: "text-black",
+		buttonBackgroundColor: "bg-gray-200 hover:bg-gray-200/80",
+	},
 };
 
 const formatDate = (dateString) => {

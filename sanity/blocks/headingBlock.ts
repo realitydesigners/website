@@ -15,6 +15,7 @@ export default {
 				list: [
 					{ title: "Dark", value: "dark" },
 					{ title: "Light", value: "light" },
+					{ title: "Transparent", value: "transparent" },
 				],
 			},
 		}),

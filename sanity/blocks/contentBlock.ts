@@ -20,6 +20,7 @@ export default {
 				list: [
 					{ title: "Dark", value: "dark" },
 					{ title: "Light", value: "light" },
+					{ title: "Transparent", value: "transparent" },
 				],
 			},
 		}),
@@ -202,6 +203,7 @@ export default {
 							const classNameTitles = {
 								light: "Video | Light",
 								dark: "Video | Dark",
+								transparent: "Video | Transparent",
 								// Add other class mappings as needed
 							};
 							const classNameTitle =
@@ -230,6 +232,7 @@ export default {
 								list: [
 									{ title: "Video | Light ", value: "light" },
 									{ title: "Video | Dark", value: "dark" },
+									{ title: "Video | Transparent", value: "transparent" },
 									// Add more class options if needed
 								],
 							},

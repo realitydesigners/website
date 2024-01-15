@@ -15,16 +15,19 @@ import {
 const headingStyles: Record<TemplateTheme, string> = {
 	dark: `${monomaniac.className} my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 	light: `${monomaniac.className} my-3 w-11/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	transparent: `${monomaniac.className} my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 };
 
 const listStyles: Record<TemplateTheme, string> = {
 	dark: `${play.className} w-11/12 text-gray-300 leading-7 md:w-3/4 lg:w-1/2 text-xl list-decimal list-inside space-y-6 mb-6`,
 	light: `${play.className} w-11/12 text-black leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
+	transparent: `${play.className} w-11/12 text-gray-400 leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
 };
 
 const normalTextStyles: Record<TemplateTheme, string> = {
 	dark: `${play.className} text-gray-300 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 	light: `${play.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+	transparent: `${play.className} text-gray-400 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 };
 
 const Heading: React.FC<{
@@ -181,6 +184,63 @@ const LightTemplate = {
 		quoteRef: QuoteRefBlock,
 	},
 };
+const TransparentTemplate = {
+	block: {
+		normal: (props) => <NormalText {...props} theme="transparent" />,
+		h1: (props) => <Heading level={1} {...props} theme="transparent" />,
+		h2: (props) => <Heading level={2} {...props} theme="transparent" />,
+		h3: (props) => <Heading level={3} {...props} theme="transparent" />,
+	},
+	list: {
+		bullet: (props) => <List type="bullet" {...props} theme="transparent" />,
+		number: (props) => <List type="number" {...props} theme="transparent" />,
+	},
+	marks: {
+		internalLink: ({ value, children }) => {
+			const { slug = {}, theme } = value;
+			return (
+				<InternalLink slug={slug?.current} theme={theme}>
+					{children}
+				</InternalLink>
+			);
+		},
+	},
+	types: {
+		postsRef: ({ value }) => {
+			const { postsHeading, postsSlug, postsImage } = value.postsRef;
+			return (
+				<PostsRefBlock
+					slug={postsSlug}
+					heading={postsHeading}
+					image={postsImage}
+				/>
+			);
+		},
+		videoRef: ({ value }) => {
+			const { videoTitle, videoFileUrl, videoImage, className } =
+				value.videoRef;
+
+			return (
+				<VideoRefBlock
+					videoTitle={videoTitle}
+					videoFileUrl={videoFileUrl}
+					videoImage={videoImage}
+					className={className}
+				/>
+			);
+		},
+		iframe: IframeBlock,
+		spline: SplineRefBlock,
+		imageRef: ({ value }) => {
+			const { image, className } = value;
+
+			return <ImageRefBlock image={image} className={className} />;
+		},
+
+		audioRef: AudioRefBlock,
+		quoteRef: QuoteRefBlock,
+	},
+};
 
 const VideoTemplate = {
 	block: {
@@ -208,4 +268,10 @@ const TeamTemplate = {
 	},
 };
 
-export { DarkTemplate, LightTemplate, TeamTemplate, VideoTemplate };
+export {
+	DarkTemplate,
+	LightTemplate,
+	TransparentTemplate,
+	TeamTemplate,
+	VideoTemplate,
+};

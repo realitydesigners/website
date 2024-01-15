@@ -21,6 +21,13 @@ const themeClasses: Record<TemplateTheme, ThemeProps> = {
 		tagBg: "bg-gray-200",
 		tagText: "text-black",
 	},
+	transparent: {
+		containerBg: "bg-transparent",
+		containerBorder: "",
+		textColor: "text-gray-200",
+		tagBg: "bg-gray-200",
+		tagText: "text-black",
+	},
 };
 
 const getPublicationDate = (block) => {

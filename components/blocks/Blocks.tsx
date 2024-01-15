@@ -1,3 +1,4 @@
+"use client";
 import {
 	ContentBlock,
 	HeadingBlock,
@@ -5,8 +6,9 @@ import {
 	ImageCanvasBlock,
 	TeamBlock,
 } from "@/components/blocks/sectionBlocks/index";
-
 import { BlockProps, BlockType } from "@/components/blocks/types";
+import Spline from "@splinetool/react-spline";
+import { Suspense } from "react";
 
 const blockTypeComponents: Record<
 	BlockType,
@@ -37,7 +39,15 @@ const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
 	return (
 		<>
 			{BlockComponent ? (
-				<BlockComponent {...block} layout={block.layout} />
+				<div className="w-full relative ">
+					{/* <Suspense>
+						<Spline
+							scene="https://prod.spline.design/3aeg01UBBMLQTJxZ/scene.splinecode"
+							className="fixed  w-full h-screen z-[-10]"
+						/>
+					</Suspense> */}
+					<BlockComponent {...block} layout={block.layout} />
+				</div>
 			) : null}
 		</>
 	);

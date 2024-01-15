@@ -46,7 +46,7 @@
     "@splinetool/loader": "^1.0.17",
     "@splinetool/r3f-spline": "^1.0.2",
     "@splinetool/react-spline": "^2.2.6",
-    "@splinetool/runtime": "^1.0.17",
+    "@splinetool/runtime": "^1.0.28",
     "@splinetool/viewer": "^1.0.17",
     "@tailwindcss/typography": "^0.5.10",
     "@types/three": "^0.160.0",

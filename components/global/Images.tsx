@@ -4,13 +4,14 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 // Define the type for Theme and the Record for loading background colors
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "transparent";
 
 type LoadingBgColors = Record<Theme, string>;
 
 const loadingBgColors: LoadingBgColors = {
 	light: "bg-gray-300/50",
-	dark: "bg-gray-600/50", // Adjust this value as needed for the dark theme
+	dark: "bg-gray-600/50",
+	transparent: "bg-gray-600/50",
 };
 
 type SanityImageProps = {

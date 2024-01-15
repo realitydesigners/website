@@ -72,7 +72,7 @@ export default async function PageSlugRoute({ params }) {
 			<SlugPage data={currentPost} />
 			<Suspense fallback={<div>Loading...</div>}>
 				{currentPost && otherPosts && (
-					<div className="w-full pb-6 flex flex-col h-auto flex-cols p-4  lg:px-6">
+					<div className="w-full pb-6 flex flex-col h-auto flex-cols p-4  lg:px-6 bg-black">
 						<h4 className={`${monomaniac.className} text-gray-200  text-4xl `}>
 							More Posts
 						</h4>
