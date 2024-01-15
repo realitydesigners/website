@@ -7,7 +7,7 @@ const QuoteCard = ({ quote, media, image, className }) => {
 	switch (className) {
 		case "card-1":
 			return (
-				<div className="flex w-full items-center justify-center mb-6">
+				<div className="flex w-full items-center justify-center py-6">
 					<div className="block md:w-4/5 lg:w-2/3 w-11/12 rounded-2xl overflow-hidden bg-black border rounded-[1em] border-gray-600">
 						{image && (
 							<div className="relative w-full">
