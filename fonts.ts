@@ -59,6 +59,7 @@ export const cairo = Cairo({
 
 export const monomaniac = Monomaniac_One({
 	weight: ["400"],
+	style: ["normal"],
 	subsets: ["latin"],
 	display: "swap",
 });

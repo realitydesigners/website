@@ -26,7 +26,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.1",
+    "@clerk/nextjs": "^4.29.3",
     "@gsap/react": "^2.0.2",
     "@portabletext/react": "^3.0.11",
     "@portabletext/types": "^2.0.8",
@@ -72,6 +72,7 @@
     "sanity-plugin-vercel-deploy": "^3.3.4",
     "server-only": "^0.0.1",
     "styled-components": "^5.3.3",
+    "tailwind": "^4.0.0",
     "three": "^0.160.0"
   }
 }

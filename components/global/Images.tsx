@@ -11,7 +11,7 @@ type LoadingBgColors = Record<Theme, string>;
 const loadingBgColors: LoadingBgColors = {
 	light: "bg-gray-300/50",
 	dark: "bg-gray-600/50",
-	transparent: "bg-gray-600/50",
+	transparent: "",
 };
 
 type SanityImageProps = {
@@ -31,7 +31,7 @@ export function SanityImage({
 	height,
 	classesWrapper,
 	priority = false,
-	theme = "dark",
+	theme = "transparent",
 }: SanityImageProps) {
 	const [isLoading, setIsLoading] = useState(true);
 	const imageUrl =
