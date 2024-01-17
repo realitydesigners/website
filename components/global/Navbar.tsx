@@ -1,22 +1,12 @@
 "use client";
 import { bebe, monomaniac } from "@/fonts";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React, { useState } from "react";
 
-interface SplineViewerProps extends React.HTMLAttributes<HTMLElement> {
-	url: string;
-}
 interface NavbarProps {
 	pageBackground: "light" | "dark";
-}
-
-declare global {
-	namespace JSX {
-		interface IntrinsicElements {
-			"spline-viewer": SplineViewerProps;
-		}
-	}
 }
 
 export default function Navbar({ pageBackground }: NavbarProps) {
@@ -156,7 +146,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				>
 					<div className="w-full mb-2 rounded-lg block border border-gray-600/50   h-[250px]">
 						<Link href="/" onClick={closeNav}>
-							<spline-viewer url="https://prod.spline.design/HeD0BAam-X2SBMf3/scene.splinecode" />
+							<Spline scene="https://prod.spline.design/HB9ZzkKt9KuAM3Xf/scene.splinecode" />
 						</Link>
 					</div>
 					<ul className="flex justify-center text-gray-200 uppercase items-center gap-4 flex-col  mt-4">

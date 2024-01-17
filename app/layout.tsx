@@ -20,7 +20,7 @@ export default async function ROotLayout({
 					<link rel="icon" href="/favicon.ico" sizes="any" />
 					<script
 						type="module"
-						src="https://unpkg.com/@splinetool/viewer@1.0.17/build/spline-viewer.js"
+						src="https://unpkg.com/@splinetool/viewer@1.0.30/build/spline-viewer.js"
 					/>
 				</head>
 				<body>
