@@ -40,12 +40,6 @@ const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
 		<>
 			{BlockComponent ? (
 				<div className="w-full relative ">
-					{/* <Suspense>
-						<Spline
-							scene="https://prod.spline.design/3aeg01UBBMLQTJxZ/scene.splinecode"
-							className="fixed  w-full h-screen z-[-10]"
-						/>
-					</Suspense> */}
 					<BlockComponent {...block} layout={block.layout} />
 				</div>
 			) : null}

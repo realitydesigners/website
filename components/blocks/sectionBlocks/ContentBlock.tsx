@@ -36,10 +36,10 @@ const ContentBlock: React.FC<ContentBlockProps> = ({ block }) => {
 
 	return (
 		<div className={` h-auto w-screen min-h-screen ${styles} w-full relative`}>
-			<Spline
+			{/* <Spline
 				scene="https://prod.spline.design/3aeg01UBBMLQTJxZ/scene.splinecode"
 				className="fixed top-0 w-screen max-h-screen z-[-10]"
-			/>
+			/> */}
 
 			<PortableText
 				value={content}
