@@ -1,6 +1,7 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac, play } from "@/fonts";
+import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React from "react";
 
@@ -102,7 +103,7 @@ const HeadingSplineBlock = ({ block }) => {
 
 						<div className="h-[70vh] w-full lg:w-3/4  overflow-hidden p-2">
 							<div className="w-full h-full rounded-[1em] shadow-lg overflow-hidden">
-								<spline-viewer url={url} />
+								<Spline scene={url} />
 							</div>
 						</div>
 					</div>
