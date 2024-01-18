@@ -1,4 +1,4 @@
-import SlugPage from "@/app/library/[slug]/SlugPage";
+import Scene from "@/components/library/Scene";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { categoryBySlugQuery } from "@/sanity/lib/queries";
@@ -21,7 +21,7 @@ export default async function CategoryPage({ params }: Props) {
 
 	return (
 		<div className="w-screen h-screen bg-black">
-			<SlugPage category={category} />
+			<Scene category={category} />
 		</div>
 	);
 }

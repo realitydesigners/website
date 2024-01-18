@@ -1,14 +1,14 @@
-import SlugPage from "@/app/posts/[slug]/SlugPage";
-import { monomaniac, play } from "@/fonts";
+import Blocks from "@/components/blocks/Blocks";
+import { BlockProps } from "@/components/blocks/types";
+import PostsList from "@/components/global/PostsList";
+import { monomaniac } from "@/fonts";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
-import React, { Suspense } from "react";
-
-const PostsList = React.lazy(() => import("@/components/global/PostsList")); // Lazy import
+import React, { Suspense, useMemo } from "react";
 
 type Props = {
 	params: { slug: string };
@@ -34,9 +34,7 @@ export async function generateMetadata(
 	const metadataBase = new URL(metadataBaseUrl);
 
 	return {
-		//@ts-ignore
 		title: post?.block?.[0]?.heading,
-		//@ts-ignore
 		description: post?.block?.[0]?.subheading || (await parent).description,
 		openGraph: ogImage
 			? {
@@ -48,7 +46,6 @@ export async function generateMetadata(
 }
 
 export default async function PageSlugRoute({ params }) {
-	// Fetch the current post
 	const currentPost = await sanityFetch<PostsPayload>({
 		query: postsBySlugQuery,
 		tags: ["post"],
@@ -57,7 +54,6 @@ export default async function PageSlugRoute({ params }) {
 
 	let otherPosts;
 
-	// Conditionally fetch other posts only if current post is fetched
 	if (currentPost) {
 		const allPosts = await sanityFetch<PostsPayload[]>({
 			query: postsQuery,
@@ -67,21 +63,33 @@ export default async function PageSlugRoute({ params }) {
 		otherPosts = allPosts.filter((post) => post.slug?.current !== params.slug);
 	}
 
+	const blocks = currentPost?.block || [];
+
 	return (
 		<>
-			<SlugPage data={currentPost} />
-			<Suspense fallback={<div>Loading...</div>}>
-				{currentPost && otherPosts && (
-					<div className="w-full pb-6 flex flex-col h-auto flex-cols p-4  lg:px-6 bg-black">
-						<h4 className={`${monomaniac.className} text-gray-200  text-4xl `}>
-							More Posts
-						</h4>
-						<div className="w-full py-12 ">
-							<PostsList post={otherPosts} />
-						</div>
-					</div>
-				)}
-			</Suspense>
+			{currentPost && (
+				<>
+					<main>
+						{blocks?.map((block) => (
+							<Blocks block={block as BlockProps} />
+						))}
+					</main>
+					<Suspense fallback={<div>Loading...</div>}>
+						{otherPosts && (
+							<div className="w-full pb-6 flex flex-col h-auto flex-cols p-4  lg:px-6 bg-black">
+								<h4
+									className={`${monomaniac.className} text-gray-200  text-4xl `}
+								>
+									More Posts
+								</h4>
+								<div className="w-full py-12 ">
+									<PostsList post={otherPosts} />
+								</div>
+							</div>
+						)}
+					</Suspense>
+				</>
+			)}
 		</>
 	);
 }
