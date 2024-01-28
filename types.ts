@@ -124,3 +124,6 @@ export interface TeamPayload extends BaseItem {
 	website?: string;
 	tiktok?: string;
 }
+export interface GlossaryPayload extends BaseItem {
+	content?: PortableTextBlock[];
+}

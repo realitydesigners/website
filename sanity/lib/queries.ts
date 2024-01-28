@@ -335,3 +335,46 @@ export const teamBySlugQuery = groq`
  website,
  tiktok,
 }`;
+
+export const glossaryQuery = groq`
+ *[_type == "glossary"] |  order(_createdAt asc) {
+ name,
+ role,
+ image,
+ scene,
+ shortBio,
+ bio[]{
+  ...,
+ },
+ content[]{
+  ...,
+ }
+ slug,
+ title,    
+}`;
+
+export const glossaryBySlugQuery = groq`
+*[_type == "glossary" && slug.current == $slug][0] {
+ name,
+ image,
+ scene,
+ block[]{
+  ...,
+  heading,
+  subHeading,
+  image,
+  tags,
+  layout,
+  title,
+ 
+    content[]{
+  ...,
+    },
+  },
+ slug,
+ title,    
+ instagram,
+ twitter,
+ website,
+ tiktok,
+}`;
