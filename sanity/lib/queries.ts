@@ -340,6 +340,7 @@ export const glossaryQuery = groq`
  *[_type == "glossary"] |  order(_createdAt asc) {
  name,
  role,
+ title,
  image,
  scene,
  shortBio,
@@ -348,7 +349,7 @@ export const glossaryQuery = groq`
  },
  content[]{
   ...,
- }
+ },
  slug,
  title,    
 }`;

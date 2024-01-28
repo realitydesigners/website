@@ -8,6 +8,7 @@ export default authMiddleware({
 		"/feed",
 		"/videos",
 		"/posts",
+		"/glossary",
 		"/api/send",
 		"api/emailpost",
 		"api/revalidate",
