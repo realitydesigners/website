@@ -60,7 +60,7 @@
     "leva": "^0.9.35",
     "million": "^2.6.4",
     "next": "14.0.4",
-    "next-sanity": "^7.0.6",
+    "next-sanity": "^7.0.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-three-fiber": "^6.0.13",
