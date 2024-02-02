@@ -63,8 +63,8 @@ const Books = ({ emissiveIntensity = 0.3 }) => {
 		<primitive
 			ref={meshRef}
 			object={gltf.scene}
-			scale={[0.1, 0.1, 0.1]}
-			position={[0, 10, 0]}
+			scale={[1, 1, 1]}
+			position={[0, 0, 0]}
 		/>
 	);
 };

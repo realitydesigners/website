@@ -10,7 +10,7 @@ import HologramCrystal from "./HologramCrystal";
 import { getCategoryPositions } from "./Postions";
 import { Sidebar, useCategoryInteraction } from "./index.ts";
 
-const CAMERA_POSITION = [0, 2, 3];
+const CAMERA_POSITION = [0, 2, 40];
 
 const Category = ({
 	title,
