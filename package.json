@@ -41,7 +41,7 @@
     "@sanity/overlays": "^2.3.0",
     "@sanity/preview-url-secret": "^1.4.1",
     "@sanity/react-loader": "^1.6.4",
-    "@sanity/ui": "^1.9.3",
+    "@sanity/ui": "^2.0.1",
     "@sanity/vision": "^3.23.4",
     "@splinetool/loader": "^1.0.17",
     "@splinetool/r3f-spline": "^1.0.2",
