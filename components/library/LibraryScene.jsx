@@ -3,12 +3,14 @@ import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useFrame, useThree } from "@react-three/fiber";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import React, { useRef, useState } from "react";
+import Books from "./Books";
 import HologramCrystal from "./HologramCrystal";
 import { getCategoryPositions } from "./Postions";
 import { Sidebar, useCategoryInteraction } from "./index.ts";
 
-const CAMERA_POSITION = [0, 25, 40];
+const CAMERA_POSITION = [0, 2, 3];
 
 const Category = ({
 	title,
@@ -131,13 +133,19 @@ const LibraryScene = ({ category = [] }) => {
 		<>
 			<Sidebar isVisible={isSidebarVisible} content={subcategoryContent} />
 			<Canvas style={{ height: "100vh", width: "100vw" }}>
-				<PerspectiveCamera makeDefault position={CAMERA_POSITION} zoom={1} />
+				<PerspectiveCamera makeDefault position={CAMERA_POSITION} zoom={0.8} />
 				<OrbitControls />
+				<hemisphereLight />
+
 				<LibraryCategories
 					categories={mainCategories}
 					highlightedCategory={highlightedCategory}
 					onCategorySelect={onCategorySelect}
 				/>
+				<EffectComposer>
+					<Bloom luminanceThreshold={0.01} luminanceSmoothing={0.02} />
+				</EffectComposer>
+				<Books />
 			</Canvas>
 		</>
 	);
