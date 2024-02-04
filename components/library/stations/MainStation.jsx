@@ -1,7 +1,9 @@
 import { Text } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import React, { useRef, useState } from "react";
+import { useLoader } from "@react-three/fiber";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const MainStation = () => {
 	return (
@@ -22,6 +24,8 @@ export const MainStation = () => {
 				<boxGeometry args={[100, 10, 5]} />
 				<meshStandardMaterial color="#333" />
 			</mesh>
+
+			<SciFiLab />
 
 			<StationCircle position={[-50, 0, -50]} label="Station A" />
 			<StationCircle position={[50, 0, -50]} label="Station B" />
@@ -56,5 +60,19 @@ const StationCircle = ({ position, label }) => {
 				text={label}
 			/>
 		</>
+	);
+};
+
+const SciFiLab = () => {
+	const meshRef = useRef(null);
+	const gltf = useLoader(GLTFLoader, "models/scifi.glb");
+
+	return (
+		<primitive
+			ref={meshRef}
+			object={gltf.scene}
+			scale={[3, 3, 3]}
+			position={[0, -100, 0]}
+		/>
 	);
 };

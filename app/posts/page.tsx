@@ -1,9 +1,5 @@
-import MainPost from "@/components/global/MainPost";
-import Navbar from "@/components/global/Navbar";
-import PostsList from "@/components/global/PostsList";
-import RightSideBar from "@/components/global/RightSideBar";
-import SideBar from "@/components/global/SideBar";
-import TopBar from "@/components/global/TopBar";
+import ScrollablePostList from "@/components/global/ScrollablePostList";
+import AllStations from "@/components/library/stations/AllStations";
 import { sanityFetch } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
@@ -14,25 +10,14 @@ export default async function PostsPage() {
 		tags: ["posts"],
 	});
 
-	const mainPostData = posts[0];
-	const sidePostData = posts.slice(1, 3);
-	const rightPostData = posts.slice(4, 9);
-	const postsListData = posts.slice(13, 30);
-	const topPostData = posts.slice(9, 13);
+	const postsListData = posts.slice(0, 30);
 
 	return (
-		<main className="flex justify-center items-center flex-col w-full bg-black">
-			<Navbar pageBackground="light" />
+		<main className="flex justify-center items-center min-h-screen bg-black flex-col w-full">
+			{/* Threejs background goes here */}
 
-			<div className="w-full pt-[80px] h-auto flex flex-cols p-4 lg:w-5/6 flex-wrap">
-				<TopBar post={topPostData} />
-				<SideBar post={sidePostData} />
-				<MainPost post={mainPostData} />
-				<RightSideBar post={rightPostData} />
-			</div>
-			<div className="w-full lg:w-5/6   p-4  py-12  flex h-auto flex-cols px-2 ">
-				<PostsList post={postsListData} />
-			</div>
+			<AllStations />
+			<ScrollablePostList post={postsListData} />
 		</main>
 	);
 }

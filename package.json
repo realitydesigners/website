@@ -32,8 +32,8 @@
     "@portabletext/types": "^2.0.8",
     "@react-email/components": "^0.0.12",
     "@react-spring/three": "^9.7.3",
-    "@react-three/drei": "^9.92.7",
-    "@react-three/fiber": "^8.15.13",
+    "@react-three/drei": "^9.97.0",
+    "@react-three/fiber": "^8.15.16",
     "@react-three/postprocessing": "^2.15.11",
     "@sanity/demo": "^1.0.2",
     "@sanity/icons": "^2.8.0",
@@ -49,7 +49,7 @@
     "@splinetool/runtime": "^1.0.28",
     "@splinetool/viewer": "^1.0.17",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/three": "^0.160.0",
+    "@types/three": "^0.161.2",
     "@vercel/analytics": "^1.1.1",
     "aframe": "^1.5.0",
     "classnames": "^2.5.1",
@@ -73,6 +73,6 @@
     "server-only": "^0.0.1",
     "styled-components": "^5.3.3",
     "tailwind": "^4.0.0",
-    "three": "^0.160.0"
+    "three": "^0.161.0"
   }
 }

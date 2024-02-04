@@ -103,7 +103,7 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 
 			<nav
 				id="navbar"
-				className="flex  bg-black/80  shadow-xl items-center h-12 p-2 justify-between fixed w-full z-50 "
+				className="flex  bg-black/80  shadow-xl items-center h-12 p-2 justify-between fixed top-0 w-full z-50 "
 			>
 				<div className="pl-[2.3em] w-full justify-center relative flex items-center z-10">
 					<Link

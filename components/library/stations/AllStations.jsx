@@ -10,7 +10,7 @@ import { MainStation } from "./MainStation";
 
 const AllStations = () => {
 	return (
-		<Canvas style={{ height: "100vh", width: "100vw" }}>
+		<Canvas style={{ height: "100vh", width: "100vw", color: "black" }}>
 			<PerspectiveCamera makeDefault position={[80, 20, 80]} zoom={0.8} />
 			<OrbitControls />
 			<Environment preset="sunset" />
