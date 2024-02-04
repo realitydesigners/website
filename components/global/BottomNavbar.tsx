@@ -112,7 +112,7 @@ export default function BottomNavbar() {
 							<li key={label}>
 								<Link
 									href={href}
-									className={`${monomaniac.className} text-center text-gray-200 text-3xl uppercase font-bold p-4 transition-all duration-200 ease-in-out border border-gray-600/25 block hover:bg-white hover:text-black`}
+									className={`${monomaniac.className} text-center text-gray-200 text-3xl backdrop-blur-[20px] bg-black/10 uppercase font-bold p-4 transition-all duration-200 ease-in-out border border-gray-600/25 block hover:bg-white hover:text-black`}
 									onClick={closeNav}
 								>
 									{label}
@@ -120,18 +120,15 @@ export default function BottomNavbar() {
 							</li>
 						))}
 					</ul>
-
 					<SignedOut>
-						<div className="flex mt-4  mr-0 justify-center">
+						<div className="flex mt-6 justify-center">
 							<SignInButton>
 								<button
 									type="button"
-									className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black"
+									className="relative uppercase text-black border border-gray-600/50 justify-center text-xl ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-black rounded-[.2em] transition-all duration-200 ease-in-out bg-white hover:bg-gray-200 hover:text-black"
 								>
-									<span
-										className={`${monomaniac.className}  whitespace-nowrap`}
-									>
-										Sign-In
+									<span className={`${monomaniac.className} whitespace-nowrap`}>
+										Log In / Sign Up
 									</span>
 								</button>
 							</SignInButton>

@@ -62,7 +62,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				"h-auto bg-gray-600/10 flex w-full flex-col p-3  overflow-hidden transition-transform transform group hover:scale-105 hover:bg-gray-600/20"
 			}
 			style={{
-				clipPath: "polygon(10% 0, 100% 0, 100% 93%, 90% 100%, 0 100%, 0 6%)",
+				clipPath: "polygon(8% 0, 100% 0, 100% 93%, 92% 100%, 0 100%, 0 6%)",
 			}}
 		>
 			<div className="w-full flex justify-between h-auto items-center">
@@ -105,7 +105,7 @@ const ScrollablePostList: FC<PostsListProps> = ({ post }) => {
 
 	return (
 		<div
-			className="  fixed top-2 md:top-10 left-2 md:left-20 right-2 md:right-20 bottom-20 md:bottom-20  lg:p-4 p-4 overflow-auto custom-scrollbar backdrop-blur-[30px] shadow-2xl shadow-inner"
+			className="  fixed top-2 md:top-10 left-2 md:left-20 right-2 md:right-20 bottom-16 md:bottom-16  lg:p-4 p-4 overflow-auto custom-scrollbar backdrop-blur-[30px] shadow-2xl shadow-inner"
 			style={{
 				clipPath: window.innerWidth >= 768 ? mdClipPath : baseClipPath,
 			}}
