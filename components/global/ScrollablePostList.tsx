@@ -19,6 +19,9 @@ interface PostsListProps {
 	};
 }
 
+const baseClipPath = "polygon(10% 0, 100% 0, 100% 96%, 90% 100%, 0 100%, 0 3%)";
+const mdClipPath = "polygon(3% 0, 100% 0, 100% 94%, 96% 100%, 0 100%, 0 4%)";
+
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 	if (!image) return null;
@@ -94,10 +97,6 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		</div>
 	);
 };
-
-const baseClipPath = "polygon(10% 0, 100% 0, 100% 96%, 90% 100%, 0 100%, 0 3%)";
-const mdClipPath = "polygon(3% 0, 100% 0, 100% 94%, 96% 100%, 0 100%, 0 4%)";
-
 const ScrollablePostList: FC<PostsListProps> = ({ post }) => {
 	if (!post) {
 		return <div>No posts available</div>;
