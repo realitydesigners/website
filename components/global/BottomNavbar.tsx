@@ -157,16 +157,40 @@ export default function BottomNavbar() {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  bottom-6 right-0 w-full lg:w-1/3 bg-black/80 items-center justify-end pb-16 lg:pb-0 lg:justify-center flex right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[70vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-0 ease-in-out ${
+					className={`absolute  bottom-6 right-0 w-full lg:w-1/3 bg-black/80 items-center justify-end pb-6 lg:pb-0 lg:justify-center flex right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[70vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-0 ease-in-out ${
 						isNavOpen
 							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-lg"
 							: "translate-x-full"
 					}  flex flex-col justify-start p-3 `}
 				>
-					<div className="w-full mb-2 rounded-lg block h-[250px]">
+					<div className="w-full  rounded-lg  h-[125px]">
 						<Link href="/" onClick={closeNav}>
-							<Spline scene="https://prod.spline.design/HB9ZzkKt9KuAM3Xf/scene.splinecode" />
+							<Spline scene="https://prod.spline.design/a1UK0U9EA2vi6a-h/scene.splinecode" />
 						</Link>
+					</div>
+					<div>
+						<SignedOut>
+							<div className="flex mt-6 justify-center">
+								<SignInButton>
+									<button
+										type="button"
+										className="relative uppercase text-black border border-gray-600/50 justify-center text-md ml-4 mr-2 p-1 pl-2 pr-2 items-center flex text-black rounded-[.2em] transition-all duration-200 ease-in-out bg-white hover:bg-gray-200 hover:text-black"
+									>
+										<span
+											className={`${monomaniac.className} whitespace-nowrap`}
+										>
+											Log In / Sign Up
+										</span>
+									</button>
+								</SignInButton>
+							</div>
+						</SignedOut>
+
+						<SignedIn>
+							<div className=" relative mt-4 justify-center   flex ">
+								<UserButton afterSignOutUrl="/" />
+							</div>
+						</SignedIn>
 					</div>
 					<ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 mt-4  flex flex-wrap">
 						{navLinks.map(({ href, label, icon }) => (
@@ -184,27 +208,6 @@ export default function BottomNavbar() {
 							</li>
 						))}
 					</ul>
-
-					<SignedOut>
-						<div className="flex mt-6 justify-center">
-							<SignInButton>
-								<button
-									type="button"
-									className="relative uppercase text-black border border-gray-600/50 justify-center text-xl ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-black rounded-[.2em] transition-all duration-200 ease-in-out bg-white hover:bg-gray-200 hover:text-black"
-								>
-									<span className={`${monomaniac.className} whitespace-nowrap`}>
-										Log In / Sign Up
-									</span>
-								</button>
-							</SignInButton>
-						</div>
-					</SignedOut>
-
-					<SignedIn>
-						<div className=" relative mt-4 justify-center   flex ">
-							<UserButton afterSignOutUrl="/" />
-						</div>
-					</SignedIn>
 				</div>
 			</nav>
 		</>
