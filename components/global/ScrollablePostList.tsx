@@ -67,7 +67,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		>
 			<div className="w-full flex justify-between h-auto items-center">
 				<span
-					className={`${monomaniac.className} w-full p-2 pt-4 h-auto  text-xs text-gray-400  uppercase tracking-widest`}
+					className={`${monomaniac.className} w-full p-2  h-auto  text-xs text-gray-400  uppercase tracking-widest`}
 				>
 					{formattedDate}
 				</span>
@@ -80,13 +80,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} p-2 text-4xl capitalize leading-none text-gray-200 cursor-pointer group-hover:text-gray-100`}
+						className={`${monomaniac.className} p-2 text-4xl tracking-wide capitalize leading-none text-gray-200 cursor-pointer group-hover:text-gray-100`}
 					>
 						{renderHeading()}
 					</h2>
 				</Link>
 				<p
-					className={`${play.className} p-2 text-lg leading-tight text-gray-400 group-hover:text-gray-100`}
+					className={`${play.className} p-2 text-md leading-tight text-gray-400 group-hover:text-gray-100`}
 				>
 					{renderSubheading()}
 				</p>
@@ -105,7 +105,7 @@ const ScrollablePostList: FC<PostsListProps> = ({ post }) => {
 
 	return (
 		<div
-			className="  fixed top-[60px] md:top-20 left-2 md:left-20 right-2 md:right-20 bottom-2 md:bottom-20  lg:p-4 p-4 overflow-auto custom-scrollbar backdrop-blur-[30px] shadow-2xl shadow-inner"
+			className="  fixed top-2 md:top-10 left-2 md:left-20 right-2 md:right-20 bottom-20 md:bottom-20  lg:p-4 p-4 overflow-auto custom-scrollbar backdrop-blur-[30px] shadow-2xl shadow-inner"
 			style={{
 				clipPath: window.innerWidth >= 768 ? mdClipPath : baseClipPath,
 			}}
@@ -125,15 +125,15 @@ const ScrollablePostList: FC<PostsListProps> = ({ post }) => {
 			</div>
 			<style jsx>{`
                 .custom-scrollbar::-webkit-scrollbar {
-                    width: 5px;
+                    width: 6px;
                 }
 
                 .custom-scrollbar::-webkit-scrollbar-track {
-                    background-color: rgba(255, 255, 255, 0.1);
+                    background-color: rgba(255, 255, 255, 0.05);
                 }
 
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background-color: rgba(255, 255, 255, 0.2);
+                    background-color: rgba(255, 255, 255, 0.1);
                     border-radius: 10px;
                     border: 2px solid transparent;
                 }

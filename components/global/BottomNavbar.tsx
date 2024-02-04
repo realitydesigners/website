@@ -5,14 +5,8 @@ import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React, { useState } from "react";
 
-interface NavbarProps {
-	pageBackground: "light" | "dark";
-}
-
-export default function Navbar({ pageBackground }: NavbarProps) {
+export default function BottomNavbar() {
 	const [isNavOpen, setIsNavOpen] = useState(false);
-
-	const logoColor = pageBackground === "dark" ? "white" : "black";
 
 	const toggleNav = () => {
 		setIsNavOpen(!isNavOpen);
@@ -103,42 +97,24 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 
 			<nav
 				id="navbar"
-				className="flex  bg-black/80  shadow-xl items-center h-12 p-2 justify-between fixed top-0 w-full z-50 "
+				className="flex  shadow-xl items-center h-20 p-2 justify-center fixed bottom-0 w-full z-50 "
 			>
-				<div className="pl-[2.3em] w-full justify-center relative flex items-center z-10">
-					<Link
-						href="/"
-						className={`${monomaniac.className} text-gray-200 items-center pt-2 pb-2  flex flex-row`}
-						onClick={closeNav}
-					>
-						<div className=" left-2 absolute ">{getIcon("logo")}</div>
-						<div className="w-full   justify-center items-center flex h-auto flex-col">
-							<span className="text-lg font-bold tracking-wide leading-none">
-								REALITY
-							</span>
-							<span className="text-sm -mt-[1px] font-bold tracking-wide leading-none">
-								DESIGNERS
-							</span>
-						</div>
-					</Link>
-				</div>
-
-				<div className="relative ">
+				<div className=" w-full lg:w-1/5 md:w-1/3  justify-center items-center  flex">
 					<button
 						id="nav-toggle"
-						className="flex items-center h-10 w-10  justify-center relative  z-20 "
+						className=" h-16 w-full flex justify-center rounded-[.5em] items-center border border-gray-600/25 bg-black/50 backdrop-blur-xl z-20 "
 						aria-label="Toggle Menu"
 						onClick={toggleNav}
 						type="button"
 					>
-						{getIcon("menu")}
+						{getIcon("logo")}
 					</button>
 				</div>
 
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
+					className={`absolute  bottom-7 right-0 w-full lg:w-1/3 bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[90vh] lg:h-[70vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
 						isNavOpen
 							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/50 lg:shadow-lg"
 							: "translate-x-full"

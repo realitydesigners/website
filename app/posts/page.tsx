@@ -16,7 +16,6 @@ export default async function PostsPage() {
 		<main className="flex justify-center items-center min-h-screen bg-black flex-col w-full">
 			{/* Threejs background goes here */}
 
-			<AllStations />
 			<ScrollablePostList post={postsListData} />
 		</main>
 	);
