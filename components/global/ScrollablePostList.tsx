@@ -105,7 +105,7 @@ const ScrollablePostList: FC<PostsListProps> = ({ post }) => {
 
 	return (
 		<div
-			className="  fixed top-[60px] md:top-20 left-4 md:left-20 right-4 md:right-20 bottom-10 md:bottom-20 bg-black/75 lg:p-4 p-4 overflow-auto custom-scrollbar backdrop-blur-[4px] shadow-2xl shadow-inner"
+			className="  fixed top-[60px] md:top-20 left-2 md:left-20 right-2 md:right-20 bottom-2 md:bottom-20  lg:p-4 p-4 overflow-auto custom-scrollbar backdrop-blur-[30px] shadow-2xl shadow-inner"
 			style={{
 				clipPath: window.innerWidth >= 768 ? mdClipPath : baseClipPath,
 			}}
