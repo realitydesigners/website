@@ -65,14 +65,14 @@ const StationCircle = ({ position, label }) => {
 
 const SciFiLab = () => {
 	const meshRef = useRef(null);
-	const gltf = useLoader(GLTFLoader, "models/scifi.glb");
+	const gltf = useLoader(GLTFLoader, "models/cubes.glb");
 
 	return (
 		<primitive
 			ref={meshRef}
 			object={gltf.scene}
-			scale={[3, 3, 3]}
-			position={[0, -100, 0]}
+			scale={[20, 20, 20]}
+			position={[-30, -175, 30]}
 		/>
 	);
 };
