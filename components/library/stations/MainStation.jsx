@@ -7,7 +7,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const MainStation = () => {
 	return (
-		<>
+		<group position={[-100, -25, 100]} scale={[2, 2, 2]}>
 			<mesh position={[0, 0, -50]} rotation={[0, 0, 0]}>
 				<boxGeometry args={[100, 10, 5]} />
 				<meshStandardMaterial color="#333" />
@@ -29,7 +29,7 @@ export const MainStation = () => {
 			<StationCircle position={[50, 0, -50]} label="Station B" />
 			<StationCircle position={[-50, 0, 50]} label="Station C" />
 			<StationCircle position={[50, 0, 50]} label="Station D" />
-		</>
+		</group>
 	);
 };
 
@@ -50,9 +50,9 @@ const StationCircle = ({ position, label }) => {
 			</mesh>
 			<Text
 				ref={textRef}
-				position={[position[0], position[1] + 8, position[2]]}
+				position={[position[0], position[1] + 6, position[2]]}
 				rotation={[0, 0, 0]}
-				fontSize={2}
+				fontSize={1}
 				font={"/Staatliches.ttf"}
 				color="white"
 				text={label}

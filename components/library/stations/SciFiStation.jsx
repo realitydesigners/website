@@ -12,7 +12,7 @@ const SciFiStation = () => {
 			ref={meshRef}
 			object={gltf.scene}
 			scale={[20, 20, 20]}
-			position={[-30, -175, 30]}
+			position={[-30, -200, 30]}
 		/>
 	);
 };
