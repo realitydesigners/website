@@ -1,7 +1,4 @@
-import {
-	InteractiveProvider,
-	useInteractiveContext,
-} from "@/components/library/context/InteractiveContext";
+import { InteractiveProvider } from "@/components/library/context/InteractiveContext";
 import AllStations from "@/components/library/stations/AllStations";
 import { sanityFetch } from "@/sanity/lib/client";
 import { categoryQuery } from "@/sanity/lib/queries";

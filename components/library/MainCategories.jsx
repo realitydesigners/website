@@ -1,8 +1,9 @@
 "use client";
 import { Text } from "@react-three/drei";
-import React, { useRef } from "react";
-import HologramCrystal from "./HologramCrystal";
-import { getCategoryPositions } from "./Postions";
+import React, { useRef, useState } from "react";
+import HologramCrystal from "./HologramCrystal.jsx";
+import { getCategoryPositions } from "./Postions.jsx";
+import Scene from "./Scene.jsx";
 import { useCategoryInteraction } from "./index.ts";
 
 const Category = ({
@@ -28,9 +29,6 @@ const Category = ({
 		const categoryRoute = `/library/${title.toLowerCase()}`;
 		window.location.href = categoryRoute;
 	};
-
-	const textRef = useRef(null);
-
 	return (
 		<group
 			position={position}
@@ -48,7 +46,6 @@ const Category = ({
 				emissiveIntensity={isDimmed ? 0.5 : isHighlighted ? 1 : 0.6}
 			/>
 			<Text
-				ref={textRef}
 				position={[0, 0, 0]}
 				rotation-y={Math.PI}
 				color="#fff"
@@ -66,11 +63,7 @@ const Category = ({
 	);
 };
 
-const LibraryCategories = ({
-	categories,
-	highlightedCategory,
-	onCategorySelect,
-}) => {
+const Categories = ({ categories, highlightedCategory, onCategorySelect }) => {
 	const positions = getCategoryPositions(categories.length);
 
 	return (
@@ -99,18 +92,13 @@ const LibraryCategories = ({
 	);
 };
 
-const LibraryScene = ({ category = [], cameraPosition }) => {
-	const {
-		highlightedCategory,
-		mainCategories,
-
-		onCategorySelect,
-		subcategoryContent,
-	} = useCategoryInteraction(category);
+const MainCategories = ({ category = [], cameraPosition }) => {
+	const { highlightedCategory, mainCategories, onCategorySelect } =
+		useCategoryInteraction(category);
 
 	return (
 		<>
-			<LibraryCategories
+			<Categories
 				categories={mainCategories}
 				highlightedCategory={highlightedCategory}
 				onCategorySelect={onCategorySelect}
@@ -119,4 +107,4 @@ const LibraryScene = ({ category = [], cameraPosition }) => {
 	);
 };
 
-export default React.memo(LibraryScene);
+export default React.memo(MainCategories);

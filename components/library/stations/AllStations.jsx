@@ -8,7 +8,7 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React, { useEffect, useState } from "react";
-import LibraryScene from "../LibraryScene";
+import MainCategories from "../MainCategories";
 import { useInteractiveContext } from "../context/InteractiveContext";
 import { MainStation } from "./MainStation";
 import Navigation from "./Navigation";
@@ -35,7 +35,7 @@ const AllStations = ({ categories }) => {
 				<Environment preset="sunset" />
 				<MainStation />
 				<SciFiStation />
-				<LibraryScene category={categories} />
+				<MainCategories category={categories} />
 			</Canvas>
 			<Navigation />
 		</>
