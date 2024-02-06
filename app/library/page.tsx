@@ -1,4 +1,7 @@
-import LibraryScene from "@/components/library/LibraryScene";
+import {
+	InteractiveProvider,
+	useInteractiveContext,
+} from "@/components/library/context/InteractiveContext";
 import AllStations from "@/components/library/stations/AllStations";
 import { sanityFetch } from "@/sanity/lib/client";
 import { categoryQuery } from "@/sanity/lib/queries";
@@ -11,8 +14,10 @@ export default async function CategoryPage() {
 	});
 
 	return (
-		<div className="w-screen h-screen bg-black">
-			<AllStations />
-		</div>
+		<InteractiveProvider>
+			<div className="w-screen h-screen">
+				<AllStations categories={categories} />
+			</div>
+		</InteractiveProvider>
 	);
 }

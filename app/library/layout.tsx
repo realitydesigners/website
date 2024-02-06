@@ -1,6 +1,4 @@
-import Footer from "@/components/global/Footer";
-import Navbar from "@/components/global/Navbar";
-import { Suspense } from "react";
+import BottomNavbar from "@/components/global/BottomNavbar";
 import "tailwindcss/tailwind.css";
 
 export default async function LibraryLayout({
@@ -10,9 +8,8 @@ export default async function LibraryLayout({
 }) {
 	return (
 		<div className="w-screen h-screen bg-black">
-			<Navbar pageBackground="light" />
 			{children}
-			<Footer />
+			<BottomNavbar />
 		</div>
 	);
 }

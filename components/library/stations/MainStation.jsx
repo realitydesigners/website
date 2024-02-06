@@ -25,8 +25,6 @@ export const MainStation = () => {
 				<meshStandardMaterial color="#333" />
 			</mesh>
 
-			<SciFiLab />
-
 			<StationCircle position={[-50, 0, -50]} label="Station A" />
 			<StationCircle position={[50, 0, -50]} label="Station B" />
 			<StationCircle position={[-50, 0, 50]} label="Station C" />
@@ -60,19 +58,5 @@ const StationCircle = ({ position, label }) => {
 				text={label}
 			/>
 		</>
-	);
-};
-
-const SciFiLab = () => {
-	const meshRef = useRef(null);
-	const gltf = useLoader(GLTFLoader, "models/cubes.glb");
-
-	return (
-		<primitive
-			ref={meshRef}
-			object={gltf.scene}
-			scale={[20, 20, 20]}
-			position={[-30, -175, 30]}
-		/>
 	);
 };
