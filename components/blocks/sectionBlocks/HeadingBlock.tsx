@@ -49,24 +49,19 @@ const getPublicationDate = (block) => {
 		: "Date not available";
 };
 
-const renderTags = (tags, tagBg, tagText) =>
-	tags &&
-	tags.length > 0 && (
-		<div className="flex flex-wrap gap-2">
-			{tags.map((tag, index) => (
-				<span
-					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-					key={index}
-					className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold ${tagBg} items-center justify-center p-1 pl-2 pr-2 tracking-widest ${tagText} `}
-				>
-					{tag}
-				</span>
-			))}
-		</div>
+const RenderCategory = ({ category, style }) => {
+	if (!category) return null;
+
+	return (
+		<span
+			className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold ${style.tagBg} items-center justify-center p-1 pl-2 pr-2 tracking-widest whitespace-nowrap ${style.tagText} `}
+		>
+			{category.title}
+		</span>
 	);
+};
 
 const TeamSection = ({ team, theme }) => {
-	// Use theme prop instead of textColor
 	if (!team) return null;
 
 	return (
@@ -113,14 +108,17 @@ const HeadingBlock = ({ block }) => {
 		<div className={`w-full h-auto ${style.containerBg} pt-20 lg:pt-32`}>
 			<div className="w-full flex justify-center flex-wrap">
 				<div
-					className={`w-11/12 flex items-center justify-between lg:hidden ${style.textColor}`}
+					className={`w-11/12 flex flex-wrap flex-cols items-center justify-between lg:hidden ${style.textColor}`}
 				>
 					<span
 						className={`${monomaniac.className} ml-2 uppercase w-auto text-xs font-mono tracking-widest`}
 					>
 						POSTED ON {formattedDate}
 					</span>
-					{renderTags(block.tags, style.tagBg, style.tagText)}
+
+					{block.category && (
+						<RenderCategory category={block.category} style={style} />
+					)}
 				</div>
 
 				{block.image && (
@@ -148,7 +146,10 @@ const HeadingBlock = ({ block }) => {
 							>
 								POSTED {formattedDate}
 							</span>
-							{renderTags(block.tags, style.tagBg, style.tagText)}
+
+							{block.category && (
+								<RenderCategory category={block.category} style={style} />
+							)}
 						</div>
 						{block.heading && (
 							<h1

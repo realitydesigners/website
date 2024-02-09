@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play } from "@/fonts";
+import { monomaniac } from "@/fonts";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React from "react";
@@ -29,31 +29,28 @@ const HeadingSplineBlock = ({ block }) => {
 				  })
 				: "Date not available";
 
+			const renderCategory = block.category ? (
+				<span
+					className={`${monomaniac.className} text-xs  h-auto uppercase font-mono font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2 tracking-widest text-black mr-1 whitespace-nowrap`}
+				>
+					{block.category.title}
+				</span>
+			) : null;
+
 			return (
 				<div className="w-full h-auto bg-black pt-20 lg:pt-32 pb-20 lg:pb-0">
 					<div className="w-full flex justify-center flex-wrap">
-						<div className="w-11/12 flex items-center justify-evenly  ">
-							<div className="flex w-full lg:w-auto">
+						<div className="w-11/12 flex flex-wrap flex-cols items-center justify-between">
+							<div className="flex w-auto ">
 								<span
-									className={`${monomaniac.className} text-gray-200 ml-2  uppercase w-auto text-xs font-mono tracking-widest`}
+									className={`${monomaniac.className} text-gray-200 ml-2 uppercase w-auto text-xs font-mono tracking-widest`}
 								>
 									POSTED ON {formattedDate}
 								</span>
 							</div>
-							{block.tags && block.tags.length > 0 && (
-								<div className="flex">
-									{block.tags.map((tag, index) => (
-										<span
-											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-											key={index}
-											className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2  tracking-widest text-black mr-1`}
-										>
-											{tag}
-										</span>
-									))}
-								</div>
-							)}
+							{renderCategory}
 						</div>
+
 						<div className="w-full lg:w-1/2 flex-col">
 							{block.heading && (
 								<h1
@@ -64,7 +61,7 @@ const HeadingSplineBlock = ({ block }) => {
 							)}
 							{block.subheading && (
 								<h2
-									className={`${play.className}  w-full p-4  text-2xl  text-gray-300 leading-7 tracking-wide `}
+									className={`${monomaniac.className}  w-full p-4  text-2xl  text-gray-300 leading-7 tracking-wide `}
 								>
 									{block.subheading}
 								</h2>
@@ -110,6 +107,8 @@ const HeadingSplineBlock = ({ block }) => {
 				</div>
 			);
 		}
+		default:
+			return null;
 	}
 };
 

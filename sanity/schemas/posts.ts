@@ -1,5 +1,4 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
-import { SchemaTypeDefinition } from "sanity"; // Import the SchemaTypeDefinition type
 
 export default defineType({
 	type: "document",
@@ -7,9 +6,9 @@ export default defineType({
 	title: "Posts",
 	fields: [
 		defineField({
-			type: "slug",
 			name: "slug",
 			title: "Slug",
+			type: "slug",
 			options: {
 				source: "block.0.heading",
 			},

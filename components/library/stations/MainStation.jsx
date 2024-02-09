@@ -5,6 +5,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+import { useInteractiveContext } from "../context/InteractiveContext";
+
 export const MainStation = () => {
 	return (
 		<group position={[-100, -25, 100]} scale={[2, 2, 2]}>
@@ -34,17 +36,25 @@ export const MainStation = () => {
 };
 
 const StationCircle = ({ position, label }) => {
-	useFrame(() => {
-		if (textRef.current) {
-			textRef.current.lookAt(camera.position);
-		}
-	});
-
 	const textRef = useRef(null);
+	const { moveTo } = useInteractiveContext();
 	const { camera } = useThree();
+
+	const handleStationClick = () => {
+		// Calculate the new camera position based on the clicked station circle's position
+		const newPosition = [
+			position[0] + offsetValueX, // Adjust the offset values as needed
+			position[1] + offsetValueY,
+			position[2] + offsetValueZ,
+		];
+		// Move the camera to the center of the clicked station circle
+		moveTo(position, newPosition);
+	};
+
 	return (
 		<>
-			<mesh position={position} rotation={[0, 0, 0]}>
+			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+			<mesh position={position} onClick={handleStationClick}>
 				<cylinderGeometry args={[20, 10, 10, 50]} />
 				<meshStandardMaterial color="#333" />
 			</mesh>
@@ -60,3 +70,5 @@ const StationCircle = ({ position, label }) => {
 		</>
 	);
 };
+
+export default StationCircle;

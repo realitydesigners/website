@@ -91,6 +91,7 @@ export const postsBySlugQuery = groq`
         subheading,
         image,
         tags,
+        category->,
         layout,
         publicationDate,
         team->,
