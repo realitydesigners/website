@@ -10,7 +10,7 @@ import ModelWithEffects from "./ModelWithEffects";
 import { getRefPostPosition, getSubCategoryPositions } from "./Postions";
 import { useCategoryInteraction } from "./index.ts";
 
-const CAMERA_POSITION = [20, 20, 20];
+const CAMERA_POSITION = [10, 40, 40];
 
 export const SubCategory = (props) => {
 	const {
@@ -67,6 +67,16 @@ export const SubCategory = (props) => {
 	);
 };
 
+const categoryPositions = {
+	"Soul & Spirit": [30, 30, 30],
+	"Consciousness & Reality": [15, 15, 15],
+	"Dreams & Alternate Realities": [0, 0, 0],
+	"Plant Medicine & Psychedelics": [-10, -10, -10],
+	"Consciousness Exploration": [-20, -20, -20],
+	"Real Life & Stories": [-40, -40, -40],
+	// Add more categories and their positions as needed
+};
+
 export const SubCategories = (props) => {
 	const {
 		categories,
@@ -76,17 +86,12 @@ export const SubCategories = (props) => {
 		onCategoryHover,
 	} = props;
 
-	const positions = useMemo(
-		() => getSubCategoryPositions(categories.length),
-		[categories.length],
-	);
-
 	return (
 		<>
 			{categories.map((cat, index) => {
-				const [x, y, z] = positions[index];
 				const categoryName = cat.title || "";
 				const isHovered = categoryName === highlightedCategory;
+				const position = categoryPositions[categoryName] || [0, 0, 0];
 				const rotationY =
 					-((Math.PI * 2 * index) / categories.length) + Math.PI / 2;
 
@@ -95,7 +100,7 @@ export const SubCategories = (props) => {
 						key={categoryName}
 						title={categoryName}
 						model={cat.model}
-						position={[x, y, z]}
+						position={position}
 						isHighlighted={isHovered}
 						onClick={onCategorySelect}
 						onPointerOver={() => setSelectedCategory(categoryName)}
@@ -116,12 +121,9 @@ export const SubCategories = (props) => {
 };
 
 export const RefPost = (props) => {
-	const { block, position, isHighlighted, onClick, onPointerOut } = props;
+	const { block, position, isHighlighted, onPointerOut } = props;
 
-	const headingBlock = useMemo(
-		() => block.find((b) => b._type === "headingBlock"),
-		[block],
-	);
+	const headingBlock = block.find((b) => b._type === "headingBlock");
 	const headingText = headingBlock?.heading;
 
 	const { camera } = useThree();
@@ -165,10 +167,10 @@ export const RefPosts = (props) => {
 	return (
 		<>
 			{refPosts.map((postRef, index) => {
-				// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-				const [x, y, z] = useMemo(
-					() => getRefPostPosition(index, refPosts.length, subCategoryPosition),
-					[index, refPosts.length, subCategoryPosition],
+				const [x, y, z] = getRefPostPosition(
+					index,
+					refPosts.length,
+					subCategoryPosition,
 				);
 				const isHighlighted = postRef.isHighlighted;
 				const key = `${postRef._id}-${index}`;
@@ -179,7 +181,6 @@ export const RefPosts = (props) => {
 						block={postRef.block}
 						position={[x, y, z]}
 						isHighlighted={isHighlighted}
-						onPointerOver={() => onCategorySelect(postRef.heading, [x, y, z])}
 						onPointerOut={() => {}}
 						onCategoryHover={onCategoryHover}
 					/>
@@ -194,22 +195,14 @@ const PostsBySubCategory = (props) => {
 
 	const [onCategoryHover, setSelectedCategory] = useState(null);
 
-	const subCategoryPositions = useMemo(
-		() => getSubCategoryPositions(categories.length),
-		[categories.length],
-	);
-	const hoveredCategory = useMemo(
-		() => categories.find((cat) => cat.title === onCategoryHover),
-		[categories, onCategoryHover],
+	const hoveredCategory = categories.find(
+		(cat) => cat.title === onCategoryHover,
 	);
 	const hoveredSubCategoryPosition = hoveredCategory
-		? subCategoryPositions[categories.indexOf(hoveredCategory)]
+		? categoryPositions[hoveredCategory.title]
 		: null;
 
-	const hoveredCategoryPosts = useMemo(
-		() => hoveredCategory?.refPosts || [],
-		[hoveredCategory],
-	);
+	const hoveredCategoryPosts = hoveredCategory?.refPosts || [];
 
 	return (
 		<group>
