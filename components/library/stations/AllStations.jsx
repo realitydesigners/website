@@ -1,5 +1,4 @@
 "use client";
-
 import {
 	Environment,
 	OrbitControls,
@@ -7,38 +6,31 @@ import {
 	useThree,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MainCategories from "../MainCategories";
 import { useInteractiveContext } from "../context/InteractiveContext";
 import { MainStation } from "./MainStation";
-import Navigation from "./Navigation";
+
 import SciFiStation from "./SciFiStation";
 
 const AllStations = ({ categories }) => {
-	const { moveTo, cameraState } = useInteractiveContext();
-	const [currentCameraState, setCurrentCameraState] = useState(cameraState);
+	const { cameraState } = useInteractiveContext();
 
-	useEffect(() => {
-		setCurrentCameraState(cameraState); // Update currentCameraState when cameraState changes
-	}, [cameraState]);
 	return (
-		<>
-			<Canvas style={{ height: "100vh", width: "100vw", color: "black" }}>
-				<PerspectiveCamera
-					makeDefault
-					position={currentCameraState.position}
-					rotation={currentCameraState.rotation}
-					zoom={0.8}
-				/>
-				<OrbitControls />
-				<hemisphereLight />
-				<Environment preset="sunset" />
-				<MainStation />
-				<SciFiStation />
-				<MainCategories category={categories} />
-			</Canvas>
-			<Navigation />
-		</>
+		<Canvas style={{ height: "100vh", width: "100vw", color: "black" }}>
+			<PerspectiveCamera
+				makeDefault
+				position={cameraState.position}
+				rotation={cameraState.rotation}
+				zoom={0.8}
+			/>
+			<OrbitControls />
+			<hemisphereLight />
+			<Environment preset="sunset" />
+			<MainStation />
+			<SciFiStation />
+			<MainCategories category={categories} />
+		</Canvas>
 	);
 };
 

@@ -10,8 +10,8 @@ export const InteractiveProvider = ({ children }) => {
 	const [displayContent, setDisplayContent] = useState(null);
 	const [cameraState, setCameraState] = useState({
 		target: [0, 1, 0],
-		position: defaultPositions.find((item) => item.name === "Home").position,
-		rotation: defaultPositions.find((item) => item.name === "Home").rotation,
+		position: [40, 20, 40], // Default home position
+		rotation: [0, Math.PI / 2, 0],
 	});
 
 	const handleObjectClick = (objectData) => {
@@ -24,11 +24,10 @@ export const InteractiveProvider = ({ children }) => {
 		setCameraState({
 			target: target,
 			position: position,
+			rotation: [0, Math.PI / 2, 0], // Assuming rotation is not changed
 		});
-		console.log("Camera state:", cameraState);
 	};
 
-	// Update camera state when position or target changes
 	useEffect(() => {
 		console.log("Updated camera state:", cameraState);
 	}, [cameraState]);
