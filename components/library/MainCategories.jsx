@@ -1,9 +1,8 @@
 "use client";
 import { Text } from "@react-three/drei";
-import React, { useRef, useState } from "react";
+import React from "react";
 import HologramCrystal from "./HologramCrystal.jsx";
 import { getCategoryPositions } from "./Postions.jsx";
-import Scene from "./Scene.jsx";
 import { useCategoryInteraction } from "./index.ts";
 
 const Category = ({
@@ -70,18 +69,18 @@ const Categories = ({ categories, highlightedCategory, onCategorySelect }) => {
 		<group>
 			{categories.map((cat, index) => {
 				const [x, y, z] = positions[index];
-				const world = cat.title || "";
-				const isHovered = world === highlightedCategory;
+				const name = cat.title || "";
+				const isHovered = name === highlightedCategory;
 				const rotationY =
 					-((Math.PI * 2 * index) / categories.length) + Math.PI / 2;
 
 				return (
 					<Category
-						key={world}
-						title={world}
+						key={name}
+						title={name}
 						position={[x, y, z]}
 						isHighlighted={isHovered}
-						onPointerOver={() => onCategorySelect(world, [x, y, z])}
+						onPointerOver={() => onCategorySelect(name, [x, y, z])}
 						onPointerOut={() => {}}
 						selectedCategory={highlightedCategory}
 						rotationY={rotationY}

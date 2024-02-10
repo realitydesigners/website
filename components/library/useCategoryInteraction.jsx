@@ -15,24 +15,22 @@ export const useCategoryInteraction = (category) => {
 	const [activeBackgroundScene, setActiveBackgroundScene] = useState(null);
 
 	const mainCategories = Array.isArray(category)
-		? category.filter((cat) => Boolean(cat.title) && cat.isMain)
+		? category.filter((cat) => cat?.title && cat.isMain)
 		: [];
-
-	const subCategories = Array.isArray(category.subCategories)
-		? category.subCategories.filter((subCat) => Boolean(subCat.title))
+	const subCategories = Array.isArray(category?.subCategories)
+		? category.subCategories.filter((subCat) => subCat?.title)
 		: [];
 
 	const onCategoryHover = useCallback(
 		(subcategoryName) => {
 			const relatedPosts =
-				category.subCategories.find(
-					(sub) => sub.slug.current === subcategoryName,
+				category?.subCategories?.find(
+					(sub) => sub.slug && sub.slug.current === subcategoryName,
 				)?.associatedPosts || [];
-
 			setSubcategoryContent(relatedPosts);
 			setIsSidebarVisible(true);
 		},
-		[category.subCategories],
+		[category],
 	);
 
 	const onCategoryLeave = useCallback(() => {
@@ -44,8 +42,8 @@ export const useCategoryInteraction = (category) => {
 			setSelectedCategory(categoryName);
 			setHighlightedCategory(categoryName);
 
-			const currentCategory = category.subCategories.find(
-				(sub) => sub.slug.current === subcategoryName,
+			const currentCategory = category?.subCategories?.find(
+				(sub) => sub.slug && sub.slug.current === subcategoryName,
 			);
 
 			if (currentCategory?.sceneIdentifier) {
@@ -61,11 +59,8 @@ export const useCategoryInteraction = (category) => {
 				subCategory: subcategoryName || prev.subCategory,
 			}));
 		},
-		[category.subCategories, setNavigation],
+		[category, setNavigation],
 	);
-
-	//   console.log('Category data Fetched From Parent Page:', category);
-	//  console.log('subCategories', subCategories);
 
 	return {
 		onCategorySelect,

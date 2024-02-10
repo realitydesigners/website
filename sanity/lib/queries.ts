@@ -162,27 +162,6 @@ export const categoryQuery = groq`
      file,
       },
    sceneIdentifier,
-   "subCategories": *[_type == "category" && references(^._id)] {
-     _id,
-     _type,
-     title,
-     slug,
-     isMain,
-     model->{...,
-       file,
-        },
-     "refPosts": *[_type == "posts" && references(^._id)] {
-       _id,
-       title,
-       slug,
-       excerpt,
-       author,
-       tags,
-       category,
-       publicationDate,
-      
-     }
-   },
   }
   `;
 

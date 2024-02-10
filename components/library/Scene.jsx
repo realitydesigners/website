@@ -3,11 +3,11 @@ import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Line, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import * as THREE from "three";
 import Crystal from "./Crystal";
 import ModelWithEffects from "./ModelWithEffects";
-import { getRefPostPosition, getSubCategoryPositions } from "./Postions";
+import { getRefPostPosition } from "./Postions";
 import { useCategoryInteraction } from "./index.ts";
 
 const CAMERA_POSITION = [10, 40, 40];

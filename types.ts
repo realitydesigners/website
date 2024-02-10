@@ -86,6 +86,7 @@ export interface CategoryPayload extends BaseItem {
 	};
 	sceneIdentifier?: string;
 	subCategories?: SubCategoryPayload[];
+	position: [number, number, number];
 }
 
 export interface SubCategoryPayload extends BaseItem {
