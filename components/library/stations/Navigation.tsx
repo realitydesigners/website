@@ -12,8 +12,7 @@ const Navigation: React.FC<NavigationProps> = ({
 	categories,
 	categoryPositions,
 }) => {
-	console.log("categoryPositions:", categoryPositions); // Check if categoryPositions is received correctly
-	const { moveTo } = useInteractiveContext();
+	const { moveTo, updateRotation } = useInteractiveContext();
 
 	const handleClickForCategory = (categoryTitle: string) => {
 		const index = categories.findIndex(
@@ -21,15 +20,10 @@ const Navigation: React.FC<NavigationProps> = ({
 		);
 		if (index !== -1) {
 			const position = categoryPositions[index];
-			console.log("position:", position); // Check if position is received correctly
+
 			if (position) {
-				// Ensure moveTo is called with the correct parameters
-				moveTo(position, position); // Assuming position is both target and position
-			} else {
-				console.error(`Position for category ${categoryTitle} not found.`);
+				moveTo(position, position);
 			}
-		} else {
-			console.error(`Category ${categoryTitle} not found.`);
 		}
 	};
 

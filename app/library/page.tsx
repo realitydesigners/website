@@ -12,17 +12,18 @@ export default async function CategoryPage(): Promise<JSX.Element> {
 		tags: ["category"],
 	});
 
-	const categoryPositions = getCategoryPositions(categories.length);
+	const mainCategories = categories.filter((category) => category.isMain);
+	const categoryPositions = getCategoryPositions(mainCategories.length);
 
-	console.log(categories);
+	console.log(mainCategories);
 	return (
 		<InteractiveProvider categoryPositions={categoryPositions}>
 			<div className="w-screen h-screen relative">
 				<Navigation
-					categories={categories}
+					categories={mainCategories} // Pass mainCategories instead of categories
 					categoryPositions={categoryPositions}
 				/>
-				<AllStations categories={categories} />
+				<AllStations categories={mainCategories} />
 			</div>
 		</InteractiveProvider>
 	);

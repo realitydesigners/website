@@ -1,23 +1,42 @@
 "use client";
-import { PerspectiveCamera } from "@react-three/drei";
-import React, { useEffect } from "react";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
 import { useInteractiveContext } from "../context/InteractiveContext";
 
 const CustomCamera = () => {
 	const { cameraState } = useInteractiveContext();
+	const controls = useRef();
+	const { camera, gl } = useThree();
 
-	// Update camera position when cameraState changes
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		console.log("Camera state changed:", cameraState);
-	}, [cameraState]);
+		camera.position.set(...cameraState.position);
+		camera.rotation.set(...cameraState.rotation);
+		controls.current.target.set(0, 0, 0);
+		controls.current.update();
+	}, [camera, cameraState.position, cameraState.rotation, gl.domElement]);
+
+	console.log("Camera State:", cameraState);
 
 	return (
-		<PerspectiveCamera
-			makeDefault
-			position={cameraState.position}
-			rotation={cameraState.rotation}
-			zoom={1}
-		/>
+		<>
+			<OrbitControls
+				ref={controls}
+				args={[camera, gl.domElement]}
+				dampingFactor={0.25}
+				rotateSpeed={0.5}
+				enablePan={false}
+				enableZoom={true}
+				enableRotate={true}
+			/>
+			<PerspectiveCamera
+				makeDefault
+				position={cameraState.position}
+				rotation={cameraState.rotation}
+				zoom={0.7}
+			/>
+		</>
 	);
 };
 
