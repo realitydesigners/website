@@ -5,14 +5,14 @@ import { useInteractiveContext } from "../context/InteractiveContext";
 
 interface NavigationProps {
 	categories: CategoryPayload[];
-	categoryPositions: number[][];
+	categoryPositions?: number[][];
 }
 
-const Navigation: React.FC<NavigationProps> = ({
-	categories,
-	categoryPositions,
-}) => {
-	const { moveTo, updateRotation } = useInteractiveContext();
+const Navigation: React.FC<NavigationProps> = ({ categories }) => {
+	const { moveToCategoryAndRotate } = useInteractiveContext();
+	const { categoryPositions } = useInteractiveContext();
+
+	console.log("all positions", categoryPositions);
 
 	const handleClickForCategory = (categoryTitle: string) => {
 		const index = categories.findIndex(
@@ -22,11 +22,10 @@ const Navigation: React.FC<NavigationProps> = ({
 			const position = categoryPositions[index];
 
 			if (position) {
-				moveTo(position, position);
+				moveToCategoryAndRotate(position, [0, 180, 0]);
 			}
 		}
 	};
-
 	const mainCategories = categories.filter((category) => category.isMain);
 	const subCategories = categories.filter((category) => !category.isMain);
 

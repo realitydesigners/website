@@ -9,10 +9,8 @@ interface NavbarProps {
 	pageBackground: "light" | "dark";
 }
 
-export default function Navbar({ pageBackground }: NavbarProps) {
+export default function Navbar() {
 	const [isNavOpen, setIsNavOpen] = useState(false);
-
-	const logoColor = pageBackground === "dark" ? "white" : "black";
 
 	const toggleNav = () => {
 		setIsNavOpen(!isNavOpen);
@@ -74,36 +72,93 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 					<path d="M9 15H15" stroke="currentColor" strokeWidth="2" />
 				</svg>
 			),
-			story: (
+
+			lock: (
 				// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
-				<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg
+					width="20"
+					height="20"
+					viewBox="0 0 18 20"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
 					<path
-						d="M4 4H14L20 10V20H4V4Z"
-						stroke="currentColor"
+						d="M1 11C1 9.11438 1 8.17157 1.58579 7.58579C2.17157 7 3.11438 7 5 7H13C14.8856 7 15.8284 7 16.4142 7.58579C17 8.17157 17 9.11438 17 11V13C17 15.8284 17 17.2426 16.1213 18.1213C15.2426 19 13.8284 19 11 19H7C4.17157 19 2.75736 19 1.87868 18.1213C1 17.2426 1 15.8284 1 13V11Z"
+						stroke="#444"
 						strokeWidth="2"
 					/>
-					<path d="M14 4V10H20" stroke="currentColor" strokeWidth="2" />
-					<path d="M6 12H12" stroke="currentColor" strokeWidth="2" />
-					<path d="M6 16H12" stroke="currentColor" strokeWidth="2" />
+					<path
+						d="M13 6V5C13 2.79086 11.2091 1 9 1V1C6.79086 1 5 2.79086 5 5V6"
+						stroke="#444"
+						strokeWidth="2"
+						strokeLinecap="round"
+					/>
+					<circle cx="9" cy="13" r="2" fill="#444" />
+				</svg>
+			),
+			story: (
+				// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
+				<svg
+					width="20"
+					height="16"
+					viewBox="0 0 20 16"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M19 12.6953V1.66466C19 1.34631 18.6785 1.12861 18.3829 1.24685L14.1351 2.94596C14.0473 2.98109 13.9506 2.98765 13.8588 2.96471L6.14116 1.03529C6.04939 1.01235 5.95273 1.01891 5.8649 1.05404L1.28287 2.88685C1.11203 2.95519 1 3.12066 1 3.30466V14.3353C1 14.6537 1.32154 14.8714 1.61713 14.7531L5.8649 13.054C5.95273 13.0189 6.04939 13.0123 6.14117 13.0353L13.8588 14.9647C13.9506 14.9877 14.0473 14.9811 14.1351 14.946L18.7171 13.1131C18.888 13.0448 19 12.8793 19 12.6953Z"
+						stroke="#999"
+						strokeWidth="2"
+						strokeLinejoin="round"
+					/>
+					<path d="M14 15V3" stroke="#999" strokeWidth="2" />
+					<path d="M6 13L6 1" stroke="#999" strokeWidth="2" />
+				</svg>
+			),
+			video: (
+				// biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
+				<svg
+					width="20"
+					height="16"
+					viewBox="0 0 20 16"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M19 12.6953V1.66466C19 1.34631 18.6785 1.12861 18.3829 1.24685L14.1351 2.94596C14.0473 2.98109 13.9506 2.98765 13.8588 2.96471L6.14116 1.03529C6.04939 1.01235 5.95273 1.01891 5.8649 1.05404L1.28287 2.88685C1.11203 2.95519 1 3.12066 1 3.30466V14.3353C1 14.6537 1.32154 14.8714 1.61713 14.7531L5.8649 13.054C5.95273 13.0189 6.04939 13.0123 6.14117 13.0353L13.8588 14.9647C13.9506 14.9877 14.0473 14.9811 14.1351 14.946L18.7171 13.1131C18.888 13.0448 19 12.8793 19 12.6953Z"
+						stroke="#999"
+						strokeWidth="2"
+						strokeLinejoin="round"
+					/>
+					<path d="M14 15V3" stroke="#999" strokeWidth="2" />
+					<path d="M6 13L6 1" stroke="#999" strokeWidth="2" />
 				</svg>
 			),
 		};
 		return icons[name] || <path />;
 	};
 
+	const navLinks = [
+		{ href: "#", label: "Feed", icon: "lock" },
+		{ href: "#", label: "Videos", icon: "video" },
+		{ href: "#", label: "Library", icon: "lock" },
+		{ href: "#", label: "Portal", icon: "lock" },
+		{ href: "/story", label: "Story", icon: "story" },
+	];
+
 	return (
 		<>
 			{isNavOpen && (
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 				<div
-					className="fixed inset-0 bg-black/20 backdrop-blur-[.2em] z-40"
+					className="fixed inset-0 bg-black lg:bg-black/20 backdrop-blur-[.5em] z-40"
 					onClick={handleBackdropClick}
 				/>
 			)}
 
 			<nav
 				id="navbar"
-				className="flex  bg-black/80  shadow-xl items-center h-12 p-2 justify-between fixed top-0 w-full z-50 "
+				className="flex  items-center h-12 p-2 justify-between fixed top-0 w-full z-50 "
 			>
 				<div className="pl-[2.3em] w-full justify-center relative flex items-center z-10">
 					<Link
@@ -138,56 +193,32 @@ export default function Navbar({ pageBackground }: NavbarProps) {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
+					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-transparent lg:bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
 						isNavOpen
-							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/50 lg:shadow-lg"
+							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-xl"
 							: "translate-x-full"
 					}  flex flex-col justify-start p-3 `}
 				>
-					<div className="w-full mb-2 rounded-lg block border border-gray-600/50   h-[250px]">
+					<div className="w-full mb-2 rounded-lg block border border-gray-600/25   h-[250px]">
 						<Link href="/" onClick={closeNav}>
 							<Spline scene="https://prod.spline.design/HB9ZzkKt9KuAM3Xf/scene.splinecode" />
 						</Link>
 					</div>
-					<ul className="flex justify-center text-gray-200 uppercase items-center gap-4 flex-col  mt-4">
-						<li>
-							<Link
-								href="/feed"
-								className={`${monomaniac.className}  text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
-								onClick={closeNav}
-							>
-								Feed
-							</Link>
-						</li>
-
-						<li>
-							<Link
-								href="/videos"
-								className={`${monomaniac.className}  text-5xl font-bold hover:bg-gray-600/30 p-2 rounded-lg transition-all duration-200 ease-in-out`}
-								onClick={closeNav}
-							>
-								Videos
-							</Link>
-						</li>
-						<li>
-							<Link
-								href="/library"
-								className={`${monomaniac.className} text-5xl  font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
-								onClick={closeNav}
-							>
-								Library
-							</Link>
-						</li>
-
-						<li>
-							<Link
-								href="/story"
-								className={`${monomaniac.className}  text-5xl font-bold hover:bg-gray-600/30  p-2 rounded-lg transition-all duration-200 ease-in-out`}
-								onClick={closeNav}
-							>
-								Story
-							</Link>
-						</li>
+					<ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 mt-4  flex flex-wrap">
+						{navLinks.map(({ href, label, icon }) => (
+							<li key={label}>
+								<Link
+									href={href}
+									className={`${monomaniac.className} flex flex-col items-center justify-center text-center text-gray-200 text-2xl backdrop-blur-[20px] bg-black/10 uppercase font-bold p-4 transition-all duration-200 ease-in-out border border-gray-600/25 block hover:bg-white hover:text-black`}
+									onClick={closeNav}
+								>
+									<div className="min-w-10 min-h-10 mb-2 flex items-center justify-center">
+										{getIcon(icon)}
+									</div>
+									<span>{label}</span>
+								</Link>
+							</li>
+						))}
 					</ul>
 					<SignedOut>
 						<div className="flex mt-4  mr-0 justify-center">
