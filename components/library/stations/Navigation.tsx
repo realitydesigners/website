@@ -9,7 +9,7 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ categories }) => {
-	const { moveToCategoryAndRotate } = useInteractiveContext();
+	const { moveToCategoryAndRotate, moveTo } = useInteractiveContext();
 	const { categoryPositions } = useInteractiveContext();
 
 	console.log("all positions", categoryPositions);
@@ -22,7 +22,7 @@ const Navigation: React.FC<NavigationProps> = ({ categories }) => {
 			const position = categoryPositions[index];
 
 			if (position) {
-				moveToCategoryAndRotate(position, [0, 180, 0]);
+				moveTo(position, position);
 			}
 		}
 	};
