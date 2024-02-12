@@ -12,7 +12,8 @@ export default async function CategoryPage(): Promise<JSX.Element> {
 		tags: ["category"],
 	});
 
-	const mainCategories = categories.filter((category) => category.isMain);
+	const mainCategories = categories;
+	const mainCategoriess = categories.filter((category) => category.isMain);
 	const categoryPositions = getCategoryPositions(mainCategories.length);
 
 	console.log(mainCategories);
