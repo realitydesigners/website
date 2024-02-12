@@ -26,16 +26,11 @@ export default function AgencyPage() {
 					<h1
 						className={`${monomaniac.className} text-gray-200 text-6xl lg:text-7xl font-bold text-center mb-6`}
 					>
-						A NEW REALITY IS BEING DESIGNED
+						Your Everything Design Partner
 					</h1>
 
 					<p className="mb-6 ">
-						THESE SOULS, CAME WITH MORE FREQUENT COMMUNICATIONS WITH THE ONE
-						SOURCE AND HAVE A DIRECT LINE TO THEIR ORIGINS. THEY ARE MEANT TO
-						BECOME THE CODE BREAKERS OF THE VIRTUAL AND ARTIFICIAL ENTITY SYSTEM
-						PERPETUATING THE DESTRUCTION OF ALL PROGRESS MADE ON EARTH. THEY
-						CAME PREPARED TO DESIGN A NEW REALITY AND BUILD THE TOOLS AND CREATE
-						THE FRAMEWORK FOR REMEMBERING.
+						We do everything, that's why we're Reality Designers
 					</p>
 				</div>
 			</div>

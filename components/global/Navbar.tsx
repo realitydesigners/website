@@ -24,6 +24,15 @@ export default function Navbar() {
 		closeNav();
 	};
 
+	const navLinks = [
+		{ href: "#", label: "Feed", icon: "lock" },
+		{ href: "/videos", label: "Videos", icon: "video" },
+		{ href: "#", label: "Library", icon: "lock" },
+		{ href: "#", label: "Portal", icon: "lock" },
+		{ href: "/story", label: "Story", icon: "story" },
+		{ href: "/", label: "Agency", icon: "lock" },
+	];
+
 	const getIcon = (name) => {
 		const icons = {
 			logo: (
@@ -138,14 +147,6 @@ export default function Navbar() {
 		return icons[name] || <path />;
 	};
 
-	const navLinks = [
-		{ href: "#", label: "Feed", icon: "lock" },
-		{ href: "#", label: "Videos", icon: "video" },
-		{ href: "#", label: "Library", icon: "lock" },
-		{ href: "#", label: "Portal", icon: "lock" },
-		{ href: "/story", label: "Story", icon: "story" },
-	];
-
 	return (
 		<>
 			{isNavOpen && (
@@ -193,7 +194,7 @@ export default function Navbar() {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-transparent lg:bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-300 ease-in-out ${
+					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-transparent lg:bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-0 lg:duration-200 ease-in-out ${
 						isNavOpen
 							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-xl"
 							: "translate-x-full"

@@ -101,7 +101,14 @@ export interface SubCategoryPayload extends BaseItem {
 
 export interface VideoPayload extends BaseItem {
 	image?: Image;
-	video: any;
+	video: {
+		asset: {
+			_ref: string;
+		};
+	};
+	asset: {
+		_ref: string;
+	};
 	subcategories: Array<{
 		name: string;
 		title: string;
