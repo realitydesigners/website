@@ -1,8 +1,5 @@
-import MainPost from "@/components/items/MainPost";
 import PostsList from "@/components/items/PostsList";
-import RightSideBar from "@/components/items/RightSideBar";
-import SideBar from "@/components/items/SideBar";
-import TopBar from "@/components/items/TopBar";
+import SectionPosts from "@/components/items/SectionPosts";
 import Footer from "@/components/navigation/Footer";
 import Navbar from "@/components/navigation/Navbar";
 import { sanityFetch } from "@/sanity/lib/client";
@@ -24,13 +21,13 @@ export default async function IndexPage() {
 	return (
 		<main className="flex flex-col w-full bg-black">
 			<Navbar />
-			<div className="w-full pt-[80px] h-auto flex flex-cols p-4 lg:p-20 flex-wrap">
-				<TopBar post={topPostData} />
-				<SideBar post={sidePostData} />
-				<MainPost post={mainPostData} />
-				<RightSideBar post={rightPostData} />
-			</div>
-			<div className="w-full   p-4  py-12  flex h-auto flex-cols px-2 lg:px-6">
+			<SectionPosts
+				topPostData={topPostData}
+				sidePostData={sidePostData}
+				mainPostData={mainPostData}
+				rightPostData={rightPostData}
+			/>
+			<div className="w-full p-4 py-12  flex h-auto flex-cols px-2 lg:px-6">
 				<PostsList post={postsListData} />
 			</div>
 			<Footer />

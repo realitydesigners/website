@@ -135,3 +135,11 @@ export interface TeamPayload extends BaseItem {
 export interface GlossaryPayload extends BaseItem {
 	content?: PortableTextBlock[];
 }
+
+interface PostItemProps {
+	block: BlockItem;
+	slug?: {
+		current?: string;
+	};
+	dateString?: string;
+}
