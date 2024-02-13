@@ -5,7 +5,7 @@ import { Center, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useEffect, useRef, useState } from "react";
 
-import HologramMaterial from "../../library/materials/HologramMaterial";
+import HologramMaterial from "@/public/materials/HologramMaterial";
 
 import * as THREE from "three";
 

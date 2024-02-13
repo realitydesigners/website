@@ -1,5 +1,5 @@
 "use client";
-import { getPostData } from "@/app/api/actions/fetchInternalLink";
+import { getPostData } from "@/app/(admin)/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac, play } from "@/fonts";
 import Link from "next/link";

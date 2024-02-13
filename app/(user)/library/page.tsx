@@ -1,0 +1,32 @@
+import { InteractiveProvider } from "@/components/context/InteractiveContext";
+import { getCategoryPositions } from "@/components/context/Postions";
+import AllStations from "@/components/library/AllStations";
+import Navigation from "@/components/navigation/Navigation";
+import { sanityFetch } from "@/sanity/lib/client";
+import { categoryQuery } from "@/sanity/lib/queries";
+import { CategoryPayload } from "@/types";
+
+export default async function CategoryPage(): Promise<JSX.Element> {
+	const categories: CategoryPayload[] = await sanityFetch({
+		query: categoryQuery,
+		tags: ["category"],
+	});
+
+	const mainCategories = categories;
+	const mainCategoriess = categories.filter((category) => category.isMain);
+	const categoryPositions = getCategoryPositions(mainCategories.length);
+
+	console.log(mainCategories);
+
+	return (
+		<InteractiveProvider categoryPositions={categoryPositions}>
+			<div className="w-screen h-screen relative">
+				<Navigation
+					categories={mainCategories}
+					categoryPositions={categoryPositions}
+				/>
+				<AllStations categories={mainCategories} />
+			</div>
+		</InteractiveProvider>
+	);
+}

@@ -1,9 +1,9 @@
 "use client";
+import { getCategoryPositions } from "@/components/context/Postions.jsx";
+import { useCategoryInteraction } from "@/components/context/useCategoryInteraction";
+import HologramCrystal from "@/public/materials/HologramCrystal.jsx";
 import { Text } from "@react-three/drei";
 import React from "react";
-import HologramCrystal from "./HologramCrystal.jsx";
-import { getCategoryPositions } from "./Postions.jsx";
-import { useCategoryInteraction } from "./index.ts";
 
 const Category = ({
 	title,

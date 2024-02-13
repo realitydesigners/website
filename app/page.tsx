@@ -1,10 +1,10 @@
-import Footer from "@/components/global/Footer";
-import MainPost from "@/components/global/MainPost";
-import Navbar from "@/components/global/Navbar";
-import PostsList from "@/components/global/PostsList";
-import RightSideBar from "@/components/global/RightSideBar";
-import SideBar from "@/components/global/SideBar";
-import TopBar from "@/components/global/TopBar";
+import MainPost from "@/components/items/MainPost";
+import PostsList from "@/components/items/PostsList";
+import RightSideBar from "@/components/items/RightSideBar";
+import SideBar from "@/components/items/SideBar";
+import TopBar from "@/components/items/TopBar";
+import Footer from "@/components/navigation/Footer";
+import Navbar from "@/components/navigation/Navbar";
 import { sanityFetch } from "@/sanity/lib/client";
 import { postsQuery } from "@/sanity/lib/queries";
 import { PostsPayload } from "@/types";
@@ -23,8 +23,7 @@ export default async function IndexPage() {
 
 	return (
 		<main className="flex flex-col w-full bg-black">
-			<Navbar pageBackground="light" />
-
+			<Navbar />
 			<div className="w-full pt-[80px] h-auto flex flex-cols p-4 lg:p-20 flex-wrap">
 				<TopBar post={topPostData} />
 				<SideBar post={sidePostData} />

@@ -1,11 +1,14 @@
 "use client";
+import Crystal from "@/public/materials/Crystal";
+import ModelWithEffects from "@/public/materials/ModelWithEffects";
 import { Line, Text } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import Crystal from "./Crystal";
-import ModelWithEffects from "./ModelWithEffects";
-import { getRefPostPosition, getSubCategoryPositions } from "./Postions";
+import {
+	getRefPostPosition,
+	getSubCategoryPositions,
+} from "../context/Postions";
 
 export const SubCategory = (props) => {
 	const {

@@ -1,14 +1,14 @@
 "use client";
+import { getRefPostPosition } from "@/components/context/Postions";
+import { useCategoryInteraction } from "@/components/context/useCategoryInteraction";
+import Crystal from "@/public/materials/Crystal";
+import ModelWithEffects from "@/public/materials/ModelWithEffects";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Line, Text } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { useRef, useState } from "react";
 import * as THREE from "three";
-import Crystal from "./Crystal";
-import ModelWithEffects from "./ModelWithEffects";
-import { getRefPostPosition } from "./Postions";
-import { useCategoryInteraction } from "./index.ts";
 
 const CAMERA_POSITION = [10, 40, 40];
 
@@ -74,7 +74,6 @@ const categoryPositions = {
 	"Plant Medicine & Psychedelics": [-10, -10, -10],
 	"Consciousness Exploration": [-20, -20, -20],
 	"Real Life & Stories": [-40, -40, -40],
-	// Add more categories and their positions as needed
 };
 
 export const SubCategories = (props) => {
@@ -220,7 +219,7 @@ const PostsBySubCategory = (props) => {
 					onCategorySelect={onCategorySelect}
 					refPosts={hoveredCategoryPosts.map((post) => ({
 						...post,
-						block: post.block || [], // Temporarily ignore filtering to see if any blocks are present
+						block: post.block || [],
 					}))}
 				/>
 			)}
