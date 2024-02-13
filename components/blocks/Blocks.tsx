@@ -7,8 +7,6 @@ import {
 	TeamBlock,
 } from "@/components/blocks/sectionBlocks/index";
 import { BlockProps, BlockType } from "@/components/blocks/types";
-import Spline from "@splinetool/react-spline";
-import { Suspense } from "react";
 
 const blockTypeComponents: Record<
 	BlockType,

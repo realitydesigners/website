@@ -1,7 +1,7 @@
 "use client";
 import { urlForImage } from "@/sanity/lib/utils";
-import { Billboard, Text, useTexture } from "@react-three/drei";
-import { Center, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { Text, useTexture } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import React, { useEffect, useRef, useState } from "react";
 

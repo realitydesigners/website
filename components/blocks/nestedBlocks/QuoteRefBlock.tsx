@@ -1,6 +1,5 @@
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac, play } from "@/fonts";
-import Link from "next/link";
 import React from "react";
 
 const QuoteCard = ({ quote, media, image, className }) => {

@@ -5,10 +5,6 @@ import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React, { useState } from "react";
 
-interface NavbarProps {
-	pageBackground: "light" | "dark";
-}
-
 export default function Navbar() {
 	const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -24,13 +20,14 @@ export default function Navbar() {
 		closeNav();
 	};
 
-	const navLinks = [
+	const Links = [
 		{ href: "#", label: "Feed", icon: "lock" },
 		{ href: "/videos", label: "Videos", icon: "video" },
 		{ href: "#", label: "Library", icon: "lock" },
 		{ href: "#", label: "Portal", icon: "lock" },
+		{ href: "#", label: "Glossary", icon: "lock" },
 		{ href: "/story", label: "Story", icon: "story" },
-		{ href: "/", label: "Agency", icon: "lock" },
+		{ href: "#", label: "Lab", icon: "lock" },
 	];
 
 	const getIcon = (name) => {
@@ -206,7 +203,7 @@ export default function Navbar() {
 						</Link>
 					</div>
 					<ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 mt-4  flex flex-wrap">
-						{navLinks.map(({ href, label, icon }) => (
+						{Links.map(({ href, label, icon }) => (
 							<li key={label}>
 								<Link
 									href={href}

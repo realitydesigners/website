@@ -12,7 +12,6 @@ import {
 	TemplateTheme,
 } from "@/components/blocks/types";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import Spline from "@splinetool/react-spline";
 import React from "react";
 
 const templateStyles: Record<TemplateTheme, string> = {
@@ -36,11 +35,6 @@ const ContentBlock: React.FC<ContentBlockProps> = ({ block }) => {
 
 	return (
 		<div className={` h-auto w-screen min-h-screen ${styles} w-full relative`}>
-			{/* <Spline
-				scene="https://prod.spline.design/3aeg01UBBMLQTJxZ/scene.splinecode"
-				className="fixed top-0 w-screen max-h-screen z-[-10]"
-			/> */}
-
 			<PortableText
 				value={content}
 				components={templateComponents[theme] || templateComponents.light}

@@ -17,8 +17,8 @@ const themeClasses: Record<TemplateTheme, ThemeProps> = {
 	},
 	dark: {
 		textColor: "text-gray-200",
-		backgroundColor: "bg-[#111]",
-		topBackgroundColor: "bg-[#222]",
+		backgroundColor: "bg-gray-600/25",
+		topBackgroundColor: "bg-gray-600/10",
 		buttonTextColor: "text-black",
 		buttonBackgroundColor: "bg-gray-200 hover:bg-gray-200/80",
 	},
