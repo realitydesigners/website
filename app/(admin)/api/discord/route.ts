@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 	const messageContent = `**New Post**: *${heading}*\n[Read More](https://www.realitydesigners.tv/posts/${slug})`;
 
 	const discordWebhookUrl =
-		"https://discord.com/api/webhooks/1188395854185386016/jln9i7US53mkJWEgWzu_v0LxiYYodBsgZHY8fbx5-GJ3ka6NWRAHsZXtE-Okz_HRfagb";
+		"https://discord.com/api/webhooks/1208644941673136138/S8e6byIDZg7ub-3W4d76gi8TLOChC38KfQzOZhuLxOVuRitMEJRheELqeg7AODLvVE93";
 
 	await fetch(discordWebhookUrl, {
 		method: "POST",
