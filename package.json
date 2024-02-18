@@ -62,7 +62,7 @@
     "react-dom": "^18.2.0",
     "react-three-fiber": "^6.0.13",
     "resend": "^3.1.0",
-    "sanity": "^3.28.0",
+    "sanity": "^3.29.1",
     "sanity-plugin-asset-source-unsplash": "^1.1.2",
     "sanity-plugin-graph-view": "^2.0.1",
     "sanity-plugin-media": "^2.2.4",
