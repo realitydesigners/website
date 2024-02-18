@@ -18,12 +18,8 @@ export default async function ROotLayout({
 			<html lang="en" className={`${play.className} bg-black`}>
 				<head>
 					<link rel="icon" href="/favicon.ico" sizes="any" />
-					<script
-						type="module"
-						src="https://unpkg.com/@splinetool/viewer@1.0.30/build/spline-viewer.js"
-					/>
 				</head>
-				<body>
+				<body className="bg-black">
 					{children}
 					<Analytics />
 				</body>

@@ -62,7 +62,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	return (
 		<div
 			className={
-				"h-auto bg-gray-600/10 flex w-full flex-col p-3  overflow-hidden transition-transform transform group hover:scale-105 hover:bg-gray-600/20"
+				"h-auto bg-gray-600/20 flex w-full flex-col p-3  overflow-hidden transition-transform transform group hover:scale-105 hover:bg-gray-600/30"
 			}
 			style={{
 				clipPath: "polygon(8% 0, 100% 0, 100% 93%, 92% 100%, 0 100%, 0 6%)",
