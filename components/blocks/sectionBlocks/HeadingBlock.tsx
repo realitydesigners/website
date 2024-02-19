@@ -4,25 +4,6 @@ import { monomaniac, play, space } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 
-const getPublicationDate = (block) => {
-	let publicationDate = block.publicationDate;
-	if (!publicationDate && block.block) {
-		const blockWithDate = block.block.find(
-			(blockItem) => blockItem.publicationDate,
-		);
-		if (blockWithDate) {
-			publicationDate = blockWithDate.publicationDate;
-		}
-	}
-	return publicationDate
-		? new Date(publicationDate).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "short",
-				day: "numeric",
-		  })
-		: "Date not available";
-};
-
 const RenderCategory = ({ category }) => {
 	if (!category) return null;
 
@@ -37,25 +18,57 @@ const RenderCategory = ({ category }) => {
 	);
 };
 
+const Heading = ({ heading, headingClassName }) => {
+	if (!heading) return null; // Do not render anything if there's no heading
+	const displayHeading = heading || "No title";
+	return <h1 className={headingClassName}>{displayHeading}</h1>;
+};
+
+const SubHeading = ({ heading, headingClassName }) => {
+	if (!heading) return null; // Do not render anything if there's no subheading
+	const displayHeading = heading || "No subtitle";
+	return <h2 className={headingClassName}>{displayHeading}</h2>;
+};
+
+interface FormattedDateProps {
+	dateString: string;
+	className?: string; // Make className optional
+}
+
+const FormattedDate: React.FC<FormattedDateProps> = ({
+	dateString,
+	className,
+}) => {
+	const formattedDate = dateString
+		? new Date(dateString).toLocaleDateString("en-US", {
+				year: "numeric",
+				month: "short",
+				day: "numeric",
+		  })
+		: "Date not available";
+
+	return <span className={className}>{formattedDate}</span>;
+};
+
 const TeamSection = ({ team, theme }) => {
 	if (!team) return null;
 
 	return (
-		<div className="w-auto h-auto flex items-center pt-4">
+		<div className="w-full items-center py-4">
 			<Link
 				href={`/team/${team.slug.current}`}
 				className={`${monomaniac.className}`}
 			>
-				<div className="flex items-center p-2 w-full">
+				<div className=" p-1 w-full flex justify-center h-auto">
 					{team.image && (
-						<div className="flex items-center">
+						<div className="flex flex-row flex-wrap items-center  w-full  ">
 							<SanityImage
 								image={team.image}
 								alt={`Team member image for ${team.name}`}
-								width={100}
-								height={100}
+								width={50}
+								height={50}
 								priority={true}
-								classesWrapper="h-[40px] w-[40px] object-cover cover rounded-[2em]"
+								classesWrapper="h-[2em] w-[2em] max-w-[2em] max-h-[2em] object-cover cover rounded-lg"
 								theme={theme} // Pass theme to SanityImage
 							/>
 							<span className="ml-2 uppercase tracking-wide text-sm  font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text ">
@@ -70,8 +83,8 @@ const TeamSection = ({ team, theme }) => {
 };
 
 const HeadingBlock = ({ block }) => {
-	const { className } = block;
-	const formattedDate = getPublicationDate(block);
+	const { className, publicationDate } = block;
+
 	const theme = block.className;
 
 	switch (theme) {
@@ -85,13 +98,12 @@ const HeadingBlock = ({ block }) => {
 							}
 						>
 							{block.category && <RenderCategory category={block.category} />}
-							<span
-								className={`${monomaniac.className} ml-2 my-1 uppercase w-auto text-xs bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text  tracking-widest`}
-							>
-								POSTED ON {formattedDate}
-							</span>
-						</div>
 
+							<FormattedDate
+								dateString={publicationDate}
+								className={`${monomaniac.className} ml-2 my-1 uppercase w-auto text-xs bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text  tracking-widest`}
+							/>
+						</div>
 						{block.image && (
 							<div className="w-full flex-wrap lg:w-1/2 p-4 flex">
 								<div className={" w-full h-full object-cover object-contain "}>
@@ -107,33 +119,29 @@ const HeadingBlock = ({ block }) => {
 								</div>
 							</div>
 						)}
-						<div className="w-full lg:w-1/2 p-4 pr-4 lg:pr-20 flex pt-2 lg:pt-4 justify-center flex-cols">
-							<div className="w-full">
+						<div className="w-full lg:w-1/2 p-4 pr-4 lg:pr-20 flex pt-2 lg:pt-4 justify-center flex-cols ">
+							<div className="w-full ">
 								<div className="w-full hidden justify-between items-center lg:flex mb-6">
 									{block.category && (
 										<RenderCategory category={block.category} />
 									)}
-									<span
+
+									<FormattedDate
+										dateString={publicationDate}
 										className={`${monomaniac.className} uppercase bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text w-auto text-xs tracking-widest`}
-									>
-										POSTED {formattedDate}
-									</span>
+									/>
 								</div>
-								{block.heading && (
-									<h1
-										className={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
-									>
-										{block.heading}
-									</h1>
-								)}
-								{block.subheading && (
-									<p
-										className={`${space.className} p-1 text-xl leading-tight  bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
-									>
-										{block.subheading}
-									</p>
-								)}
-								<TeamSection team={block.team} theme={className} />
+								<Heading
+									heading={block.heading}
+									headingClassName={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+								/>
+								<SubHeading
+									heading={block.subheading}
+									headingClassName={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
+								/>
+								<div className="w-full ">
+									<TeamSection team={block.team} theme={className} />
+								</div>
 							</div>
 						</div>
 					</div>
@@ -161,11 +169,10 @@ const HeadingBlock = ({ block }) => {
 							}
 						>
 							{block.category && <RenderCategory category={block.category} />}
-							<span
+							<FormattedDate
+								dateString={publicationDate}
 								className={`${monomaniac.className} ml-2 my-1 uppercase w-auto text-xs bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text  tracking-widest`}
-							>
-								POSTED ON {formattedDate}
-							</span>
+							/>
 						</div>
 
 						{block.image && (
@@ -189,27 +196,22 @@ const HeadingBlock = ({ block }) => {
 									{block.category && (
 										<RenderCategory category={block.category} />
 									)}
-									<span
+									<FormattedDate
+										dateString="2023-01-30"
 										className={`${monomaniac.className} uppercase bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text w-auto text-xs tracking-widest`}
-									>
-										POSTED {formattedDate}
-									</span>
+									/>
 								</div>
-								{block.heading && (
-									<h1
-										className={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
-									>
-										{block.heading}
-									</h1>
-								)}
-								{block.subheading && (
-									<p
-										className={`${space.className} p-1 text-xl leading-tight  bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
-									>
-										{block.subheading}
-									</p>
-								)}
-								<TeamSection team={block.team} theme={className} />
+								<Heading
+									heading={block.heading}
+									headingClassName={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+								/>
+								<SubHeading
+									heading={block.subheading}
+									headingClassName={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
+								/>
+								<div className="w-full ">
+									<TeamSection team={block.team} theme={className} />
+								</div>
 							</div>
 						</div>
 					</div>
