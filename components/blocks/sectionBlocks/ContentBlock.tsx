@@ -15,8 +15,8 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import React from "react";
 
 const templateStyles: Record<TemplateTheme, string> = {
-	dark: " w-11/12 bg-black",
-	light: "w-11/12 bg-gray-200",
+	dark: "w-full bg-black",
+	light: "w-full bg-gray-200",
 	transparent: "w-11/12 bg-transparent",
 };
 

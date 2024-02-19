@@ -90,14 +90,14 @@ const HeadingBlock = ({ block }) => {
 					<div className="w-full flex justify-center flex-wrap">
 						<div
 							className={
-								"w-11/12 flex flex-wrap   flex-cols items-center justify-between lg:hidden"
+								"w-full px-2 flex flex-wrap   flex-cols items-center justify-between lg:hidden"
 							}
 						>
 							{block.category && <RenderCategory category={block.category} />}
 
 							<FormattedDate
 								date={publicationDate}
-								className={`${monomaniac.className} ml-2 my-1 uppercase w-auto text-xs bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text  tracking-widest`}
+								className={`${monomaniac.className} my-1 uppercase w-auto text-xs bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text  tracking-widest`}
 							/>
 						</div>
 						{block.image && (
@@ -129,11 +129,11 @@ const HeadingBlock = ({ block }) => {
 								</div>
 								<Heading
 									heading={block.heading}
-									className={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+									className={`${space.className} p-1 text-[10vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
 								/>
 								<SubHeading
 									heading={block.subheading}
-									className={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/75 to-blue-100/60 text-transparent bg-clip-text`}
+									className={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/80 to-blue-100/70 text-transparent bg-clip-text`}
 								/>
 								<div className="w-full ">
 									<TeamSection team={block.team} theme={className} />
