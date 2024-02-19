@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play } from "@/fonts";
+import { monomaniac, play, space } from "@/fonts";
 import { BlockItem, Image, PostsPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
@@ -11,6 +11,7 @@ interface PostItemProps {
 		current?: string;
 	};
 	dateString?: string;
+	className?: string;
 }
 
 interface PostsListProps {
@@ -18,10 +19,12 @@ interface PostsListProps {
 	slug?: {
 		current?: string;
 	};
+	className?: string;
 }
 
 interface MainPostProps {
 	post: PostsPayload;
+	className?: string;
 }
 
 interface PostImageProps {
@@ -66,7 +69,7 @@ const PostImage: FC<PostImageProps> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="lg:w-[5em] lg:h-[5em] w-full h-[8em] object-cover object-contain rounded-[.7em]"
+				classesWrapper="lg:w-[5em] lg:h-[5em] w-full h-[8em] object-cover object-contain  -[.7em]"
 			/>
 		</div>
 	);
@@ -76,14 +79,19 @@ export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading } = block;
 
 	return (
-		<div className="w-full lg:flex p-2 lg:flex-row lg:block border border-gray-600/50 lg:flex-row-reverse rounded-[.7em]">
-			<PostImage image={image} heading={heading} />
+		<div className="group w-full lg:flex p-2 lg:flex-row lg:block border-gray-600/50 lg:flex-row-reverse transition duration-300 ease-in-out hover:shadow-lg">
+			<div className="overflow-hidden">
+				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
+					<PostImage image={image} heading={heading} />
+				</div>
+			</div>
 			<div className="w-full flex items-center lg:pl-1 lg:pr-2">
 				<Link href={`/posts/${slug?.current}`}>
-					<Heading
-						heading={block.heading}
-						headingClassName={`${monomaniac.className} pl-2 text-lg capitalize leading-none text-gray-200 cursor-pointer`}
-					/>
+					<div
+						className={`${space.className} p-2 text-md font-bold capitalize leading-[1.3em] cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+					>
+						{heading}
+					</div>
 				</Link>
 			</div>
 		</div>
@@ -92,7 +100,7 @@ export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
 
 const TopBar: FC<PostsListProps> = ({ post }) => {
 	return (
-		<div className="w-full h-auto gap-3 lg:gap-4 grid grid-cols-2 lg:grid-cols-4 mb-4">
+		<div className="w-full h-auto gap-3 lg:gap-4 grid grid-cols-2 lg:grid-cols-4 ">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -124,7 +132,7 @@ const SideBarPostImage: FC<PostImageProps> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[250px] lg:h-[175px] object-cover object-contain rounded-[.7em]"
+				classesWrapper="w-full h-[250px] lg:h-[175px] object-cover object-contain  "
 			/>
 		</div>
 	);
@@ -134,22 +142,29 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, publicationDate } = block;
 
 	return (
-		<div className="h-auto border flex flex-col border-gray-600/50 p-2 rounded-[1em]">
-			<SideBarPostImage image={image} heading={heading} />
+		<div className="group h-auto flex flex-col p-1 transition duration-300 ease-in-out hover:shadow-lg">
+			{/* Enclose the image in a div with overflow-hidden to ensure the scaled image does not overflow its container */}
+			<div className="overflow-hidden">
+				{/* Apply scaling on hover to the image */}
+				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
+					<SideBarPostImage image={image} heading={heading} />
+				</div>
+			</div>
 			<span
-				className={`${monomaniac.className} w-full p-2 pt-4 h-auto  text-xs text-gray-400  uppercase tracking-widest`}
+				className={`${monomaniac.className} w-full p-1 pt-2 h-auto text-xs font-bold bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text uppercase tracking-widest`}
 			>
 				<FormattedDate dateString={publicationDate} />
 			</span>
 			<Link href={`/posts/${slug?.current}`}>
-				<Heading
-					heading={block.heading}
-					headingClassName={`${monomaniac.className} p-2 text-3xl capitalize leading-none text-gray-200 cursor-pointer`}
-				/>
+				<div
+					className={`${space.className} p-1 text-3xl font-bold capitalize leading-[1.2em] cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+				>
+					{heading}
+				</div>
 			</Link>
 			<SubHeading
 				heading={block.subheading}
-				headingClassName={`${play.className} p-2 text-md leading-tight text-gray-400`}
+				headingClassName={`${space.className} p-1 text-md leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
 			/>
 		</div>
 	);
@@ -187,7 +202,7 @@ const MainPostImage: FC<PostImageProps> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[350px]  lg:h-[33vw] object-cover object-contain rounded-[.7em]"
+				classesWrapper="w-full h-[350px]  lg:h-[33vw] object-cover object-contain  -[.7em]"
 			/>
 		</div>
 	);
@@ -197,22 +212,26 @@ export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, subheading, publicationDate } = block;
 
 	return (
-		<div className="h-auto flex flex-col border border-gray-600/50 p-2 rounded-[1em]">
-			<MainPostImage image={image} heading={heading} />
+		<div className="group h-auto flex flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out">
+			<div className="overflow-hidden ">
+				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
+					<MainPostImage image={image} heading={heading} />
+				</div>
+			</div>
 			<span
-				className={`${monomaniac.className} w-full p-2 pt-4 h-auto  text-xs text-gray-400  uppercase tracking-widest`}
+				className={`${monomaniac.className} w-full p-1 pt-3 h-auto text-xs font-bold bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text uppercase tracking-widest`}
 			>
 				<FormattedDate dateString={publicationDate} />
 			</span>
 			<Link href={`/posts/${slug?.current}`}>
 				<Heading
 					heading={block.heading}
-					headingClassName={`${monomaniac.className} p-2 text-5xl lg:text-6xl capitalize leading-none text-gray-200 cursor-pointer`}
+					headingClassName={`${space.className} p-1 text-5xl lg:text-6xl font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
 				/>
 			</Link>
 			<SubHeading
 				heading={block.subheading}
-				headingClassName={`${play.className} p-2 text-xl leading-tight text-gray-400`}
+				headingClassName={`${space.className} p-1 text-xl leading-tight  bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
 			/>
 		</div>
 	);
@@ -242,7 +261,7 @@ const RightBarPostImage: FC<PostImageProps> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="h-[6em] w-[5em]  object-cover object-contain rounded-[.7em]"
+				classesWrapper="h-[6em] w-[5em]  object-cover object-contain  -[.7em]"
 			/>
 		</div>
 	);
@@ -252,18 +271,23 @@ export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, publicationDate } = block;
 
 	return (
-		<div className="h-auto w-full flex flex-row border border-gray-600/50 p-2 rounded-[1em]">
-			<RightBarPostImage image={image} heading={heading} />
+		<div className="group h-auto w-full flex flex-row p-1 transition duration-300 ease-in-out hover:shadow-lg">
+			<div className="overflow-hidden">
+				{/* Add a scale effect on the image within the RightBarPostImage component */}
+				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
+					<RightBarPostImage image={image} heading={heading} />
+				</div>
+			</div>
 			<div className="pl-1 pr-2 w-full flex flex-col">
 				<span
-					className={`${monomaniac.className} w-full p-2  h-auto  text-xs text-gray-400  uppercase tracking-widest`}
+					className={`${monomaniac.className} w-full p-2 h-auto text-xs font-bold bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text uppercase tracking-widest`}
 				>
 					<FormattedDate dateString={publicationDate} />
 				</span>
 				<Link href={`/posts/${slug?.current}`}>
 					<Heading
 						heading={block.heading}
-						headingClassName={`${monomaniac.className} pl-2 text-xl capitalize leading-none text-gray-200 cursor-pointer`}
+						headingClassName={`${space.className} pl-2 text-lg   leading-[1.2em] font-bold capitalize leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
 					/>
 				</Link>
 			</div>
@@ -273,7 +297,7 @@ export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
 
 const RightSideBar: FC<PostsListProps> = ({ post }) => {
 	return (
-		<div className="lg:w-1/4 w-full gap-4 flex flex-col">
+		<div className="lg:w-1/4 w-full gap-4 mb-4 lg:mb-0 flex flex-col">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -300,11 +324,18 @@ const SectionPosts = ({
 	rightPostData,
 }) => {
 	return (
-		<div className="w-full pt-[80px] h-auto flex flex-cols p-4 lg:p-20 flex-wrap">
-			<TopBar post={topPostData} />
-			<SideBar post={sidePostData} />
-			<MainPost post={mainPostData} />
-			<RightSideBar post={rightPostData} />
+		<div className="w-full pt-[80px] h-auto flex flex-cols p-2 lg:px-16 flex-wrap">
+			{/* SideBar appears second on mobile but takes its original position on larger screens */}
+			<SideBar post={sidePostData} className="order-2 lg:order-2" />
+
+			{/* MainPost appears first on mobile and retains its position on larger screens */}
+			<MainPost post={mainPostData} className="order-1 lg:order-1" />
+
+			{/* RightSideBar appears third on mobile and adjusts its position on larger screens */}
+			<RightSideBar post={rightPostData} className="order-3 lg:order-3 " />
+
+			{/* TopBar appears last on mobile and goes back to its original position on larger screens */}
+			<TopBar post={topPostData} className="order-4 lg:order-4" />
 		</div>
 	);
 };

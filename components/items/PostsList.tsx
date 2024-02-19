@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play } from "@/fonts";
+import { monomaniac, play, space } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
@@ -31,7 +31,7 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 				priority={true}
 				image={image}
 				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[15vw] object-cover object-contain rounded-[.7em]"
+				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[15vw] object-cover object-contain  -[.7em]"
 			/>
 		</div>
 	);
@@ -57,23 +57,28 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	};
 
 	return (
-		<div className="h-auto border flex flex-col border-gray-600/50 p-2 rounded-[1em]">
-			<PostImage image={image} heading={heading} />
+		<div className="group h-auto flex flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out hover:shadow-lg">
+			<div className="overflow-hidden">
+				{/* Apply scaling on hover to the image */}
+				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
+					<PostImage image={image} heading={heading} />
+				</div>
+			</div>
 			<span
-				className={`${monomaniac.className} w-full p-2 pt-4 h-auto  text-xs text-gray-400  uppercase tracking-widest`}
+				className={`${monomaniac.className} w-full p-1 pt-2 h-auto text-xs text-gray-400 uppercase tracking-widest`}
 			>
 				{formattedDate}
 			</span>
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} p-2 text-4xl capitalize leading-none text-gray-200 cursor-pointer`}
+						className={`${space.className} p-1 text-4xl font-bold capitalize leading-[1.2em] cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
 					>
 						{renderHeading()}
 					</h2>
 				</Link>
 				<p
-					className={`${play.className} p-2 text-lg leading-tight text-gray-400`}
+					className={`${space.className} p-1 text-lg leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
 				>
 					{renderSubheading()}
 				</p>

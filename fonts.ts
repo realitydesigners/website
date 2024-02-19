@@ -7,6 +7,7 @@ import {
 	Monomaniac_One,
 	Play,
 	Roboto,
+	Space_Grotesk,
 	Staatliches,
 } from "next/font/google";
 
@@ -59,6 +60,12 @@ export const cairo = Cairo({
 
 export const monomaniac = Monomaniac_One({
 	weight: ["400"],
+	style: ["normal"],
+	subsets: ["latin"],
+	display: "swap",
+});
+export const space = Space_Grotesk({
+	weight: ["400", "600", "700", "500"],
 	style: ["normal"],
 	subsets: ["latin"],
 	display: "swap",

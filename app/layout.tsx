@@ -1,4 +1,4 @@
-import { monomaniac, play } from "@/fonts";
+import { monomaniac, play, space } from "@/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
@@ -15,7 +15,7 @@ export default async function ROotLayout({
 }: { children: React.ReactNode }) {
 	return (
 		<ClerkProvider>
-			<html lang="en" className={`${play.className} bg-black`}>
+			<html lang="en" className={`${space.className} bg-black`}>
 				<head>
 					<link rel="icon" href="/favicon.ico" sizes="any" />
 				</head>

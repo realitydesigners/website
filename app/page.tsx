@@ -27,7 +27,7 @@ export default async function IndexPage() {
 				mainPostData={mainPostData}
 				rightPostData={rightPostData}
 			/>
-			<div className="w-full p-4 py-12  flex h-auto flex-cols px-2 lg:px-6">
+			<div className="w-full py-4 flex h-auto flex-cols px-2 lg:px-16">
 				<PostsList post={postsListData} />
 			</div>
 			<Footer />
