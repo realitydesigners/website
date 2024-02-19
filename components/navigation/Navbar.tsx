@@ -1,6 +1,5 @@
 "use client";
-import { bebe, monomaniac } from "@/fonts";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { monomaniac } from "@/fonts";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -13,21 +12,19 @@ export default function Navbar() {
 		document.body.style.overflow = isNavOpen ? "auto" : "hidden";
 	};
 	const closeNav = () => {
-		setIsNavOpen(false); // Close the navigation
-		document.body.style.overflow = "auto"; // Enable scrolling
+		setIsNavOpen(false);
+		document.body.style.overflow = "auto";
 	};
 	const handleBackdropClick = () => {
 		closeNav();
 	};
 
 	const Links = [
-		{ href: "#", label: "Feed", icon: "lock" },
-		{ href: "/videos", label: "Videos", icon: "video" },
-		{ href: "#", label: "Library", icon: "lock" },
-		{ href: "#", label: "Portal", icon: "lock" },
-		{ href: "#", label: "Glossary", icon: "lock" },
 		{ href: "/story", label: "Story", icon: "story" },
-		{ href: "#", label: "Lab", icon: "lock" },
+		{ href: "#", label: "Blog", icon: "lock" },
+		{ href: "#", label: "Library", icon: "lock" },
+		{ href: "#", label: "Projects", icon: "lock" },
+		{ href: "#", label: "Contact", icon: "lock" },
 	];
 
 	const getIcon = (name) => {
@@ -191,55 +188,35 @@ export default function Navbar() {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  top-0 right-0 w-full lg:w-1/3 bg-transparent lg:bg-black/80  right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[90vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-0 lg:duration-200 ease-in-out ${
-						isNavOpen
-							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-xl"
-							: "translate-x-full"
-					}  flex flex-col justify-start p-3 `}
+					className={`absolute top-0 right-0 w-full lg:w-full bg-transparent lg:bg-black/80 flex-col rounded-[0em] lg:rounded-[1em] h-[95vh] lg:h-[100vh] mt-12 lg:mt-0 lg:py-16 overflow-y-auto shadow-lg transition-transform duration-0 lg:duration-600 ease-in-out ${
+						isNavOpen ? "translate-x-0 " : "translate-x-full"
+					} flex flex-col w-full h-screen justify-start p-3`}
 				>
-					<div className="w-full mb-2 rounded-lg block border border-gray-600/25   h-[250px]">
-						<Link href="/" onClick={closeNav}>
-							<Spline scene="https://prod.spline.design/HB9ZzkKt9KuAM3Xf/scene.splinecode" />
-						</Link>
-					</div>
-					<ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 mt-4  flex flex-wrap">
-						{Links.map(({ href, label, icon }) => (
-							<li key={label}>
-								<Link
-									href={href}
-									className={`${monomaniac.className} flex flex-col items-center justify-center text-center text-gray-200 text-2xl backdrop-blur-[20px] bg-black/10 uppercase font-bold p-4 transition-all duration-200 ease-in-out border border-gray-600/25 block hover:bg-white hover:text-black`}
-									onClick={closeNav}
-								>
-									<div className="min-w-10 min-h-10 mb-2 flex items-center justify-center">
-										{getIcon(icon)}
-									</div>
-									<span>{label}</span>
-								</Link>
-							</li>
-						))}
-					</ul>
-					<SignedOut>
-						<div className="flex mt-4  mr-0 justify-center">
-							<SignInButton>
-								<button
-									type="button"
-									className="relative justify-center text-[1.3em] ml-4 mr-2 p-2 pl-3 pr-3 items-center flex text-gray-200 rounded-full transition-all duration-200 ease-in-out bg-black"
-								>
-									<span
-										className={`${monomaniac.className}  whitespace-nowrap`}
+					<div className="lg:flex lg:justify-between h-full ">
+						<div className="w-full lg:w-2/3 mb-2 lg:mb-0 block border border-gray-600/25 h-[250px] lg:h-full lg:order-2">
+							<Link href="/" onClick={closeNav}>
+								<Spline scene="https://prod.spline.design/WV4nziwJaLKBH2tE/scene.splinecode" />
+							</Link>
+						</div>
+						<ul className="grid gap-2  grid-cols-1   w-full lg:w-1/3  lg:order-1 pr-2">
+							{Links.map(({ href, label, icon }) => (
+								<li key={label} className="flex items-center">
+									<Link
+										href={href}
+										className={`${monomaniac.className} w-full justify-center text-left h-full text-gray-200 text-4xl lg:text-7xl backdrop-blur-[20px] bg-black/10 uppercase font-bold p-4 transition-all duration-200 ease-in-out border border-gray-600/25 block hover:bg-white hover:text-black flex items-center`}
+										onClick={closeNav}
 									>
-										Sign-In
-									</span>
-								</button>
-							</SignInButton>
-						</div>
-					</SignedOut>
-
-					<SignedIn>
-						<div className=" relative mt-4 justify-center   flex ">
-							<UserButton afterSignOutUrl="/" />
-						</div>
-					</SignedIn>
+										<div className="min-w-10 min-h-10 mr-6 flex items-center ">
+											{getIcon(icon)}
+										</div>
+										<span className="flex-grow text-[10vw] lg:text-[5vw]">
+											{label}
+										</span>
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
 				</div>
 			</nav>
 		</>
