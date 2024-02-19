@@ -18,29 +18,26 @@ const RenderCategory = ({ category }) => {
 	);
 };
 
-const Heading = ({ heading, headingClassName }) => {
+const Heading = ({ heading, className }) => {
 	if (!heading) return null; // Do not render anything if there's no heading
 	const displayHeading = heading || "No title";
-	return <h1 className={headingClassName}>{displayHeading}</h1>;
+	return <h1 className={className}>{displayHeading}</h1>;
 };
 
-const SubHeading = ({ heading, headingClassName }) => {
+const SubHeading = ({ heading, className }) => {
 	if (!heading) return null; // Do not render anything if there's no subheading
 	const displayHeading = heading || "No subtitle";
-	return <h2 className={headingClassName}>{displayHeading}</h2>;
+	return <h2 className={className}>{displayHeading}</h2>;
 };
 
 interface FormattedDateProps {
-	dateString: string;
-	className?: string; // Make className optional
+	date?: string;
+	className?: string;
 }
 
-const FormattedDate: React.FC<FormattedDateProps> = ({
-	dateString,
-	className,
-}) => {
-	const formattedDate = dateString
-		? new Date(dateString).toLocaleDateString("en-US", {
+const FormattedDate: React.FC<FormattedDateProps> = ({ date, className }) => {
+	const formattedDate = date
+		? new Date(date).toLocaleDateString("en-US", {
 				year: "numeric",
 				month: "short",
 				day: "numeric",
@@ -100,7 +97,7 @@ const HeadingBlock = ({ block }) => {
 							{block.category && <RenderCategory category={block.category} />}
 
 							<FormattedDate
-								dateString={publicationDate}
+								date={publicationDate}
 								className={`${monomaniac.className} ml-2 my-1 uppercase w-auto text-xs bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text  tracking-widest`}
 							/>
 						</div>
@@ -127,17 +124,17 @@ const HeadingBlock = ({ block }) => {
 									)}
 
 									<FormattedDate
-										dateString={publicationDate}
+										date={publicationDate}
 										className={`${monomaniac.className} uppercase bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text w-auto text-xs tracking-widest`}
 									/>
 								</div>
 								<Heading
 									heading={block.heading}
-									headingClassName={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+									className={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
 								/>
 								<SubHeading
 									heading={block.subheading}
-									headingClassName={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
+									className={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
 								/>
 								<div className="w-full ">
 									<TeamSection team={block.team} theme={className} />
@@ -170,7 +167,7 @@ const HeadingBlock = ({ block }) => {
 						>
 							{block.category && <RenderCategory category={block.category} />}
 							<FormattedDate
-								dateString={publicationDate}
+								date={publicationDate}
 								className={`${monomaniac.className} ml-2 my-1 uppercase w-auto text-xs bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text  tracking-widest`}
 							/>
 						</div>
@@ -197,17 +194,17 @@ const HeadingBlock = ({ block }) => {
 										<RenderCategory category={block.category} />
 									)}
 									<FormattedDate
-										dateString="2023-01-30"
+										date="2023-01-30"
 										className={`${monomaniac.className} uppercase bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text w-auto text-xs tracking-widest`}
 									/>
 								</div>
 								<Heading
 									heading={block.heading}
-									headingClassName={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+									className={`${space.className} p-1 text-[9vw] lg:text-[4vw] font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
 								/>
 								<SubHeading
 									heading={block.subheading}
-									headingClassName={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
+									className={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
 								/>
 								<div className="w-full ">
 									<TeamSection team={block.team} theme={className} />
