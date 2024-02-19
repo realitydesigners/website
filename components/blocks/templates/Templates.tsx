@@ -1,5 +1,5 @@
 import { TemplateTheme } from "@/components/blocks/types";
-import { monomaniac, play } from "@/fonts";
+import { monomaniac, play, space } from "@/fonts";
 import React from "react";
 import {
 	AudioRefBlock,
@@ -13,21 +13,21 @@ import {
 } from "../nestedBlocks/index";
 
 const headingStyles: Record<TemplateTheme, string> = {
-	dark: `${monomaniac.className} my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
-	light: `${monomaniac.className} my-3 w-11/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
-	transparent: `${monomaniac.className} my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	dark: `${space.className} my-3 w-11/12 bg-gradient-to-r from-blue-100/90 to-blue-100/80 text-transparent bg-clip-text text-3xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	light: `${space.className} my-3 w-11/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+	transparent: `${space.className} my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 };
 
 const listStyles: Record<TemplateTheme, string> = {
-	dark: `${play.className} w-11/12 text-gray-300 leading-7 md:w-3/4 lg:w-1/2 text-xl list-decimal list-inside space-y-6 mb-6`,
-	light: `${play.className} w-11/12 text-black leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
-	transparent: `${play.className} w-11/12 text-gray-400 leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
+	dark: `${space.className} w-11/12 bg-gradient-to-r from-blue-100/75 to-blue-100/60 text-transparent bg-clip-text leading-7 md:w-3/4 lg:w-1/2 text-xl list-decimal list-inside space-y-6 mb-6`,
+	light: `${space.className} w-11/12 text-black leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
+	transparent: `${space.className} w-11/12 text-gray-400 leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
 };
 
 const normalTextStyles: Record<TemplateTheme, string> = {
-	dark: `${play.className} text-gray-300 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
-	light: `${play.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
-	transparent: `${play.className} text-gray-400 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+	dark: `${space.className}  bg-gradient-to-r from-blue-100/75 to-blue-100/60 text-transparent bg-clip-text  leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+	light: `${space.className} text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+	transparent: `${space.className} text-gray-400 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 };
 
 const Heading: React.FC<{

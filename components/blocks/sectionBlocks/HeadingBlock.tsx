@@ -19,13 +19,13 @@ const RenderCategory = ({ category }) => {
 };
 
 const Heading = ({ heading, className }) => {
-	if (!heading) return null; // Do not render anything if there's no heading
+	if (!heading) return null;
 	const displayHeading = heading || "No title";
 	return <h1 className={className}>{displayHeading}</h1>;
 };
 
 const SubHeading = ({ heading, className }) => {
-	if (!heading) return null; // Do not render anything if there's no subheading
+	if (!heading) return null;
 	const displayHeading = heading || "No subtitle";
 	return <h2 className={className}>{displayHeading}</h2>;
 };
@@ -66,7 +66,7 @@ const TeamSection = ({ team, theme }) => {
 								height={50}
 								priority={true}
 								classesWrapper="h-[2em] w-[2em] max-w-[2em] max-h-[2em] object-cover cover rounded-lg"
-								theme={theme} // Pass theme to SanityImage
+								theme={theme}
 							/>
 							<span className="ml-2 uppercase tracking-wide text-sm  font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text ">
 								Written by {team.name}
@@ -81,13 +81,12 @@ const TeamSection = ({ team, theme }) => {
 
 const HeadingBlock = ({ block }) => {
 	const { className, publicationDate } = block;
-
 	const theme = block.className;
 
 	switch (theme) {
 		case "dark":
 			return (
-				<div className={"w-full h-auto pt-16 lg:pt-32"}>
+				<div className="w-full h-auto pt-16 lg:pt-32">
 					<div className="w-full flex justify-center flex-wrap">
 						<div
 							className={
@@ -102,7 +101,7 @@ const HeadingBlock = ({ block }) => {
 							/>
 						</div>
 						{block.image && (
-							<div className="w-full flex-wrap lg:w-1/2 p-4 flex">
+							<div className="w-full flex-wrap lg:w-1/2 p-2 flex">
 								<div className={" w-full h-full object-cover object-contain "}>
 									<SanityImage
 										image={block.image}
@@ -116,7 +115,7 @@ const HeadingBlock = ({ block }) => {
 								</div>
 							</div>
 						)}
-						<div className="w-full lg:w-1/2 p-4 pr-4 lg:pr-20 flex pt-2 lg:pt-4 justify-center flex-cols ">
+						<div className="w-full lg:w-1/2 p-2 pr-4 lg:pr-20 flex pt-2 lg:pt-4 justify-center flex-cols ">
 							<div className="w-full ">
 								<div className="w-full hidden justify-between items-center lg:flex mb-6">
 									{block.category && (
@@ -134,7 +133,7 @@ const HeadingBlock = ({ block }) => {
 								/>
 								<SubHeading
 									heading={block.subheading}
-									className={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
+									className={`${space.className} p-1 text-xl leading-tight bg-gradient-to-r from-blue-100/75 to-blue-100/60 text-transparent bg-clip-text`}
 								/>
 								<div className="w-full ">
 									<TeamSection team={block.team} theme={className} />
@@ -158,7 +157,7 @@ const HeadingBlock = ({ block }) => {
 			);
 		default:
 			return (
-				<div className={"w-full h-auto pt-16 lg:pt-32"}>
+				<div className="w-full h-auto pt-16 lg:pt-32">
 					<div className="w-full flex justify-center flex-wrap">
 						<div
 							className={
@@ -173,7 +172,7 @@ const HeadingBlock = ({ block }) => {
 						</div>
 
 						{block.image && (
-							<div className="w-full flex-wrap lg:w-1/2 p-4 flex">
+							<div className="w-full flex-wrap lg:w-1/2 p-2 flex">
 								<div className={" w-full h-full object-cover object-contain "}>
 									<SanityImage
 										image={block.image}
@@ -187,7 +186,7 @@ const HeadingBlock = ({ block }) => {
 								</div>
 							</div>
 						)}
-						<div className="w-full lg:w-1/2 p-4 pr-4 lg:pr-20 flex pt-2 lg:pt-4 justify-center flex-cols">
+						<div className="w-full lg:w-1/2 p-2 pr-4 lg:pr-20 flex pt-2 lg:pt-4 justify-center flex-cols">
 							<div className="w-full">
 								<div className="w-full hidden justify-between items-center lg:flex mb-6">
 									{block.category && (
