@@ -1,5 +1,5 @@
 import { TemplateTheme } from "@/components/blocks/types";
-import { monomaniac, play, space } from "@/fonts";
+import { space } from "@/fonts";
 import React from "react";
 import {
 	AudioRefBlock,
@@ -38,7 +38,7 @@ const Heading: React.FC<{
 	const className = headingStyles[theme];
 	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 	return (
-		<div className="w-screen flex justify-center">
+		<div className="w-full p-3 flex justify-center">
 			{React.createElement(Tag, { className }, children)}
 		</div>
 	);
@@ -105,7 +105,6 @@ const DarkTemplate = {
 		videoRef: ({ value }) => {
 			const { videoTitle, videoFileUrl, videoImage, className } =
 				value.videoRef;
-
 			return (
 				<VideoRefBlock
 					videoTitle={videoTitle}
@@ -119,10 +118,8 @@ const DarkTemplate = {
 		spline: SplineRefBlock,
 		imageRef: ({ value }) => {
 			const { image, className } = value;
-
 			return <ImageRefBlock image={image} className={className} />;
 		},
-
 		audioRef: AudioRefBlock,
 		quoteRef: QuoteRefBlock,
 	},
@@ -177,7 +174,6 @@ const LightTemplate = {
 		spline: SplineRefBlock,
 		imageRef: ({ value }) => {
 			const { image, className } = value;
-
 			return <ImageRefBlock image={image} className={className} />;
 		},
 		audioRef: AudioRefBlock,
