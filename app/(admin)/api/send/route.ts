@@ -10,7 +10,7 @@ export async function POST(request) {
 		const { email, name } = await request.json();
 
 		const { data, error } = await resend.emails.send({
-			from: "Reality Designers <info@realitydesigners.tv>",
+			from: "Reality Designers <hey@reality-designers.com>",
 			to: [email],
 			subject: "Hey Reality Designer!",
 			react: EmailTemplate({ firstName: name }) as React.ReactElement,
