@@ -16,11 +16,12 @@ const themeClasses: Record<TemplateTheme, ThemeProps> = {
 		buttonBackgroundColor: "bg-black hover:bg-black/80",
 	},
 	dark: {
-		textColor: "text-gray-200",
-		backgroundColor: "bg-gray-600/25",
-		topBackgroundColor: "bg-gray-600/10",
-		buttonTextColor: "text-black",
-		buttonBackgroundColor: "bg-gray-200 hover:bg-gray-200/80",
+		textColor:
+			"bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text transition-color",
+		backgroundColor: "bg-gradient-to-r from-blue-200/10 to-blue-200/5 ",
+		topBackgroundColor: "bg-blue-200/5 ",
+		buttonTextColor: "text-blue-100",
+		buttonBackgroundColor: "bg-blue-200/10 hover:bg-blue-200/20",
 	},
 	transparent: {
 		textColor: "text-gray-200",
@@ -72,7 +73,7 @@ const TeamLink = ({ team, theme }) => {
 						theme={theme} // Pass theme here
 					/>
 				)}
-				<span className="ml-2 uppercase tracking-wide font-mono text-sm">
+				<span className="ml-2 uppercase tracking-wide   text-sm">
 					{team.name || "no title"}
 				</span>
 			</div>
@@ -105,7 +106,7 @@ const PostPreviewDialog = ({
 				{content && (
 					<>
 						<div
-							className={`flex  p-1 rounded-[.6em] h-auto w-full justify-between  ${style.topBackgroundColor} `}
+							className={`flex  p-2 rounded-[.6em] h-auto w-full justify-between  ${style.topBackgroundColor} `}
 						>
 							<SanityImage
 								image={content.image}
@@ -114,25 +115,27 @@ const PostPreviewDialog = ({
 								priority={true}
 								alt={content.image?.alt || "no title"}
 								classesWrapper="h-[50px] max-w-[50px] object-cover rounded-[.5em]"
-								theme={theme} // Pass theme here
+								theme={theme}
 							/>
-							<Link
-								href={`/posts/${postData.slug.current}`}
-								className={`${monomaniac.className} ${style.textColor} pl-2 flex items-center leading-[1em] font-bold text-sm lg:text-md w-1/2`}
-							>
-								{content.heading || "no title"}
-							</Link>
-							<span
-								className={`${monomaniac.className} ${style.textColor} w-auto pl-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] uppercase tracking-widest`}
-							>
-								{formatDate(content.publicationDate)}
-							</span>
-							<DialogButton onClose={onClose} />
+							<div className="w-full flex justify-between">
+								<Link
+									href={`/posts/${postData.slug.current}`}
+									className={`${monomaniac.className} ${style.textColor} pl-4 flex items-center leading-[1.3em] font-bold text-sm lg:text-md w-1/2`}
+								>
+									{content.heading || "no title"}
+								</Link>
+								<span
+									className={`${monomaniac.className} ${style.textColor} w-auto pr-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] uppercase tracking-widest`}
+								>
+									{formatDate(content.publicationDate)}
+								</span>
+							</div>
+							{/* <DialogButton onClose={onClose} /> */}
 						</div>
 
 						<div className="w-full h-auto flex flex-col relative">
 							<h4
-								className={`${play.className} ${style.textColor} leading-7 p-4 text-xl`}
+								className={`${play.className} ${style.textColor} leading-[1.3em] p-4 text-2xl`}
 							>
 								{content.subheading || "no title"}
 							</h4>
@@ -141,9 +144,9 @@ const PostPreviewDialog = ({
 								<TeamLink team={content?.team} theme={theme} />
 								<Link
 									href={`/posts/${postData.slug.current}`}
-									className={`${monomaniac.className} ${style.buttonTextColor} ${style.buttonBackgroundColor} right-2 absolute bottom-1 flex text-lg justify-center items-center px-4 rounded-[.7em] pt-1 pb-2 hover:transition-colors`}
+									className={`${style.buttonTextColor} ${style.buttonBackgroundColor} right-2 font-bold absolute uppercase bottom-1 flex text-sm justify-center items-center px-4 py-2 rounded-[.7em] hover:transition-colors`}
 								>
-									Read -&gt;
+									Read More
 								</Link>
 							</div>
 						</div>
@@ -190,7 +193,7 @@ const InternalLink: React.FC<{
 	return (
 		<>
 			<Link href="#popup" onClick={openDialog}>
-				<span className={`${monomaniac.className} text-2xl capitalize `}>
+				<span className="text-xl font-bold underline capitalize">
 					{children}
 				</span>
 				<span
@@ -214,7 +217,7 @@ export default React.memo(InternalLink);
 
 const LoadingIndicator = () => (
 	<div className="flex my-4 items-center justify-center">
-		<div className="w-full h-auto flex justify-center items-center p-4 bg-gray-300 shadow-lg rounded-lg">
+		<div className="w-full h-auto flex justify-center items-center p-4 bg-gradient-to-r from-blue-200/10 to-blue-200/5  animate-pulse   shadow-lg rounded-lg">
 			{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
 			<svg
 				width="100"
@@ -226,7 +229,7 @@ const LoadingIndicator = () => (
 					cx="25"
 					cy="25"
 					r="20"
-					stroke="#888888"
+					stroke="#333"
 					strokeWidth="5"
 					fill="none"
 					strokeDasharray="31.415, 31.415"

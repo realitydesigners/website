@@ -1,21 +1,21 @@
 const PostCard = ({ title, author, excerpt, publicationDate }) => {
 	return (
-		<div className="mb-2 max-w-full rounded border border-gray-200/20 bg-black bg-opacity-50 p-4 font-mono text-gray-300 shadow-md transition duration-300 ease-in-out hover:bg-opacity-70">
+		<div className="mb-2 max-w-full rounded border border-gray-200/20 bg-black bg-opacity-50 p-4   text-gray-300 shadow-md transition duration-300 ease-in-out hover:bg-opacity-70">
 			{publicationDate && (
 				<p className="mb-3 text-xs tracking-wide text-gray-600">
 					{publicationDate}
 				</p>
 			)}
-			<h3 className="text-md mb-8 font-mono font-bold uppercase leading-none text-gray-200  hover:text-gray-400">
+			<h3 className="text-md mb-8   font-bold uppercase leading-none text-gray-200  hover:text-gray-400">
 				{title}
 			</h3>
 			{author && (
-				<p className="mb-3 font-mono text-sm font-medium tracking-wide text-gray-400">
+				<p className="mb-3   text-sm font-medium tracking-wide text-gray-400">
 					By: {author}
 				</p>
 			)}
 			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button className="flex items-center font-mono text-xs text-gray-400 transition-colors duration-200 hover:text-gray-200">
+			<button className="flex items-center   text-xs text-gray-400 transition-colors duration-200 hover:text-gray-200">
 				Read More
 			</button>
 		</div>
@@ -30,7 +30,7 @@ export const Sidebar = ({ content, isVisible }) => {
 			}`}
 		>
 			<div className="absolute top-0 left-0 h-full w-48 overflow-y-auto border-r border-gray-200/20 bg-black bg-opacity-70 shadow-lg">
-				<h2 className="text-md pl-8 pt-20 font-mono font-normal tracking-wide text-gray-400">
+				<h2 className="text-md pl-8 pt-20   font-normal tracking-wide text-gray-400">
 					Related Articles
 				</h2>
 				{/* Map through content and render PostCard for each item */}

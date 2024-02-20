@@ -65,7 +65,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				</div>
 			</div>
 			<span
-				className={`${monomaniac.className} w-full p-1 pt-2 h-auto text-xs text-gray-400 uppercase tracking-widest`}
+				className={`${monomaniac.className} w-full p-1 pt-2 h-auto text-xs bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text  uppercase tracking-widest`}
 			>
 				{formattedDate}
 			</span>

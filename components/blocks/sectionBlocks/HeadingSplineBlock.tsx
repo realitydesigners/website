@@ -31,7 +31,7 @@ const HeadingSplineBlock = ({ block }) => {
 
 			const renderCategory = block.category ? (
 				<span
-					className={`${monomaniac.className} text-xs  h-auto uppercase font-mono font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2 tracking-widest text-black mr-1 whitespace-nowrap`}
+					className={`${monomaniac.className} text-xs  h-auto uppercase   font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2 tracking-widest text-black mr-1 whitespace-nowrap`}
 				>
 					{block.category.title}
 				</span>
@@ -43,7 +43,7 @@ const HeadingSplineBlock = ({ block }) => {
 						<div className="w-11/12 flex flex-wrap flex-cols items-center justify-between">
 							<div className="flex w-auto ">
 								<span
-									className={`${monomaniac.className} text-gray-200 ml-2 uppercase w-auto text-xs font-mono tracking-widest`}
+									className={`${monomaniac.className} text-gray-200 ml-2 uppercase w-auto text-xs   tracking-widest`}
 								>
 									POSTED ON {formattedDate}
 								</span>

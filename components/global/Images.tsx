@@ -10,7 +10,7 @@ type LoadingBgColors = Record<Theme, string>;
 
 const loadingBgColors: LoadingBgColors = {
 	light: "bg-gray-300/50",
-	dark: "bg-gray-600/50",
+	dark: "bg-gradient-to-r from-blue-200/10 to-blue-200/5 animate-pulse ",
 	transparent: "",
 };
 

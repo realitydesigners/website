@@ -7,8 +7,8 @@ const AudioPlayer = ({ audioTitle, audioFileUrl }) => {
 	}
 
 	return (
-		<div className="w-full flex justify-center">
-			<div className="mb-8 w-4/5 md:w-3/4 lg:w-1/2">
+		<div className="w-full py-6 flex justify-center">
+			<div className="w-4/5 md:w-3/4 lg:w-1/2">
 				<p className="mb-2 font-bold text-gray-200 p-2 hidden">{audioTitle}</p>
 				{/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
 				<audio controls className="w-full" src={audioFileUrl}>

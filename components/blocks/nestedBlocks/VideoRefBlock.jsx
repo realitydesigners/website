@@ -26,7 +26,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4 font-mono text-black`}
+							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4   text-black`}
 						>
 							{videoTitle}
 						</p>
@@ -54,7 +54,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4 font-mono text-gray-200`}
+							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4   text-gray-200`}
 						>
 							{videoTitle}
 						</p>
@@ -82,7 +82,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4 font-mono text-gray-200`}
+							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4   text-gray-200`}
 						>
 							{videoTitle}
 						</p>
@@ -109,7 +109,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4 font-mono text-black`}
+							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4   text-black`}
 						>
 							{videoTitle}
 						</p>

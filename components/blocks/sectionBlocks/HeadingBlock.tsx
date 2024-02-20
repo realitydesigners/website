@@ -10,7 +10,7 @@ const RenderCategory = ({ category }) => {
 	return (
 		<div className="flex items-center justify-center bg-gradient-to-r from-blue-100/100 to-blue-100/90 p-1 my-1 pl-2 pr-2">
 			<span
-				className={`${monomaniac.className} text-xs h-auto flex uppercase font-mono text-black font-semibold items-center justify-center tracking-widest whitespace-nowrap `}
+				className={`${monomaniac.className} text-xs h-auto flex uppercase   text-black font-semibold items-center justify-center tracking-widest whitespace-nowrap `}
 			>
 				{category.title}
 			</span>
