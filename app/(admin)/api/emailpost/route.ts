@@ -1,4 +1,5 @@
 import { NewPost } from "@/app/(admin)/api/email/new-post";
+import * as React from "react";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);

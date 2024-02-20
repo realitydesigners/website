@@ -33,7 +33,7 @@ export const NewPost: React.FC<Readonly<EmailTemplateProps>> = ({
 				</Section>
 				<Section className="text-center py-6">
 					<Button
-						href={`https://www.realitydesigners.tv/posts/${slug}`}
+						href={`https://www.reality-designers.com/posts/${slug}`}
 						style={{ background: "#000", color: "#fff", padding: "12px 20px" }}
 					>
 						Read the Full Post
