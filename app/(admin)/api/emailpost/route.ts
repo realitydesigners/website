@@ -25,7 +25,7 @@ export async function POST(request) {
 
 		// Send the email with email-specific headers
 		const { data, error } = await resend.emails.send({
-			from: "Reality Designers <info@realitydesigners.tv>",
+			from: "Reality Designers <hey@reality-designers.com>",
 			to: recipients,
 			subject: `New Blog Post: ${heading}`,
 			react: emailContent as React.ReactElement,
