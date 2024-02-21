@@ -203,7 +203,7 @@ const icons: Record<IconName, ReactElement> = {
 	),
 };
 
-const SkillsSection = () => {
+function AllSkills() {
 	return (
 		<div className="flex flex-col lg:flex-row px-4 md:px-40 py-20 text-white w-full justify-between ">
 			<h2 className="text-2xl font-bold leading-[1.2em] uppercase p-4">
@@ -223,6 +223,16 @@ const SkillsSection = () => {
 				))}
 			</ul>
 		</div>
+	);
+}
+
+const SkillSection = () => {
+	return (
+		<>
+			<div className="w-full ">
+				<AllSkills />
+			</div>
+		</>
 	);
 };
 
@@ -323,13 +333,3 @@ const getIcon = (name: string): ReactElement => {
 	}
 	return <svg />;
 };
-
-export function SkillSection() {
-	return (
-		<>
-			<div className="w-full ">
-				<SkillsSection />
-			</div>
-		</>
-	);
-}
