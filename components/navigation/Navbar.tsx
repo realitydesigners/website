@@ -21,9 +21,13 @@ export default function Navbar() {
 
 	const Links = [
 		{ href: "/story", label: "Story", icon: "story" },
-		{ href: "#", label: "Blog", icon: "lock" },
+		{
+			href: "https://www.youtube.com/@realitydesigners",
+			label: "Videos",
+			icon: "video",
+		},
 		{ href: "#", label: "Library", icon: "lock" },
-		{ href: "#", label: "Projects", icon: "lock" },
+		{ href: "/lab", label: "Lab", icon: "video" },
 		{ href: "#", label: "Contact", icon: "lock" },
 	];
 
