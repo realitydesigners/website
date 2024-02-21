@@ -10,6 +10,7 @@ export default authMiddleware({
 		"/posts",
 		"/glossary",
 		"/studio",
+		"/lab",
 		"/api/send",
 		"api/emailpost",
 		"api/revalidate",
