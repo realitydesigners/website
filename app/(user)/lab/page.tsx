@@ -1,8 +1,5 @@
 "use client";
-
-import { monomaniac, play } from "@/fonts";
 import Spline from "@splinetool/react-spline";
-import Link from "next/link";
 import React, { ReactElement, useEffect, useState } from "react";
 
 type IconName = "lock";
@@ -14,7 +11,7 @@ export default function StoryPage() {
 				<div className="lg:w-4/5 w-full h-[1200px] md:h-[800px] lg:h-[150vh] absolute  lg:right-0 overflow-hidden ">
 					<Spline scene="https://prod.spline.design/jEsawKZEsxEwrEN5/scene.splinecode" />
 				</div>
-				<div className="absolute lg:left-40 left-0  w-full p-6 lg:p-0 md:w-1/2 lg:w-1/3">
+				<div className="absolute lg:left-40 left-0  w-full p-4 lg:p-0 md:w-1/2 lg:w-1/3">
 					<h1 className="text-blue-100 font-bold leading-[.9em] uppercase text-[20vw] lg:leading-[.9em] lg:text-[10vw]  mb-6">
 						We Design Worlds
 					</h1>

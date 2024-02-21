@@ -188,18 +188,18 @@ export default function Navbar() {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute top-0 right-0 w-full lg:w-full bg-transparent lg:bg-black/80 flex-col rounded-[0em] lg:rounded-[1em] h-[95vh] lg:h-[100vh] mt-12 lg:mt-0 lg:py-16 h-[calc(100vh-3rem)]  overflow-y-auto shadow-lg transition-transform duration-0 lg:duration-600 ease-in-out ${
-						isNavOpen ? "translate-x-0 " : "translate-x-full"
+					className={`absolute top-0 right-0 w-full lg:w-full bg-black lg:bg-black/80 flex-col rounded-[0em] lg:rounded-[1em] h-[95vh] lg:h-[100vh] mt-12 lg:mt-0 lg:py-16 h-full  shadow-lg transition-transform duration-0 lg:duration-600 ease-in-out ${
+						isNavOpen ? "translate-x-0 " : "translate-x-full "
 					} flex flex-col w-full h-screen justify-start p-3`}
 				>
-					<div className="lg:flex lg:justify-between h-full">
-						<div className="w-full lg:w-2/3 mb-2 lg:mb-0 block border border-gray-600/25 h-[250px] lg:h-full lg:order-2">
+					<div className="lg:flex lg:justify-between h-full overflow-y-auto">
+						<div className="w-full lg:w-2/3 mb-2 lg:mb-0 block border border-gray-600/25 lg:h-full lg:order-2">
 							<Link href="/" onClick={closeNav}>
 								<Spline scene="https://prod.spline.design/WV4nziwJaLKBH2tE/scene.splinecode" />
 							</Link>
 						</div>
-						<div className=" w-full lg:w-1/3 ">
-							<ul className="grid gap-2 grid-cols-1 lg:order-1 pr-2 ">
+						<div className="w-full lg:w-1/3 h-full ">
+							<ul className="grid gap-2 grid-cols-1 lg:order-1 pr-2">
 								{Links.map(({ href, label, icon }) => (
 									<li key={label} className="flex items-center">
 										<Link
@@ -217,7 +217,7 @@ export default function Navbar() {
 									</li>
 								))}
 							</ul>
-							<div className="text-md py-4 w-full text-center  bg-gradient-to-r from-blue-100/60 to-blue-100/50 text-transparent bg-clip-text">
+							<div className="text-md py-4 w-full text-center bg-gradient-to-r from-blue-100/60 to-blue-100/50 text-transparent bg-clip-text">
 								hey@reality-designers.com{" "}
 							</div>
 						</div>
