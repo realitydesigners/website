@@ -43,7 +43,6 @@ export default {
 			title: "URL",
 			validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
 		}),
-
 		defineField({
 			type: "image",
 			name: "image",

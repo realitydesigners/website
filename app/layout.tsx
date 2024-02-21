@@ -1,4 +1,4 @@
-import { monomaniac, play, space } from "@/fonts";
+import { space } from "@/fonts";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 		"Reality Designers is a collective of artists, designers, and engineers who are building the next generation of immersive experiences.",
 };
 
-export default async function ROotLayout({
+export default async function RootLayout({
 	children,
 }: { children: React.ReactNode }) {
 	return (

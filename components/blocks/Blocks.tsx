@@ -4,7 +4,7 @@ import {
 	HeadingSplineBlock,
 	ImageCanvasBlock,
 	TeamBlock,
-} from "@/components/blocks/sectionBlocks/index";
+} from "@/components/blocks/index";
 import { BlockProps, BlockType } from "@/components/blocks/types";
 
 const blockTypeComponents: Record<

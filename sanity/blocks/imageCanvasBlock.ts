@@ -41,7 +41,7 @@ export default {
 
 			return {
 				title: title || "No Title",
-				media: media, // This uses the selected image for the preview
+				media: media,
 			};
 		},
 	},

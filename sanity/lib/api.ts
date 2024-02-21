@@ -16,7 +16,7 @@ export const token = checkValue(
 export const hookSecret = process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET;
 
 export const apiVersion =
-	process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2023-07-21";
+	process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-02-21";
 
 function checkValue<T>(value: T | undefined, errorMsg: string): T {
 	if (value === undefined) {

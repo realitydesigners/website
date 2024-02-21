@@ -9,7 +9,6 @@ const imageBuilder = createImageUrlBuilder({
 });
 
 export const urlForImage = (source: Image | undefined) => {
-	// Ensure that source image contains a valid reference
 	if (!source?.asset?._ref) {
 		return undefined;
 	}
@@ -36,15 +35,12 @@ export function resolveHref(
 	switch (documentType) {
 		case "home":
 			return "/";
-		case "project":
-			return slug ? `/projects/${slug}` : undefined;
 		case "posts":
 			return slug ? `/posts/${slug}` : undefined;
 		case "videos":
 			return slug ? `/videos/${slug}` : undefined;
 		case "team":
 			return slug ? `/team/${slug}` : undefined;
-
 		default:
 			console.warn("Invalid document type:", documentType);
 			return undefined;

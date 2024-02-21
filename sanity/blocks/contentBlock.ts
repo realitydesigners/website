@@ -29,7 +29,6 @@ export default {
 			title: "Content",
 			type: "array",
 			of: [
-				// Paragraphs
 				{
 					type: "block",
 					lists: [
@@ -75,8 +74,8 @@ export default {
 								],
 								preview: {
 									select: {
-										title: "reference.title", // Adjust the reference path according to your schema
-										media: "reference.mainImage", // Adjust the reference path according to your schema
+										title: "reference.title",
+										media: "reference.mainImage",
 										theme: "theme",
 									},
 									prepare(selection) {
@@ -99,7 +98,6 @@ export default {
 						],
 					},
 				},
-
 				defineField({
 					type: "object",
 					name: "postsRef",
@@ -196,7 +194,7 @@ export default {
 						select: {
 							imageUrl: "video.image",
 							title: "video.title",
-							className: "className", // Select the className field
+							className: "className",
 						},
 						prepare(selection) {
 							const { title, imageUrl, className } = selection;
@@ -204,15 +202,14 @@ export default {
 								light: "Video | Light",
 								dark: "Video | Dark",
 								transparent: "Video | Transparent",
-								// Add other class mappings as needed
 							};
 							const classNameTitle =
 								classNameTitles[className] || "No class selected";
 
 							return {
 								title: title || "Untitled",
-								subtitle: classNameTitle, // Use the corresponding title as the subtitle
-								media: imageUrl, // Assuming imageUrl is a direct URL to the image
+								subtitle: classNameTitle,
+								media: imageUrl,
 							};
 						},
 					},
@@ -233,7 +230,6 @@ export default {
 									{ title: "Video | Light ", value: "light" },
 									{ title: "Video | Dark", value: "dark" },
 									{ title: "Video | Transparent", value: "transparent" },
-									// Add more class options if needed
 								],
 							},
 						},

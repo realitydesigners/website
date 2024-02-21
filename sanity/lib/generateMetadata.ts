@@ -1,4 +1,3 @@
-// utils/generateMetadata.js
 import { sanityFetch } from "@/sanity/lib/client";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 
@@ -8,10 +7,9 @@ export async function generateMetadata({ query, params, extractor }, parent) {
 	const data = await sanityFetch({
 		query,
 		qParams: { slug: params.slug },
-		tags: [params.tag], // Adjust if necessary
+		tags: [params.tag],
 	});
 
-	// Extract title, description, and image using the extractor function
 	const { title, description, image } = extractor(data);
 
 	const ogImage = urlForOpenGraphImage(image);

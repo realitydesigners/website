@@ -1,6 +1,3 @@
-import { TemplateTheme } from "@/components/blocks/types";
-import { space } from "@/fonts";
-import React from "react";
 import {
 	AudioRefBlock,
 	IframeBlock,
@@ -10,7 +7,10 @@ import {
 	QuoteRefBlock,
 	SplineRefBlock,
 	VideoRefBlock,
-} from "../nestedBlocks/index";
+} from "@/components/blocks/index";
+import { TemplateTheme } from "@/components/blocks/types";
+import { space } from "@/fonts";
+import React from "react";
 
 const headingStyles: Record<TemplateTheme, string> = {
 	dark: `${space.className} my-3  w-full  bg-gradient-to-r from-blue-100/90 to-blue-100/80 text-transparent bg-clip-text text-3xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
