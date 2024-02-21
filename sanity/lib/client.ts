@@ -3,7 +3,6 @@ import {
 	dataset,
 	hookSecret,
 	projectId,
-	studioUrl,
 	token,
 } from "@/sanity/lib/api";
 
@@ -25,7 +24,7 @@ export const client = createClient(config);
 
 export async function sanityFetch<QueryResponse>({
 	query,
-	qParams,
+	qParams = {},
 	tags,
 }: {
 	query: string;
