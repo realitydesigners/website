@@ -51,7 +51,7 @@ const List: React.FC<{
 	const Tag = type === "bullet" ? "ul" : "ol";
 	const className = listStyles[theme];
 	return (
-		<div className="w-screen p-3 flex justify-center">
+		<div className="w-full p-3 flex justify-center">
 			<Tag className={className}>{children}</Tag>
 		</div>
 	);
@@ -123,8 +123,11 @@ const DarkTemplate = {
 			return <ImageRefBlock image={image} className={className} />;
 		},
 		audioRef: ({ value }) => {
-			// Ensure value.audioRefData exists; otherwise, pass an empty object to avoid passing undefined
-			return <AudioRefBlock {...(value.audioRefData || {})} />;
+			const { audioTitle, audioFileUrl } = value.audioRefData || {};
+
+			return (
+				<AudioRefBlock audioFileUrl={audioFileUrl} audioTitle={audioTitle} />
+			);
 		},
 		quoteRef: ({ value }) => {
 			const { quoteTitle, quoteImage, className } = value.quoteRef || {};
@@ -193,8 +196,20 @@ const LightTemplate = {
 			const { image, className } = value;
 			return <ImageRefBlock image={image} className={className} />;
 		},
-		audioRef: ({ value }) => <AudioRefBlock {...value} />,
-		quoteRef: ({ value }) => <QuoteRefBlock {...value} />,
+		audioRef: ({ value }) => {
+			return <AudioRefBlock {...(value.audioRefData || {})} />;
+		},
+		quoteRef: ({ value }) => {
+			const { quoteTitle, quoteImage, className } = value.quoteRef || {};
+
+			return (
+				<QuoteRefBlock
+					quote={quoteTitle}
+					image={quoteImage}
+					className={className}
+				/>
+			);
+		},
 	},
 };
 const TransparentTemplate = {
@@ -251,8 +266,20 @@ const TransparentTemplate = {
 
 			return <ImageRefBlock image={image} className={className} />;
 		},
-		audioRef: ({ value }) => <AudioRefBlock {...value} />,
-		quoteRef: ({ value }) => <QuoteRefBlock {...value} />,
+		audioRef: ({ value }) => {
+			return <AudioRefBlock {...(value.audioRefData || {})} />;
+		},
+		quoteRef: ({ value }) => {
+			const { quoteTitle, quoteImage, className } = value.quoteRef || {};
+
+			return (
+				<QuoteRefBlock
+					quote={quoteTitle}
+					image={quoteImage}
+					className={className}
+				/>
+			);
+		},
 	},
 };
 
