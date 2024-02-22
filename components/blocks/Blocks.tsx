@@ -25,6 +25,7 @@ const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
 		block: { ...block, layout: block.layout, className: block.layout },
 	};
 
+	console.log(BlockProps);
 	// ...props,
 	// layout: props.layout,
 	// content: props.content || [],

@@ -51,7 +51,7 @@ const List: React.FC<{
 	const Tag = type === "bullet" ? "ul" : "ol";
 	const className = listStyles[theme];
 	return (
-		<div className="w-screen flex justify-center">
+		<div className="w-screen p-3 flex justify-center">
 			<Tag className={className}>{children}</Tag>
 		</div>
 	);
@@ -122,8 +122,21 @@ const DarkTemplate = {
 			const { image, className } = value;
 			return <ImageRefBlock image={image} className={className} />;
 		},
-		audioRef: ({ value }) => <AudioRefBlock {...value} />,
-		quoteRef: ({ value }) => <QuoteRefBlock {...value} />,
+		audioRef: ({ value }) => {
+			// Ensure value.audioRefData exists; otherwise, pass an empty object to avoid passing undefined
+			return <AudioRefBlock {...(value.audioRefData || {})} />;
+		},
+		quoteRef: ({ value }) => {
+			const { quoteTitle, quoteImage, className } = value.quoteRef || {};
+
+			return (
+				<QuoteRefBlock
+					quote={quoteTitle}
+					image={quoteImage}
+					className={className}
+				/>
+			);
+		},
 	},
 };
 

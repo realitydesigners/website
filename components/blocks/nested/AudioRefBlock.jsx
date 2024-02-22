@@ -19,16 +19,16 @@ const AudioPlayer = ({ audioTitle, audioFileUrl }) => {
 	);
 };
 
-const AudioRefBlock = ({ value }) => {
-	const { audioRefData } = value;
+const AudioRefBlock = ({ value = {} }) => {
+	// Default to an empty object if value is not provided
+	// Destructure audioRefData safely with a default empty object
+	const { audioRefData = {} } = value;
 
-	if (!audioRefData) {
-		return <p>Audio file not found.</p>;
-	}
+	// Use optional chaining to access audioTitle and audioFileUrl safely
+	const audioTitle = audioRefData.audioTitle;
+	const audioFileUrl = audioRefData.audioFileUrl;
 
-	const audioTitle = audioRefData?.audioTitle;
-	const audioFileUrl = audioRefData?.audioFileUrl;
-
+	// Proceed to render AudioPlayer with the extracted props
 	return <AudioPlayer audioTitle={audioTitle} audioFileUrl={audioFileUrl} />;
 };
 
