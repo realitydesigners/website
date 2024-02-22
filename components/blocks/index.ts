@@ -12,5 +12,4 @@ export { default as PostsRefBlock } from "@/components/blocks/nested/PostsRefBlo
 export { default as QuoteRefBlock } from "@/components/blocks/nested/QuoteRefBlock";
 export { default as SplineRefBlock } from "@/components/blocks/nested/SplineRefBlock";
 export { default as VideoRefBlock } from "@/components/blocks/nested/VideoRefBlock";
-export { default as IframeBlock } from "@/components/blocks/nested/IframeBlock";
 export { default as InternalLink } from "@/components/blocks/nested/InternalLink";

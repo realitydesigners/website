@@ -1,6 +1,5 @@
 import {
 	AudioRefBlock,
-	IframeBlock,
 	ImageRefBlock,
 	InternalLink,
 	PostsRefBlock,
@@ -114,14 +113,17 @@ const DarkTemplate = {
 				/>
 			);
 		},
-		iframe: IframeBlock,
-		spline: SplineRefBlock,
+		spline: ({ value }) => {
+			const { url } = value;
+			return <SplineRefBlock url={url} />;
+		},
+
 		imageRef: ({ value }) => {
 			const { image, className } = value;
 			return <ImageRefBlock image={image} className={className} />;
 		},
-		audioRef: AudioRefBlock,
-		quoteRef: QuoteRefBlock,
+		audioRef: ({ value }) => <AudioRefBlock {...value} />,
+		quoteRef: ({ value }) => <QuoteRefBlock {...value} />,
 	},
 };
 
@@ -170,14 +172,16 @@ const LightTemplate = {
 				/>
 			);
 		},
-		iframe: IframeBlock,
-		spline: SplineRefBlock,
+		spline: ({ value }) => {
+			const { url } = value;
+			return <SplineRefBlock url={url} />;
+		},
 		imageRef: ({ value }) => {
 			const { image, className } = value;
 			return <ImageRefBlock image={image} className={className} />;
 		},
-		audioRef: AudioRefBlock,
-		quoteRef: QuoteRefBlock,
+		audioRef: ({ value }) => <AudioRefBlock {...value} />,
+		quoteRef: ({ value }) => <QuoteRefBlock {...value} />,
 	},
 };
 const TransparentTemplate = {
@@ -225,16 +229,17 @@ const TransparentTemplate = {
 				/>
 			);
 		},
-		iframe: IframeBlock,
-		spline: SplineRefBlock,
+		spline: ({ value }) => {
+			const { url } = value;
+			return <SplineRefBlock url={url} />;
+		},
 		imageRef: ({ value }) => {
 			const { image, className } = value;
 
 			return <ImageRefBlock image={image} className={className} />;
 		},
-
-		audioRef: AudioRefBlock,
-		quoteRef: QuoteRefBlock,
+		audioRef: ({ value }) => <AudioRefBlock {...value} />,
+		quoteRef: ({ value }) => <QuoteRefBlock {...value} />,
 	},
 };
 
