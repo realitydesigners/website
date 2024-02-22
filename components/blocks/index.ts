@@ -1,15 +1,41 @@
+import React from "react";
+
 // Section Blocks
-export { default as HeadingBlock } from "@/components/blocks/section/HeadingBlock";
-export { default as HeadingSplineBlock } from "@/components/blocks/section/HeadingSplineBlock";
-export { default as ImageCanvasBlock } from "@/components/blocks/section/ImageCanvasBlock";
-export { default as TeamBlock } from "@/components/blocks/section/TeamBlock";
-export { default as ContentBlock } from "@/components/blocks/section/ContentBlock";
+export const HeadingBlock = React.lazy(
+	() => import("@/components/blocks/section/HeadingBlock"),
+);
+export const HeadingSplineBlock = React.lazy(
+	() => import("@/components/blocks/section/HeadingSplineBlock"),
+);
+export const ImageCanvasBlock = React.lazy(
+	() => import("@/components/blocks/section/ImageCanvasBlock"),
+);
+export const TeamBlock = React.lazy(
+	() => import("@/components/blocks/section/TeamBlock"),
+);
+export const ContentBlock = React.lazy(
+	() => import("@/components/blocks/section/ContentBlock"),
+);
 
 // Nested Blocks
-export { default as AudioRefBlock } from "@/components/blocks/nested/AudioRefBlock";
-export { default as ImageRefBlock } from "@/components/blocks/nested/ImageRefBlock";
-export { default as PostsRefBlock } from "@/components/blocks/nested/PostsRefBlock";
-export { default as QuoteRefBlock } from "@/components/blocks/nested/QuoteRefBlock";
-export { default as SplineRefBlock } from "@/components/blocks/nested/SplineRefBlock";
-export { default as VideoRefBlock } from "@/components/blocks/nested/VideoRefBlock";
-export { default as InternalLink } from "@/components/blocks/nested/InternalLink";
+export const AudioRefBlock = React.lazy(
+	() => import("@/components/blocks/nested/AudioRefBlock"),
+);
+export const ImageRefBlock = React.lazy(
+	() => import("@/components/blocks/nested/ImageRefBlock"),
+);
+export const PostsRefBlock = React.lazy(
+	() => import("@/components/blocks/nested/PostsRefBlock"),
+);
+export const QuoteRefBlock = React.lazy(
+	() => import("@/components/blocks/nested/QuoteRefBlock"),
+);
+export const SplineRefBlock = React.lazy(
+	() => import("@/components/blocks/nested/SplineRefBlock"),
+);
+export const VideoRefBlock = React.lazy(
+	() => import("@/components/blocks/nested/VideoRefBlock"),
+);
+export const InternalLink = React.lazy(
+	() => import("@/components/blocks/nested/InternalLink"),
+);

@@ -6,41 +6,33 @@ import {
 	TeamBlock,
 } from "@/components/blocks/index";
 import { BlockProps, BlockType } from "@/components/blocks/types";
+import React from "react";
 
-const blockTypeComponents: Record<
-	BlockType,
-	(props: BlockProps) => JSX.Element | null
-> = {
-	headingBlock: (props) => (
-		<HeadingBlock block={{ ...props, className: props.layout }} />
-	),
-	headingSplineBlock: (props) => (
-		<HeadingSplineBlock block={{ ...props, className: props.layout }} />
-	),
-	contentBlock: (props) => (
-		<ContentBlock
-			block={{
-				...props,
-				layout: props.layout,
-				content: props.content || [],
-			}}
-		/>
-	),
-	teamBlock: (props) => <TeamBlock block={props} />,
-	imageCanvasBlock: (props) => (
-		<ImageCanvasBlock block={{ ...props, className: props.layout }} />
-	),
+const blockTypeComponents: Record<BlockType, React.ElementType> = {
+	headingBlock: HeadingBlock,
+	headingSplineBlock: HeadingSplineBlock,
+	contentBlock: ContentBlock,
+	teamBlock: TeamBlock,
+	imageCanvasBlock: ImageCanvasBlock,
 };
+
 const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
 	const BlockComponent = blockTypeComponents[block._type];
+	if (!BlockComponent) return null;
+
+	const BlockProps = {
+		...block,
+		block: { ...block, layout: block.layout, className: block.layout },
+	};
+
+	// ...props,
+	// layout: props.layout,
+	// content: props.content || [],
+
 	return (
-		<>
-			{BlockComponent ? (
-				<div className="w-full relative ">
-					<BlockComponent {...block} layout={block.layout} />
-				</div>
-			) : null}
-		</>
+		<div className="w-full relative">
+			<BlockComponent {...BlockProps} />
+		</div>
 	);
 };
 
