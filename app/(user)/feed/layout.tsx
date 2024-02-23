@@ -7,7 +7,7 @@ export default async function PostsLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-screen min-h-screen black">
+		<div className="black min-h-screen w-screen">
 			<Navbar />
 			{children}
 		</div>

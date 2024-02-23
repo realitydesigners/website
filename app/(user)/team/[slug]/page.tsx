@@ -64,7 +64,7 @@ export default async function PageSlugRoute({ params }: Props) {
 	].filter((link) => link.url);
 
 	return (
-		<div className="w-full flex flex-col h-full text-black justify-center items-center bg-black ">
+		<div className="flex h-full w-full flex-col items-center justify-center bg-black text-black ">
 			<TeamItem team={team} blocks={blocks} socialLinks={socialLinks} />
 		</div>
 	);

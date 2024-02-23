@@ -46,7 +46,7 @@ const DialogButton = ({ onClose }) => (
 	<button
 		type="button"
 		onClick={onClose}
-		className={`${play.className} px-2 py-2 text-gray-400 text-2xl font-bold uppercase rounded hover:bg-gray-300 transition-colors`}
+		className={`${play.className} rounded px-2 py-2 text-2xl font-bold uppercase text-gray-400 transition-colors hover:bg-gray-300`}
 	>
 		X
 	</button>
@@ -61,7 +61,7 @@ const TeamLink = ({ team, theme }) => {
 			href={`/team/${team.slug.current}`}
 			className={`${monomaniac.className}`}
 		>
-			<div className={`flex items-center p-2 w-auto ${style.textColor}`}>
+			<div className={`flex w-auto items-center p-2 ${style.textColor}`}>
 				{team.image && (
 					<SanityImage
 						image={team.image}
@@ -73,7 +73,7 @@ const TeamLink = ({ team, theme }) => {
 						theme={theme} // Pass theme here
 					/>
 				)}
-				<span className="ml-2 uppercase tracking-wide   text-sm">
+				<span className="ml-2 text-sm uppercase   tracking-wide">
 					{team.name || "no title"}
 				</span>
 			</div>
@@ -99,14 +99,14 @@ const PostPreviewDialog = ({
 	const style = themeClasses[theme];
 
 	return (
-		<div id="popup" className="my-5 items-center w-full justify-center">
+		<div id="popup" className="my-5 w-full items-center justify-center">
 			<div
-				className={`w-full justify-center p-2 shadow-lg rounded-[.7em] grid grid-cols-1  ${style.backgroundColor}`}
+				className={`grid w-full grid-cols-1 justify-center rounded-[.7em] p-2 shadow-lg  ${style.backgroundColor}`}
 			>
 				{content && (
 					<>
 						<div
-							className={`flex  p-2 rounded-[.6em] h-auto w-full justify-between  ${style.topBackgroundColor} `}
+							className={`flex h-auto w-full justify-between  rounded-[.6em] p-2  ${style.topBackgroundColor} `}
 						>
 							<SanityImage
 								image={content.image}
@@ -117,15 +117,15 @@ const PostPreviewDialog = ({
 								classesWrapper="h-[50px] max-w-[50px] object-cover rounded-[.5em]"
 								theme={theme}
 							/>
-							<div className="w-full flex justify-between">
+							<div className="flex w-full justify-between">
 								<Link
 									href={`/posts/${postData.slug.current}`}
-									className={`${monomaniac.className} ${style.textColor} pl-4 flex items-center leading-[1.3em] font-bold text-sm lg:text-md w-1/2`}
+									className={`${monomaniac.className} ${style.textColor} lg:text-md flex w-1/2 items-center pl-4 text-sm font-bold leading-[1.3em]`}
 								>
 									{content.heading || "no title"}
 								</Link>
 								<span
-									className={`${monomaniac.className} ${style.textColor} w-auto pr-2 pt-1 leading-[1em] flex items-center h-auto mb-2 text-[.6em] uppercase tracking-widest`}
+									className={`${monomaniac.className} ${style.textColor} mb-2 flex h-auto w-auto items-center pr-2 pt-1 text-[.6em] uppercase leading-[1em] tracking-widest`}
 								>
 									{formatDate(content.publicationDate)}
 								</span>
@@ -133,18 +133,18 @@ const PostPreviewDialog = ({
 							{/* <DialogButton onClose={onClose} /> */}
 						</div>
 
-						<div className="w-full h-auto flex flex-col relative">
+						<div className="relative flex h-auto w-full flex-col">
 							<h4
-								className={`${play.className} ${style.textColor} leading-[1.3em] p-4 text-2xl`}
+								className={`${play.className} ${style.textColor} p-4 text-2xl leading-[1.3em]`}
 							>
 								{content.subheading || "no title"}
 							</h4>
 
-							<div className="flex relative justify-between items-center">
+							<div className="relative flex items-center justify-between">
 								<TeamLink team={content?.team} theme={theme} />
 								<Link
 									href={`/posts/${postData.slug.current}`}
-									className={`${style.buttonTextColor} ${style.buttonBackgroundColor} right-2 font-bold absolute uppercase bottom-1 flex text-sm justify-center items-center px-4 py-2 rounded-[.7em] hover:transition-colors`}
+									className={`${style.buttonTextColor} ${style.buttonBackgroundColor} absolute bottom-1 right-2 flex items-center justify-center rounded-[.7em] px-4 py-2 text-sm font-bold uppercase hover:transition-colors`}
 								>
 									Read More
 								</Link>
@@ -193,11 +193,11 @@ const InternalLink: React.FC<{
 	return (
 		<>
 			<Link href="#popup" onClick={openDialog}>
-				<span className="text-xl font-bold underline capitalize">
+				<span className="text-xl font-bold capitalize underline">
 					{children}
 				</span>
 				<span
-					className={`${monomaniac.className} pt-[3px] pb-[5px] text-black pr-2 pl-2 ml-2 text-[16px] bg-[#c4b5fd] rounded-full`}
+					className={`${monomaniac.className} ml-2 rounded-full bg-[#c4b5fd] pb-[5px] pl-2 pr-2 pt-[3px] text-[16px] text-black`}
 				>
 					POST
 				</span>
@@ -216,8 +216,8 @@ const InternalLink: React.FC<{
 export default React.memo(InternalLink);
 
 const LoadingIndicator = () => (
-	<div className="flex my-4 items-center justify-center">
-		<div className="w-full h-auto flex justify-center items-center p-4 bg-gradient-to-r from-blue-200/10 to-blue-200/5  animate-pulse   shadow-lg rounded-lg">
+	<div className="my-4 flex items-center justify-center">
+		<div className="flex h-auto w-full animate-pulse items-center justify-center rounded-lg bg-gradient-to-r from-blue-200/10  to-blue-200/5   p-4 shadow-lg">
 			{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
 			<svg
 				width="100"

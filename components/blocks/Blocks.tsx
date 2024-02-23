@@ -30,7 +30,7 @@ const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
 	// content: props.content || [],
 
 	return (
-		<div className="w-full relative">
+		<div className="relative w-full">
 			<BlockComponent {...BlockProps} />
 		</div>
 	);

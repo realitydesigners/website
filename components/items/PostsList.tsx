@@ -57,7 +57,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	};
 
 	return (
-		<div className="group h-auto flex flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out hover:shadow-lg">
+		<div className="group flex h-auto flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out hover:shadow-lg">
 			<div className="overflow-hidden">
 				{/* Apply scaling on hover to the image */}
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
@@ -65,20 +65,20 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				</div>
 			</div>
 			<span
-				className={`${monomaniac.className} w-full p-1 pt-2 h-auto text-xs bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text  uppercase tracking-widest`}
+				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs uppercase  tracking-widest text-transparent`}
 			>
 				{formattedDate}
 			</span>
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${space.className} p-1 text-4xl font-bold capitalize leading-[1.2em] cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+						className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-4xl font-bold capitalize leading-[1.2em] text-transparent`}
 					>
 						{renderHeading()}
 					</h2>
 				</Link>
 				<p
-					className={`${space.className} p-1 text-lg leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text`}
+					className={`${space.className} bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 text-lg leading-tight text-transparent`}
 				>
 					{renderSubheading()}
 				</p>

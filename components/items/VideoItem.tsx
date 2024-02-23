@@ -13,7 +13,7 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 	const { title, image, slug } = videos;
 
 	return (
-		<article className=" mb-4 h-auto  p-2 border border-gray-600/50 rounded-[1em]">
+		<article className=" mb-4 h-auto  rounded-[1em] border border-gray-600/50 p-2">
 			{videos && (
 				<div className="relative h-auto w-full">
 					<SanityImage
@@ -29,7 +29,7 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 			<div>
 				<Link href={`/videos/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} p-2 text-4xl capitalize leading-none text-gray-200 cursor-pointer`}
+						className={`${monomaniac.className} cursor-pointer p-2 text-4xl capitalize leading-none text-gray-200`}
 					>
 						{title}
 					</h2>

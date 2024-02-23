@@ -63,7 +63,7 @@ const PostImage: FC<PostImageProps> = ({ image, heading }) => {
 	if (!image) return null;
 
 	return (
-		<div className="flex lg:w-auto w-full lg:m-0 mb-3">
+		<div className="mb-3 flex w-full lg:m-0 lg:w-auto">
 			<SanityImage
 				width={500}
 				height={500}
@@ -80,17 +80,17 @@ export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading } = block;
 
 	return (
-		<div className="group w-full lg:flex p-2 lg:flex-row lg:block border-gray-600/50 lg:flex-row-reverse transition duration-300 ease-in-out hover:shadow-lg">
+		<div className="group w-full border-gray-600/50 p-2 transition duration-300 ease-in-out hover:shadow-lg lg:block lg:flex lg:flex-row lg:flex-row-reverse">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
 					<PostImage image={image} heading={heading} />
 				</div>
 			</div>
-			<div className="w-full flex items-center lg:pl-1 lg:pr-2">
+			<div className="flex w-full items-center lg:pl-1 lg:pr-2">
 				<Link href={`/posts/${slug?.current}`}>
 					<Heading
 						heading={block.heading}
-						className={`${space.className} p-2 text- font-bold capitalize leading-[1.3em] cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+						className={`${space.className} text- cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-2 font-bold capitalize leading-[1.3em] text-transparent`}
 					/>
 				</Link>
 			</div>
@@ -100,7 +100,7 @@ export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
 
 const TopBar: FC<PostsListProps> = ({ post }) => {
 	return (
-		<div className="w-full h-auto gap-3 lg:gap-4 grid grid-cols-2 lg:grid-cols-4 ">
+		<div className="grid h-auto w-full grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4 ">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -142,7 +142,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, publicationDate } = block;
 
 	return (
-		<div className="group h-auto flex flex-col p-1 transition duration-300 ease-in-out hover:shadow-lg">
+		<div className="group flex h-auto flex-col p-1 transition duration-300 ease-in-out hover:shadow-lg">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
 					<SideBarPostImage image={image} heading={heading} />
@@ -150,17 +150,17 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			</div>
 			<FormattedDate
 				date={publicationDate}
-				className={`${monomaniac.className} w-full p-1 pt-2 h-auto text-xs font-bold bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text uppercase tracking-widest`}
+				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs font-bold uppercase tracking-widest text-transparent`}
 			/>
 			<Link href={`/posts/${slug?.current}`}>
 				<Heading
 					heading={block.heading}
-					className={`${space.className} p-1 text-3xl font-bold capitalize leading-[1.2em] cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+					className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-3xl font-bold capitalize leading-[1.2em] text-transparent`}
 				/>
 			</Link>
 			<SubHeading
 				heading={block.subheading}
-				className={`${space.className} p-1 text-md leading-tight bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
+				className={`${space.className} text-md bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 leading-tight text-transparent `}
 			/>
 		</div>
 	);
@@ -168,7 +168,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 
 const SideBar: FC<PostsListProps> = ({ post }) => {
 	return (
-		<div className="lg:w-1/4 w-full gap-4 flex flex-col">
+		<div className="flex w-full flex-col gap-4 lg:w-1/4">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -208,7 +208,7 @@ export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, publicationDate } = block;
 
 	return (
-		<div className="group h-auto flex flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out">
+		<div className="group flex h-auto flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out">
 			<div className="overflow-hidden ">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
 					<MainPostImage image={image} heading={heading} />
@@ -216,17 +216,17 @@ export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
 			</div>
 			<FormattedDate
 				date={publicationDate}
-				className={`${monomaniac.className} w-full p-1 pt-3 h-auto text-xs font-bold bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text uppercase tracking-widest`}
+				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
 			/>
 			<Link href={`/posts/${slug?.current}`}>
 				<Heading
 					heading={block.heading}
-					className={`${space.className} p-1 text-5xl lg:text-6xl font-bold uppercase leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+					className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-5xl font-bold uppercase leading-none text-transparent lg:text-6xl`}
 				/>
 			</Link>
 			<SubHeading
 				heading={block.subheading}
-				className={`${space.className} p-1 text-xl leading-tight  bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
+				className={`${space.className} bg-gradient-to-r from-blue-100/50 to-blue-100/50  bg-clip-text p-1 text-xl leading-tight text-transparent `}
 			/>
 		</div>
 	);
@@ -238,7 +238,7 @@ export const MainPost: FC<MainPostProps> = ({ post }) => {
 	}
 
 	return (
-		<div className="flex lg:w-1/2 w-full px-0 my-4 lg:my-0 lg:px-4">
+		<div className="my-4 flex w-full px-0 lg:my-0 lg:w-1/2 lg:px-4">
 			<MainPostItem block={post.block[0]} slug={post.slug} />
 		</div>
 	);
@@ -266,21 +266,21 @@ export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, publicationDate } = block;
 
 	return (
-		<div className="group h-auto w-full flex flex-row p-1 transition duration-300 ease-in-out hover:shadow-lg">
+		<div className="group flex h-auto w-full flex-row p-1 transition duration-300 ease-in-out hover:shadow-lg">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
 					<RightBarPostImage image={image} heading={heading} />
 				</div>
 			</div>
-			<div className="pl-1 pr-2 w-full flex flex-col">
+			<div className="flex w-full flex-col pl-1 pr-2">
 				<FormattedDate
 					date={publicationDate}
-					className={`${monomaniac.className} w-full p-1 pt-3 h-auto text-xs font-bold bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text uppercase tracking-widest`}
+					className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
 				/>
 				<Link href={`/posts/${slug?.current}`}>
 					<Heading
 						heading={block.heading}
-						className={`${space.className} pl-2 text-lg   leading-[1.2em] font-bold capitalize leading-none cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 text-transparent bg-clip-text`}
+						className={`${space.className} cursor-pointer bg-gradient-to-r   from-blue-100/100 to-blue-100/90 bg-clip-text pl-2 text-lg font-bold capitalize leading-[1.2em] leading-none text-transparent`}
 					/>
 				</Link>
 			</div>
@@ -290,7 +290,7 @@ export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
 
 const RightSideBar: FC<PostsListProps> = ({ post }) => {
 	return (
-		<div className="lg:w-1/4 w-full gap-4 mb-4 lg:mb-0 flex flex-col">
+		<div className="mb-4 flex w-full flex-col gap-4 lg:mb-0 lg:w-1/4">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
 					block.heading && block.image ? (
@@ -317,7 +317,7 @@ const SectionPosts = ({
 	rightPostData,
 }) => {
 	return (
-		<div className="w-full pt-[80px] h-auto flex flex-cols p-2 lg:px-16 flex-wrap">
+		<div className="flex-cols flex h-auto w-full flex-wrap p-2 pt-[80px] lg:px-16">
 			<SideBar post={sidePostData} className="order-2 lg:order-2" />
 			<MainPost post={mainPostData} className="order-1 lg:order-1" />
 			<RightSideBar post={rightPostData} className="order-3 lg:order-3 " />

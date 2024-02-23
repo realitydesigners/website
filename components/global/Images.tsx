@@ -48,7 +48,7 @@ export function SanityImage({
 			{imageUrl && (
 				<Image
 					priority={priority}
-					className="object-cover cover h-full w-full"
+					className="cover h-full w-full object-cover"
 					alt={alt || "A cool image"}
 					width={width || undefined}
 					height={height || undefined}
@@ -64,6 +64,6 @@ const LoadingIndicator = ({ bgColor }: { bgColor: string }) => (
 	<div
 		className={`absolute inset-0 flex items-center justify-center ${bgColor}`}
 	>
-		<div className="animate-pulse w-full h-full rounded" />
+		<div className="h-full w-full animate-pulse rounded" />
 	</div>
 );

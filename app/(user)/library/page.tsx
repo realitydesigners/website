@@ -20,7 +20,7 @@ export default async function CategoryPage(): Promise<JSX.Element> {
 
 	return (
 		<InteractiveProvider categoryPositions={categoryPositions}>
-			<div className="w-screen h-screen relative">
+			<div className="relative h-screen w-screen">
 				<Navigation
 					categories={mainCategories}
 					categoryPositions={categoryPositions}

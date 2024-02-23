@@ -9,7 +9,7 @@ export default async function PostsLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-screen h-auto flex flex-col bg-gray-200">
+		<div className="flex h-auto w-screen flex-col bg-gray-200">
 			<Navbar />
 			{children}
 			<Footer />

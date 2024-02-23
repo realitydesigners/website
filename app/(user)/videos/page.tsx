@@ -19,9 +19,9 @@ export default async function VideoPage({ params }: Props) {
 		qParams: { slug: params },
 	});
 	return (
-		<div className="flex w-full h-auto flex-cols flex-wrap">
+		<div className="flex-cols flex h-auto w-full flex-wrap">
 			<VideoList videos={videos} />
-			<div className="w-full h-full bg-gray-300 hidden">
+			<div className="hidden h-full w-full bg-gray-300">
 				{" "}
 				<CanvasVideoList videos={videos} />
 			</div>

@@ -19,7 +19,7 @@ export default async function IndexPage() {
 	const topPostData = posts.slice(9, 13);
 
 	return (
-		<main className="flex flex-col w-full bg-black">
+		<main className="flex w-full flex-col bg-black">
 			<Navbar />
 			<SectionPosts
 				topPostData={topPostData}
@@ -27,7 +27,7 @@ export default async function IndexPage() {
 				mainPostData={mainPostData}
 				rightPostData={rightPostData}
 			/>
-			<div className="w-full py-4 flex h-auto flex-cols px-2 lg:px-16">
+			<div className="flex-cols flex h-auto w-full px-2 py-4 lg:px-16">
 				<PostsList post={postsListData} />
 			</div>
 			<Footer />

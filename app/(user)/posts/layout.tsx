@@ -8,7 +8,7 @@ export default async function PostsLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-screen h-auto">
+		<div className="h-auto w-screen">
 			<Navbar />
 			{children}
 			<Footer />

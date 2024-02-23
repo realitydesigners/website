@@ -1,7 +1,7 @@
 export default function LoadingSkeleton() {
 	return (
-		<div className="w-full bg-gray-200 h-screen flex justify-center items-center">
-			<div className="w-full p-2 h-auto flex justify-center">
+		<div className="flex h-screen w-full items-center justify-center bg-gray-200">
+			<div className="flex h-auto w-full justify-center p-2">
 				{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
 				<svg
 					width="100"

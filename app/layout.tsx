@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
 	children,
-}: { children: React.ReactNode }) {
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<ClerkProvider>
 			<html lang="en" className={`${space.className} bg-black`}>

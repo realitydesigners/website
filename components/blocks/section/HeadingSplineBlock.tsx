@@ -31,19 +31,19 @@ const HeadingSplineBlock = ({ block }) => {
 
 			const renderCategory = block.category ? (
 				<span
-					className={`${monomaniac.className} text-xs  h-auto uppercase   font-semibold bg-gray-200 items-center justify-center p-1 pl-2 pr-2 tracking-widest text-black mr-1 whitespace-nowrap`}
+					className={`${monomaniac.className} mr-1  h-auto items-center   justify-center whitespace-nowrap bg-gray-200 p-1 pl-2 pr-2 text-xs font-semibold uppercase tracking-widest text-black`}
 				>
 					{block.category.title}
 				</span>
 			) : null;
 
 			return (
-				<div className="w-full h-auto bg-black pt-20 lg:pt-32 pb-20 lg:pb-0">
-					<div className="w-full flex justify-center flex-wrap">
-						<div className="w-11/12 flex flex-wrap flex-cols items-center justify-between">
+				<div className="h-auto w-full bg-black pb-20 pt-20 lg:pb-0 lg:pt-32">
+					<div className="flex w-full flex-wrap justify-center">
+						<div className="flex-cols flex w-11/12 flex-wrap items-center justify-between">
 							<div className="flex w-auto ">
 								<span
-									className={`${monomaniac.className} text-gray-200 ml-2 uppercase w-auto text-xs   tracking-widest`}
+									className={`${monomaniac.className} ml-2 w-auto text-xs uppercase tracking-widest   text-gray-200`}
 								>
 									POSTED ON {formattedDate}
 								</span>
@@ -51,30 +51,30 @@ const HeadingSplineBlock = ({ block }) => {
 							{renderCategory}
 						</div>
 
-						<div className="w-full lg:w-1/2 flex-col">
+						<div className="w-full flex-col lg:w-1/2">
 							{block.heading && (
 								<h1
-									className={`${monomaniac.className} text-5xl md:text-7xl p-4  text-gray-200 leading-tightest`}
+									className={`${monomaniac.className} leading-tightest p-4 text-5xl  text-gray-200 md:text-7xl`}
 								>
 									{block.heading}
 								</h1>
 							)}
 							{block.subheading && (
 								<h2
-									className={`${monomaniac.className}  w-full p-4  text-2xl  text-gray-300 leading-7 tracking-wide `}
+									className={`${monomaniac.className}  w-full p-4  text-2xl  leading-7 tracking-wide text-gray-300 `}
 								>
 									{block.subheading}
 								</h2>
 							)}
 						</div>
-						<div className="w-full lg:w-3/4  pb-2 pl-2 ">
+						<div className="w-full pb-2  pl-2 lg:w-3/4 ">
 							<div className="w-full">
 								{block.team && (
 									<Link
 										href={`/team/${block.team.slug.current}`}
 										className={`${monomaniac.className} `}
 									>
-										<div className="flex p-2 w-auto">
+										<div className="flex w-auto p-2">
 											{block.team?.image && (
 												<div className="flex items-center">
 													<SanityImage
@@ -86,7 +86,7 @@ const HeadingSplineBlock = ({ block }) => {
 														classesWrapper=" h-[30px] w-[30px] object-cover cover rounded-[2em] "
 													/>
 													{block.team.name && (
-														<span className="ml-2 uppercase text-gray-200 tracking-wide text-sm">
+														<span className="ml-2 text-sm uppercase tracking-wide text-gray-200">
 															{block.team.name}
 														</span>
 													)}
@@ -98,8 +98,8 @@ const HeadingSplineBlock = ({ block }) => {
 							</div>
 						</div>
 
-						<div className="h-[70vh] w-full lg:w-3/4  overflow-hidden p-2">
-							<div className="w-full h-full rounded-[1em] shadow-lg overflow-hidden">
+						<div className="h-[70vh] w-full overflow-hidden  p-2 lg:w-3/4">
+							<div className="h-full w-full overflow-hidden rounded-[1em] shadow-lg">
 								<Spline scene={url} />
 							</div>
 						</div>

@@ -29,7 +29,7 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 			<div>
 				<Link href={`/videos/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} p-2 text-4xl uppercase leading-none text-black cursor-pointer`}
+						className={`${monomaniac.className} cursor-pointer p-2 text-4xl uppercase leading-none text-black`}
 					>
 						{title}
 					</h2>

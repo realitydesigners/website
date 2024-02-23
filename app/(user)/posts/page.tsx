@@ -20,7 +20,7 @@ export default async function PostsPage() {
 	// });
 
 	return (
-		<main className="flex justify-center items-center min-h-screen bg-black flex-col w-full">
+		<main className="flex min-h-screen w-full flex-col items-center justify-center bg-black">
 			<ScrollablePostList post={postsListData} />
 		</main>
 	);

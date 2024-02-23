@@ -37,7 +37,7 @@ const Heading: React.FC<{
 	const className = headingStyles[theme];
 	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
 	return (
-		<div className="w-full p-3 flex justify-center">
+		<div className="flex w-full justify-center p-3">
 			{React.createElement(Tag, { className }, children)}
 		</div>
 	);
@@ -51,7 +51,7 @@ const List: React.FC<{
 	const Tag = type === "bullet" ? "ul" : "ol";
 	const className = listStyles[theme];
 	return (
-		<div className="w-full p-3 flex justify-center">
+		<div className="flex w-full justify-center p-3">
 			<Tag className={className}>{children}</Tag>
 		</div>
 	);
@@ -63,7 +63,7 @@ const NormalText: React.FC<{
 }> = React.memo(({ children, theme }) => {
 	const className = normalTextStyles[theme];
 	return (
-		<div className="w-full p-3 flex justify-center">
+		<div className="flex w-full justify-center p-3">
 			<div className={className}>{children}</div>
 		</div>
 	);

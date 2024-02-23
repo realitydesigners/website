@@ -26,7 +26,7 @@ const ImageDisplay = ({ image, alt, className }) => {
 
 	return (
 		<div
-			className={`relative justify-center rounded-[1.2em] overflow-hidden items-center flex h-auto w-full lg:w-3/4 ${insetStyles}`}
+			className={`relative flex h-auto w-full items-center justify-center overflow-hidden rounded-[1.2em] lg:w-3/4 ${insetStyles}`}
 		>
 			<SanityImage
 				image={image}
@@ -49,7 +49,7 @@ const ArtistInfo = ({ artist, className }) => {
 
 	return (
 		<div
-			className={`relative pt-4 bottom-0 flex h-auto w-full pl-4 lg:w-3/4 ${textColor} ${insetStyles}`}
+			className={`relative bottom-0 flex h-auto w-full pl-4 pt-4 lg:w-3/4 ${textColor} ${insetStyles}`}
 		>
 			<SanityImage
 				image={artist.image}
@@ -62,19 +62,19 @@ const ArtistInfo = ({ artist, className }) => {
 			<div className="flex flex-col items-start justify-center text-xs uppercase leading-none">
 				<Link
 					href={`/team/${artist.slug.current}`}
-					className={`${monomaniac.className} pl-1  font-bold text-md`}
+					className={`${monomaniac.className} text-md  pl-1 font-bold`}
 				>
 					{artist.name}
 				</Link>
 			</div>
-			<p className="ml-2 inline-block cursor-pointer text-md font-bold">→</p>
+			<p className="text-md ml-2 inline-block cursor-pointer font-bold">→</p>
 		</div>
 	);
 };
 
 const ImageRefCard = ({ title, image, className }) => {
 	return (
-		<div className="flex justify-center items-center flex-col p-4">
+		<div className="flex flex-col items-center justify-center p-4">
 			<ImageDisplay image={image.image} alt={title} className={className} />
 			{image?.team && <ArtistInfo artist={image.team} className={className} />}
 		</div>

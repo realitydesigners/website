@@ -9,7 +9,7 @@ const AudioPlayer = ({ audioTitle, audioFileUrl }) => {
 	console.log(audioTitle);
 
 	return (
-		<div className="w-full py-6 flex justify-center p-2">
+		<div className="w-full py-4 flex justify-center p-2">
 			<div className="w-full md:w-3/4 lg:w-1/2 items-end flex flex-col">
 				<div className="flex flex-wrap w-full justify-between  items-center">
 					<span

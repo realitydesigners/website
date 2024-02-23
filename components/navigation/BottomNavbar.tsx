@@ -133,48 +133,48 @@ export default function BottomNavbar() {
 			{isNavOpen && (
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 				<div
-					className="fixed inset-0 bg-black/20 backdrop-blur-[.2em] z-40"
+					className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[.2em]"
 					onClick={handleBackdropClick}
 				/>
 			)}
 
 			<nav
 				id="navbar"
-				className="flex  shadow-xl items-center h-16 p-2 justify-center fixed bottom-0 w-full z-50 "
+				className="fixed  bottom-0 z-50 flex h-16 w-full items-center justify-center p-2 shadow-xl "
 			>
-				<div className=" w-full lg:w-1/5 md:w-1/3  justify-center items-center  flex">
+				<div className=" flex w-full items-center  justify-center md:w-1/3  lg:w-1/5">
 					<button
 						id="nav-toggle"
-						className=" h-12 w-full flex justify-center rounded-[.5em] items-center border border-gray-600/25 bg-black/50 backdrop-blur-xl z-20 "
+						className=" z-20 flex h-12 w-full items-center justify-center rounded-[.5em] border border-gray-600/25 bg-black/50 backdrop-blur-xl "
 						aria-label="Toggle Menu"
 						onClick={toggleNav}
 						type="button"
 					>
-						<div className="min-w-10 min-h-10">{getIcon("logo")}</div>
+						<div className="min-h-10 min-w-10">{getIcon("logo")}</div>
 					</button>
 				</div>
 
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  bottom-6 right-0 w-full lg:w-1/3 bg-black/80 items-center justify-end pb-6 lg:pb-0 lg:justify-center flex right-0 rounded-[0em] lg:rounded-[1em]  h-[95vh] lg:h-[70vh] mt-12 lg:mt-16  overflow-y-auto shadow-lg  transition-transform duration-0 ease-in-out ${
+					className={`absolute  bottom-6 right-0 right-0 mt-12 flex h-[95vh] w-full items-center justify-end overflow-y-auto rounded-[0em] bg-black/80 pb-6 shadow-lg  transition-transform duration-0 ease-in-out lg:mt-16  lg:h-[70vh] lg:w-1/3  lg:justify-center lg:rounded-[1em] lg:pb-0 ${
 						isNavOpen
-							? "translate-x-0 right-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-lg"
+							? "right-0 translate-x-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-lg"
 							: "translate-x-full"
 					}  flex flex-col justify-start p-3 `}
 				>
-					<div className="w-full  rounded-lg  h-[125px]">
+					<div className="h-[125px]  w-full  rounded-lg">
 						<Link href="/" onClick={closeNav}>
 							<Spline scene="https://prod.spline.design/a1UK0U9EA2vi6a-h/scene.splinecode" />
 						</Link>
 					</div>
 					<div>
 						<SignedOut>
-							<div className="flex mt-6 justify-center">
+							<div className="mt-6 flex justify-center">
 								<SignInButton>
 									<button
 										type="button"
-										className="relative uppercase text-black border border-gray-600/50 justify-center text-md ml-4 mr-2 p-1 pl-2 pr-2 items-center flex text-black rounded-[.2em] transition-all duration-200 ease-in-out bg-white hover:bg-gray-200 hover:text-black"
+										className="text-md relative ml-4 mr-2 flex items-center justify-center rounded-[.2em] border border-gray-600/50 bg-white p-1 pl-2 pr-2 uppercase text-black text-black transition-all duration-200 ease-in-out hover:bg-gray-200 hover:text-black"
 									>
 										<span
 											className={`${monomaniac.className} whitespace-nowrap`}
@@ -187,20 +187,20 @@ export default function BottomNavbar() {
 						</SignedOut>
 
 						<SignedIn>
-							<div className=" relative mt-4 justify-center   flex ">
+							<div className=" relative mt-4 flex   justify-center ">
 								<UserButton afterSignOutUrl="/" />
 							</div>
 						</SignedIn>
 					</div>
-					<ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 mt-4  flex flex-wrap">
+					<ul className="mt-4 flex grid grid-cols-2 flex-wrap  gap-2 lg:grid-cols-3">
 						{navLinks.map(({ href, label, icon }) => (
 							<li key={label}>
 								<Link
 									href={href}
-									className={`${monomaniac.className} flex flex-col items-center justify-center text-center text-gray-200 text-2xl backdrop-blur-[20px] bg-black/10 uppercase font-bold p-4 transition-all duration-200 ease-in-out border border-gray-600/25 block hover:bg-white hover:text-black`}
+									className={`${monomaniac.className} block flex flex-col items-center justify-center border border-gray-600/25 bg-black/10 p-4 text-center text-2xl font-bold uppercase text-gray-200 backdrop-blur-[20px] transition-all duration-200 ease-in-out hover:bg-white hover:text-black`}
 									onClick={closeNav}
 								>
-									<div className="min-w-10 min-h-10 mb-2 flex items-center justify-center">
+									<div className="mb-2 flex min-h-10 min-w-10 items-center justify-center">
 										{getIcon(icon)}
 									</div>
 									<span>{label}</span>

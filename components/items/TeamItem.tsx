@@ -9,7 +9,7 @@ import React from "react";
 const SocialLink = ({ href, children }) => (
 	<Link
 		href={href}
-		className="p-3 border border-gray-600/50 text-center rounded-[.25em] hover:bg-gray-200 hover:text-black"
+		className="rounded-[.25em] border border-gray-600/50 p-3 text-center hover:bg-gray-200 hover:text-black"
 	>
 		{children}
 	</Link>
@@ -19,11 +19,11 @@ const TeamItem = ({ team, blocks, socialLinks }) => {
 	const { role, name, scene } = team;
 
 	return (
-		<div className="w-full flex flex-col h-full text-black justify-center items-center bg-black ">
-			<div className="w-full  h-[60vh] lg:h-[80vh] bg-black block">
+		<div className="flex h-full w-full flex-col items-center justify-center bg-black text-black ">
+			<div className="block  h-[60vh] w-full bg-black lg:h-[80vh]">
 				<Spline className="w-full" scene={scene || ""} />
 			</div>
-			<div className="w-full p-4 flex flex-col justify-center items-center gap-2">
+			<div className="flex w-full flex-col items-center justify-center gap-2 p-4">
 				<h1
 					className={`${monomaniac.className} text-6xl font-bold text-gray-200`}
 				>
@@ -37,7 +37,7 @@ const TeamItem = ({ team, blocks, socialLinks }) => {
 			</div>
 
 			<div
-				className={`${monomaniac.className} grid grid-cols-2 md:grid-cols-4 text-gray-200 tracking-wide text-xl font-bold gap-4 p-2 uppercase mb-4`}
+				className={`${monomaniac.className} mb-4 grid grid-cols-2 gap-4 p-2 text-xl font-bold uppercase tracking-wide text-gray-200 md:grid-cols-4`}
 			>
 				{socialLinks.map(({ name, url }) => (
 					<SocialLink key={name} href={url}>

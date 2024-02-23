@@ -150,27 +150,27 @@ export default function Navbar() {
 			{isNavOpen && (
 				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
 				<div
-					className="fixed inset-0 bg-black lg:bg-black/20 backdrop-blur-[.5em] z-40"
+					className="fixed inset-0 z-40 bg-black backdrop-blur-[.5em] lg:bg-black/20"
 					onClick={handleBackdropClick}
 				/>
 			)}
 
 			<nav
 				id="navbar"
-				className="flex  items-center h-12 p-2 justify-between fixed top-0 w-full z-50 "
+				className="fixed  top-0 z-50 flex h-12 w-full items-center justify-between p-2 "
 			>
-				<div className="pl-[2.3em] w-full justify-center relative flex items-center z-10">
+				<div className="relative z-10 flex w-full items-center justify-center pl-[2.3em]">
 					<Link
 						href="/"
-						className={`${monomaniac.className} text-gray-200 items-center pt-2 pb-2  flex flex-row`}
+						className={`${monomaniac.className} flex flex-row items-center pb-2  pt-2 text-gray-200`}
 						onClick={closeNav}
 					>
-						<div className=" left-2 absolute ">{getIcon("logo")}</div>
-						<div className="w-full   justify-center items-center flex h-auto flex-col">
-							<span className="text-lg font-bold tracking-wide leading-none">
+						<div className=" absolute left-2 ">{getIcon("logo")}</div>
+						<div className="flex   h-auto w-full flex-col items-center justify-center">
+							<span className="text-lg font-bold leading-none tracking-wide">
 								REALITY
 							</span>
-							<span className="text-sm -mt-[1px] font-bold tracking-wide leading-none">
+							<span className="-mt-[1px] text-sm font-bold leading-none tracking-wide">
 								DESIGNERS
 							</span>
 						</div>
@@ -180,7 +180,7 @@ export default function Navbar() {
 				<div className="relative ">
 					<button
 						id="nav-toggle"
-						className="flex items-center h-10 w-10  justify-center relative  z-20 "
+						className="relative z-20 flex h-10  w-10 items-center  justify-center "
 						aria-label="Toggle Menu"
 						onClick={toggleNav}
 						type="button"
@@ -192,26 +192,26 @@ export default function Navbar() {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute top-0 right-0 w-full lg:w-full bg-black lg:bg-black/80 flex-col rounded-[0em] lg:rounded-[1em] h-[95vh] lg:h-[100vh] mt-12 lg:mt-0 lg:py-16 h-full  shadow-lg transition-transform duration-0 lg:duration-600 ease-in-out ${
+					className={`lg:duration-600 absolute right-0 top-0 mt-12 h-[95vh] h-full w-full flex-col rounded-[0em] bg-black shadow-lg transition-transform duration-0 ease-in-out lg:mt-0  lg:h-[100vh] lg:w-full lg:rounded-[1em] lg:bg-black/80 lg:py-16 ${
 						isNavOpen ? "translate-x-0 " : "translate-x-full "
-					} flex flex-col w-full h-screen justify-start p-3`}
+					} flex h-screen w-full flex-col justify-start p-3`}
 				>
-					<div className="lg:flex lg:justify-between h-full overflow-y-auto">
-						<div className="w-full lg:w-2/3 mb-2 lg:mb-0 block border border-gray-600/25 lg:h-full lg:order-2">
+					<div className="h-full overflow-y-auto lg:flex lg:justify-between">
+						<div className="mb-2 block w-full border border-gray-600/25 lg:order-2 lg:mb-0 lg:h-full lg:w-2/3">
 							<Link href="/" onClick={closeNav}>
 								<Spline scene="https://prod.spline.design/WV4nziwJaLKBH2tE/scene.splinecode" />
 							</Link>
 						</div>
-						<div className="w-full lg:w-1/3 h-full ">
-							<ul className="grid gap-2 grid-cols-1 lg:order-1 pr-2">
+						<div className="h-full w-full lg:w-1/3 ">
+							<ul className="grid grid-cols-1 gap-2 pr-2 lg:order-1">
 								{Links.map(({ href, label, icon }) => (
 									<li key={label} className="flex items-center">
 										<Link
 											href={href}
-											className={`${monomaniac.className} w-full justify-center text-left h-full text-gray-200 text-4xl lg:text-7xl backdrop-blur-[20px] bg-black/10 uppercase font-bold p-4 transition-all duration-200 ease-in-out border border-gray-600/25 block hover:bg-white hover:text-black flex items-center`}
+											className={`${monomaniac.className} block flex h-full w-full items-center justify-center border border-gray-600/25 bg-black/10 p-4 text-left text-4xl font-bold uppercase text-gray-200 backdrop-blur-[20px] transition-all duration-200 ease-in-out hover:bg-white hover:text-black lg:text-7xl`}
 											onClick={closeNav}
 										>
-											<div className="min-w-10 min-h-10 mr-6 flex items-center">
+											<div className="mr-6 flex min-h-10 min-w-10 items-center">
 												{getIcon(icon)}
 											</div>
 											<span className="flex-grow text-[10vw] lg:text-[5vw]">
@@ -221,7 +221,7 @@ export default function Navbar() {
 									</li>
 								))}
 							</ul>
-							<div className="text-md py-4 w-full text-center bg-gradient-to-r from-blue-100/60 to-blue-100/50 text-transparent bg-clip-text">
+							<div className="text-md w-full bg-gradient-to-r from-blue-100/60 to-blue-100/50 bg-clip-text py-4 text-center text-transparent">
 								hey@reality-designers.com{" "}
 							</div>
 						</div>

@@ -31,7 +31,7 @@ export default function FeedPage() {
 	return (
 		<div
 			ref={containerRef}
-			className="w-full min-h-screen pt-16 p-2 grid grid-cols-1 lg:grid-cols-3 gap-4"
+			className="grid min-h-screen w-full grid-cols-1 gap-4 p-2 pt-16 lg:grid-cols-3"
 		>
 			{items.map((feedItem, index) => {
 				const key = feedItem._id || index;

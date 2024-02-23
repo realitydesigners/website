@@ -5,11 +5,11 @@ import Link from "next/link";
 
 export default function Footer() {
 	return (
-		<div className="w-full grid lg:grid-cols-3 grid-cols-1 flex-wrap items-start bg-black gap-4 p-4 lg:p-6">
-			<div className="w-full p-4  border-gray-600/50 border rounded-lg  ">
-				<div className="w-full h-full flex flex-col justify-center items-center p-4">
+		<div className="grid w-full grid-cols-1 flex-wrap items-start gap-4 bg-black p-4 lg:grid-cols-3 lg:p-6">
+			<div className="w-full rounded-lg  border border-gray-600/50 p-4  ">
+				<div className="flex h-full w-full flex-col items-center justify-center p-4">
 					<p
-						className={`${monomaniac.className} text-5xl bold text-center leading-10 text-gray-200 uppercase`}
+						className={`${monomaniac.className} bold text-center text-5xl uppercase leading-10 text-gray-200`}
 					>
 						Design
 						<br />
@@ -19,8 +19,8 @@ export default function Footer() {
 				</div>
 			</div>
 			<Newsletter />
-			<div className="w-full  border-gray-600/50 border rounded-lg p-4 ">
-				<ul className={`${monomaniac.className} w-1/2 text-gray-200 text-2xl`}>
+			<div className="w-full  rounded-lg border border-gray-600/50 p-4 ">
+				<ul className={`${monomaniac.className} w-1/2 text-2xl text-gray-200`}>
 					<li>
 						<Link href="https://www.youtube.com/@realitydesigners">
 							YouTube

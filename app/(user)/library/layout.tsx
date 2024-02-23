@@ -8,7 +8,7 @@ export default async function LibraryLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-screen h-screen bg-black">
+		<div className="h-screen w-screen bg-black">
 			<Navbar />
 			{children}
 			{/* <BottomNavbar /> */}

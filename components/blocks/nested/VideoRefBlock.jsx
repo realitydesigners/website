@@ -8,10 +8,10 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 	switch (className) {
 		case "light":
 			return (
-				<div className="flex p-2  justify-center w-full mb-6">
-					<div className=" w-full bg-gray-300 p-2 pb-4 rounded-[.7em]  items-end flex flex-col lg:w-3/4 shadow-lg ">
+				<div className="mb-6 flex  w-full justify-center p-2">
+					<div className=" flex w-full flex-col items-end rounded-[.7em]  bg-gray-300 p-2 pb-4 shadow-lg lg:w-3/4 ">
 						<span
-							className={`${monomaniac.className} pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full mb-2`}
+							className={`${monomaniac.className} mb-2 ml-2 rounded-full bg-[#5eead4] pb-[5px] pl-2 pr-2 pt-[3px] text-[16px]`}
 						>
 							VIDEO
 						</span>
@@ -19,14 +19,14 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							controls
 							poster={videoImage}
 							preload="false"
-							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl bg-black/50 "
+							className="h-aut w-full overflow-hidden rounded-[.7em] bg-black/50 shadow-xl "
 						>
 							<source src={videoFileUrl} type="video/mp4" />
 							<track src="captions.vtt" kind="captions" label="English" />
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4   text-black`}
+							className={`${monomaniac.className} ml-2 pt-4 text-center text-2xl uppercase leading-[1em] tracking-wide   text-black`}
 						>
 							{videoTitle}
 						</p>
@@ -35,15 +35,15 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 			);
 		case "dark":
 			return (
-				<div className="flex p-2 justify-center w-full py-4">
-					<div className=" w-full p-2 pb-4 rounded-[.7em]  items-start flex flex-col lg:w-2/3 shadow-lg ">
-						<div className="flex flex-wrap w-full justify-between  items-center">
+				<div className="flex w-full justify-center p-2 py-4">
+					<div className=" flex w-full flex-col items-start  rounded-[.7em] p-2 pb-4 shadow-lg lg:w-2/3 ">
+						<div className="flex w-full flex-wrap items-center  justify-between">
 							<span
-								className={`${monomaniac.className} my-4 pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full `}
+								className={`${monomaniac.className} my-4 ml-2 rounded-full bg-[#5eead4] pb-[5px] pl-2 pr-2 pt-[3px] text-[16px] `}
 							>
 								VIDEO
 							</span>
-							<p className=" font-bold uppercase text-md leading-[1.3em] text-center tracking-wide py-2   text-blue-100">
+							<p className=" text-md py-2 text-center font-bold uppercase leading-[1.3em] tracking-wide   text-blue-100">
 								{videoTitle}
 							</p>
 						</div>
@@ -51,7 +51,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							controls
 							poster={videoImage}
 							preload="false"
-							className="w-full h-auto rounded-[.7em] overflow-hidden shadow-xl border border-blue-100/25"
+							className="h-auto w-full overflow-hidden rounded-[.7em] border border-blue-100/25 shadow-xl"
 						>
 							<source src={videoFileUrl} type="video/mp4" />
 							<track src="captions.vtt" kind="captions" label="English" />
@@ -62,10 +62,10 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 			);
 		case "transparent":
 			return (
-				<div className="flex p-2  justify-center w-full mb-6 shadow-[3em]">
-					<div className=" w-full bg-gray-600/25 p-2 pb-4 rounded-[.7em]  items-end flex flex-col lg:w-3/4 shadow-lg ">
+				<div className="mb-6 flex  w-full justify-center p-2 shadow-[3em]">
+					<div className=" flex w-full flex-col items-end rounded-[.7em]  bg-gray-600/25 p-2 pb-4 shadow-lg lg:w-3/4 ">
 						<span
-							className={`${monomaniac.className} pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full mb-2`}
+							className={`${monomaniac.className} mb-2 ml-2 rounded-full bg-[#5eead4] pb-[5px] pl-2 pr-2 pt-[3px] text-[16px]`}
 						>
 							VIDEO
 						</span>
@@ -73,14 +73,14 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							controls
 							poster={videoImage}
 							preload="false"
-							className="w-full h-aut rounded-[.7em] overflow-hidden shadow-xl bg-{#111}"
+							className="h-aut bg-{#111} w-full overflow-hidden rounded-[.7em] shadow-xl"
 						>
 							<source src={videoFileUrl} type="video/mp4" />
 							<track src="captions.vtt" kind="captions" label="English" />
 							Your browser does not support the video tag.
 						</video>
 						<p
-							className={`${monomaniac.className} ml-2 uppercase text-2xl leading-[1em] text-center tracking-wide pt-4   text-gray-200`}
+							className={`${monomaniac.className} ml-2 pt-4 text-center text-2xl uppercase leading-[1em] tracking-wide   text-gray-200`}
 						>
 							{videoTitle}
 						</p>
@@ -89,15 +89,15 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 			);
 		default:
 			return (
-				<div className="flex p-2 justify-center w-full py-4">
-					<div className=" w-full p-2 pb-4 rounded-[.7em]  items-start flex flex-col lg:w-2/3 shadow-lg ">
-						<div className="flex flex-wrap w-full justify-between  items-center">
+				<div className="flex w-full justify-center p-2 py-4">
+					<div className=" flex w-full flex-col items-start  rounded-[.7em] p-2 pb-4 shadow-lg lg:w-2/3 ">
+						<div className="flex w-full flex-wrap items-center  justify-between">
 							<span
-								className={`${monomaniac.className} my-4 pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full `}
+								className={`${monomaniac.className} my-4 ml-2 rounded-full bg-[#5eead4] pb-[5px] pl-2 pr-2 pt-[3px] text-[16px] `}
 							>
 								VIDEO
 							</span>
-							<p className=" font-bold uppercase text-md leading-[1.3em] text-center tracking-wide py-2   text-blue-100">
+							<p className=" text-md py-2 text-center font-bold uppercase leading-[1.3em] tracking-wide   text-blue-100">
 								{videoTitle}
 							</p>
 						</div>
@@ -105,7 +105,7 @@ const VideoRefBlock = ({ videoTitle, videoFileUrl, videoImage, className }) => {
 							controls
 							poster={videoImage}
 							preload="false"
-							className="w-full h-auto rounded-[.7em] overflow-hidden shadow-xl bg-{#111}"
+							className="bg-{#111} h-auto w-full overflow-hidden rounded-[.7em] shadow-xl"
 						>
 							<source src={videoFileUrl} type="video/mp4" />
 							<track src="captions.vtt" kind="captions" label="English" />

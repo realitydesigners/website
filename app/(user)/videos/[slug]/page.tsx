@@ -59,34 +59,34 @@ export default async function PageSlugRoute({ params }: Props) {
 	return (
 		<>
 			{currentVideo && (
-				<div className="bg-black h-auto w-full flex lg:flex-cols flex-row flex-wrap items-start justify-center pt-24">
-					<div className="w-full lg:w-1/6 h-24 lg:h-screen p-2 hidden lg:block" />
-					<div className="w-full lg:w-4/6 h-auto flex flex-col justify-center">
+				<div className="lg:flex-cols flex h-auto w-full flex-row flex-wrap items-start justify-center bg-black pt-24">
+					<div className="hidden h-24 w-full p-2 lg:block lg:h-screen lg:w-1/6" />
+					<div className="flex h-auto w-full flex-col justify-center lg:w-4/6">
 						{videoUrl && (
 							<div className="p-4">
 								{/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
 								<video
 									controls
 									autoPlay={false}
-									className="w-full h-[50vw] lg:h-[33vw] border-gray-600 border rounded-lg overflow-hidden"
+									className="h-[50vw] w-full overflow-hidden rounded-lg border border-gray-600 lg:h-[33vw]"
 								>
 									<source src={videoUrl} type="video/mp4" />
 									Your browser does not support this video player
 								</video>
 								<p
-									className={`${monomaniac.className} uppercase text-4xl my-2 tracking-wide pt-4 text-gray-200 font-bold`}
+									className={`${monomaniac.className} my-2 pt-4 text-4xl font-bold uppercase tracking-wide text-gray-200`}
 								>
 									{title}
 								</p>
 							</div>
 						)}
-						<div className="w-full flex justify-center bg-gray-200">
+						<div className="flex w-full justify-center bg-gray-200">
 							{blocks.map((block) => (
 								<Blocks block={block as BlockProps} />
 							))}
 						</div>
 					</div>
-					<div className="w-full lg:w-1/6 h-screen p-2" />
+					<div className="h-screen w-full p-2 lg:w-1/6" />
 				</div>
 			)}
 		</>

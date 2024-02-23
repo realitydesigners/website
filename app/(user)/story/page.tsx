@@ -4,15 +4,15 @@ import Spline from "@splinetool/react-spline";
 
 export default function StoryPage() {
 	return (
-		<div className="flex flex-col flex-wrap items-center w-screen h-auto justify-center bg-black">
-			<div className="w-full block h-screen  overflow-hidden">
+		<div className="flex h-auto w-screen flex-col flex-wrap items-center justify-center bg-black">
+			<div className="block h-screen w-full  overflow-hidden">
 				<Spline scene="https://prod.spline.design/iKmFxJxXHvp6KcMb/scene.splinecode" />
 			</div>
 
-			<div className="lg:w-1/2 w-11/12 pt-32 pb-20">
+			<div className="w-11/12 pb-20 pt-32 lg:w-1/2">
 				<div className={`${play.className} text-xl font-bold text-gray-400 `}>
 					<h1
-						className={`${monomaniac.className} text-gray-200 text-6xl lg:text-7xl font-bold text-center mb-6`}
+						className={`${monomaniac.className} mb-6 text-center text-6xl font-bold text-gray-200 lg:text-7xl`}
 					>
 						A NEW REALITY IS BEING DESIGNED
 					</h1>

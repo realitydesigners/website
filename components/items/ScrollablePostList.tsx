@@ -62,20 +62,20 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	return (
 		<div
 			className={
-				"h-auto bg-gray-600/20 flex w-full flex-col p-3  overflow-hidden transition-transform transform group hover:scale-105 hover:bg-gray-600/30"
+				"group flex h-auto w-full transform flex-col  overflow-hidden bg-gray-600/20 p-3 transition-transform hover:scale-105 hover:bg-gray-600/30"
 			}
 			style={{
 				clipPath: "polygon(8% 0, 100% 0, 100% 93%, 92% 100%, 0 100%, 0 6%)",
 			}}
 		>
-			<div className="w-full flex justify-between h-auto items-center">
+			<div className="flex h-auto w-full items-center justify-between">
 				<span
-					className={`${monomaniac.className} w-full p-2  h-auto  text-xs text-gray-400  uppercase tracking-widest`}
+					className={`${monomaniac.className} h-auto w-full  p-2  text-xs uppercase  tracking-widest text-gray-400`}
 				>
 					{formattedDate}
 				</span>
 
-				<span className="uppercase px-2 rounded-full font-bold text-xs py-1 bg-gray-600/50 border border-gray-600/25 text-blackflex">
+				<span className="text-blackflex rounded-full border border-gray-600/25 bg-gray-600/50 px-2 py-1 text-xs font-bold uppercase">
 					post
 				</span>
 			</div>
@@ -83,13 +83,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} p-2 text-4xl tracking-wide capitalize leading-none text-gray-200 cursor-pointer group-hover:text-gray-100`}
+						className={`${monomaniac.className} cursor-pointer p-2 text-4xl capitalize leading-none tracking-wide text-gray-200 group-hover:text-gray-100`}
 					>
 						{renderHeading()}
 					</h2>
 				</Link>
 				<p
-					className={`${play.className} p-2 text-md leading-tight text-gray-400 group-hover:text-gray-100`}
+					className={`${play.className} text-md p-2 leading-tight text-gray-400 group-hover:text-gray-100`}
 				>
 					{renderSubheading()}
 				</p>
@@ -104,7 +104,7 @@ const ScrollablePostList: FC<PostsListProps> = ({ post }) => {
 
 	return (
 		<div
-			className="  fixed top-2 md:top-10 left-2 md:left-20 right-2 md:right-20 bottom-16 md:bottom-16  lg:p-4 p-4 overflow-auto custom-scrollbar backdrop-blur-[30px] shadow-2xl shadow-inner"
+			className="  custom-scrollbar fixed bottom-16 left-2 right-2 top-2 overflow-auto p-4 shadow-2xl  shadow-inner backdrop-blur-[30px] md:bottom-16 md:left-20 md:right-20 md:top-10 lg:p-4"
 			style={{
 				clipPath: window.innerWidth >= 768 ? mdClipPath : baseClipPath,
 			}}
@@ -139,7 +139,6 @@ const ScrollablePostList: FC<PostsListProps> = ({ post }) => {
 
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
                     background-color: rgba(255, 255, 255, 0.3);
-					
                 }
             `}</style>
 		</div>

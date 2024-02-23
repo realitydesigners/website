@@ -24,7 +24,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		: "Date not available";
 
 	return (
-		<div className=" w-full h-auto flex flex-col border border-gray-600/50 p-2 rounded-[1em]">
+		<div className=" flex h-auto w-full flex-col rounded-[1em] border border-gray-600/50 p-2">
 			{image && (
 				<div className="relative">
 					<SanityImage
@@ -38,20 +38,20 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				</div>
 			)}
 			<span
-				className={`${monomaniac.className} w-full p-2 pt-4 h-auto  text-xs text-gray-400  uppercase tracking-widest`}
+				className={`${monomaniac.className} h-auto w-full p-2 pt-4  text-xs uppercase  tracking-widest text-gray-400`}
 			>
 				{formattedDate}
 			</span>
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} p-2 text-4xl capitalize leading-none text-gray-200 cursor-pointer`}
+						className={`${monomaniac.className} cursor-pointer p-2 text-4xl capitalize leading-none text-gray-200`}
 					>
 						{heading || "no title"}
 					</h2>
 				</Link>
 				<p
-					className={`${play.className} p-2 text-md leading-tight text-gray-400`}
+					className={`${play.className} text-md p-2 leading-tight text-gray-400`}
 				>
 					{subheading || "no subheading"}
 				</p>

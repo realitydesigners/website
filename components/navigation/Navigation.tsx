@@ -28,20 +28,20 @@ const Navigation: React.FC<NavigationProps> = ({ categories }) => {
 	};
 
 	return (
-		<div className="w-full p-2 absolute z-20 top-12">
+		<div className="absolute top-12 z-20 w-full p-2">
 			<div className="flex items-center gap-2">
-				<span className="text-sm text-gray-300 font-bold whitespace-nowrap">
+				<span className="whitespace-nowrap text-sm font-bold text-gray-300">
 					Main
 				</span>
 				<div
-					className="flex overflow-x-auto gap-2"
+					className="flex gap-2 overflow-x-auto"
 					style={{ whiteSpace: "nowrap" }}
 				>
 					{mainCategories.map((category) => (
 						<button
 							type="button"
 							key={category.title}
-							className="uppercase relative text-sm text-gray-200 px-3 py-2 bg-black/50 rounded-md border border-gray-600/25 hover:bg-gray-600/50 focus:outline-none focus:border-gray-400 transition duration-300"
+							className="relative rounded-md border border-gray-600/25 bg-black/50 px-3 py-2 text-sm uppercase text-gray-200 transition duration-300 hover:bg-gray-600/50 focus:border-gray-400 focus:outline-none"
 							onClick={() => handleClickForCategory(category.title)}
 						>
 							{category.title}
@@ -49,19 +49,19 @@ const Navigation: React.FC<NavigationProps> = ({ categories }) => {
 					))}
 				</div>
 			</div>
-			<div className="flex items-center gap-2 mt-4">
-				<span className="text-sm text-gray-300 font-bold whitespace-nowrap">
+			<div className="mt-4 flex items-center gap-2">
+				<span className="whitespace-nowrap text-sm font-bold text-gray-300">
 					Sub
 				</span>
 				<div
-					className="flex overflow-x-auto gap-2"
+					className="flex gap-2 overflow-x-auto"
 					style={{ whiteSpace: "nowrap" }}
 				>
 					{subCategories.map((category) => (
 						<button
 							type="button"
 							key={category.title}
-							className="uppercase relative text-sm text-gray-200 px-3 py-2 bg-black/50 rounded-md border border-gray-600/25 hover:bg-gray-600/50 focus:outline-none focus:border-gray-400 transition duration-300"
+							className="relative rounded-md border border-gray-600/25 bg-black/50 px-3 py-2 text-sm uppercase text-gray-200 transition duration-300 hover:bg-gray-600/50 focus:border-gray-400 focus:outline-none"
 							onClick={() => handleClickForCategory(category.title)}
 						>
 							{category.title}
@@ -78,11 +78,10 @@ const Navigation: React.FC<NavigationProps> = ({ categories }) => {
                     white-space: nowrap;
                     scrollbar-width: none; /* For Firefox */
                 }
-                
+
                 .category-container::-webkit-scrollbar {
                     display: none; /* For WebKit browsers */
                 }
-              
             `}</style>
 		</div>
 	);
