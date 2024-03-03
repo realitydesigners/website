@@ -17,11 +17,13 @@ export async function POST(request: NextRequest) {
 
 	const heading = postData.heading || "New Blog Post";
 	const subheading = postData.subheading || "No Subheading";
+	const image = postData.image || "No Image";
 	const slug = postData.slug || "no-slug";
 
 	const emailContent = NewPost({
 		heading,
 		slug,
+		image,
 		subheading,
 	});
 
