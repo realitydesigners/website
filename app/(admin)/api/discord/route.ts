@@ -7,6 +7,7 @@ export async function POST(request: NextRequest) {
 	}
 
 	const postData = await request.json();
+
 	if (postData._type !== "posts") {
 		return new Response(null, { status: 400 });
 	}
