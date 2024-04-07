@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
 	const heading = postData.heading || "No Heading";
 	const slug = postData.slug || "no-slug";
-	const messageContent = `**New Post**: *${heading}*\n[Read More](https://www.reality-designers.com/posts/${slug})`;
+	const messageContent = `@everyone **New Post**: *${heading}*\n[Read More](https://www.reality-designers.com/posts/${slug})`;
 
 	const discordWebhookUrl =
 		"https://discord.com/api/webhooks/1208644941673136138/S8e6byIDZg7ub-3W4d76gi8TLOChC38KfQzOZhuLxOVuRitMEJRheELqeg7AODLvVE93";
