@@ -6,6 +6,7 @@ export default authMiddleware({
 		"/story",
 		"/team",
 		"/feed",
+		"/studio",
 		"/videos",
 		"/posts",
 		"/glossary",
