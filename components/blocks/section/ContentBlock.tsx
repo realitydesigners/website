@@ -32,9 +32,10 @@ const ContentBlock: React.FC<ContentBlockProps> = ({ block }) => {
 	const { content, layout } = block;
 	const theme = layout || "light";
 	const styles = templateStyles[theme];
+	console.log(content);
 
 	return (
-		<div className={` h-auto w-screen min-h-screen ${styles} w-full relative`}>
+		<div className={` h-auto min-h-screen w-screen ${styles} relative w-full`}>
 			<PortableText
 				value={content}
 				components={templateComponents[theme] || templateComponents.light}

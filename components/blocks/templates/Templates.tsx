@@ -102,12 +102,11 @@ const DarkTemplate = {
 			);
 		},
 		videoRef: ({ value }) => {
-			const { videoTitle, videoFileUrl, videoImage, className } =
-				value.videoRef;
+			const { videoTitle, videoUrl, videoImage, className } = value.videoRef;
 			return (
 				<VideoRefBlock
 					videoTitle={videoTitle}
-					videoFileUrl={videoFileUrl}
+					videoUrl={videoUrl}
 					videoImage={videoImage}
 					className={className}
 				/>
@@ -176,13 +175,12 @@ const LightTemplate = {
 			);
 		},
 		videoRef: ({ value }) => {
-			const { videoTitle, videoFileUrl, videoImage, className } =
-				value.videoRef;
+			const { videoTitle, videoUrl, videoImage, className } = value.videoRef;
 
 			return (
 				<VideoRefBlock
 					videoTitle={videoTitle}
-					videoFileUrl={videoFileUrl}
+					videoUrl={videoUrl}
 					videoImage={videoImage}
 					className={className}
 				/>
@@ -245,13 +243,12 @@ const TransparentTemplate = {
 			);
 		},
 		videoRef: ({ value }) => {
-			const { videoTitle, videoFileUrl, videoImage, className } =
-				value.videoRef;
+			const { videoTitle, videoUrl, videoImage, className } = value.videoRef;
 
 			return (
 				<VideoRefBlock
 					videoTitle={videoTitle}
-					videoFileUrl={videoFileUrl}
+					videoUrl={videoUrl}
 					videoImage={videoImage}
 					className={className}
 				/>

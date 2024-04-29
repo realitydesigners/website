@@ -109,6 +109,7 @@ export interface VideoPayload extends BaseItem {
 	asset: {
 		_ref: string;
 	};
+	url: string;
 	subcategories: Array<{
 		name: string;
 		title: string;

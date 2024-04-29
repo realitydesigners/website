@@ -124,6 +124,7 @@ export const postsBySlugQuery = groq`
                 "videoTitle": video->title,
                 "videoFileUrl": video->video.asset->url,
                 "videoImage": video->image.asset->url,
+                "videoUrl": video->url,
                 "videoTeam": video->team,
             },
             
@@ -243,6 +244,7 @@ export const getVideoBySlugQuery = groq`
     ...,
     heading,
     subHeading,
+    url,
     image,
     tags,
     layout,
