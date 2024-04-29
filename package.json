@@ -47,7 +47,6 @@
 		"@vercel/analytics": "1.2.0",
 		"aframe": "^1.5.0",
 		"classnames": "^2.5.1",
-		"date-fns": "^3.0.6",
 		"got": "^14.0.0",
 		"gsap": "^3.12.4",
 		"gsplat": "^1.0.2",
