@@ -96,6 +96,8 @@ const PostPreviewDialog = ({
 	if (!isOpen || !postData) return null;
 	const { block = [] } = postData;
 	const [content] = block;
+	const imageUrl = block[0].imageRef?.imageUrl;
+
 	const style = themeClasses[theme];
 
 	return (
@@ -108,6 +110,11 @@ const PostPreviewDialog = ({
 						<div
 							className={`flex h-auto w-full justify-between  rounded-[.6em] p-2  ${style.topBackgroundColor} `}
 						>
+							<img
+								src={imageUrl}
+								alt={"this"}
+								className="h-[50px] max-w-[50px] rounded-[.5em] object-cover"
+							/>
 							<SanityImage
 								image={content.image}
 								width={200}

@@ -8,19 +8,11 @@ const PostsCardLight = ({ slug, heading, image }) => {
 	return (
 		<div className="flex w-full  items-center justify-center py-4 px-4">
 			<div className=" bg-gradient-to-r from-blue-200/10 to-blue-200/5  w-full rounded-lg md:w-1/3 group flex h-auto flex-row p-3 shadow-lg transition-shadow duration-300 hover:shadow-xl lg:w-1/3">
-				{image && (
-					<div className="relative w-1/3">
-						<SanityImage
-							image={image}
-							width={250}
-							height={250}
-							priority={true}
-							alt={`Cover Image for ${heading}`}
-							classesWrapper="h-full w-full transform rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
-						/>
-					</div>
-				)}
-
+				<img
+					src={image}
+					alt={heading}
+					className="h-[80px] max-w-[80px] rounded-[.5em] object-cover"
+				/>
 				<div className="relative flex w-3/4 flex-col pl-4">
 					<p
 						className={`${monomaniac.className}  pt-2 mb-2 text-xs uppercase leading-none tracking-wide bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
@@ -41,9 +33,7 @@ const PostsCardLight = ({ slug, heading, image }) => {
 };
 
 const PostsRefBlock = ({ slug, heading, image }) => {
-	if (!slug || !heading || !image) return null;
-
 	return <PostsCardLight slug={slug} heading={heading} image={image} />;
 };
 
-export default React.memo(PostsRefBlock);
+export default PostsRefBlock;

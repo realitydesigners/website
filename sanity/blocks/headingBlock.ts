@@ -1,5 +1,6 @@
 import { defineField } from "sanity";
 import categoryType from "../schemas/category";
+import imgType from "../schemas/img";
 import teamType from "../schemas/team";
 
 export default {
@@ -19,6 +20,13 @@ export default {
 				],
 			},
 		}),
+		defineField({
+			name: "imageRef",
+			title: "ImageRef",
+			type: "reference",
+			to: [{ type: imgType.name }],
+		}),
+
 		{
 			name: "heading",
 			title: "Heading",
@@ -37,36 +45,14 @@ export default {
 				dateFormat: "DD-MM-YYYY",
 			},
 		}),
-		defineField({
-			type: "image",
-			name: "image",
-			title: "Image",
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: "alt",
-					title: "Alt Text",
-					type: "string",
-				},
-			],
-		}),
+
 		defineField({
 			name: "team",
 			title: "Team",
 			type: "reference",
 			to: [{ type: teamType.name }],
 		}),
-		defineField({
-			name: "tags",
-			title: "Tags",
-			type: "array",
-			of: [{ type: "string" }],
-			options: {
-				layout: "tags",
-			},
-		}),
+
 		defineField({
 			name: "category",
 			title: "Meta Category",

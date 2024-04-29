@@ -1,5 +1,6 @@
 import { defineField } from "sanity";
 import categoryType from "../schemas/category";
+import imgType from "../schemas/img";
 import teamType from "../schemas/team";
 
 export default {
@@ -43,6 +44,13 @@ export default {
 			title: "URL",
 			validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
 		}),
+		defineField({
+			name: "imageRef",
+			title: "ImageRef",
+			type: "reference",
+			to: [{ type: imgType.name }],
+		}),
+
 		defineField({
 			type: "image",
 			name: "image",

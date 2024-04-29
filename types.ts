@@ -51,6 +51,7 @@ export interface BlockItem extends BaseItem {
 	heading?: string;
 	subheading?: string;
 	image?: Image;
+	imageRef?: any;
 	tags?: string[];
 	layout?: string;
 	publicationDate?: string;

@@ -40,6 +40,8 @@ const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
 export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, subheading, publicationDate } = block;
 
+	const imageUrl = block.imageRef?.imageUrl;
+
 	const formattedDate = publicationDate
 		? new Date(publicationDate).toLocaleDateString("en-US", {
 				year: "numeric",
@@ -61,7 +63,12 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			<div className="overflow-hidden">
 				{/* Apply scaling on hover to the image */}
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<PostImage image={image} heading={heading} />
+					{/* <PostImage image={image} heading={heading} /> */}
+					<img
+						src={imageUrl}
+						alt={"this"}
+						className="-[.7em] h-[50vw] w-full object-contain object-cover md:h-[33vw]  lg:h-[15vw]"
+					/>
 				</div>
 			</div>
 			<span
@@ -96,7 +103,7 @@ const PostsList: FC<PostsListProps> = ({ post }) => {
 		<div className="grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
-					block.heading && block.image ? (
+					block.heading && block.imageRef ? (
 						<PostItem
 							key={`${postItem.slug?.current}-${index}`}
 							block={block}

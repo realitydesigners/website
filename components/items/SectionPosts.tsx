@@ -7,6 +7,7 @@ import { FC } from "react";
 
 interface PostItemProps {
 	block: BlockItem;
+
 	slug?: {
 		current?: string;
 	};
@@ -28,6 +29,7 @@ interface MainPostProps {
 }
 
 interface PostImageProps {
+	imageUrl?: Image;
 	image?: Image;
 	heading?: string;
 }
@@ -59,31 +61,19 @@ const SubHeading = ({ heading, className }) => {
 	return <h2 className={className}>{displayHeading}</h2>;
 };
 
-const PostImage: FC<PostImageProps> = ({ image, heading }) => {
-	if (!image) return null;
-
-	return (
-		<div className="mb-3 flex w-full lg:m-0 lg:w-auto">
-			<SanityImage
-				width={500}
-				height={500}
-				priority={true}
-				image={image}
-				alt={`Cover Image for ${heading}`}
-				classesWrapper="lg:w-[5em] lg:h-[5em] w-full h-[8em] object-cover object-contain  -[.7em]"
-			/>
-		</div>
-	);
-};
-
 export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
-	const { image, heading } = block;
+	const { heading } = block;
+	const imageUrl = block.imageRef?.imageUrl;
 
 	return (
 		<div className="group w-full border-gray-600/50 p-2 transition duration-300 ease-in-out hover:shadow-lg lg:block lg:flex lg:flex-row lg:flex-row-reverse">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<PostImage image={image} heading={heading} />
+					<img
+						src={imageUrl}
+						alt={"this"}
+						className="-[.7em] h-[8em] w-full object-contain object-cover lg:h-[5em]  lg:w-[5em]"
+					/>
 				</div>
 			</div>
 			<div className="flex w-full items-center lg:pl-1 lg:pr-2">
@@ -103,7 +93,7 @@ const TopBar: FC<PostsListProps> = ({ post }) => {
 		<div className="grid h-auto w-full grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4 ">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
-					block.heading && block.image ? (
+					block.heading && block.imageRef ? (
 						<PostItems
 							key={`${postItem.slug?.current}-${index}`}
 							block={block}
@@ -120,34 +110,23 @@ const TopBar: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-//Sidebar
-const SideBarPostImage: FC<PostImageProps> = ({ image, heading }) => {
-	if (!image) return null;
-
-	return (
-		<div className="relative">
-			<SanityImage
-				width={500}
-				height={500}
-				priority={true}
-				image={image}
-				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[250px] lg:h-[175px] object-cover object-contain  "
-			/>
-		</div>
-	);
-};
-
 export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, publicationDate } = block;
+	const imageUrl = block.imageRef?.imageUrl;
+	const imageAlt = block.imageRef?.imageAlt;
 
 	return (
 		<div className="group flex h-auto flex-col p-1 transition duration-300 ease-in-out hover:shadow-lg">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<SideBarPostImage image={image} heading={heading} />
+					<img
+						src={imageUrl}
+						alt={"this"}
+						className="h-[250px] w-full object-contain object-cover lg:h-[175px]  "
+					/>
 				</div>
 			</div>
+			<p>{heading}</p>
 			<FormattedDate
 				date={publicationDate}
 				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs font-bold uppercase tracking-widest text-transparent`}
@@ -171,7 +150,7 @@ const SideBar: FC<PostsListProps> = ({ post }) => {
 		<div className="flex w-full flex-col gap-4 lg:w-1/4">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
-					block.heading && block.image ? (
+					block.heading && block.imageRef ? (
 						<PostItem
 							key={`${postItem.slug?.current}-${index}`}
 							block={block}
@@ -188,30 +167,21 @@ const SideBar: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-//Main Post
-const MainPostImage: FC<PostImageProps> = ({ image, heading }) => {
-	return (
-		<div className="relative">
-			<SanityImage
-				width={1000}
-				height={1000}
-				priority={true}
-				image={image}
-				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[350px]  lg:h-[33vw] object-cover object-contain  -[.7em]"
-			/>
-		</div>
-	);
-};
-
 export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
-	const { image, heading, publicationDate } = block;
+	const { publicationDate } = block;
+
+	const imageUrl = block.imageRef?.imageUrl;
+	const imageAlt = block.imageRef?.imageAlt;
 
 	return (
 		<div className="group flex h-auto flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out">
 			<div className="overflow-hidden ">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<MainPostImage image={image} heading={heading} />
+					<img
+						src={imageUrl}
+						alt={"this"}
+						className="-[.7em] h-[350px]  w-full object-contain object-cover  lg:h-[33vw]"
+					/>
 				</div>
 			</div>
 			<FormattedDate
@@ -244,32 +214,19 @@ export const MainPost: FC<MainPostProps> = ({ post }) => {
 	);
 };
 
-//Sidebar
-const RightBarPostImage: FC<PostImageProps> = ({ image, heading }) => {
-	if (!image) return null;
-
-	return (
-		<div className="flex">
-			<SanityImage
-				width={500}
-				height={500}
-				priority={true}
-				image={image}
-				alt={`Cover Image for ${heading}`}
-				classesWrapper="h-[6em] w-[5em]  object-cover object-contain  -[.7em]"
-			/>
-		</div>
-	);
-};
-
 export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
-	const { image, heading, publicationDate } = block;
+	const { publicationDate } = block;
 
+	const imageUrl = block.imageRef?.imageUrl;
 	return (
 		<div className="group flex h-auto w-full flex-row p-1 transition duration-300 ease-in-out hover:shadow-lg">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<RightBarPostImage image={image} heading={heading} />
+					<img
+						src={imageUrl}
+						alt={"this"}
+						className="-[.7em] h  -[.7em] h-[6em]  w-[5em] object-contain object-cover"
+					/>
 				</div>
 			</div>
 			<div className="flex w-full flex-col pl-1 pr-2">
@@ -293,7 +250,7 @@ const RightSideBar: FC<PostsListProps> = ({ post }) => {
 		<div className="mb-4 flex w-full flex-col gap-4 lg:mb-0 lg:w-1/4">
 			{post.map((postItem) =>
 				postItem.block?.map((block, index) =>
-					block.heading && block.image ? (
+					block.heading && block.imageRef ? (
 						<RightBarPostItem
 							key={`${postItem.slug?.current}-${index}`}
 							block={block}
@@ -310,17 +267,27 @@ const RightSideBar: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-const SectionPosts = ({
+interface SectionPostsProps {
+	topPostData: PostsPayload[];
+	sidePostData: PostsPayload[];
+	mainPostData: PostsPayload;
+	rightPostData: PostsPayload[];
+}
+const SectionPosts: FC<SectionPostsProps> = ({
 	topPostData,
 	sidePostData,
 	mainPostData,
 	rightPostData,
 }) => {
+	if (!mainPostData || !mainPostData.block) {
+		return <div>No main post available</div>;
+	}
+
 	return (
 		<div className="flex-cols flex h-auto w-full flex-wrap p-2 pt-[80px] lg:px-16">
 			<SideBar post={sidePostData} className="order-2 lg:order-2" />
 			<MainPost post={mainPostData} className="order-1 lg:order-1" />
-			<RightSideBar post={rightPostData} className="order-3 lg:order-3 " />
+			<RightSideBar post={rightPostData} className="order-3 lg:order-3" />
 			<TopBar post={topPostData} className="order-4 lg:order-4" />
 		</div>
 	);

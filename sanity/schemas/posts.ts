@@ -6,14 +6,6 @@ export default defineType({
 	title: "Posts",
 	fields: [
 		defineField({
-			name: "slug",
-			title: "Slug",
-			type: "slug",
-			options: {
-				source: "block.0.heading",
-			},
-		}),
-		defineField({
 			name: "block",
 			title: "Content Block",
 			type: "array",
@@ -41,17 +33,19 @@ export default defineType({
 			],
 		}),
 		defineField({
-			name: "subcategories",
-			title: "Subcategories",
-			type: "array",
-			of: [{ type: "reference", to: { type: "category" } }],
+			name: "slug",
+			title: "Slug",
+			type: "slug",
+			options: {
+				source: "block.0.heading",
+			},
 		}),
 	],
 	preview: {
 		select: {
 			title: "block.0.heading",
 			subheading: "block.0.subheading",
-			media: "block.0.image",
+			media: "block.0.imageRef.image",
 		},
 		prepare(selection) {
 			const { title, media, subheading } = selection;

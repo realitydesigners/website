@@ -53,22 +53,21 @@ export const feedQuery = groq`
 `;
 
 export const postsQuery = groq`
- *[_type == "posts"] | order(_createdAt desc)[0..40] {
+ *[_type == "posts"] | order(_createdAt desc)[0...40] {
     slug,
-    subcategories[]->{
-     ...,
-     name,
-     title,
-     },
      block[]{
        ...,
        heading,
        subheading,
-       image,
-       tags,
        layout,
        title,
        publicationDate,
+        "imageRef": {
+              ...,
+            "imageUrl": imageRef->image.asset->url,
+            "imageAlt": imageRef->alt,
+        },
+      
       team->{
        ...,
        name,
@@ -89,13 +88,11 @@ export const postsBySlugQuery = groq`
         ...,
         heading,
         subheading,
-        image,
         tags,
         category->,
         layout,
         publicationDate,
         team->,
-
         _type == "imageCanvasBlock" => {
             layout,
             image->,
@@ -103,6 +100,14 @@ export const postsBySlugQuery = groq`
             alt,
             
         },
+              "imageRef": {
+              ...,
+            "imageUrl": imageRef->image.asset->url,
+            "imageAlt": imageRef->alt,
+        },
+      
+
+       
 
         content[] {
             ...,
@@ -111,6 +116,8 @@ export const postsBySlugQuery = groq`
                 className->{name},
                 team->,
             },
+            
+            
 
             markDefs[] {
                 ...,
@@ -144,7 +151,7 @@ export const postsBySlugQuery = groq`
             "postsRef": {
                 "postsHeading": posts->block[0].heading,
                 "postsSlug": posts->slug.current,
-                "postsImage": posts->block[0].image,
+                "postsImage": posts->block[0].imageRef->image.asset->url,
             },
         },
     },

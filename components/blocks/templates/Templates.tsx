@@ -93,6 +93,7 @@ const DarkTemplate = {
 	types: {
 		postsRef: ({ value }) => {
 			const { postsHeading, postsSlug, postsImage } = value.postsRef;
+
 			return (
 				<PostsRefBlock
 					slug={postsSlug}

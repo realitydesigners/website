@@ -16,7 +16,7 @@ const loadingBgColors: LoadingBgColors = {
 
 type SanityImageProps = {
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	image: any; // Replace with the correct type
+	image: any;
 	alt: string;
 	width: number;
 	height: number;

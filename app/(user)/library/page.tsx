@@ -16,8 +16,6 @@ export default async function CategoryPage(): Promise<JSX.Element> {
 	const mainCategories = categories.filter((category) => category.isMain);
 	const categoryPositions = getCategoryPositions(mainCategories.length);
 
-	console.log(mainCategories);
-
 	return (
 		<InteractiveProvider categoryPositions={categoryPositions}>
 			<div className="relative h-screen w-screen">

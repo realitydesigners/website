@@ -10,7 +10,7 @@ const iconStyle = {
 	display: "flex",
 	width: "100%",
 	height: "100%",
-	color: "#999",
+	color: "#fff",
 };
 
 const iconMap = {
@@ -21,7 +21,7 @@ const iconMap = {
 	headingSplineBlock: <DatabaseIcon style={iconStyle} />,
 };
 
-const defaultIcon = <ClipboardIcon style={{ ...iconStyle, color: "#999" }} />;
+const defaultIcon = <ClipboardIcon style={{ ...iconStyle, color: "#fff" }} />;
 
 function CustomItem({ title, value, renderDefault, ...restProps }) {
 	const handleDragStart = (e) => {
@@ -41,19 +41,19 @@ function CustomItem({ title, value, renderDefault, ...restProps }) {
 	};
 
 	const iconContainerStyle = {
-		width: "70px",
-		height: "70px",
+		width: "60px",
+		height: "60px",
 		display: "flex",
 		flexDirection: "column",
 		padding: "0.5em",
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "#1e1e1e",
+		backgroundColor: "#000",
 		borderRadius: ".5em",
 	};
 
 	const titleStyle = {
-		color: "#999",
+		color: "#fff",
 		fontSize: "0.5em",
 		fontWeight: "bold",
 		marginBottom: ".5em",
