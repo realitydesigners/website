@@ -4,11 +4,13 @@ import "tailwindcss/tailwind.css";
 
 export default async function SignUpLayout({
 	children,
-}: { children: React.ReactNode }) {
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<>
 			<Navbar />
-			<div className="flex justify-center items-center h-screen min-h-screen flex-col bg-gray-200">
+			<div className="flex h-screen min-h-screen flex-col items-center justify-center">
 				{children}
 			</div>
 			<Footer />

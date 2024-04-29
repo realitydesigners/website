@@ -28,104 +28,208 @@ button {
    color: var(--text-color);
 }
 
-.cl-rootBox {
-   width: 90%;
+.cl-main {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.cl-signUp-start,
-.cl-signIn-start {
-   width: 100%;
-}
-
-/* Header styles */
 .cl-header {
-   background-color: var(--background-color);
-   border-bottom: 1px solid var(--border-color);
-   padding: 1.5rem;
-   text-align: center;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .cl-headerTitle {
-   font-size: 1.75rem;
-   font-weight: 600;
-   margin-bottom: 0.5rem;
+   color: #a0a0b1;
 }
 
 .cl-headerSubtitle {
-   font-size: 1rem;
-   color: #64748b;
-   /* Lighter text color for subtitle */
+   color: #858595;
 }
 
-/* Main content styles */
-.cl-main {
-   background-color: var(--background-color);
-   padding: 2rem;
-   border-radius: var(--border-radius);
-   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-   /* Subtle shadow for depth */
+/* Default styles for small screens */
+.cl-card {
+   width: 95vw;
+   border-radius: 0px;
+   background-color: rgba(0, 0, 0, 0.7);
+   backdrop-filter: blur(8px);
+
 }
 
-/* Form styles */
-.cl-form {
-   width: 100%;
-   gap: 1.5rem;
-}
-
-/* Form field styles */
-.cl-formFieldRow {
-   display: flex;
-   flex-direction: column;
-}
-
-.cl-formFieldRow input[type='text'],
-.cl-formFieldRow input[type='email'],
-.cl-formFieldRow input[type='password'] {
-   padding: 0.75rem 1rem;
-   border: 1px solid var(--input-border-color);
-   border-radius: var(--border-radius);
-   background-color: var(--input-background);
-   font-size: 1rem;
-}
-
-.cl-formFieldRow input[type='text']:focus,
-.cl-formFieldRow input[type='email']:focus,
-.cl-formFieldRow input[type='password']:focus {
-   border-color: var(--primary-color);
-   outline: none;
-}
-
-/* Button styles */
-.cl-formButtonPrimary {
-   padding: 0.75rem 1rem;
-   border: none;
-   border-radius: var(--border-radius);
-   background-color: var(--primary-color);
-   color: white;
-   font-size: 1rem;
-   font-weight: 600;
-   cursor: pointer;
-   transition: background-color 0.3s;
-}
-
-.cl-formButtonPrimary:hover,
-.cl-formButtonPrimary:focus {
-   background-color: var(--button-hover-color);
-   outline: none;
-}
-
-/* Footer styles */
-.cl-footer {
-   text-align: center;
-   padding: 1rem;
-   font-size: 0.875rem;
-}
-
-@media (max-width: 768px) {
-
-   .cl-header,
-   .cl-main,
-   .cl-footer {
-      padding: 1rem;
+@media (min-width: 640px) {
+   .cl-card {
+      width: 88vw;
+      /* 25% of viewport width */
    }
+}
+
+@media (min-width: 1024px) {
+   .cl-card {
+      width: 100%;
+
+   }
+}
+
+/* Sign Up Form Styles */
+.clsignUp-root .cl-headerTitle {
+   color: #fff;
+   /* White text color */
+}
+
+.clsignUp-root .cl-headerSubtitle {
+   color: #fff;
+   /* White text color */
+}
+
+.signUp.start.title {
+   color: #fff;
+   /* White text color */
+}
+
+.signUp.start.subtitle {
+   color: #fff;
+   /* White text color */
+}
+
+
+/* Social Buttons  */
+.cl-socialButtonsBlockButton {
+   color: #a0a0b1;
+   background-color: #383841;
+}
+
+.cl-socialButtonsBlockButton:hover {
+   color: #fff;
+   background-color: #686976;
+}
+
+.cl-dividerLine {
+   background-color: #858595;
+
+}
+
+.cl-dividerText {
+   color: #a0a0b1;
+}
+
+/* Social Buttons  */
+
+/* Form  */
+.cl-formFieldInput {
+   padding: 12px;
+   border: 1px solid #1e1e20;
+   border-radius: 4px;
+   font-size: 16px;
+   background-color: #121212;
+}
+
+.cl-formFieldLabel {
+   width: 100%;
+   color: #858595;
+}
+
+
+.cl-formFieldInput,
+.cl-formFieldInfoText,
+.cl-formFieldSuccessText,
+.cl-userPreviewMainIdentifier,
+.cl-userPreviewSecondaryIdentifier,
+.cl-profileSectionTitleText,
+.cl-profileSectionContent,
+.cl-profileSectionContent__username,
+.cl-profileSectionContent__danger,
+.userProfile.start.dangerSection.deleteAccountButton {
+   color: #a0a0b1;
+}
+
+.userButtonPopoverActionButton:hover {
+
+   background-color: #1e1e20;
+}
+
+.cl-navbar {
+   width: 200px;
+}
+
+.cl-scrollBox {
+   width: 800px;
+}
+
+.cl-userButtonPopoverActionButtonText {
+   color: #a0a0b1;
+}
+
+.cl-userButtonPopoverActionButtonIcon {
+   color: #a0a0b1;
+
+}
+
+.cl-formFieldInputShowPasswordButton {
+   color: #a0a0b1;
+
+}
+
+.cl-formFieldInputShowPasswordButton:hover {
+   color: #6a6a75;
+
+}
+
+.cl-formFieldInput:focus {
+   outline: none;
+   border-color: #505163;
+   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+
+}
+
+.cl-formFieldInput[aria-invalid="true"] {
+   border-color: rgb(233, 74, 74);
+   /* Red border for invalid input */
+}
+
+.cl-formFieldErrorText {
+   color: rgb(74, 233, 233);
+}
+
+.cl-formFieldErrorText__password {
+   color: rgb(233, 74, 74);
+}
+
+/* Forms */
+
+/* Footer */
+.cl-footerAction {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 50px;
+
+}
+
+.cl-footerActionText {
+   color: #a0a0b1;
+}
+
+.cl-footerActionLink {
+   color: #a0a0b1;
+   font-weight: 600;
+   background-color: #383841;
+   border-radius: 4px;
+   margin-left: 8px;
+   padding: 8px;
+}
+
+.cl-footerActionLink:hover {
+   color: #a0a0b1;
+   font-weight: 600;
+   background-color: #686976;
+   border-radius: 4px;
+   margin-left: 8px;
+   padding: 8px;
+}
+
+/* Footer */
+
+
+.cl-userButtonPopoverCard {
+   height: 180px;
+
+
 }

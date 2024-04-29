@@ -22,30 +22,28 @@ export default {
 		}),
 		defineField({
 			name: "imageRef",
-			title: "ImageRef",
+			title: "Image",
 			type: "reference",
 			to: [{ type: imgType.name }],
 		}),
-
-		{
+		defineField({
 			name: "heading",
 			title: "Heading",
 			type: "string",
-		},
-		{
+		}),
+		defineField({
 			name: "subheading",
 			title: "Subheading",
 			type: "text",
-		},
+		}),
 		defineField({
 			name: "publicationDate",
-			title: "Publication Date",
+			title: "Date",
 			type: "date",
 			options: {
 				dateFormat: "DD-MM-YYYY",
 			},
 		}),
-
 		defineField({
 			name: "team",
 			title: "Team",
@@ -55,7 +53,7 @@ export default {
 
 		defineField({
 			name: "category",
-			title: "Meta Category",
+			title: "Category",
 			type: "reference",
 			to: [{ type: categoryType.name }],
 		}),
@@ -64,7 +62,7 @@ export default {
 		select: {
 			title: "heading",
 			subtitle: "subheading",
-			media: "image",
+			media: "imageRef.image",
 		},
 	},
 };

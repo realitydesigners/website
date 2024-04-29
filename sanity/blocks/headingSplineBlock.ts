@@ -19,68 +19,44 @@ export default {
 				],
 			},
 		}),
-		{
+		defineField({
+			name: "imageRef",
+			title: "Image",
+			type: "reference",
+			to: [{ type: imgType.name }],
+		}),
+		defineField({
 			name: "heading",
 			title: "Heading",
 			type: "string",
-		},
-		{
+		}),
+		defineField({
 			name: "subheading",
 			title: "Subheading",
 			type: "text",
-		},
+		}),
 		defineField({
 			name: "publicationDate",
-			title: "Publication Date",
+			title: "Date",
 			type: "date",
 			options: {
 				dateFormat: "DD-MM-YYYY",
 			},
 		}),
-
 		defineField({
 			type: "url",
 			name: "url",
 			title: "URL",
 			validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
 		}),
-		defineField({
-			name: "imageRef",
-			title: "ImageRef",
-			type: "reference",
-			to: [{ type: imgType.name }],
-		}),
 
-		defineField({
-			type: "image",
-			name: "image",
-			title: "Image",
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: "alt",
-					title: "Alt Text",
-					type: "string",
-				},
-			],
-		}),
 		defineField({
 			name: "team",
 			title: "Team",
 			type: "reference",
 			to: [{ type: teamType.name }],
 		}),
-		defineField({
-			name: "tags",
-			title: "Tags",
-			type: "array",
-			of: [{ type: "string" }],
-			options: {
-				layout: "tags",
-			},
-		}),
+
 		defineField({
 			name: "category",
 			title: "Category",
