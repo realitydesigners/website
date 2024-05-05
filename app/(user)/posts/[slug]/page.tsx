@@ -11,85 +11,97 @@ import { Metadata, ResolvingMetadata } from "next";
 import React, { Suspense, useMemo } from "react";
 
 type Props = {
-	params: { slug: string };
+    params: { slug: string };
 };
 
 export function generateStaticParams() {
-	return generateStaticSlugs("posts");
+    return generateStaticSlugs("posts");
 }
 
 export async function generateMetadata(
-	{ params }: Props,
-	parent: ResolvingMetadata,
+    { params }: Props,
+    parent: ResolvingMetadata,
 ): Promise<Metadata> {
-	const metadataBaseUrl =
-		process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
-	const post = await sanityFetch<PostsPayload>({
-		query: postsBySlugQuery,
-		tags: ["post"],
-		qParams: { slug: params.slug },
-	});
-	//@ts-ignore
-	const ogImage = urlForOpenGraphImage(post?.block?.[0]?.image);
-	const metadataBase = new URL(metadataBaseUrl);
+    const metadataBaseUrl =
+        process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
+    const post = await sanityFetch<PostsPayload>({
+        query: postsBySlugQuery,
+        tags: ["post"],
+        qParams: { slug: params.slug },
+    });
+    //@ts-ignore
+    const ogImage =
+        post?.block?.[0]?.image ||
+        (Array.isArray(post?.block?.[0]?.imageRef) &&
+            (post?.block?.[0]?.imageRef?.[0]?.imageUrl ||
+                post?.block?.[0]?.imageRef?.[0]?.image)) ||
+        post?.block?.[0]?.imageRef?.imageUrl ||
+        post?.block?.[0]?.imageRef?.image;
 
-	return {
-		title: post?.block?.[0]?.heading,
-		description: post?.block?.[0]?.subheading || (await parent).description,
-		openGraph: ogImage
-			? {
-					images: [ogImage, ...((await parent).openGraph?.images || [])],
-			  }
-			: {},
-		metadataBase,
-	};
+    const metadataBase = new URL(metadataBaseUrl);
+
+    return {
+        title: post?.block?.[0]?.heading,
+        description: post?.block?.[0]?.subheading || (await parent).description,
+        openGraph: ogImage
+            ? {
+                  images: [
+                      ogImage,
+                      ...((await parent).openGraph?.images || []),
+                  ],
+              }
+            : {},
+        metadataBase,
+    };
 }
 
 export default async function PageSlugRoute({ params }) {
-	const currentPost = await sanityFetch<PostsPayload>({
-		query: postsBySlugQuery,
-		tags: ["post"],
-		qParams: { slug: params.slug },
-	});
+    const currentPost = await sanityFetch<PostsPayload>({
+        query: postsBySlugQuery,
+        tags: ["post"],
+        qParams: { slug: params.slug },
+    });
 
-	let otherPosts;
+    let otherPosts;
 
-	if (currentPost) {
-		const allPosts = await sanityFetch<PostsPayload[]>({
-			query: postsQuery,
-			tags: ["post"],
-		});
+    if (currentPost) {
+        const allPosts = await sanityFetch<PostsPayload[]>({
+            query: postsQuery,
+            tags: ["post"],
+        });
 
-		otherPosts = allPosts.filter((post) => post.slug?.current !== params.slug);
-	}
+        otherPosts = allPosts.filter(
+            (post) => post.slug?.current !== params.slug,
+        );
+    }
 
-	const blocks = currentPost?.block || [];
+    const blocks = currentPost?.block || [];
 
-	return (
-		<>
-			{currentPost && (
-				<>
-					<main>
-						{blocks?.map((block) => (
-							<Blocks block={block as BlockProps} />
-						))}
-					</main>
-					<Suspense fallback={<div>Loading...</div>}>
-						{otherPosts && (
-							<div className="flex-cols flex h-auto w-full flex-col bg-black p-2  pb-6 lg:px-6">
-								<h4
-									className={`${monomaniac.className} text-4xl  text-gray-200 `}
-								>
-									More Posts
-								</h4>
-								<div className="w-full py-12 ">
-									<PostsList post={otherPosts} />
-								</div>
-							</div>
-						)}
-					</Suspense>
-				</>
-			)}
-		</>
-	);
+    return (
+        <>
+            {currentPost && (
+                <>
+                    <main>
+                        {blocks?.map((block) => (
+                            <Blocks block={block as BlockProps} />
+                        ))}
+                    </main>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        {otherPosts && (
+                            <div className="flex-cols flex h-auto w-full flex-col bg-black p-2  pb-6 lg:px-6">
+                                <h4
+                                    className={`${monomaniac.className} text-4xl  text-gray-200 `}
+                                >
+                                    More Posts
+                                </h4>
+                                <div className="w-full py-12 ">
+                                    <PostsList post={otherPosts} />
+                                </div>
+                            </div>
+                        )}
+                    </Suspense>
+                </>
+            )}
+        </>
+    );
 }
