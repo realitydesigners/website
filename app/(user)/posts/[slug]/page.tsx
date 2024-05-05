@@ -30,23 +30,28 @@ export async function generateMetadata(
         qParams: { slug: params.slug },
     });
     //@ts-ignore
-    const ogImage =
-        post?.block?.[0]?.image ||
-        (Array.isArray(post?.block?.[0]?.imageRef) &&
-            (post?.block?.[0]?.imageRef?.[0]?.imageUrl ||
-                post?.block?.[0]?.imageRef?.[0]?.image)) ||
+    const ogImageUrl =
         post?.block?.[0]?.imageRef?.imageUrl ||
+        (Array.isArray(post?.block?.[0]?.imageRef) &&
+            (post?.block?.[0]?.imageRef[0]?.imageUrl ||
+                post?.block?.[0]?.imageRef[0]?.image)) ||
         post?.block?.[0]?.imageRef?.image;
+
+    const ogImageAlt =
+        post?.block?.[0]?.imageRef?.imageAlt || "Your default alt text";
 
     const metadataBase = new URL(metadataBaseUrl);
 
     return {
         title: post?.block?.[0]?.heading,
         description: post?.block?.[0]?.subheading || (await parent).description,
-        openGraph: ogImage
+        openGraph: ogImageUrl
             ? {
                   images: [
-                      ogImage,
+                      {
+                          url: ogImageUrl,
+                          alt: ogImageAlt,
+                      },
                       ...((await parent).openGraph?.images || []),
                   ],
               }
@@ -62,6 +67,7 @@ export default async function PageSlugRoute({ params }) {
         qParams: { slug: params.slug },
     });
 
+    console.log(currentPost);
     let otherPosts;
 
     if (currentPost) {
