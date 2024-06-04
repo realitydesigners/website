@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 		case "video": {
 			const videoUrl =
 				postData.videoUrl || "https://www.youtube.com/@realitydesigners";
-			messageContent = `@everyone **New Video**: *${heading}*\n\n[Watch on YouTube](${videoUrl})\n\n[Watch Now](https://www.reality-designers.com/video/${slug})`;
+			messageContent = `@everyone **New Video**: *${heading}*\n\n[Check out post](https://www.reality-designers.com/video/${slug})\n\n[Watch on YouTube](${videoUrl})\n\n`;
 			break;
 		}
 		default:
