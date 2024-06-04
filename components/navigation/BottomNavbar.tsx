@@ -1,6 +1,5 @@
 "use client";
 import { monomaniac } from "@/fonts";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -168,30 +167,7 @@ export default function BottomNavbar() {
 							<Spline scene="https://prod.spline.design/a1UK0U9EA2vi6a-h/scene.splinecode" />
 						</Link>
 					</div>
-					<div>
-						<SignedOut>
-							<div className="mt-6 flex justify-center">
-								<SignInButton>
-									<button
-										type="button"
-										className="text-md relative ml-4 mr-2 flex items-center justify-center rounded-[.2em] border border-gray-600/50 bg-white p-1 pl-2 pr-2 uppercase text-black text-black transition-all duration-200 ease-in-out hover:bg-gray-200 hover:text-black"
-									>
-										<span
-											className={`${monomaniac.className} whitespace-nowrap`}
-										>
-											Log In / Sign Up
-										</span>
-									</button>
-								</SignInButton>
-							</div>
-						</SignedOut>
 
-						<SignedIn>
-							<div className=" relative mt-4 flex   justify-center ">
-								<UserButton afterSignOutUrl="/" />
-							</div>
-						</SignedIn>
-					</div>
 					<ul className="mt-4 flex grid grid-cols-2 flex-wrap  gap-2 lg:grid-cols-3">
 						{navLinks.map(({ href, label, icon }) => (
 							<li key={label}>

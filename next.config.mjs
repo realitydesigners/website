@@ -20,7 +20,6 @@ const config = {
 		},
 	},
 	experimental: {
-		taint: true,
 		urlImports: ["https://themer.sanity.build/"],
 	},
 };

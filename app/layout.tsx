@@ -1,5 +1,4 @@
 import { space } from "@/fonts";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import "tailwindcss/tailwind.css";
@@ -16,16 +15,14 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<ClerkProvider>
-			<html lang="en" className={`${space.className} bg-black`}>
-				<head>
-					<link rel="icon" href="/favicon.ico" sizes="any" />
-				</head>
-				<body className="bg-black">
-					{children}
-					<Analytics />
-				</body>
-			</html>
-		</ClerkProvider>
+		<html lang="en" className={`${space.className} bg-black`}>
+			<head>
+				<link rel="icon" href="/favicon.ico" sizes="any" />
+			</head>
+			<body className="bg-black">
+				{children}
+				<Analytics />
+			</body>
+		</html>
 	);
 }
