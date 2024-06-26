@@ -2,6 +2,7 @@
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac, play, space } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -64,8 +65,10 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				{/* Apply scaling on hover to the image */}
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
 					{/* <PostImage image={image} heading={heading} /> */}
-					<img
+					<Image
 						src={imageUrl}
+						width={300}
+						height={300}
 						alt={"this"}
 						className="-[.7em] h-[50vw] w-full object-contain object-cover md:h-[33vw]  lg:h-[15vw]"
 					/>

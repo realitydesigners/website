@@ -1,7 +1,8 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac, play, space } from "@/fonts";
-import { BlockItem, Image, PostsPayload } from "@/types";
+import { BlockItem, PostsPayload } from "@/types";
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -29,8 +30,8 @@ interface MainPostProps {
 }
 
 interface PostImageProps {
-	imageUrl?: Image;
-	image?: Image;
+	imageUrl?: any;
+	image?: any;
 	heading?: string;
 }
 
@@ -69,8 +70,10 @@ export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
 		<div className="group w-full border-gray-600/50 p-2 transition duration-300 ease-in-out hover:shadow-lg lg:block lg:flex lg:flex-row lg:flex-row-reverse">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<img
+					<Image
 						src={imageUrl}
+						width={200}
+						height={200}
 						alt={"this"}
 						className="-[.7em] h-[8em] w-full object-contain object-cover lg:h-[5em]  lg:w-[5em]"
 					/>
@@ -119,8 +122,10 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		<div className="group flex h-auto flex-col p-1 transition duration-300 ease-in-out hover:shadow-lg">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<img
+					<Image
 						src={imageUrl}
+						width={300}
+						height={300}
 						alt={"this"}
 						className="h-[250px] w-full object-contain object-cover lg:h-[175px]  "
 					/>
@@ -177,8 +182,10 @@ export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
 		<div className="group flex h-auto flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out">
 			<div className="overflow-hidden ">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<img
+					<Image
 						src={imageUrl}
+						width={1000}
+						height={1000}
 						alt={"this"}
 						className="-[.7em] h-[350px]  w-full object-contain object-cover  lg:h-[33vw]"
 					/>
@@ -222,8 +229,10 @@ export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
 		<div className="group flex h-auto w-full flex-row p-1 transition duration-300 ease-in-out hover:shadow-lg">
 			<div className="overflow-hidden">
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-					<img
+					<Image
 						src={imageUrl}
+						width={200}
+						height={200}
 						alt={"this"}
 						className="-[.7em] h  -[.7em] h-[6em]  w-[5em] object-contain object-cover"
 					/>

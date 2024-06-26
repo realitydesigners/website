@@ -1,6 +1,7 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac, play, space } from "@/fonts";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -106,21 +107,16 @@ const HeadingBlock = ({ block }) => {
 
 						<div className="flex w-full flex-wrap p-2 lg:w-1/2">
 							<div className="h-full w-full object-contain object-cover">
-								<img src={imageUrl} alt={"this"} className="w-50 h-50" />
+								<Image
+									src={imageUrl}
+									alt={"this"}
+									width={1000}
+									height={1000}
+									className="w-50 h-50"
+								/>
 								<p className=" flex  py-2 text-xs uppercase tracking-wide text-gray-400">
 									Image Of: {imageAlt}
 								</p>
-
-								{/* <SanityImage
-                                        image={imageUrl}
-                                        width={1000}
-                                        height={1000}
-                                        priority={true}
-                                        alt="This"
-                                        classesWrapper="h-full w-full"
-                                        theme={className}
-                                    />
-                                    <p>{imageUrl.alt}</p> */}
 							</div>
 						</div>
 
@@ -153,79 +149,13 @@ const HeadingBlock = ({ block }) => {
 				</div>
 			);
 		case "light":
-			return (
-				<div className="h-auto w-full bg-gray-200 pt-20 lg:pt-32">
-					{/* Light theme layout */}
-				</div>
-			);
+			return <div className="h-auto w-full bg-gray-200 pt-20 lg:pt-32"></div>;
 		case "transparent":
 			return (
-				<div className="h-auto w-full bg-transparent pt-20 lg:pt-32">
-					{/* Transparent theme layout */}
-				</div>
+				<div className="h-auto w-full bg-transparent pt-20 lg:pt-32"></div>
 			);
 		default:
-			return (
-				<div className="h-auto w-full pt-16 lg:pt-32">
-					<div className="flex w-full flex-wrap justify-center">
-						<div
-							className={
-								"flex-cols flex w-11/12   flex-wrap items-center justify-between lg:hidden"
-							}
-						>
-							{block.category && <RenderCategory category={block.category} />}
-							<FormattedDate
-								date={publicationDate}
-								className={`${monomaniac.className} my-1 ml-2 w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest  text-transparent`}
-							/>
-						</div>
-
-						{imageUrl && (
-							<div className="flex w-full flex-wrap p-2 lg:w-1/2">
-								<div className="h-full w-full object-contain object-cover">
-									<img src={imageUrl} alt={"this"} className="w-50 h-50" />
-									<p className="font-white text-xl text-white">{imageAlt}</p>
-
-									{/* <SanityImage
-                                        image={imageUrl}
-                                        width={1000}
-                                        height={1000}
-                                        priority={true}
-                                        alt="This"
-                                        classesWrapper="h-full w-full"
-                                        theme={className}
-                                    />
-                                    <p>{imageUrl.alt}</p> */}
-								</div>
-							</div>
-						)}
-						<div className="flex-cols flex w-full justify-center p-2 pr-4 pt-2 lg:w-1/2 lg:pr-20 lg:pt-4">
-							<div className="w-full">
-								<div className="mb-6 hidden w-full items-center justify-between lg:flex">
-									{block.category && (
-										<RenderCategory category={block.category} />
-									)}
-									<FormattedDate
-										date="2023-01-30"
-										className={`${monomaniac.className} w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest text-transparent`}
-									/>
-								</div>
-								<Heading
-									heading={block.heading}
-									className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-[9vw] font-bold uppercase leading-none text-transparent lg:text-[4vw]`}
-								/>
-								<SubHeading
-									heading={block.subheading}
-									className={`${space.className} bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 text-xl leading-tight text-transparent`}
-								/>
-								<div className="w-full ">
-									<TeamSection team={block.team} theme={className} />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			);
+			return null;
 	}
 };
 
