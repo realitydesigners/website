@@ -1,25 +1,18 @@
-const { theme } = require("@sanity/demo/tailwind");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: [
-		"./app/**/*.{js,ts,jsx,tsx}",
-		"./components/**/*.{js,ts,jsx,tsx}",
-		"./intro-template/**/*.{js,ts,jsx,tsx}",
-	],
+	content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
 	theme: {
-		...theme,
-		// Overriding fontFamily to use @next/font loaded families
-		fontFamily: {
-			mono: "var(--font-mono)",
-			sans: "var(--font-sans)",
-			serif: "var(--font-serif)",
-		},
-		colors: {
-			...theme.colors,
-			black: "#000",
+		extend: {
+			// Overriding fontFamily to use @next/font loaded families
+			fontFamily: {
+				mono: "var(--font-mono)",
+				sans: "var(--font-sans)",
+				serif: "var(--font-serif)",
+			},
+			colors: {
+				black: "#000",
+			},
 		},
 	},
-
 	plugins: [require("@tailwindcss/typography")],
 };
