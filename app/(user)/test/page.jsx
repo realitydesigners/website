@@ -1,11 +1,12 @@
 "use client"
 import Navbar from '@/components/navigation/Navbar';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import SplineScene from './SplineScene';
 
 const Home = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedObjectName, setSelectedObjectName] = useState(null);
+    const splineRef = useRef(null);
 
     function closeModal() {
         setModalOpen(false);
@@ -24,11 +25,22 @@ const Home = () => {
         }
     }
 
+   function onLoad(spline) {
+        splineRef.current = spline;
+        const textObject = spline.findObjectByName('Text 5');
+        if (textObject) {
+            console.log('Text 5 object:', textObject);
+            spline.setVariable('TextVariable', 'Text being changed from code');
+        } else {
+            console.log('Text 5 object not found');
+        }
+    }
+
     return (
         <main className="w-screen h-screen">
             <Navbar />
             <div className="relative w-screen h-screen">
-                <SplineScene onSplineMouseDown={onSplineMouseDown} />
+                <SplineScene onSplineMouseDown={onSplineMouseDown} onLoad={onLoad} />
                 <Modal isOpen={modalOpen} onClose={closeModal} objectName={selectedObjectName} />
             </div>
         </main>
