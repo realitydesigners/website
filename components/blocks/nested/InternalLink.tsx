@@ -3,6 +3,7 @@ import { getPostData } from "@/app/(admin)/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
 import { monomaniac, play } from "@/fonts";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 import { TemplateTheme, ThemeProps } from "@/components/blocks/types";
@@ -110,20 +111,14 @@ const PostPreviewDialog = ({
 						<div
 							className={`flex h-auto w-full justify-between  rounded-[.6em] p-2  ${style.topBackgroundColor} `}
 						>
-							<img
+							<Image
 								src={imageUrl}
 								alt={"this"}
+								width={100}
+								height={100}
 								className="h-[50px] max-w-[50px] rounded-[.5em] object-cover"
 							/>
-							<SanityImage
-								image={content.image}
-								width={200}
-								height={200}
-								priority={true}
-								alt={content.image?.alt || "no title"}
-								classesWrapper="h-[50px] max-w-[50px] object-cover rounded-[.5em]"
-								theme={theme}
-							/>
+
 							<div className="flex w-full justify-between">
 								<Link
 									href={`/posts/${postData.slug.current}`}
@@ -152,6 +147,7 @@ const PostPreviewDialog = ({
 								<Link
 									href={`/posts/${postData.slug.current}`}
 									className={`${style.buttonTextColor} ${style.buttonBackgroundColor} absolute bottom-1 right-2 flex items-center justify-center rounded-[.7em] px-4 py-2 text-sm font-bold uppercase hover:transition-colors`}
+									prefetch={true}
 								>
 									Read More
 								</Link>

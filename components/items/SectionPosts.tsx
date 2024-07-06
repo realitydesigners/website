@@ -6,41 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-interface PostItemProps {
-	block: BlockItem;
-
-	slug?: {
-		current?: string;
-	};
-	date?: string;
-	className?: string;
-}
-
-interface PostsListProps {
-	post: PostsPayload[];
-	slug?: {
-		current?: string;
-	};
-	className?: string;
-}
-
-interface MainPostProps {
-	post: PostsPayload;
-	className?: string;
-}
-
-interface PostImageProps {
-	imageUrl?: any;
-	image?: any;
-	heading?: string;
-}
-
-interface FormattedDateProps {
-	date?: string;
-	className?: string;
-}
-
-const FormattedDate: React.FC<FormattedDateProps> = ({ date, className }) => {
+const FormattedDate: React.FC<{ date?: string; className?: string }> = ({
+	date,
+	className,
+}) => {
 	const formattedDate = date
 		? new Date(date).toLocaleDateString("en-US", {
 				year: "numeric",
@@ -52,17 +21,28 @@ const FormattedDate: React.FC<FormattedDateProps> = ({ date, className }) => {
 	return <span className={className}>{formattedDate}</span>;
 };
 
-const Heading = ({ heading, className }) => {
+const Heading: React.FC<{ heading?: string; className?: string }> = ({
+	heading,
+	className,
+}) => {
 	const displayHeading = heading || "no title";
 	return <h2 className={className}>{displayHeading}</h2>;
 };
 
-const SubHeading = ({ heading, className }) => {
+const SubHeading: React.FC<{ heading?: string; className?: string }> = ({
+	heading,
+	className,
+}) => {
 	const displayHeading = heading || "no title";
 	return <h2 className={className}>{displayHeading}</h2>;
 };
 
-export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
+export const PostItems: FC<{
+	block: BlockItem;
+	slug?: { current?: string };
+	date?: string;
+	className?: string;
+}> = ({ block, slug }) => {
 	const { heading } = block;
 	const imageUrl = block.imageRef?.imageUrl;
 
@@ -80,7 +60,7 @@ export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
 				</div>
 			</div>
 			<div className="flex w-full items-center lg:pl-1 lg:pr-2">
-				<Link href={`/posts/${slug?.current}`}>
+				<Link href={`/posts/${slug?.current}`} prefetch={true}>
 					<Heading
 						heading={block.heading}
 						className={`${space.className} text- cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-2 font-bold capitalize leading-[1.3em] text-transparent`}
@@ -91,7 +71,11 @@ export const PostItems: FC<PostItemProps> = ({ block, slug }) => {
 	);
 };
 
-const TopBar: FC<PostsListProps> = ({ post }) => {
+const TopBar: FC<{
+	post: PostsPayload[];
+	slug?: { current?: string };
+	className?: string;
+}> = ({ post }) => {
 	return (
 		<div className="grid h-auto w-full grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4 ">
 			{post.map((postItem) =>
@@ -113,7 +97,12 @@ const TopBar: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
+export const PostItem: FC<{
+	block: BlockItem;
+	slug?: { current?: string };
+	date?: string;
+	className?: string;
+}> = ({ block, slug }) => {
 	const { image, heading, publicationDate } = block;
 	const imageUrl = block.imageRef?.imageUrl;
 	const imageAlt = block.imageRef?.imageAlt;
@@ -124,19 +113,19 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
 					<Image
 						src={imageUrl}
-						width={300}
-						height={300}
+						width={500}
+						height={500}
 						alt={"this"}
 						className="h-[250px] w-full object-contain object-cover lg:h-[175px]  "
 					/>
 				</div>
 			</div>
-			<p>{heading}</p>
+
 			<FormattedDate
 				date={publicationDate}
 				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs font-bold uppercase tracking-widest text-transparent`}
 			/>
-			<Link href={`/posts/${slug?.current}`}>
+			<Link href={`/posts/${slug?.current}`} prefetch={true}>
 				<Heading
 					heading={block.heading}
 					className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-3xl font-bold capitalize leading-[1.2em] text-transparent`}
@@ -150,7 +139,11 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	);
 };
 
-const SideBar: FC<PostsListProps> = ({ post }) => {
+const SideBar: FC<{
+	post: PostsPayload[];
+	slug?: { current?: string };
+	className?: string;
+}> = ({ post }) => {
 	return (
 		<div className="flex w-full flex-col gap-4 lg:w-1/4">
 			{post.map((postItem) =>
@@ -172,7 +165,12 @@ const SideBar: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
+export const MainPostItem: FC<{
+	block: BlockItem;
+	slug?: { current?: string };
+	date?: string;
+	className?: string;
+}> = ({ block, slug }) => {
 	const { publicationDate } = block;
 
 	const imageUrl = block.imageRef?.imageUrl;
@@ -184,8 +182,8 @@ export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
 				<div className="transform transition duration-300 ease-in-out group-hover:scale-105">
 					<Image
 						src={imageUrl}
-						width={1000}
-						height={1000}
+						width={1500}
+						height={1500}
 						alt={"this"}
 						className="-[.7em] h-[350px]  w-full object-contain object-cover  lg:h-[33vw]"
 					/>
@@ -195,7 +193,7 @@ export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
 				date={publicationDate}
 				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
 			/>
-			<Link href={`/posts/${slug?.current}`}>
+			<Link href={`/posts/${slug?.current}`} prefetch={true}>
 				<Heading
 					heading={block.heading}
 					className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-5xl font-bold uppercase leading-none text-transparent lg:text-6xl`}
@@ -209,7 +207,10 @@ export const MainPostItem: FC<PostItemProps> = ({ block, slug }) => {
 	);
 };
 
-export const MainPost: FC<MainPostProps> = ({ post }) => {
+export const MainPost: FC<{
+	post: PostsPayload;
+	className?: string;
+}> = ({ post }) => {
 	if (!post || !post.block) {
 		return <div>No post available</div>;
 	}
@@ -221,7 +222,12 @@ export const MainPost: FC<MainPostProps> = ({ post }) => {
 	);
 };
 
-export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
+export const RightBarPostItem: FC<{
+	block: BlockItem;
+	slug?: { current?: string };
+	date?: string;
+	className?: string;
+}> = ({ block, slug }) => {
 	const { publicationDate } = block;
 
 	const imageUrl = block.imageRef?.imageUrl;
@@ -243,7 +249,7 @@ export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
 					date={publicationDate}
 					className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
 				/>
-				<Link href={`/posts/${slug?.current}`}>
+				<Link href={`/posts/${slug?.current}`} prefetch={true}>
 					<Heading
 						heading={block.heading}
 						className={`${space.className} cursor-pointer bg-gradient-to-r   from-blue-100/100 to-blue-100/90 bg-clip-text pl-2 text-lg font-bold capitalize leading-[1.2em] leading-none text-transparent`}
@@ -254,7 +260,11 @@ export const RightBarPostItem: FC<PostItemProps> = ({ block, slug }) => {
 	);
 };
 
-const RightSideBar: FC<PostsListProps> = ({ post }) => {
+const RightSideBar: FC<{
+	post: PostsPayload[];
+	slug?: { current?: string };
+	className?: string;
+}> = ({ post }) => {
 	return (
 		<div className="mb-4 flex w-full flex-col gap-4 lg:mb-0 lg:w-1/4">
 			{post.map((postItem) =>
@@ -276,18 +286,12 @@ const RightSideBar: FC<PostsListProps> = ({ post }) => {
 	);
 };
 
-interface SectionPostsProps {
+const SectionPosts: FC<{
 	topPostData: PostsPayload[];
 	sidePostData: PostsPayload[];
 	mainPostData: PostsPayload;
 	rightPostData: PostsPayload[];
-}
-const SectionPosts: FC<SectionPostsProps> = ({
-	topPostData,
-	sidePostData,
-	mainPostData,
-	rightPostData,
-}) => {
+}> = ({ topPostData, sidePostData, mainPostData, rightPostData }) => {
 	if (!mainPostData || !mainPostData.block) {
 		return <div>No main post available</div>;
 	}

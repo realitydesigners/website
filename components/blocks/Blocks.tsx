@@ -4,8 +4,23 @@ import {
 	HeadingSplineBlock,
 	TeamBlock,
 } from "@/components/blocks/index";
-import { BlockProps, BlockType } from "@/components/blocks/types";
+
 import React from "react";
+import type { PortableTextBlock } from "@portabletext/types";
+export type LayoutTheme = "dark" | "light" | "team" | "video" | "transparent";
+
+export type BlockType =
+	| "headingBlock"
+	| "headingSplineBlock"
+	| "contentBlock"
+	| "teamBlock";
+
+export interface BlockProps {
+	_type: BlockType;
+	layout?: LayoutTheme;
+	content?: PortableTextBlock[];
+	className?: string;
+}
 
 const blockTypeComponents: Record<BlockType, React.ElementType> = {
 	headingBlock: HeadingBlock,
