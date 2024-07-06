@@ -2,7 +2,6 @@ import {
 	ContentBlock,
 	HeadingBlock,
 	HeadingSplineBlock,
-	ImageCanvasBlock,
 	TeamBlock,
 } from "@/components/blocks/index";
 import { BlockProps, BlockType } from "@/components/blocks/types";
@@ -13,7 +12,6 @@ const blockTypeComponents: Record<BlockType, React.ElementType> = {
 	headingSplineBlock: HeadingSplineBlock,
 	contentBlock: ContentBlock,
 	teamBlock: TeamBlock,
-	imageCanvasBlock: ImageCanvasBlock,
 };
 
 const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
@@ -24,10 +22,6 @@ const Blocks: React.FC<{ block: BlockProps }> = ({ block }) => {
 		...block,
 		block: { ...block, layout: block.layout, className: block.layout },
 	};
-
-	// ...props,
-	// layout: props.layout,
-	// content: props.content || [],
 
 	return (
 		<div className="relative w-full">

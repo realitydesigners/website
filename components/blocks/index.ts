@@ -7,9 +7,6 @@ export const HeadingBlock = React.lazy(
 export const HeadingSplineBlock = React.lazy(
 	() => import("@/components/blocks/section/HeadingSplineBlock"),
 );
-export const ImageCanvasBlock = React.lazy(
-	() => import("@/components/blocks/section/ImageCanvasBlock"),
-);
 export const TeamBlock = React.lazy(
 	() => import("@/components/blocks/section/TeamBlock"),
 );

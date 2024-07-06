@@ -7,14 +7,9 @@
     "format": "biome format --write ./components ./app ./sanity"
   },
   "dependencies": {
-    "@gsap/react": "2.0.2",
     "@portabletext/react": "3.0.11",
     "@portabletext/types": "2.0.8",
     "@react-email/components": "^0.0.19",
-    "@react-spring/three": "9.7.3",
-    "@react-three/drei": "^9.107.2",
-    "@react-three/fiber": "8.15.16",
-    "@react-three/postprocessing": "2.15.11",
     "@sanity/client": "6.20.1",
     "@sanity/icons": "3.2.0",
     "@sanity/image-url": "1.0.2",
@@ -31,19 +26,15 @@
     "@splinetool/runtime": "^1.8.5",
     "@splinetool/viewer": "^1.8.0",
     "@tailwindcss/typography": "0.5.10",
-    "@types/three": "^0.165.0",
     "@vercel/analytics": "1.2.0",
     "aframe": "1.5.0",
     "classnames": "2.5.1",
     "date-fns": "3.6.0",
     "got": "14.0.0",
-    "gsap": "3.12.4",
     "intl-segmenter-polyfill": "0.4.4",
-    "leva": "0.9.35",
     "next": "14.2.4",
     "next-sanity": "9.3.10",
     "next-sanity-image": "6.1.1",
-    "patch-package": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-email": "^2.1.4",
@@ -55,8 +46,7 @@
     "sanity-plugin-vercel-deploy": "3.3.4",
     "styled-components": "6.1.11",
     "swr": "2.2.5",
-    "tailwind": "4.0.0",
-    "three": "^0.166.1"
+    "tailwind": "4.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3",
@@ -73,5 +63,4 @@
     "tailwindcss": "3.4.4",
     "typescript": "5.4.5"
   }
-  
 }
