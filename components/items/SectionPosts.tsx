@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play, space } from "@/fonts";
+import { russo, space } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,10 +12,10 @@ const FormattedDate: React.FC<{ date?: string; className?: string }> = ({
 }) => {
 	const formattedDate = date
 		? new Date(date).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "short",
-				day: "numeric",
-		  })
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+		})
 		: "Date not available";
 
 	return <span className={className}>{formattedDate}</span>;
@@ -63,7 +63,7 @@ export const PostItems: FC<{
 				<Link href={`/posts/${slug?.current}`} prefetch={true}>
 					<Heading
 						heading={block.heading}
-						className={`${space.className} text- cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-2 font-bold capitalize leading-[1.3em] text-transparent`}
+						className={`${russo.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-2 font-bold capitalize leading-[1.3em] text-transparent`}
 					/>
 				</Link>
 			</div>
@@ -123,12 +123,12 @@ export const PostItem: FC<{
 
 			<FormattedDate
 				date={publicationDate}
-				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs font-bold uppercase tracking-widest text-transparent`}
+				className={` h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs font-bold uppercase tracking-widest text-transparent`}
 			/>
 			<Link href={`/posts/${slug?.current}`} prefetch={true}>
 				<Heading
 					heading={block.heading}
-					className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-3xl font-bold capitalize leading-[1.2em] text-transparent`}
+					className={`${russo.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-3xl font-bold capitalize leading-[1.2em] text-transparent`}
 				/>
 			</Link>
 			<SubHeading
@@ -191,12 +191,12 @@ export const MainPostItem: FC<{
 			</div>
 			<FormattedDate
 				date={publicationDate}
-				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
+				className={` h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
 			/>
 			<Link href={`/posts/${slug?.current}`} prefetch={true}>
 				<Heading
 					heading={block.heading}
-					className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-5xl font-bold uppercase leading-none text-transparent lg:text-6xl`}
+					className={`${russo.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-5xl font-bold uppercase leading-none text-transparent lg:text-6xl`}
 				/>
 			</Link>
 			<SubHeading
@@ -247,12 +247,12 @@ export const RightBarPostItem: FC<{
 			<div className="flex w-full flex-col pl-1 pr-2">
 				<FormattedDate
 					date={publicationDate}
-					className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
+					className={` h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
 				/>
 				<Link href={`/posts/${slug?.current}`} prefetch={true}>
 					<Heading
 						heading={block.heading}
-						className={`${space.className} cursor-pointer bg-gradient-to-r   from-blue-100/100 to-blue-100/90 bg-clip-text pl-2 text-lg font-bold capitalize leading-[1.2em] leading-none text-transparent`}
+						className={`${russo.className} cursor-pointer bg-gradient-to-r   from-blue-100/100 to-blue-100/90 bg-clip-text pl-2 text-lg font-bold capitalize leading-[1.2em] leading-none text-transparent`}
 					/>
 				</Link>
 			</div>

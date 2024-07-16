@@ -1,10 +1,10 @@
 "use client";
 import { getPostData } from "@/app/(admin)/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play } from "@/fonts";
 import Link from "next/link";
+import { russo } from "@/fonts";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { TemplateTheme, ThemeProps } from "@/components/blocks/types";
 
@@ -36,22 +36,13 @@ const themeClasses: Record<TemplateTheme, ThemeProps> = {
 const formatDate = (dateString) => {
 	return dateString
 		? new Date(dateString).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "short",
-				day: "numeric",
-		  })
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+		})
 		: "Date not available";
 };
 
-const DialogButton = ({ onClose }) => (
-	<button
-		type="button"
-		onClick={onClose}
-		className={`${play.className} rounded px-2 py-2 text-2xl font-bold uppercase text-gray-400 transition-colors hover:bg-gray-300`}
-	>
-		X
-	</button>
-);
 
 const TeamLink = ({ team, theme }) => {
 	if (!team) return null;
@@ -60,7 +51,7 @@ const TeamLink = ({ team, theme }) => {
 	return (
 		<Link
 			href={`/team/${team.slug.current}`}
-			className={`${monomaniac.className}`}
+
 		>
 			<div className={`flex w-auto items-center p-2 ${style.textColor}`}>
 				{team.image && (
@@ -122,12 +113,12 @@ const PostPreviewDialog = ({
 							<div className="flex w-full justify-between">
 								<Link
 									href={`/posts/${postData.slug.current}`}
-									className={`${monomaniac.className} ${style.textColor} lg:text-md flex w-1/2 items-center pl-4 text-sm font-bold leading-[1.3em]`}
+									className={`${style.textColor} lg:text-md flex w-1/2 items-center pl-4 text-sm font-bold leading-[1.3em]`}
 								>
 									{content.heading || "no title"}
 								</Link>
 								<span
-									className={`${monomaniac.className} ${style.textColor} mb-2 flex h-auto w-auto items-center pr-2 pt-1 text-[.6em] uppercase leading-[1em] tracking-widest`}
+									className={`${style.textColor} mb-2 flex h-auto w-auto items-center pr-2 pt-1 text-[.6em] uppercase leading-[1em] tracking-widest`}
 								>
 									{formatDate(content.publicationDate)}
 								</span>
@@ -137,7 +128,7 @@ const PostPreviewDialog = ({
 
 						<div className="relative flex h-auto w-full flex-col">
 							<h4
-								className={`${play.className} ${style.textColor} p-4 text-2xl leading-[1.3em]`}
+								className={`${style.textColor} p-4 text-2xl leading-[1.3em]`}
 							>
 								{content.subheading || "no title"}
 							</h4>
@@ -196,11 +187,11 @@ const InternalLink: React.FC<{
 	return (
 		<>
 			<Link href="#popup" onClick={openDialog}>
-				<span className="text-xl font-bold capitalize underline">
+				<span className={`text-xl font-bold capitalize underline ${russo.className}`}>
 					{children}
 				</span>
 				<span
-					className={`${monomaniac.className} ml-2 rounded-full bg-[#c4b5fd] pb-[5px] pl-2 pr-2 pt-[3px] text-[16px] text-black`}
+					className={`${russo.className} ml-2 rounded-full bg-[#c4b5fd] pb-[5px] pl-2 pr-2 pt-[5px] text-[16px] text-black`}
 				>
 					POST
 				</span>

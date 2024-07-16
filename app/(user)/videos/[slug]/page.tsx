@@ -1,6 +1,6 @@
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/types";
-import { monomaniac } from "@/fonts";
+
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { getVideoBySlugQuery } from "@/sanity/lib/queries";
@@ -34,8 +34,8 @@ export async function generateMetadata(
 		description: video?.block?.[0]?.subheading || (await parent).description,
 		openGraph: ogImage
 			? {
-					images: [ogImage, ...((await parent).openGraph?.images || [])],
-			  }
+				images: [ogImage, ...((await parent).openGraph?.images || [])],
+			}
 			: {},
 		metadataBase,
 	};
@@ -74,7 +74,7 @@ export default async function PageSlugRoute({ params }: Props) {
 								<YouTubeEmbed videoUrl={videoUrl} width="100%" height="100%" />
 							</div>
 							<p
-								className={`${monomaniac.className} my-2 pt-4 text-4xl font-bold uppercase tracking-wide text-gray-200`}
+								className={`my-2 pt-4 text-4xl font-bold uppercase tracking-wide text-gray-200`}
 							>
 								{title}
 							</p>

@@ -1,7 +1,6 @@
 "use client";
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/types";
-import { monomaniac } from "@/fonts";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React from "react";
@@ -25,19 +24,19 @@ const TeamItem = ({ team, blocks, socialLinks }) => {
 			</div>
 			<div className="flex w-full flex-col items-center justify-center gap-2 p-4">
 				<h1
-					className={`${monomaniac.className} text-6xl font-bold text-gray-200`}
+					className={` text-6xl font-bold text-gray-200`}
 				>
 					{name}
 				</h1>
 				<h2
-					className={`${monomaniac.className} text-3xl font-normal text-gray-400`}
+					className={` text-3xl font-normal text-gray-400`}
 				>
 					{role}
 				</h2>
 			</div>
 
 			<div
-				className={`${monomaniac.className} mb-4 grid grid-cols-2 gap-4 p-2 text-xl font-bold uppercase tracking-wide text-gray-200 md:grid-cols-4`}
+				className={` mb-4 grid grid-cols-2 gap-4 p-2 text-xl font-bold uppercase tracking-wide text-gray-200 md:grid-cols-4`}
 			>
 				{socialLinks.map(({ name, url }) => (
 					<SocialLink key={name} href={url}>

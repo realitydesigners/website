@@ -1,5 +1,5 @@
 "use client";
-import { monomaniac, play } from "@/fonts";
+
 import React, { useState } from "react";
 
 type SubmissionStatus = "success" | "error" | "submitting" | null;
@@ -34,7 +34,7 @@ const EmailForm = () => {
 	const FeedbackMessage = ({ message }) => (
 		<div className="flex justify-center items-center mt-4 p-6">
 			<p
-				className={`${monomaniac.className} text-3xl text-center text-gray-200 font-bold`}
+				className={`text-3xl text-center text-gray-200 font-bold`}
 			>
 				{message}
 			</p>
@@ -53,7 +53,7 @@ const EmailForm = () => {
 				<form
 					onSubmit={handleSubmit}
 					id="realityDesignerForm"
-					className={`${monomaniac.className} flex flex-col space-y-4`}
+					className={`flex flex-col space-y-4`}
 				>
 					<h2 className="text-4xl uppercase text-gray-200 font-bold text-center">
 						Join Newsletter

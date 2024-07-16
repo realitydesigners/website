@@ -1,6 +1,5 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
@@ -45,10 +44,10 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 
 	const formattedDate = publicationDate
 		? new Date(publicationDate).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "short",
-				day: "numeric",
-		  })
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+		})
 		: "Date not available";
 
 	const renderHeading = () => {
@@ -70,7 +69,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 		>
 			<div className="flex h-auto w-full items-center justify-between">
 				<span
-					className={`${monomaniac.className} h-auto w-full  p-2  text-xs uppercase  tracking-widest text-gray-400`}
+					className={` h-auto w-full  p-2  text-xs uppercase  tracking-widest text-gray-400`}
 				>
 					{formattedDate}
 				</span>
@@ -83,13 +82,13 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} cursor-pointer p-2 text-4xl capitalize leading-none tracking-wide text-gray-200 group-hover:text-gray-100`}
+						className={` cursor-pointer p-2 text-4xl capitalize leading-none tracking-wide text-gray-200 group-hover:text-gray-100`}
 					>
 						{renderHeading()}
 					</h2>
 				</Link>
 				<p
-					className={`${play.className} text-md p-2 leading-tight text-gray-400 group-hover:text-gray-100`}
+					className={` text-md p-2 leading-tight text-gray-400 group-hover:text-gray-100`}
 				>
 					{renderSubheading()}
 				</p>

@@ -1,5 +1,5 @@
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play } from "@/fonts";
+
 import Link from "next/link";
 import React from "react";
 
@@ -62,7 +62,7 @@ const ArtistInfo = ({ artist, className }) => {
 			<div className="flex flex-col items-start justify-center text-xs uppercase leading-none">
 				<Link
 					href={`/team/${artist.slug.current}`}
-					className={`${monomaniac.className} text-md  pl-1 font-bold`}
+					className={`text-md  pl-1 font-bold`}
 				>
 					{artist.name}
 				</Link>

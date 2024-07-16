@@ -1,5 +1,4 @@
 "use client";
-import { monomaniac } from "@/fonts";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -156,11 +155,10 @@ export default function BottomNavbar() {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`absolute  bottom-6 right-0 right-0 mt-12 flex h-[95vh] w-full items-center justify-end overflow-y-auto rounded-[0em] bg-black/80 pb-6 shadow-lg  transition-transform duration-0 ease-in-out lg:mt-16  lg:h-[70vh] lg:w-1/3  lg:justify-center lg:rounded-[1em] lg:pb-0 ${
-						isNavOpen
-							? "right-0 translate-x-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-lg"
-							: "translate-x-full"
-					}  flex flex-col justify-start p-3 `}
+					className={`absolute  bottom-6 right-0 right-0 mt-12 flex h-[95vh] w-full items-center justify-end overflow-y-auto rounded-[0em] bg-black/80 pb-6 shadow-lg  transition-transform duration-0 ease-in-out lg:mt-16  lg:h-[70vh] lg:w-1/3  lg:justify-center lg:rounded-[1em] lg:pb-0 ${isNavOpen
+						? "right-0 translate-x-0 lg:right-4 lg:border lg:border-gray-600/25 lg:shadow-lg"
+						: "translate-x-full"
+						}  flex flex-col justify-start p-3 `}
 				>
 					<div className="h-[125px]  w-full  rounded-lg">
 						<Link href="/" onClick={closeNav}>
@@ -173,7 +171,7 @@ export default function BottomNavbar() {
 							<li key={label}>
 								<Link
 									href={href}
-									className={`${monomaniac.className} block flex flex-col items-center justify-center border border-gray-600/25 bg-black/10 p-4 text-center text-2xl font-bold uppercase text-gray-200 backdrop-blur-[20px] transition-all duration-200 ease-in-out hover:bg-white hover:text-black`}
+									className={` block flex flex-col items-center justify-center border border-gray-600/25 bg-black/10 p-4 text-center text-2xl font-bold uppercase text-gray-200 backdrop-blur-[20px] transition-all duration-200 ease-in-out hover:bg-white hover:text-black`}
 									onClick={closeNav}
 								>
 									<div className="mb-2 flex min-h-10 min-w-10 items-center justify-center">

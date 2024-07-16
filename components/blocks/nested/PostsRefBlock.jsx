@@ -1,6 +1,5 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac } from "@/fonts";
 import Link from "next/link";
 import React from "react";
 
@@ -15,7 +14,7 @@ const PostsCardLight = ({ slug, heading, image }) => {
 				/>
 				<div className="relative flex w-3/4 flex-col pl-4">
 					<p
-						className={`${monomaniac.className}  pt-2 mb-2 text-xs uppercase leading-none tracking-wide bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
+						className={` pt-2 mb-2 text-xs uppercase leading-none tracking-wide bg-gradient-to-r from-blue-100/50 to-blue-100/50 text-transparent bg-clip-text `}
 					>
 						Related Post
 					</p>

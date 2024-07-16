@@ -1,5 +1,5 @@
 "use client";
-import { monomaniac, play } from "@/fonts";
+import { play } from "@/fonts";
 import Spline from "@splinetool/react-spline";
 
 export default function StoryPage() {
@@ -10,9 +10,9 @@ export default function StoryPage() {
 			</div>
 
 			<div className="w-11/12 pb-20 pt-32 lg:w-1/2">
-				<div className={`${play.className} text-xl font-bold text-gray-400 `}>
+				<div className={` text-xl font-bold text-gray-400 `}>
 					<h1
-						className={`${monomaniac.className} mb-6 text-center text-6xl font-bold text-gray-200 lg:text-7xl`}
+						className={`mb-6 text-center text-6xl font-bold text-gray-200 lg:text-7xl`}
 					>
 						A NEW REALITY IS BEING DESIGNED
 					</h1>
