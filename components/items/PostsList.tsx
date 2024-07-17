@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play, space } from "@/fonts";
+import { russo, space } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,10 +45,10 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 
 	const formattedDate = publicationDate
 		? new Date(publicationDate).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "short",
-				day: "numeric",
-		  })
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+		})
 		: "Date not available";
 
 	const renderHeading = () => {
@@ -75,14 +75,14 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 				</div>
 			</div>
 			<span
-				className={`${monomaniac.className} h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs uppercase  tracking-widest text-transparent`}
+				className={` h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs uppercase  tracking-widest text-transparent`}
 			>
 				{formattedDate}
 			</span>
 			<div>
 				<Link href={`/posts/${slug?.current}`}>
 					<h2
-						className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-4xl font-bold capitalize leading-[1.2em] text-transparent`}
+						className={`${russo.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-4xl font-bold capitalize leading-[1.2em] text-transparent`}
 					>
 						{renderHeading()}
 					</h2>

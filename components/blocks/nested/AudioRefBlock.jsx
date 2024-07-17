@@ -1,5 +1,4 @@
 "use client";
-import { monomaniac } from "@/fonts";
 import React from "react";
 
 const AudioPlayer = ({ audioTitle, audioFileUrl }) => {
@@ -13,7 +12,7 @@ const AudioPlayer = ({ audioTitle, audioFileUrl }) => {
 			<div className="w-full md:w-3/4 lg:w-1/2 items-end flex flex-col">
 				<div className="flex flex-wrap w-full justify-between  items-center">
 					<span
-						className={`${monomaniac.className} my-4 pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full `}
+						className={` my-4 pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full `}
 					>
 						PODCAST
 					</span>

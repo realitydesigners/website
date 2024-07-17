@@ -1,6 +1,5 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play } from "@/fonts";
 import { VideoPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
@@ -29,7 +28,7 @@ export const VideoItem: FC<VideoitemProps> = ({ videos }) => {
 			<div>
 				<Link href={`/videos/${slug?.current}`}>
 					<h2
-						className={`${monomaniac.className} cursor-pointer p-2 text-4xl uppercase leading-none text-black`}
+						className={` cursor-pointer p-2 text-4xl uppercase leading-none text-black`}
 					>
 						{title}
 					</h2>

@@ -4,8 +4,7 @@ export type BlockType =
 	| "headingBlock"
 	| "headingSplineBlock"
 	| "contentBlock"
-	| "teamBlock"
-	| "imageCanvasBlock";
+	| "teamBlock";
 
 export interface BlockProps {
 	_type: BlockType;

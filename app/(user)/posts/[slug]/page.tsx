@@ -1,7 +1,7 @@
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/types";
 import PostsList from "@/components/items/PostsList";
-import { monomaniac } from "@/fonts";
+
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
@@ -47,14 +47,14 @@ export async function generateMetadata(
 		description: post?.block?.[0]?.subheading || (await parent).description,
 		openGraph: ogImageUrl
 			? {
-					images: [
-						{
-							url: ogImageUrl,
-							alt: ogImageAlt,
-						},
-						...((await parent).openGraph?.images || []),
-					],
-			  }
+				images: [
+					{
+						url: ogImageUrl,
+						alt: ogImageAlt,
+					},
+					...((await parent).openGraph?.images || []),
+				],
+			}
 			: {},
 		metadataBase,
 	};
@@ -94,7 +94,7 @@ export default async function PageSlugRoute({ params }) {
 						{otherPosts && (
 							<div className="flex-cols flex h-auto w-full flex-col bg-black p-2  pb-6 lg:px-6">
 								<h4
-									className={`${monomaniac.className} text-4xl  text-gray-200 `}
+									className={`text-4xl  text-gray-200 `}
 								>
 									More Posts
 								</h4>

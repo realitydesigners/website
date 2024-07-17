@@ -1,15 +1,4 @@
-import {
-	Bebas_Neue,
-	Cairo,
-	Inter,
-	Jost,
-	Jura,
-	Monomaniac_One,
-	Play,
-	Roboto,
-	Space_Grotesk,
-	Staatliches,
-} from "next/font/google";
+import { Play, Roboto, Space_Grotesk, Russo_One } from "next/font/google";
 
 export const roboto = Roboto({
 	weight: ["400", "700"],
@@ -22,51 +11,14 @@ export const play = Play({
 	subsets: ["latin"],
 	display: "swap",
 });
-
-export const staatliches = Staatliches({
-	weight: "400",
-	subsets: ["latin"],
-	display: "swap",
-});
-
-export const inter = Inter({
-	subsets: ["latin"],
-	display: "swap",
-});
-
-export const jura = Jura({
-	weight: ["400", "600", "700"],
-	subsets: ["latin"],
-	display: "swap",
-});
-
-export const bebe = Bebas_Neue({
-	weight: ["400"],
-	subsets: ["latin"],
-	display: "swap",
-});
-
-export const jost = Jost({
-	weight: ["400"],
-	subsets: ["latin"],
-	display: "swap",
-});
-
-export const cairo = Cairo({
-	weight: ["400", "500", "700"],
-	subsets: ["latin"],
-	display: "swap",
-});
-
-export const monomaniac = Monomaniac_One({
-	weight: ["400"],
-	style: ["normal"],
-	subsets: ["latin"],
-	display: "swap",
-});
 export const space = Space_Grotesk({
 	weight: ["400", "600", "700", "500"],
 	style: ["normal"],
+	subsets: ["latin"],
+	display: "swap",
+});
+export const russo = Russo_One({
+	weight: ["400"],
 	subsets: ["latin"],
 	display: "swap",
 });

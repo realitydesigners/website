@@ -1,4 +1,3 @@
-import { CanvasVideoList } from "@/components/items/CanvasVideoList";
 import { VideoList } from "@/components/items/VideoList";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
@@ -21,10 +20,6 @@ export default async function VideoPage({ params }: Props) {
 	return (
 		<div className="flex-cols flex h-auto w-full flex-wrap">
 			<VideoList videos={videos} />
-			<div className="hidden h-full w-full bg-gray-300">
-				{" "}
-				<CanvasVideoList videos={videos} />
-			</div>
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useAnimateOnScroll } from "@/components/global/useAnimateOnScroll";
+
 import ImageItem from "@/components/items/ImageItem";
 import PostItem from "@/components/items/PostItem";
 import VideoItem from "@/components/items/VideoItem";
@@ -13,8 +13,6 @@ type FeedItem = PostsPayload | VideoPayload | Image;
 export default function FeedPage() {
 	const [items, setItems] = useState<FeedItem[]>([]);
 	const containerRef = useRef<HTMLDivElement | null>(null);
-
-	useAnimateOnScroll(".feed-", {}, process.env.NODE_ENV === "development");
 
 	useEffect(() => {
 		async function fetchData() {

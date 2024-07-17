@@ -1,6 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac, play, space } from "@/fonts";
+import { space, russo } from "@/fonts";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -11,7 +11,7 @@ const RenderCategory = ({ category }) => {
 	return (
 		<div className="my-1 flex items-center justify-center bg-gradient-to-r from-blue-100/100 to-blue-100/90 p-1 pl-2 pr-2">
 			<span
-				className={`${monomaniac.className} flex h-auto items-center justify-center   whitespace-nowrap text-xs font-semibold uppercase tracking-widest text-black `}
+				className={` flex h-auto items-center justify-center   whitespace-nowrap text-xs font-semibold uppercase tracking-widest text-black `}
 			>
 				{category.title}
 			</span>
@@ -39,10 +39,10 @@ interface FormattedDateProps {
 const FormattedDate: React.FC<FormattedDateProps> = ({ date, className }) => {
 	const formattedDate = date
 		? new Date(date).toLocaleDateString("en-US", {
-				year: "numeric",
-				month: "short",
-				day: "numeric",
-		  })
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+		})
 		: "Date not available";
 
 	return <span className={className}>{formattedDate}</span>;
@@ -55,7 +55,7 @@ const TeamSection = ({ team, theme }) => {
 		<div className="w-full items-center py-4">
 			<Link
 				href={`/team/${team.slug.current}`}
-				className={`${monomaniac.className}`}
+				className={` `}
 			>
 				<div className=" flex h-auto w-full justify-center p-1">
 					{team.image && (
@@ -101,7 +101,7 @@ const HeadingBlock = ({ block }) => {
 
 							<FormattedDate
 								date={publicationDate}
-								className={`${monomaniac.className} my-1 w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest  text-transparent`}
+								className={` my-1 w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest  text-transparent`}
 							/>
 						</div>
 
@@ -119,7 +119,6 @@ const HeadingBlock = ({ block }) => {
 								</p>
 							</div>
 						</div>
-
 						<div className="flex-cols flex w-full justify-center p-2 pr-4 pt-2 lg:w-1/2 lg:pr-20 lg:pt-4 ">
 							<div className="w-full ">
 								<div className="mb-6 hidden w-full items-center justify-between lg:flex">
@@ -129,12 +128,12 @@ const HeadingBlock = ({ block }) => {
 
 									<FormattedDate
 										date={publicationDate}
-										className={`${monomaniac.className} w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest text-transparent`}
+										className={` w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest text-transparent`}
 									/>
 								</div>
 								<Heading
 									heading={block.heading}
-									className={`${space.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-[10vw] font-bold uppercase leading-none text-transparent lg:text-[4vw]`}
+									className={`${russo.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-[10vw] font-bold uppercase leading-none text-transparent lg:text-[4vw]`}
 								/>
 								<SubHeading
 									heading={block.subheading}
@@ -150,10 +149,7 @@ const HeadingBlock = ({ block }) => {
 			);
 		case "light":
 			return <div className="h-auto w-full bg-gray-200 pt-20 lg:pt-32"></div>;
-		case "transparent":
-			return (
-				<div className="h-auto w-full bg-transparent pt-20 lg:pt-32"></div>
-			);
+
 		default:
 			return null;
 	}

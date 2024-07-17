@@ -1,7 +1,7 @@
 "use client";
-import { monomaniac } from "@/fonts";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
+import { russo } from "@/fonts"
 import React, { useState } from "react";
 
 export default function Navbar() {
@@ -162,15 +162,15 @@ export default function Navbar() {
 				<div className="relative z-10 flex w-full items-center justify-center pl-[2.3em]">
 					<Link
 						href="/"
-						className={`${monomaniac.className} flex flex-row items-center pb-2  pt-2 text-gray-200`}
+						className={`${russo.className} flex flex-row items-center pb-2  pt-2 text-gray-200`}
 						onClick={closeNav}
 					>
 						<div className=" absolute left-2 ">{getIcon("logo")}</div>
 						<div className="flex   h-auto w-full flex-col items-center justify-center">
-							<span className="text-lg font-bold leading-none tracking-wide">
+							<span className="text-[1.1rem] leading-none tracking-wide">
 								REALITY
 							</span>
-							<span className="-mt-[1px] text-sm font-bold leading-none tracking-wide">
+							<span className=" text-[.8rem] leading-none tracking-wide">
 								DESIGNERS
 							</span>
 						</div>
@@ -192,9 +192,8 @@ export default function Navbar() {
 				<div
 					id="nav-content"
 					role="menu"
-					className={`lg:duration-600 absolute right-0 top-0 mt-12 h-[95vh] h-full w-full flex-col rounded-[0em] bg-black shadow-lg transition-transform duration-0 ease-in-out lg:mt-0  lg:h-[100vh] lg:w-full lg:rounded-[1em] lg:bg-black/80 lg:py-16 ${
-						isNavOpen ? "translate-x-0 " : "translate-x-full "
-					} flex h-screen w-full flex-col justify-start p-3`}
+					className={`lg:duration-600 absolute right-0 top-0 mt-12 h-[95vh] h-full w-full flex-col rounded-[0em] bg-black shadow-lg transition-transform duration-0 ease-in-out lg:mt-0  lg:h-[100vh] lg:w-full lg:rounded-[1em] lg:bg-black/80 lg:py-16 ${isNavOpen ? "translate-x-0 " : "translate-x-full "
+						} flex h-screen w-full flex-col justify-start p-3`}
 				>
 					<div className="h-full overflow-y-auto lg:flex lg:justify-between">
 						<div className="mb-2 block w-full border border-gray-600/25 lg:order-2 lg:mb-0 lg:h-full lg:w-2/3">
@@ -208,7 +207,7 @@ export default function Navbar() {
 									<li key={label} className="flex items-center">
 										<Link
 											href={href}
-											className={`${monomaniac.className} block flex h-full w-full items-center justify-center border border-gray-600/25 bg-black/10 p-4 text-left text-4xl font-bold uppercase text-gray-200 backdrop-blur-[20px] transition-all duration-200 ease-in-out hover:bg-white hover:text-black lg:text-7xl`}
+											className={`${russo.className}  block flex h-full w-full items-center justify-center border border-gray-600/25 bg-black/10 p-4 text-left text-4xl font-bold uppercase text-gray-200 backdrop-blur-[20px] transition-all duration-200 ease-in-out hover:bg-white hover:text-black lg:text-7xl`}
 											onClick={closeNav}
 										>
 											<div className="mr-6 flex min-h-10 min-w-10 items-center">

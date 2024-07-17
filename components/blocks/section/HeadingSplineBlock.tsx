@@ -1,9 +1,9 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { monomaniac } from "@/fonts";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React from "react";
+import { russo } from "@/fonts";
 
 const HeadingSplineBlock = ({ block }) => {
 	const { className, url } = block;
@@ -23,15 +23,15 @@ const HeadingSplineBlock = ({ block }) => {
 
 			const formattedDate = publicationDate
 				? new Date(publicationDate).toLocaleDateString("en-US", {
-						year: "numeric",
-						month: "long",
-						day: "numeric",
-				  })
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				})
 				: "Date not available";
 
 			const renderCategory = block.category ? (
 				<span
-					className={`${monomaniac.className} mr-1  h-auto items-center   justify-center whitespace-nowrap bg-gray-200 p-1 pl-2 pr-2 text-xs font-semibold uppercase tracking-widest text-black`}
+					className={`${russo.className} mr-1  h-auto items-center   justify-center whitespace-nowrap bg-gray-200 p-1 pl-2 pr-2 text-xs font-semibold uppercase tracking-widest text-black`}
 				>
 					{block.category.title}
 				</span>
@@ -43,7 +43,7 @@ const HeadingSplineBlock = ({ block }) => {
 						<div className="flex-cols flex w-11/12 flex-wrap items-center justify-between">
 							<div className="flex w-auto ">
 								<span
-									className={`${monomaniac.className} ml-2 w-auto text-xs uppercase tracking-widest   text-gray-200`}
+									className={`${russo.className} ml-2 w-auto text-xs uppercase tracking-widest   text-gray-200`}
 								>
 									POSTED ON {formattedDate}
 								</span>
@@ -54,14 +54,14 @@ const HeadingSplineBlock = ({ block }) => {
 						<div className="w-full flex-col lg:w-1/2">
 							{block.heading && (
 								<h1
-									className={`${monomaniac.className} leading-tightest p-4 text-5xl  text-gray-200 md:text-7xl`}
+									className={`${russo.className} leading-tightest p-4 text-5xl  text-gray-200 md:text-7xl`}
 								>
 									{block.heading}
 								</h1>
 							)}
 							{block.subheading && (
 								<h2
-									className={`${monomaniac.className}  w-full p-4  text-2xl  leading-7 tracking-wide text-gray-300 `}
+									className={`  w-full p-4  text-2xl  leading-7 tracking-wide text-gray-300 `}
 								>
 									{block.subheading}
 								</h2>
@@ -72,7 +72,7 @@ const HeadingSplineBlock = ({ block }) => {
 								{block.team && (
 									<Link
 										href={`/team/${block.team.slug.current}`}
-										className={`${monomaniac.className} `}
+										className={` `}
 									>
 										<div className="flex w-auto p-2">
 											{block.team?.image && (
