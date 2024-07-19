@@ -196,7 +196,7 @@ export const MainPostItem: FC<{
 			<Link href={`/posts/${slug?.current}`} prefetch={true}>
 				<Heading
 					heading={block.heading}
-					className={`${russo.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-5xl font-bold uppercase leading-none text-transparent lg:text-6xl`}
+					className={`${russo.className} cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-4xl font-bold uppercase leading-none text-transparent lg:text-6xl`}
 				/>
 			</Link>
 			<SubHeading
