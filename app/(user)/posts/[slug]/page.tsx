@@ -92,15 +92,8 @@ export default async function PageSlugRoute({ params }) {
 					</main>
 					<Suspense fallback={<div>Loading...</div>}>
 						{otherPosts && (
-							<div className="flex-cols flex h-auto w-full flex-col bg-black p-2  pb-6 lg:px-6">
-								<h4
-									className={`text-4xl  text-gray-200 `}
-								>
-									More Posts
-								</h4>
-								<div className="w-full py-12 ">
-									<PostsList post={otherPosts} />
-								</div>
+							<div className="w-full py-16 px-4 lg:px-8">
+								<PostsList post={otherPosts} />
 							</div>
 						)}
 					</Suspense>

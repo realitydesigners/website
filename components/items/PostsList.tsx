@@ -1,5 +1,4 @@
 "use client";
-import { SanityImage } from "@/components/global/Images";
 import { russo, space } from "@/fonts";
 import { BlockItem, PostsPayload } from "@/types";
 import Image from "next/image";
@@ -20,23 +19,6 @@ interface PostsListProps {
 	};
 }
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const PostImage: FC<{ image: any; heading: any }> = ({ image, heading }) => {
-	if (!image) return null;
-
-	return (
-		<div className="relative">
-			<SanityImage
-				width={500}
-				height={500}
-				priority={true}
-				image={image}
-				alt={`Cover Image for ${heading}`}
-				classesWrapper="w-full h-[50vw] md:h-[33vw] lg:h-[15vw] object-cover object-contain  -[.7em]"
-			/>
-		</div>
-	);
-};
 
 export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
 	const { image, heading, subheading, publicationDate } = block;
@@ -103,22 +85,30 @@ const PostsList: FC<PostsListProps> = ({ post }) => {
 	}
 
 	return (
-		<div className="grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3">
-			{post.map((postItem) =>
-				postItem.block?.map((block, index) =>
-					block.heading && block.imageRef ? (
-						<PostItem
-							key={`${postItem.slug?.current}-${index}`}
-							block={block}
-							slug={
-								postItem.slug?.current
-									? { current: postItem.slug.current }
-									: undefined
-							}
-						/>
-					) : null,
-				),
-			)}
+		<div className="w-full flex flex-col">
+			<h4
+				className={`${russo.className} text-2xl lg:text-4xl mb-4  text-gray-200 `}
+			>
+				More Posts
+			</h4>
+			<div className="grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3">
+
+				{post.map((postItem) =>
+					postItem.block?.map((block, index) =>
+						block.heading && block.imageRef ? (
+							<PostItem
+								key={`${postItem.slug?.current}-${index}`}
+								block={block}
+								slug={
+									postItem.slug?.current
+										? { current: postItem.slug.current }
+										: undefined
+								}
+							/>
+						) : null,
+					),
+				)}
+			</div>
 		</div>
 	);
 };
