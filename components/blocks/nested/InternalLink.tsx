@@ -2,11 +2,11 @@
 import { getPostData } from "@/app/(admin)/api/actions/fetchInternalLink";
 import { SanityImage } from "@/components/global/Images";
 import Link from "next/link";
-import { russo } from "@/fonts";
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { TemplateTheme, ThemeProps } from "@/components/blocks/types";
+import { TemplateTheme, ThemeProps } from "@/components/blocks/Blocks";
+import { russo } from "@/fonts";
 
 const themeClasses: Record<TemplateTheme, ThemeProps> = {
 	light: {
@@ -42,7 +42,6 @@ const formatDate = (dateString) => {
 		})
 		: "Date not available";
 };
-
 
 const TeamLink = ({ team, theme }) => {
 	if (!team) return null;
@@ -187,7 +186,7 @@ const InternalLink: React.FC<{
 	return (
 		<>
 			<Link href="#popup" onClick={openDialog}>
-				<span className={`text-xl font-bold capitalize underline ${russo.className}`}>
+				<span className="text-xl font-bold capitalize underline">
 					{children}
 				</span>
 				<span

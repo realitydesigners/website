@@ -1,9 +1,7 @@
 import { SanityImage } from "@/components/global/Images";
-
 import Link from "next/link";
 import React from "react";
-
-import { ThemeProps } from "@/components/blocks/types";
+import { ThemeProps } from "@/components/blocks/Blocks";
 
 const themeClasses: Record<string, ThemeProps> = {
 	"image-standard": {
@@ -49,7 +47,7 @@ const ArtistInfo = ({ artist, className }) => {
 
 	return (
 		<div
-			className={`relative bottom-0 flex h-auto w-full pl-4 pt-4 lg:w-3/4 ${textColor} ${insetStyles}`}
+			className={`relative -bottom-1 flex h-auto w-full pl-4 pt-4 lg:w-3/4 ${textColor} ${insetStyles}`}
 		>
 			<SanityImage
 				image={artist.image}

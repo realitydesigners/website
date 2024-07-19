@@ -1,6 +1,6 @@
 "use client";
 import Blocks from "@/components/blocks/Blocks";
-import { BlockProps } from "@/components/blocks/types";
+import { BlockProps } from "@/components/blocks/Blocks"
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React from "react";

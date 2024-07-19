@@ -1,13 +1,9 @@
-import {
-	ContentBlock,
-	HeadingBlock,
-	HeadingSplineBlock,
-	TeamBlock,
-} from "@/components/blocks/index";
-
 import React from "react";
 import type { PortableTextBlock } from "@portabletext/types";
-export type LayoutTheme = "dark" | "light" | "team" | "video" | "transparent";
+import HeadingBlock from "@/components/blocks/section/HeadingBlock";
+import HeadingSplineBlock from "@/components/blocks/section/HeadingSplineBlock";
+import TeamBlock from "@/components/blocks/section/TeamBlock";
+import ContentBlock from "@/components/blocks/section/ContentBlock";
 
 export type BlockType =
 	| "headingBlock"
@@ -20,6 +16,32 @@ export interface BlockProps {
 	layout?: LayoutTheme;
 	content?: PortableTextBlock[];
 	className?: string;
+}
+
+export interface ContentBlockProps {
+	block: {
+		content: PortableTextBlock[];
+		className?: string;
+		layout?: LayoutTheme;
+	};
+	layout?: string | undefined;
+	theme?: string | undefined;
+}
+
+export type LayoutTheme = "dark" | "light" | "team" | "video" | "transparent";
+
+export type TemplateTheme = "dark" | "light" | "transparent";
+export interface ThemeProps {
+	textColor?: string;
+	isInset?: boolean;
+	containerBg?: string;
+	tagBg?: string;
+	tagText?: string;
+	backgroundColor?: string;
+	topBackgroundColor?: string;
+	buttonTextColor?: string;
+	buttonBackgroundColor?: string;
+	containerBorder?: string;
 }
 
 const blockTypeComponents: Record<BlockType, React.ElementType> = {
