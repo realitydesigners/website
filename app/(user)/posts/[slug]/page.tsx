@@ -1,5 +1,5 @@
 import Blocks from "@/components/blocks/Blocks";
-import { BlockProps } from "@/components/blocks/types";
+import { BlockProps } from "@/components/blocks/Blocks";
 import PostsList from "@/components/items/PostsList";
 
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";

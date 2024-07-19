@@ -1,5 +1,5 @@
 import Blocks from "@/components/blocks/Blocks";
-import { BlockProps } from "@/components/blocks/types";
+import { BlockProps } from "@/components/blocks/Blocks";
 
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";

@@ -10,7 +10,7 @@ import {
 	ContentBlockProps,
 	LayoutTheme,
 	TemplateTheme,
-} from "@/components/blocks/types";
+} from "@/components/blocks/Blocks";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import React from "react";
 

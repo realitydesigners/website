@@ -1,15 +1,14 @@
-import {
-	AudioRefBlock,
-	ImageRefBlock,
-	InternalLink,
-	PostsRefBlock,
-	QuoteRefBlock,
-	SplineRefBlock,
-	VideoRefBlock,
-} from "@/components/blocks/index";
-import { TemplateTheme } from "@/components/blocks/types";
+import AudioRefBlock from "../nested/AudioRefBlock";
+import ImageRefBlock from "../nested/ImageRefBlock";
+import InternalLink from "../nested/InternalLink";
+import PostsRefBlock from "../nested/PostsRefBlock";
+import QuoteRefBlock from "../nested/QuoteRefBlock";
+import SplineRefBlock from "../nested/SplineRefBlock";
+import VideoRefBlock from "../nested/VideoRefBlock";
 import { space } from "@/fonts";
 import React from "react";
+
+export type TemplateTheme = "dark" | "light" | "transparent";
 
 const headingStyles: Record<TemplateTheme, string> = {
 	dark: `${space.className} my-3  w-full  bg-gradient-to-r from-blue-100/90 to-blue-100/80 text-transparent bg-clip-text text-3xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
@@ -249,7 +248,6 @@ const TransparentTemplate = {
 				<VideoRefBlock
 					videoTitle={videoTitle}
 					videoUrl={videoUrl}
-
 					className={className}
 				/>
 			);
