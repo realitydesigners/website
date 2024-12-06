@@ -9,6 +9,7 @@ import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import React, { Suspense, useMemo } from "react";
+import { generatePageMetadata } from "@/lib/metadata";
 
 type Props = {
   params: { slug: string };
@@ -22,35 +23,14 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const metadataBaseUrl =
-    process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
-  const post = await sanityFetch<PostsPayload>({
-    query: postsBySlugQuery,
-    tags: ["post"],
-    qParams: { slug: params.slug },
-  });
-
-  const ogImage = urlForOpenGraphImage(post?.block?.[0]?.imageRef);
-  const ogImageAlt =
-    post?.block?.[0]?.imageRef?.imageAlt || "Your default alt text";
-  const metadataBase = new URL(metadataBaseUrl);
-
-  return {
-    title: post?.block?.[0]?.heading,
-    description: post?.block?.[0]?.subheading || (await parent).description,
-    openGraph: ogImage
-      ? {
-          images: [
-            {
-              url: ogImage,
-              alt: ogImageAlt,
-            },
-            ...((await parent).openGraph?.images || []),
-          ],
-        }
-      : {},
-    metadataBase,
-  };
+  return generatePageMetadata<PostsPayload>(
+    {
+      query: postsBySlugQuery,
+      slug: params.slug,
+      tags: ["post"],
+    },
+    parent
+  );
 }
 
 export default async function PageSlugRoute({ params }) {
