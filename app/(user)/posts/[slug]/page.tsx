@@ -1,11 +1,9 @@
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/Blocks";
 import PostsList from "@/components/items/PostsList";
-
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
-import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import React, { Suspense, useMemo } from "react";
@@ -28,6 +26,10 @@ export async function generateMetadata(
       query: postsBySlugQuery,
       slug: params.slug,
       tags: ["post"],
+      imageField: "block.0.imageRef",
+      imageAltField: "block.0.imageRef.imageAlt",
+      titleField: "block.0.heading",
+      descriptionField: "block.0.subheading",
     },
     parent
   );

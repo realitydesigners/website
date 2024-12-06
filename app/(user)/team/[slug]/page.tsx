@@ -2,7 +2,6 @@ import TeamItem from "@/components/items/TeamItem";
 import { teamBySlugQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
-import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { TeamPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import { generatePageMetadata } from "@/lib/metadata";
