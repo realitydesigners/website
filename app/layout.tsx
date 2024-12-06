@@ -15,7 +15,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${space.className} bg-black`}>
+    <html lang="en" className={`${space.className}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
