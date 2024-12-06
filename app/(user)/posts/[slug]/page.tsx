@@ -29,27 +29,20 @@ export async function generateMetadata(
     tags: ["post"],
     qParams: { slug: params.slug },
   });
-  //@ts-ignore
-  const ogImageUrl =
-    post?.block?.[0]?.imageRef?.imageUrl ||
-    (Array.isArray(post?.block?.[0]?.imageRef) &&
-      (post?.block?.[0]?.imageRef[0]?.imageUrl ||
-        post?.block?.[0]?.imageRef[0]?.image)) ||
-    post?.block?.[0]?.imageRef?.image;
 
+  const ogImage = urlForOpenGraphImage(post?.block?.[0]?.imageRef);
   const ogImageAlt =
     post?.block?.[0]?.imageRef?.imageAlt || "Your default alt text";
-
   const metadataBase = new URL(metadataBaseUrl);
 
   return {
     title: post?.block?.[0]?.heading,
     description: post?.block?.[0]?.subheading || (await parent).description,
-    openGraph: ogImageUrl
+    openGraph: ogImage
       ? {
           images: [
             {
-              url: ogImageUrl,
+              url: ogImage,
               alt: ogImageAlt,
             },
             ...((await parent).openGraph?.images || []),
@@ -86,12 +79,7 @@ export default async function PageSlugRoute({ params }) {
       {currentPost && (
         <>
           <main>
-            {blocks?.map((block, index) => (
-              <Blocks
-                key={block._key || `block-${index}`}
-                block={block as BlockProps}
-              />
-            ))}
+            {blocks?.map((block) => <Blocks block={block as BlockProps} />)}
           </main>
           <Suspense fallback={<div>Loading...</div>}>
             {otherPosts && (
