@@ -5,27 +5,27 @@ import PostsRefBlock from "../nested/PostsRefBlock";
 import QuoteRefBlock from "../nested/QuoteRefBlock";
 import SplineRefBlock from "../nested/SplineRefBlock";
 import VideoRefBlock from "../nested/VideoRefBlock";
-import { space } from "@/app/fonts";
+
 import React from "react";
 
 export type TemplateTheme = "dark" | "light" | "transparent";
 
 const headingStyles: Record<TemplateTheme, string> = {
-  dark: `  my-3  w-full  bg-gradient-to-r from-blue-100/90 to-blue-100/80 text-transparent bg-clip-text text-3xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
-  light: `  my-3 w-11/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
-  transparent: `  my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+  dark: `font-russo my-3  w-full  text-gray-200 bg-clip-text text-3xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+  light: `font-russo my-3 w-11/12 text-black text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
+  transparent: ` font-russo my-3 w-11/12 text-gray-200 text-4xl font-bold uppercase leading-none tracking-wide md:w-3/4 lg:w-1/2 lg:text-5xl`,
 };
 
 const listStyles: Record<TemplateTheme, string> = {
-  dark: `  w-full bg-gradient-to-r from-blue-100/75 to-blue-100/60 text-transparent bg-clip-text leading-7 md:w-3/4 lg:w-1/2 text-xl list-decimal list-inside space-y-6 mb-6`,
-  light: `  w-11/12 text-black leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
-  transparent: `  w-11/12 text-gray-400 leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
+  dark: ` font-outfit  w-full  text-gray-200 leading-8 md:w-3/4 lg:w-1/2 text-xl list-decimal list-inside space-y-6 mb-6`,
+  light: ` font-outfit  w-11/12 text-black leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
+  transparent: ` font-outfit  w-11/12 text-gray-400 leading-7 md:w-3/4 text-xl lg:w-1/2  list-decimal list-inside space-y-6 mb-6`,
 };
 
 const normalTextStyles: Record<TemplateTheme, string> = {
-  dark: `  w-full  bg-gradient-to-r from-blue-100/80 to-blue-100/70 text-transparent bg-clip-text leading-[1.4em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
-  light: `  text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
-  transparent: `  text-gray-400 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+  dark: ` font-outfit  w-full  text-gray-200  leading-[1.4em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+  light: ` font-outfit  text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+  transparent: ` font-outfit  text-gray-400 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 };
 
 const Heading: React.FC<{

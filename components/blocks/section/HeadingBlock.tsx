@@ -1,6 +1,5 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { space, russo } from "@/app/fonts";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,12 +8,8 @@ const RenderCategory = ({ category }) => {
   if (!category) return null;
 
   return (
-    <div className="my-1 flex items-center justify-center bg-gradient-to-r from-blue-100/100 to-blue-100/90 p-1 pl-2 pr-2">
-      <span
-        className={` flex h-auto items-center justify-center   whitespace-nowrap text-xs font-semibold uppercase tracking-widest text-black `}
-      >
-        {category.title}
-      </span>
+    <div className="my-1 flex text-[10px] font-semibold uppercase tracking-widest text-black flex items-center rounded-full justify-center bg-gray-400 p-1 pl-2 pr-2">
+      {category.title}
     </div>
   );
 };
@@ -63,11 +58,11 @@ const TeamSection = ({ team, theme }) => {
                 width={50}
                 height={50}
                 priority={true}
-                classesWrapper="h-[2em] w-[2em] max-w-[2em] max-h-[2em] object-cover cover rounded-lg"
+                classesWrapper=" max-w-[2em] max-h-[2em] object-cover cover rounded-full"
                 theme={theme}
               />
-              <span className="ml-2 cursor-pointer bg-gradient-to-r from-blue-100/100  to-blue-100/90 bg-clip-text text-sm font-bold uppercase uppercase leading-none tracking-wide text-transparent ">
-                Written by {team.name}
+              <span className="ml-2 text-white font-kodemono text-xs font-bold uppercase  leading-none tracking-wide  ">
+                {team.name}
               </span>
             </div>
           )}
@@ -87,7 +82,7 @@ const HeadingBlock = ({ block }) => {
   switch (theme) {
     case "dark":
       return (
-        <div className="h-auto w-full pt-16 lg:pt-32">
+        <div className="h-auto w-full pt-20 lg:py-24">
           <div className="flex w-full flex-wrap justify-center">
             <div
               className={
@@ -98,7 +93,7 @@ const HeadingBlock = ({ block }) => {
 
               <FormattedDate
                 date={publicationDate}
-                className={` my-1 w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest  text-transparent`}
+                className={` my-1 w-auto text-gray-200/50 font-kodemono text-xs uppercase tracking-widest  `}
               />
             </div>
 
@@ -109,10 +104,10 @@ const HeadingBlock = ({ block }) => {
                   alt={"this"}
                   width={1000}
                   height={1000}
-                  className="w-50 h-50"
+                  className="w-full h-full object-cover"
                 />
-                <p className=" flex  py-2 text-xs uppercase tracking-wide text-gray-400">
-                  Image Of: {imageAlt}
+                <p className=" flex  py-2 text-[8px] uppercase tracking-wide text-gray-200/50">
+                  {imageAlt}
                 </p>
               </div>
             </div>
@@ -125,16 +120,16 @@ const HeadingBlock = ({ block }) => {
 
                   <FormattedDate
                     date={publicationDate}
-                    className={` w-auto bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text text-xs uppercase tracking-widest text-transparent`}
+                    className={` w-auto  text-gray-200/50 font-kodemono   text-xs uppercase tracking-widest`}
                   />
                 </div>
                 <Heading
                   heading={block.heading}
-                  className={`  cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-[10vw] font-bold uppercase leading-none text-transparent lg:text-[4vw]`}
+                  className={` font-russo text-white p-1 text-[10vw] font-bold uppercase leading-none  lg:text-[4vw]`}
                 />
                 <SubHeading
                   heading={block.subheading}
-                  className={`  bg-gradient-to-r from-blue-100/80 to-blue-100/70 bg-clip-text p-1 text-xl leading-tight text-transparent`}
+                  className={`text-gray-200/50 p-1 text-xl leading-tight`}
                 />
                 <div className="w-full ">
                   <TeamSection team={block.team} theme={className} />

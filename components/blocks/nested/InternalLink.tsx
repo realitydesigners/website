@@ -6,7 +6,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 import { TemplateTheme, ThemeProps } from "@/components/blocks/Blocks";
-import { russo } from "@/app/fonts";
 
 const themeClasses: Record<TemplateTheme, ThemeProps> = {
   light: {

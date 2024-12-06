@@ -92,7 +92,13 @@ export const postsBySlugQuery = groq`
         category->,
         layout,
         publicationDate,
-        team->,
+        team->{
+          ...,
+           instagram,
+ twitter,
+ website,
+ tiktok,
+        },
         _type == "imageCanvasBlock" => {
             layout,
             image->,

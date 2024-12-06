@@ -34,9 +34,7 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
   return (
     <div className="group flex h-auto flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out hover:shadow-lg">
       <div className="overflow-hidden">
-        {/* Apply scaling on hover to the image */}
         <div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-          {/* <PostImage image={image} heading={heading} /> */}
           <Image
             src={imageUrl}
             width={300}
@@ -52,15 +50,14 @@ export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
         {formattedDate}
       </span>
       <div>
-        <Link href={`/posts/${slug?.current}`}>
-          <h2
-            className={` font-kodemono mb-4 text-white p-1 text-4xl font-bold capitalize leading-[1.2em] text-transparent`}
-          >
-            {heading}
-          </h2>
+        <Link
+          href={`/posts/${slug?.current}`}
+          className="font-russo  text-white p-1 text-3xl font-bold capitalize leading-[1.2em] text-transparent"
+        >
+          {heading}
         </Link>
         <p
-          className={` font-kodemono  text-gray-400/50 p-1 text-lg leading-tight`}
+          className={` pt-4 font-kodemono text-gray-200/50  p-1 text-md leading-tight`}
         >
           {subheading}
         </p>
@@ -76,7 +73,7 @@ const PostsList: FC<PostsListProps> = ({ post }) => {
 
   return (
     <div className="w-full flex flex-col">
-      <h4 className={`  text-2xl lg:text-4xl mb-4  text-gray-200 `}>
+      <h4 className={` font-russo   text-xl lg:text-2xl mb-4  text-gray-200 `}>
         More Posts
       </h4>
       <div className="grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3">

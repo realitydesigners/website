@@ -1,6 +1,5 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-
 import { BlockItem, PostsPayload } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -63,7 +62,7 @@ export const PostItems: FC<{
         <Link href={`/posts/${slug?.current}`} prefetch={true}>
           <Heading
             heading={block.heading}
-            className={` font-kodemono  cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-2 font-bold capitalize leading-[1.3em] text-transparent`}
+            className={` font-kodemono  text-white p-2 font-bold capitalize leading-[1.3em]`}
           />
         </Link>
       </div>
@@ -105,7 +104,6 @@ export const PostItem: FC<{
 }> = ({ block, slug }) => {
   const { image, heading, publicationDate } = block;
   const imageUrl = block.imageRef?.imageUrl;
-  const imageAlt = block.imageRef?.imageAlt;
 
   return (
     <div className="group flex h-auto flex-col p-1 transition duration-300 ease-in-out hover:shadow-lg">
@@ -123,17 +121,17 @@ export const PostItem: FC<{
 
       <FormattedDate
         date={publicationDate}
-        className={` h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-2 text-xs font-bold uppercase tracking-widest text-transparent`}
+        className={` h-auto font-kodemono w-full text-gray-400/50 p-1 pt-2 text-xs font-bold uppercase tracking-widest `}
       />
       <Link href={`/posts/${slug?.current}`} prefetch={true}>
         <Heading
           heading={block.heading}
-          className={` font-russo  cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-3xl font-bold capitalize leading-[1.2em] text-transparent`}
+          className={` font-russo text-white p-1 text-3xl font-bold capitalize leading-[1.2em]`}
         />
       </Link>
       <SubHeading
         heading={block.subheading}
-        className={` font-kodemono  text-md bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 leading-tight text-transparent `}
+        className={` font-kodemono  text-md text-gray-200/50 p-1 leading-tight `}
       />
     </div>
   );
@@ -191,17 +189,17 @@ export const MainPostItem: FC<{
       </div>
       <FormattedDate
         date={publicationDate}
-        className={` font-kodemono h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
+        className={` font-kodemono h-auto w-full text-gray-400/50 p-1 pt-3 text-xs font-bold uppercase tracking-widest `}
       />
       <Link href={`/posts/${slug?.current}`} prefetch={true}>
         <Heading
           heading={block.heading}
-          className={` font-russo  cursor-pointer bg-gradient-to-r from-blue-100/100 to-blue-100/90 bg-clip-text p-1 text-4xl font-bold uppercase leading-none text-transparent lg:text-6xl`}
+          className={` font-russo  text-whitep-1 text-4xl font-bold uppercase leading-none lg:text-6xl`}
         />
       </Link>
       <SubHeading
         heading={block.subheading}
-        className={` font-kodemono  bg-gradient-to-r from-blue-100/50 to-blue-100/50  bg-clip-text p-1 text-xl leading-tight text-transparent `}
+        className={` font-kodemono  text-gray-200/50 p-1 text-xl leading-tight `}
       />
     </div>
   );
@@ -247,12 +245,12 @@ export const RightBarPostItem: FC<{
       <div className="flex w-full flex-col pl-1 pr-2">
         <FormattedDate
           date={publicationDate}
-          className={` h-auto w-full bg-gradient-to-r from-blue-100/50 to-blue-100/50 bg-clip-text p-1 pt-3 text-xs font-bold uppercase tracking-widest text-transparent`}
+          className={` h-auto w-full text-gray-400/50 p-1 pt-3 text-xs font-bold uppercase tracking-widest `}
         />
         <Link href={`/posts/${slug?.current}`} prefetch={true}>
           <Heading
             heading={block.heading}
-            className={` font-kodemono  cursor-pointer bg-gradient-to-r   from-blue-100/100 to-blue-100/90 bg-clip-text pl-2 text-lg font-bold capitalize leading-[1.2em] leading-none text-transparent`}
+            className={` font-kodemono  text-white pl-2 text-lg font-bold capitalize leading-[1.2em] leading-none `}
           />
         </Link>
       </div>

@@ -3,7 +3,6 @@ import { SanityImage } from "@/components/global/Images";
 import Spline from "@splinetool/react-spline";
 import Link from "next/link";
 import React from "react";
-import { russo } from "@/app/fonts";
 
 const HeadingSplineBlock = ({ block }) => {
   const { className, url } = block;
@@ -30,63 +29,54 @@ const HeadingSplineBlock = ({ block }) => {
         : "Date not available";
 
       const renderCategory = block.category ? (
-        <span
-          className={`  mr-1  h-auto items-center   justify-center whitespace-nowrap bg-gray-200 p-1 pl-2 pr-2 text-xs font-semibold uppercase tracking-widest text-black`}
-        >
+        <span className="my-1 flex font-kodemono text-[10px] uppercase tracking-widest text-black items-center rounded-full justify-center bg-gray-400 p-1 pl-2 pr-2">
           {block.category.title}
         </span>
       ) : null;
 
       return (
-        <div className="h-auto w-full bg-black pb-20 pt-20 lg:pb-0 lg:pt-32">
-          <div className="flex w-full flex-wrap justify-center">
-            <div className="flex-cols flex w-11/12 flex-wrap items-center justify-between">
-              <div className="flex w-auto ">
-                <span
-                  className={`  ml-2 w-auto text-xs uppercase tracking-widest   text-gray-200`}
-                >
-                  POSTED ON {formattedDate}
-                </span>
+        <div className="h-auto w-full pt-20 lg:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex w-full flex-wrap justify-center">
+              <div className="w-full lg:w-3/4">
+                <div className="flex w-full mb-6 flex-wrap items-center justify-between">
+                  <span className="font-kodemono ml-2 w-auto text-xs uppercase tracking-wider text-gray-400">
+                    {formattedDate}
+                  </span>
+                  {renderCategory}
+                </div>
+                {block.heading && (
+                  <h1 className="font-russo p-4 text-5xl text-gray-200 md:text-7xl leading-none">
+                    {block.heading}
+                  </h1>
+                )}
+                {block.subheading && (
+                  <h2 className="font-kodemono w-full p-4 text-xl text-gray-400 leading-normal">
+                    {block.subheading}
+                  </h2>
+                )}
               </div>
-              {renderCategory}
-            </div>
 
-            <div className="w-full flex-col lg:w-1/2">
-              {block.heading && (
-                <h1
-                  className={`  leading-tightest p-4 text-5xl  text-gray-200 md:text-7xl`}
-                >
-                  {block.heading}
-                </h1>
-              )}
-              {block.subheading && (
-                <h2
-                  className={`  w-full p-4  text-2xl  leading-7 tracking-wide text-gray-300 `}
-                >
-                  {block.subheading}
-                </h2>
-              )}
-            </div>
-            <div className="w-full pb-2  pl-2 lg:w-3/4 ">
-              <div className="w-full">
+              {/* Author Section */}
+              <div className="w-full pb-2 pl-2 lg:w-3/4 ">
                 {block.team && (
                   <Link
                     href={`/team/${block.team.slug.current}`}
-                    className={` `}
+                    className="hover:text-gray-200 transition-colors"
                   >
                     <div className="flex w-auto p-2">
                       {block.team?.image && (
-                        <div className="flex items-center">
+                        <div className="flex items-center space-x-3">
                           <SanityImage
                             image={block.team.image}
                             alt={`Team member image for ${block.team.name}`}
                             width={80}
                             height={80}
                             priority={true}
-                            classesWrapper=" h-[30px] w-[30px] object-cover cover rounded-[2em] "
+                            classesWrapper="h-[30px] w-[30px] object-cover rounded-full"
                           />
                           {block.team.name && (
-                            <span className="ml-2 text-sm uppercase tracking-wide text-gray-200">
+                            <span className="font-kodemono text-sm text-gray-400 hover:text-gray-200 transition-colors">
                               {block.team.name}
                             </span>
                           )}
@@ -96,10 +86,9 @@ const HeadingSplineBlock = ({ block }) => {
                   </Link>
                 )}
               </div>
-            </div>
 
-            <div className="h-[70vh] w-full overflow-hidden  p-2 lg:w-3/4">
-              <div className="h-full w-full overflow-hidden rounded-[1em] shadow-lg">
+              {/* Spline Section */}
+              <div className="h-[70vh] w-full overflow-hidden p-2 lg:w-3/4">
                 <Spline scene={url} />
               </div>
             </div>
