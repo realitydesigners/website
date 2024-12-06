@@ -1,235 +1,186 @@
-:root {
-   --font-stack: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   --primary-color: #000000;
-   /* A modern purple as the primary color */
-   --background-color: #ffffff;
-   /* White background for light mode */
-   --text-color: #333333;
-   /* Dark grey for text to ensure readability */
-   --border-radius: 0.5rem;
-   /* Rounded corners for a modern feel */
-   --border-color: #e2e8f0;
-   /* Light grey border color */
-   --input-background: #edf2f7;
-   /* Very light grey for input fields background */
-   --input-border-color: #cbd5e0;
-   /* Light grey for input border */
-   --button-hover-color: #4c1d95;
-   /* A darker purple for button hover state */
-   --error-color: #e53e3e;
-   /* Red color for error states or messages */
+@import "tailwindcss";
+
+@theme {
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-kodemono: var(--font-kodemono);
+  --font-outfit: var(--font-outfit);
+  --font-oxanium: var(--font-oxanium);
+  --font-russo: var(--font-russo);
+
+  --color-black: #000;
 }
 
-/* Base styles */
-body,
-input,
-button {
-   font-family: var(--font-stack);
-   color: var(--text-color);
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-.cl-main {
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+@utility text-gray-gradient {
+  @apply bg-linear-to-b py-2 from-white via-white to-white/50 bg-clip-text text-transparent;
 }
 
-.cl-header {
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+@utility text-gray {
+  @apply bg-linear-to-b from-white to-gray-200/50 bg-clip-text text-transparent;
 }
 
-.cl-headerTitle {
-   color: #a0a0b1;
+@utility text-dark-gray {
+  @apply bg-linear-to-b from-gray-200/40 to-gray-200/30 bg-clip-text text-transparent;
 }
 
-.cl-headerSubtitle {
-   color: #858595;
+@utility border-gray {
+  @apply border border-[#181818];
 }
 
-/* Default styles for small screens */
-.cl-card {
-   width: 95vw;
-   border-radius: 0px;
-   background-color: rgba(0, 0, 0, 0.7);
-   backdrop-filter: blur(8px);
+@layer utilities {
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
 
+  html {
+    height: 100%;
+    box-sizing: border-box;
+    touch-action: manipulation;
+    scroll-behavior: smooth;
+    font-feature-settings:
+      "case" 1,
+      "rlig" 1,
+      "calt" 0;
+  }
+
+  html,
+  body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue",
+      "Helvetica", sans-serif;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-black text-white antialiased;
+  }
+
+  body {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  p a {
+    @apply hover:underline;
+  }
+
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  .height-screen-helper {
+    min-height: calc(100vh - 80px);
+  }
+
+  .heading-text {
+    background: linear-gradient(to bottom, #ffffff, #a6a6aa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .primary-text {
+    background: linear-gradient(to bottom, #ffffffa0, #787c80);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      --angle: 0deg;
+    }
+    100% {
+      --angle: 360deg;
+    }
+  }
 }
 
-@media (min-width: 640px) {
-   .cl-card {
-      width: 88vw;
-      /* 25% of viewport width */
-   }
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-@media (min-width: 1024px) {
-   .cl-card {
-      width: 100%;
-
-   }
+.animate-marquee {
+  animation: marquee 90s linear infinite;
+  min-width: max-content;
 }
 
-/* Sign Up Form Styles */
-.clsignUp-root .cl-headerTitle {
-   color: #fff;
-   /* White text color */
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
-.clsignUp-root .cl-headerSubtitle {
-   color: #fff;
-   /* White text color */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.signUp.start.title {
-   color: #fff;
-   /* White text color */
+.animate-scroll {
+  animation: scroll 90s linear infinite;
 }
 
-.signUp.start.subtitle {
-   color: #fff;
-   /* White text color */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-
-/* Social Buttons  */
-.cl-socialButtonsBlockButton {
-   color: #a0a0b1;
-   background-color: #383841;
-}
-
-.cl-socialButtonsBlockButton:hover {
-   color: #fff;
-   background-color: #686976;
-}
-
-.cl-dividerLine {
-   background-color: #858595;
-
-}
-
-.cl-dividerText {
-   color: #a0a0b1;
-}
-
-/* Social Buttons  */
-
-/* Form  */
-.cl-formFieldInput {
-   padding: 12px;
-   border: 1px solid #1e1e20;
-   border-radius: 4px;
-   font-size: 16px;
-   background-color: #121212;
-}
-
-.cl-formFieldLabel {
-   width: 100%;
-   color: #858595;
-}
-
-
-.cl-formFieldInput,
-.cl-formFieldInfoText,
-.cl-formFieldSuccessText,
-.cl-userPreviewMainIdentifier,
-.cl-userPreviewSecondaryIdentifier,
-.cl-profileSectionTitleText,
-.cl-profileSectionContent,
-.cl-profileSectionContent__username,
-.cl-profileSectionContent__danger,
-.userProfile.start.dangerSection.deleteAccountButton {
-   color: #a0a0b1;
-}
-
-.userButtonPopoverActionButton:hover {
-
-   background-color: #1e1e20;
-}
-
-.cl-navbar {
-   width: 200px;
-}
-
-.cl-scrollBox {
-   width: 800px;
-}
-
-.cl-userButtonPopoverActionButtonText {
-   color: #a0a0b1;
-}
-
-.cl-userButtonPopoverActionButtonIcon {
-   color: #a0a0b1;
-
-}
-
-.cl-formFieldInputShowPasswordButton {
-   color: #a0a0b1;
-
-}
-
-.cl-formFieldInputShowPasswordButton:hover {
-   color: #6a6a75;
-
-}
-
-.cl-formFieldInput:focus {
-   outline: none;
-   border-color: #505163;
-   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-
-}
-
-.cl-formFieldInput[aria-invalid="true"] {
-   border-color: rgb(233, 74, 74);
-   /* Red border for invalid input */
-}
-
-.cl-formFieldErrorText {
-   color: rgb(74, 233, 233);
-}
-
-.cl-formFieldErrorText__password {
-   color: rgb(233, 74, 74);
-}
-
-/* Forms */
-
-/* Footer */
-.cl-footerAction {
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 50px;
-
-}
-
-.cl-footerActionText {
-   color: #a0a0b1;
-}
-
-.cl-footerActionLink {
-   color: #a0a0b1;
-   font-weight: 600;
-   background-color: #383841;
-   border-radius: 4px;
-   margin-left: 8px;
-   padding: 8px;
-}
-
-.cl-footerActionLink:hover {
-   color: #a0a0b1;
-   font-weight: 600;
-   background-color: #686976;
-   border-radius: 4px;
-   margin-left: 8px;
-   padding: 8px;
-}
-
-/* Footer */
-
-
-.cl-userButtonPopoverCard {
-   height: 180px;
-
-
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
