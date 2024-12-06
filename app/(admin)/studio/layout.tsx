@@ -1,11 +1,7 @@
-export default function RootLayout({
+export default function StudioLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return <div className="absolute z-[10000] h-full w-screen">{children}</div>;
 }
