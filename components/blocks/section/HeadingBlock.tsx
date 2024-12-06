@@ -61,7 +61,7 @@ const TeamSection = ({ team, theme }) => {
                 classesWrapper=" max-w-[2em] max-h-[2em] object-cover cover rounded-full"
                 theme={theme}
               />
-              <span className="ml-2 text-white font-kodemono text-xs font-bold uppercase  leading-none tracking-wide  ">
+              <span className="ml-2 text-white font-kodemono text-sm font-bold uppercase leading-none tracking-wide  ">
                 {team.name}
               </span>
             </div>
@@ -129,7 +129,7 @@ const HeadingBlock = ({ block }) => {
                 />
                 <SubHeading
                   heading={block.subheading}
-                  className={`text-gray-200/50 p-1 text-xl leading-tight`}
+                  className={`text-gray-200/50 font-outfit p-1 text-xl leading-tight`}
                 />
                 <div className="w-full ">
                   <TeamSection team={block.team} theme={className} />

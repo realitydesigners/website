@@ -10,12 +10,10 @@ const AudioPlayer = ({ audioTitle, audioFileUrl }) => {
     <div className="w-full py-4 flex justify-center p-2">
       <div className="w-full md:w-3/4 lg:w-1/2 items-end flex flex-col">
         <div className="flex flex-wrap w-full justify-between  items-center">
-          <span
-            className={` my-4 pt-[3px] pb-[5px] pr-2 pl-2 ml-2 text-[16px] bg-[#5eead4] rounded-full `}
-          >
+          <span className="my-4 font-kodemono ml-2 font-bold rounded-full text-black bg-purple-400 pb-[5px] pl-2 pr-2 pt-[3px] text-sm">
             PODCAST
           </span>
-          <p className=" px-4 font-bold uppercase text-md leading-[1.3em] text-center tracking-wide  text-blue-100">
+          <p className="ml-2 pt-4 font-russo text-center text-2xl uppercase leading-[1em] tracking-wide text-black">
             {audioTitle}
           </p>
         </div>
