@@ -24,7 +24,7 @@ const listStyles: Record<TemplateTheme, string> = {
 
 const normalTextStyles: Record<TemplateTheme, string> = {
   dark: ` font-outfit  w-full  text-gray-200  leading-[1.4em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
-  light: ` font-outfit  text-black leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
+  light: ` font-outfit  text-white leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
   transparent: ` font-outfit  text-gray-400 leading-[1.5em] tracking-wide text-xl md:w-3/4 lg:w-1/2 lg:text-xl`,
 };
 

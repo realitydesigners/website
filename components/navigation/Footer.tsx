@@ -6,14 +6,14 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-black px-6 py-16 border-t border-gray-800">
+    <footer className="w-full bg-black px-6 py-16 ">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-1 ">
             <div className="font-russo  text-gray-200">
-              <h2 className="text-2xl leading-none ">
+              <h2 className="text-4xl leading-none ">
                 REALITY
                 <br></br>DESIGNERS
               </h2>
@@ -103,7 +103,7 @@ export default function Footer() {
         </div>
 
         {/* Social Links & Copyright */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center space-x-6">
             <Link
               href="https://www.youtube.com/@realitydesigners"
@@ -134,7 +134,7 @@ export default function Footer() {
               <FaTiktok size={24} />
             </Link>
           </div>
-          <div className="font-kodemono text-gray-400 text-sm">
+          <div className="font-kodemono text-gray-400 text-[10px]">
             © {new Date().getFullYear()} Reality Designers. All rights
             reserved.
           </div>
@@ -192,19 +192,19 @@ const Newsletter = () => {
           name="name"
           placeholder="Your Name"
           required
-          className="w-full bg-gray-900/50 border border-gray-800 rounded px-4 py-2 text-gray-200 font-kodemono text-sm focus:outline-none focus:border-gray-600 transition-colors"
+          className="w-full bg-gray-900/50 border border-[#181818] rounded px-4 py-2 text-gray-200 font-kodemono text-sm focus:outline-none focus:border-gray-600 transition-colors"
         />
         <input
           type="email"
           name="email"
           placeholder="your@email.com"
           required
-          className="w-full bg-gray-900/50 border border-gray-800 rounded px-4 py-2 text-gray-200 font-kodemono text-sm focus:outline-none focus:border-gray-600 transition-colors"
+          className="w-full  border border-[#181818] rounded px-4 py-2 text-gray-200 font-kodemono text-sm focus:outline-none focus:border-gray-600 transition-colors"
         />
         <button
           type="submit"
           disabled={submissionStatus === "submitting"}
-          className="w-full bg-gray-200 text-black font-kodemono py-2 rounded hover:bg-gray-300 transition-colors disabled:opacity-50"
+          className="w-full bg-gray-200 font-bold text-black font-kodemono py-2 rounded hover:bg-gray-100 transition-colors disabled:opacity-50"
         >
           {submissionStatus === "submitting" ? "Sending..." : "Subscribe"}
         </button>
