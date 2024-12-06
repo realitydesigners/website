@@ -48,8 +48,8 @@ export async function generatePageMetadata<T extends BaseData>(
   const hasBlockStructure = data?.block?.[0];
 
   // Get title from block or direct field
-  const title = hasBlockStructure 
-    ? data?.block[0]?.heading 
+  const title = hasBlockStructure
+    ? data?.block[0]?.heading
     : data?.name || data?.title;
 
   // Get description from block or direct field
@@ -67,7 +67,7 @@ export async function generatePageMetadata<T extends BaseData>(
 
   const ogImage = imageRef?.imageUrl || urlForOpenGraphImage(imageRef);
   const ogImageAlt = imageRef?.imageAlt || "Your default alt text";
-Hi  const metadataBase = new URL(metadataBaseUrl);
+  const metadataBase = new URL(metadataBaseUrl);
 
   return {
     title,
