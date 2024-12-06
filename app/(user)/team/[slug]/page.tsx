@@ -25,9 +25,6 @@ export async function generateMetadata(
       query: teamBySlugQuery,
       slug: params.slug,
       tags: ["team"],
-      titleField: "name",
-      descriptionField: "shortBio",
-      imageField: "image",
     },
     parent
   );

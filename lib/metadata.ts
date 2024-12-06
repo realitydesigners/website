@@ -7,6 +7,7 @@ interface BlockStructure {
   heading?: string;
   subheading?: string;
   imageRef?: {
+    imageUrl?: string;
     imageAlt?: string;
     [key: string]: any;
   };
@@ -41,26 +42,32 @@ export async function generatePageMetadata<T extends BaseData>(
     qParams: { slug: params.slug },
   });
 
-  // Handle different data structures for posts and team
-  const title = params.titleField
-    ? data?.[params.titleField]
-    : data?.block?.[0]?.heading;
+  console.log("Metadata Data:", { data });
 
-  const description = params.descriptionField
-    ? data?.[params.descriptionField]
-    : data?.block?.[0]?.subheading;
+  // Check if data uses block structure or direct fields
+  const hasBlockStructure = data?.block?.[0];
 
-  const imageRef = params.imageField
-    ? data?.[params.imageField]
-    : data?.block?.[0]?.imageRef;
+  // Get title from block or direct field
+  const title = hasBlockStructure 
+    ? data?.block[0]?.heading 
+    : data?.name || data?.title;
 
-  const imageAlt = params.imageAltField
-    ? data?.[params.imageAltField]
-    : data?.block?.[0]?.imageRef?.imageAlt;
+  // Get description from block or direct field
+  const description = hasBlockStructure
+    ? data?.block[0]?.subheading
+    : data?.shortBio || data?.description;
 
-  const ogImage = urlForOpenGraphImage(imageRef);
-  const ogImageAlt = imageAlt || "Your default alt text";
-  const metadataBase = new URL(metadataBaseUrl);
+  // Get image from block or direct field
+  const imageRef = hasBlockStructure
+    ? {
+        imageUrl: data?.block[0]?.imageRef?.imageUrl,
+        imageAlt: data?.block[0]?.imageRef?.imageAlt,
+      }
+    : data?.image;
+
+  const ogImage = imageRef?.imageUrl || urlForOpenGraphImage(imageRef);
+  const ogImageAlt = imageRef?.imageAlt || "Your default alt text";
+Hi  const metadataBase = new URL(metadataBaseUrl);
 
   return {
     title,

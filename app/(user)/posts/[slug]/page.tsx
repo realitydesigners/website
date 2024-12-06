@@ -26,20 +26,16 @@ export async function generateMetadata(
       query: postsBySlugQuery,
       slug: params.slug,
       tags: ["post"],
-      imageField: "block.0.imageRef",
-      imageAltField: "block.0.imageRef.imageAlt",
-      titleField: "block.0.heading",
-      descriptionField: "block.0.subheading",
     },
     parent
   );
 }
 
-export default async function PageSlugRoute({ params }) {
+export default async function PageSlugRoute({ params }: Props) {
   const currentPost = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
-    tags: ["post"],
     qParams: { slug: params.slug },
+    tags: [`category:${params.slug}`],
   });
 
   console.log(currentPost);
