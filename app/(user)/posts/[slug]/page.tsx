@@ -67,6 +67,7 @@ export default async function PageSlugRoute({ params }) {
     qParams: { slug: params.slug },
   });
 
+  console.log(currentPost);
   let otherPosts;
 
   if (currentPost) {
@@ -85,7 +86,12 @@ export default async function PageSlugRoute({ params }) {
       {currentPost && (
         <>
           <main>
-            {blocks?.map((block) => <Blocks block={block as BlockProps} />)}
+            {blocks?.map((block, index) => (
+              <Blocks
+                key={block._key || `block-${index}`}
+                block={block as BlockProps}
+              />
+            ))}
           </main>
           <Suspense fallback={<div>Loading...</div>}>
             {otherPosts && (

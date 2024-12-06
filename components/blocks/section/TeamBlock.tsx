@@ -35,12 +35,29 @@ const SocialLink = ({ href, name }) => (
 );
 
 const TeamBlock = ({ block }) => {
-  if (block?._type !== "teamBlock") {
+  if (block?._type !== "teamBlock" || !block?.team) {
     return null;
   }
 
+  // Transform social links from team data
+  const socialLinks = [];
+  if (block.team.youtube)
+    socialLinks.push({ name: "YouTube", url: block.team.youtube });
+  if (block.team.instagram)
+    socialLinks.push({ name: "Instagram", url: block.team.instagram });
+  if (block.team.twitter)
+    socialLinks.push({ name: "Twitter", url: block.team.twitter });
+  if (block.team.tiktok)
+    socialLinks.push({ name: "TikTok", url: block.team.tiktok });
+  if (block.team.linkedin)
+    socialLinks.push({ name: "LinkedIn", url: block.team.linkedin });
+  if (block.team.github)
+    socialLinks.push({ name: "GitHub", url: block.team.github });
+  if (block.team.website)
+    socialLinks.push({ name: "Website", url: block.team.website });
+
   return (
-    <div className="flex h-full w-full justify-center bg-black py-4 ">
+    <div className="flex h-full w-full justify-center bg-black py-4">
       <div className="flex w-11/12 flex-col rounded-2xl bg-gradient-to-r from-blue-200/10 to-blue-100/5 p-4 shadow-lg md:w-1/2 lg:w-1/3">
         <div className="flex w-full items-center justify-start">
           {block.team?.image && (
@@ -55,23 +72,23 @@ const TeamBlock = ({ block }) => {
               />
               <div className="ml-4 flex flex-col">
                 <p className="mb-2 font-russo text-xl text-white font-bold uppercase leading-none tracking-wide">
-                  {block?.team.name}
+                  {block.team.name}
                 </p>
                 <span className="font-kodemono text-xs uppercase leading-none tracking-widest text-gray-200">
-                  {block?.team.role}
+                  {block.team.role}
                 </span>
               </div>
             </div>
           )}
         </div>
         <p className="font-kodemono mb-4 pt-4 text-sm leading-normal text-gray-200/50">
-          {block?.team.shortBio}
+          {block.team.shortBio}
         </p>
 
         {/* Social Links */}
-        {block.team?.socialLinks && block.team.socialLinks.length > 0 && (
-          <div className="flex gap-4 mb-4 px-2">
-            {block.team.socialLinks.map(({ name, url }) => (
+        {socialLinks.length > 0 && (
+          <div className="flex gap-4 mb-6 px-2 justify-center">
+            {socialLinks.map(({ name, url }) => (
               <SocialLink key={name} href={url} name={name} />
             ))}
           </div>
