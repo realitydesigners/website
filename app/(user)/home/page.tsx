@@ -5,15 +5,7 @@ import { useSceneManager } from "@/hooks/useSceneManager";
 import Spline from "@splinetool/react-spline";
 import { NavigationDots } from "../home/components/NavigationDots";
 
-export default function HomeClient({
-  posts,
-  marketData,
-  products,
-}: {
-  posts: any[];
-  marketData: any[];
-  products: any[];
-}) {
+export default function HomeClient() {
   const splineRef = useRef(null);
   const sceneObjects = useSceneConfig(splineRef);
 
