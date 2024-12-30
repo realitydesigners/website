@@ -10,16 +10,19 @@ import React, { Suspense } from "react";
 import { generatePageMetadata } from "@/lib/metadata";
 import { draftMode } from "next/headers";
 
-type Props = {
-  params: { slug: string };
-};
+interface PageProps {
+  params: {
+    slug: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
 export function generateStaticParams() {
   return generateStaticSlugs("posts");
 }
 
 export async function generateMetadata(
-  { params }: Props,
+  { params }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const post = await sanityFetch<PostsPayload>({
@@ -38,7 +41,7 @@ export async function generateMetadata(
   );
 }
 
-export default async function PageSlugRoute({ params }: Props) {
+export default async function PageSlugRoute({ params }: PageProps) {
   const [currentPost, allPosts] = await Promise.all([
     sanityFetch<PostsPayload>({
       query: postsBySlugQuery,
