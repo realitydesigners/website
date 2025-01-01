@@ -2,14 +2,15 @@
 import { useMemo } from "react";
 import { BoxSection, BoxInfo, DataStream } from "./modules";
 
+// IMPORTANT: These are mouse down buttons in spline with built in camera transitions
 export const Buttons = [
   {
-    sectionId: "1",
+    sectionId: "home",
     object: "BaseState",
     name: "Base State",
   },
   {
-    sectionId: "2",
+    sectionId: "center",
     object: "State1",
     name: "State One",
   },
@@ -33,6 +34,7 @@ export const ButtonsMap = Buttons.reduce(
   {} as Record<string, (typeof Buttons)[number]>
 );
 
+// IMPORTANT: This determines the visibility of the components in the scene in relation to the camera
 export const useSceneConfig = (
   splineRef: any,
   visibility?: {
