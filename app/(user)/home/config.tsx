@@ -1,28 +1,38 @@
 "use client";
 import { useMemo } from "react";
 import { BoxSection, BoxInfo, DataStream } from "./modules";
+import {
+  IoHomeOutline,
+  IoFlaskOutline,
+  IoLayersOutline,
+  IoGridOutline,
+} from "react-icons/io5";
 
 // IMPORTANT: These are mouse down buttons in spline with built in camera transitions
 export const Buttons = [
   {
     sectionId: "home",
-    object: "BaseState",
+    object: "Base State",
     name: "Base State",
+    icon: IoHomeOutline,
   },
   {
     sectionId: "center",
-    object: "State1",
+    object: "Lab",
     name: "State One",
+    icon: IoFlaskOutline,
   },
   {
     sectionId: "3",
     object: "State2",
     name: "State Two",
+    icon: IoLayersOutline,
   },
   {
     sectionId: "4",
     object: "State3",
     name: "State Three",
+    icon: IoGridOutline,
   },
 ] as const;
 

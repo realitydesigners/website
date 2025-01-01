@@ -1,33 +1,29 @@
 "use client";
-import { useRef } from "react";
-import { useSceneConfig, ButtonsMap } from "../home/config";
-import { useSceneManager } from "@/hooks/useSceneManager";
+import { useSceneConfig } from "../home/config";
 import Spline from "@splinetool/react-spline";
 import { NavigationDots } from "../home/components/NavigationDots";
+import { useNavigation } from "@/components/providers/NavigationProvider";
 
 export default function HomeClient() {
-  const splineRef = useRef(null);
-  const sceneObjects = useSceneConfig(splineRef);
-
   const {
+    setSplineInstance,
     visibilityStates,
-    handleButtonClick,
-    triggerSceneTransition,
     currentSection,
-  } = useSceneManager(splineRef, sceneObjects, ButtonsMap);
+    handleButtonClick,
+    splineRef,
+  } = useNavigation();
 
   const finalSceneObjects = useSceneConfig(splineRef, visibilityStates);
 
-  const url = "https://prod.spline.design/om3qlsIfYqBBlJ4p/scene.splinecode";
+  const url = "https://prod.spline.design/NuDwxTLapGXyOHT1/scene.splinecode";
 
   return (
     <main className="fixed inset-0 flex h-screen w-screen overflow-hidden">
-      <div className="flex-1">
+      <div className="relative z-[1000] w-full h-full">
         <Spline
           scene={url}
           onLoad={(spline) => {
-            splineRef.current = spline;
-            triggerSceneTransition();
+            setSplineInstance(spline);
           }}
         />
       </div>
