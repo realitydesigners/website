@@ -11,13 +11,13 @@ import {
 // IMPORTANT: These are mouse down buttons in spline with built in camera transitions
 export const Buttons = [
   {
-    sectionId: "home",
+    sectionId: "",
     object: "Base State",
     name: "Base State",
     icon: IoHomeOutline,
   },
   {
-    sectionId: "center",
+    sectionId: "lab",
     object: "Lab",
     name: "State One",
     icon: IoFlaskOutline,

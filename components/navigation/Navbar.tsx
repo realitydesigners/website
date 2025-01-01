@@ -10,9 +10,17 @@ export const Navbar = () => {
   const [isClicked, setIsClicked] = useState(false);
   const { currentSection, handleButtonClick } = useNavigation();
 
-  const handleClick = (sectionId: string) => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     setIsClicked(true);
-    handleButtonClick(sectionId);
+    handleButtonClick("", false);
+    if (window.location.hash) {
+      history.pushState(
+        "",
+        document.title,
+        window.location.pathname + window.location.search
+      );
+    }
     setTimeout(() => setIsClicked(false), 300);
   };
 
@@ -52,47 +60,45 @@ export const Navbar = () => {
         </div>
 
         <div className="relative flex items-center pt-1 pr-1 ">
-          {Buttons.filter((button) => button.sectionId === "home").map(
-            (button) => (
-              <div key={button.sectionId} className="group relative">
-                <button
-                  onClick={() => handleClick(button.sectionId)}
-                  className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-white/20 to-white/5 ackdrop-blur-sm transition-all duration-300"
-                  aria-label="Navigate to home"
-                >
-                  <div className="relative text-white">
-                    {button.icon && (
-                      <motion.div
-                        animate={{
-                          scale: isClicked ? [1, 0.8, 1.1, 1] : 1,
-                        }}
-                        transition={{
-                          duration: 0.3,
-                          ease: "easeInOut",
-                        }}
-                      >
-                        <button.icon size={22} className="text-white" />
-                      </motion.div>
-                    )}
-                    {currentSection === button.sectionId && (
-                      <motion.div
-                        className="absolute inset-[-12px] rounded-xl border border-white/10 bg-gradient-to-tr from-white/5 to-transparent"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.2, 0, 0.2],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    )}
-                  </div>
-                </button>
-              </div>
-            )
-          )}
+          {Buttons.filter((button) => button.sectionId === "").map((button) => (
+            <div key={button.sectionId || "home"} className="group relative">
+              <button
+                onClick={handleClick}
+                className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-white/20 to-white/5 backdrop-blur-sm transition-all duration-300"
+                aria-label="Navigate to home"
+              >
+                <div className="relative text-white">
+                  {button.icon && (
+                    <motion.div
+                      animate={{
+                        scale: isClicked ? [1, 0.8, 1.1, 1] : 1,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <button.icon size={22} className="text-white" />
+                    </motion.div>
+                  )}
+                  {currentSection === button.sectionId && (
+                    <motion.div
+                      className="absolute inset-[-12px] rounded-xl border border-white/10 bg-gradient-to-tr from-white/5 to-transparent"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.2, 0, 0.2],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  )}
+                </div>
+              </button>
+            </div>
+          ))}
         </div>
       </nav>
     </>

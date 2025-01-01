@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 interface NavigationDotsProps {
   currentSection: string;
-  onButtonClick: (sectionId: string) => void;
+  onButtonClick: (sectionId: string, setHash: boolean) => void;
 }
 
 export const NavigationDots: React.FC<NavigationDotsProps> = ({
@@ -17,7 +17,14 @@ export const NavigationDots: React.FC<NavigationDotsProps> = ({
 
   const handleClick = (sectionId: string) => {
     setClickedButton(sectionId);
-    onButtonClick(sectionId);
+    onButtonClick(sectionId, sectionId === "" ? false : true);
+    if (sectionId === "" && window.location.hash) {
+      history.pushState(
+        "",
+        document.title,
+        window.location.pathname + window.location.search
+      );
+    }
     setTimeout(() => setClickedButton(null), 300);
   };
 

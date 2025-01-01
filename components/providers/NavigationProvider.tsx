@@ -5,12 +5,12 @@ import { useSceneManager } from "@/hooks/useSceneManager";
 
 interface NavigationContextType {
   currentSection: string;
-  handleButtonClick: (sectionId: string) => void;
+  handleButtonClick: (sectionId: string, setHash?: boolean) => void;
   visibilityStates: {
     [key: string]: { isVisible: boolean; distance: number; isScaled: boolean };
   };
   triggerSceneTransition: () => void;
-  splineRef: any;
+  splineRef: React.MutableRefObject<any>;
   setSplineInstance: (spline: any) => void;
 }
 

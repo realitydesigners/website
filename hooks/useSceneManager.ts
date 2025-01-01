@@ -24,14 +24,16 @@ export const useSceneManager = (
   const [currentSection, setCurrentSection] = useState<string>("");
 
   const handleButtonClick = useCallback(
-    (stateId: string) => {
+    (stateId: string, setHash: boolean = true) => {
       const state = sceneStates?.[stateId];
       if (!state || !splineRef.current) return;
 
       try {
         const button = splineRef.current.findObjectByName(state.object);
         button?.emitEvent("mouseDown");
-        window.location.hash = state.sectionId;
+        if (setHash) {
+          window.location.hash = state.sectionId;
+        }
         setCurrentSection(state.sectionId);
       } catch (error) {
         console.warn("Failed to emit event:", error);
