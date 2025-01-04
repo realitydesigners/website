@@ -71,8 +71,12 @@ const gradients = {
   glossary: "from-teal-500/20 to-green-500/20",
 };
 
-export function Editor() {
-  const { selectedDoc, setSelectedDoc } = useDocument();
+interface EditorProps {
+  selectedDoc: any;
+}
+
+export function Editor({ selectedDoc }: EditorProps) {
+  const { setSelectedDoc } = useDocument();
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [activeBlock, setActiveBlock] = useState<number | null>(null);
   const [slug, setSlug] = useState("");
