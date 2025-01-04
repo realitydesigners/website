@@ -21,6 +21,7 @@ import {
   LinkIcon,
 } from "@sanity/icons";
 import { client } from "@/sanity/lib/client";
+import { ImageRefPreview } from "./previews/ImageRefPreview";
 
 // Define the schema for our editor to match your Sanity schema
 const schemaDefinition = defineSchema({
@@ -164,10 +165,33 @@ async function fetchImageData(ref: string) {
     `
     *[_type == "img" && _id == $ref][0] {
       title,
-      "imageUrl": image.asset->url,
-      "imageAlt": alt,
-      team->{
-        name
+      "image": {
+        "image": {
+          "_type": "image",
+          "asset": {
+            "_ref": image.asset._ref,
+            "_type": "reference",
+            "url": image.asset->url,
+            "metadata": image.asset->metadata,
+            "mimeType": image.asset->mimeType,
+            "size": image.asset->size
+          },
+          "alt": alt,
+          "hotspot": image.hotspot,
+          "crop": image.crop
+        },
+        "team": team->{
+          name,
+          "image": {
+            "_type": "image",
+            "asset": {
+              "_ref": image.asset._ref,
+              "_type": "reference",
+              "url": image.asset->url
+            }
+          },
+          "slug": slug
+        }
       }
     }
   `,
@@ -301,12 +325,10 @@ function VideoPreview({ value }: { value: any }) {
 }
 
 function ImagePreview({ value }: { value: any }) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [imageData, setImageData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load data immediately on mount
   useEffect(() => {
     if (value.image?._ref && !imageData && !error) {
       loadImageData();
@@ -329,91 +351,12 @@ function ImagePreview({ value }: { value: any }) {
   }, [value.image?._ref]);
 
   return (
-    <div className="group relative">
-      <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded border border-white/10 group-hover:border-white/20">
-        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-green-500/10 text-green-500 rounded">
-          <ImageIcon />
-        </div>
-        <div className="flex-grow min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-white/60">
-              Image | {value.className || "Team Inset"}
-            </span>
-          </div>
-          <div className="text-sm text-white truncate">
-            {isLoading ? (
-              "Loading..."
-            ) : error ? (
-              <span className="text-red-400">Error: {error}</span>
-            ) : imageData ? (
-              imageData.title
-            ) : (
-              "Select image..."
-            )}
-          </div>
-          {imageData?.imageUrl && (
-            <div className="mt-2 relative aspect-video bg-black/20 rounded overflow-hidden">
-              <img
-                src={imageData.imageUrl}
-                alt={imageData.imageAlt || imageData.title}
-                className="absolute inset-0 w-full h-full object-contain"
-              />
-            </div>
-          )}
-        </div>
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="opacity-0 group-hover:opacity-100 transition-opacity ml-2 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-white/60 hover:text-white"
-        >
-          {isExpanded ? "Close" : "Edit"}
-        </button>
-      </div>
-
-      {isExpanded && (
-        <div className="mt-2 p-3 bg-[#1a1a1a] rounded border border-white/10">
-          {isLoading ? (
-            <div className="text-sm text-white/60">Loading image data...</div>
-          ) : error ? (
-            <div className="text-sm text-red-400">
-              Failed to load image: {error}
-              <div className="mt-1 text-white/60">
-                Debug info:
-                <pre className="mt-1 p-2 bg-black/30 rounded">
-                  {JSON.stringify({ ref: value.image?._ref }, null, 2)}
-                </pre>
-              </div>
-            </div>
-          ) : imageData ? (
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <div>
-                  <div className="text-sm text-white/60">Title</div>
-                  <div className="text-sm text-white">{imageData.title}</div>
-                </div>
-                {imageData.imageAlt && (
-                  <div>
-                    <div className="text-sm text-white/60">Alt Text</div>
-                    <div className="text-sm text-white">
-                      {imageData.imageAlt}
-                    </div>
-                  </div>
-                )}
-                {imageData.team && (
-                  <div>
-                    <div className="text-sm text-white/60">Team</div>
-                    <div className="text-sm text-white">
-                      {imageData.team.name}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ) : (
-            <div className="text-sm text-white/60">No image data available</div>
-          )}
-        </div>
-      )}
-    </div>
+    <ImageRefPreview
+      value={value}
+      imageData={imageData}
+      isLoading={isLoading}
+      error={error}
+    />
   );
 }
 
@@ -438,17 +381,284 @@ function QuotePreview({ value }: { value: any }) {
 }
 
 function PostRefPreview({ value }: { value: any }) {
-  return (
-    <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded border border-white/10">
-      <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-500/10 text-red-500 rounded">
-        <LinkIcon />
-      </div>
-      <div className="flex-grow min-w-0">
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-white/60">Post Reference</span>
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [postData, setPostData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (value?.posts?._ref && !postData && !error) {
+      loadPostData();
+    }
+  }, [value?.posts?._ref]);
+
+  const loadPostData = useCallback(async () => {
+    if (!value?.posts?._ref) return;
+
+    setIsLoading(true);
+    setError(null);
+    try {
+      const data = await client.fetch(
+        `*[_type == "posts" && _id == $ref][0] {
+          _id,
+          "title": block[0].heading,
+          "image": block[0].imageRef->image.asset->url,
+          "publicationDate": block[0].publicationDate,
+          "slug": slug.current,
+          block[0] {
+            heading,
+            imageRef-> {
+              image {
+                asset->
+              },
+              team-> {
+                name,
+                "image": image.asset->url,
+                "slug": slug.current
+              }
+            }
+          }
+        }`,
+        { ref: value.posts._ref }
+      );
+      setPostData(data);
+    } catch (err) {
+      console.error("Error loading post:", err);
+      setError(err instanceof Error ? err.message : "Failed to load post");
+    }
+    setIsLoading(false);
+  }, [value?.posts?._ref]);
+
+  if (!value?.posts?._ref) {
+    return (
+      <div className="flex items-center gap-3 p-4 bg-black/20 border border-white/10 rounded-lg">
+        <div className="w-10 h-10 flex items-center justify-center bg-white/5 rounded">
+          <LinkIcon className="text-white/40" />
         </div>
-        <div className="text-sm text-white truncate">
-          {value._ref || "Select post..."}
+        <div className="flex-grow">
+          <div className="text-sm text-white/60">No post selected</div>
+          <div className="text-xs text-white/40">Click to choose a post</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-6 bg-black/20 rounded-lg">
+        <div className="animate-pulse text-white/60">Loading post...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center gap-3 p-4 bg-red-950/20 border border-red-500/20 rounded-lg">
+        <div className="text-red-400">
+          <div className="text-sm font-medium">Error loading post</div>
+          <div className="text-xs opacity-80">{error}</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!postData) {
+    return (
+      <div className="flex items-center justify-center p-6 bg-black/20 rounded-lg">
+        <div className="animate-pulse text-white/60">Loading post data...</div>
+      </div>
+    );
+  }
+
+  const { title, image, slug, excerpt, block } = postData;
+  const team = block[0]?.imageRef?.team;
+
+  return (
+    <div className="group relative">
+      <div className="flex w-full items-center justify-center py-4 px-4">
+        <div className="bg-gradient-to-r from-blue-200/10 to-blue-100/5 w-full rounded-lg group flex h-auto flex-row p-3 shadow-lg transition-shadow duration-300 hover:shadow-xl">
+          {image && (
+            <img
+              src={image}
+              alt={title}
+              className="h-[80px] max-w-[80px] rounded-[.5em] object-cover"
+            />
+          )}
+          <div className="relative flex w-3/4 flex-col pl-4">
+            <p className="pt-2 mb-2 font-bold font-kodemono text-xs uppercase leading-none tracking-wide text-gray-200/50">
+              Related Post
+            </p>
+            <div className="flex items-center justify-between">
+              <h3 className="font-russo font-bold leading-[1.2em] text-xl lg:text-2xl text-white transition-colors group-hover:text-gray-100">
+                {title}
+              </h3>
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="opacity-0 group-hover:opacity-100 transition-opacity px-2 py-1 bg-black/60 hover:bg-black rounded text-xs text-white/60 hover:text-white"
+              >
+                {isExpanded ? "Close" : "Details"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Expanded Details */}
+      {isExpanded && (
+        <div className="mt-2 mx-4 p-4 bg-black/80 backdrop-blur-sm rounded-lg border border-white/10">
+          <div className="space-y-4">
+            <div>
+              <div className="text-sm text-white/60 mb-1">Reference ID</div>
+              <div className="text-sm font-mono bg-black/50 p-2 rounded">
+                {value.posts._ref}
+              </div>
+            </div>
+            {excerpt && (
+              <div>
+                <div className="text-sm text-white/60 mb-1">Excerpt</div>
+                <div className="text-sm bg-black/50 p-2 rounded text-white">
+                  {excerpt}
+                </div>
+              </div>
+            )}
+            {team && (
+              <div>
+                <div className="text-sm text-white/60 mb-1">Team Member</div>
+                <div className="flex items-center gap-2 bg-black/50 p-2 rounded">
+                  {team.image && (
+                    <div className="w-8 h-8 rounded-full overflow-hidden">
+                      <img
+                        src={team.image}
+                        alt={team.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-sm text-white">{team.name}</div>
+                    <div className="text-xs text-white/60">@{team.slug}</div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {slug && (
+              <div>
+                <div className="text-sm text-white/60 mb-1">Slug</div>
+                <div className="text-sm bg-black/50 p-2 rounded text-white">
+                  {slug}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PostSelector({
+  onSelect,
+  onClose,
+}: {
+  onSelect: (ref: string) => void;
+  onClose: () => void;
+}) {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchPosts = useCallback(async () => {
+    try {
+      const results = await client.fetch(
+        `*[_type == "posts"] | order(block[0].publicationDate desc) {
+          _id,
+          "title": block[0].heading,
+          "image": block[0].imageRef->image.asset->url,
+          "publicationDate": block[0].publicationDate,
+          "slug": slug.current,
+          block[0] {
+            heading,
+            imageRef-> {
+              image {
+                asset->
+              }
+            }
+          }
+        }`
+      );
+      setPosts(
+        results.map((post) => ({
+          _id: post._id,
+          heading: post.block[0]?.heading || post.title || "Untitled",
+          image: post.block[0]?.imageRef?.image?.asset?.url || post.image,
+          publicationDate:
+            post.block[0]?.publicationDate || post.publicationDate,
+          slug: post.slug,
+        }))
+      );
+    } catch (err) {
+      console.error("Error fetching posts:", err);
+      setError(err instanceof Error ? err.message : "Failed to load posts");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+
+  return (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="bg-[#1a1a1a] rounded-lg w-[800px] max-h-[80vh] overflow-hidden flex flex-col">
+        {/* Header */}
+        <div className="p-4 border-b border-white/10 flex items-center justify-between">
+          <h2 className="text-lg font-medium text-white">Select Post</h2>
+          <button onClick={onClose} className="text-white/60 hover:text-white">
+            ✕
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-auto p-4">
+          {isLoading ? (
+            <div className="text-white/60">Loading posts...</div>
+          ) : error ? (
+            <div className="text-red-400">{error}</div>
+          ) : posts.length === 0 ? (
+            <div className="text-white/60">No posts found</div>
+          ) : (
+            <div className="grid grid-cols-1 gap-3">
+              {posts.map((post) => (
+                <button
+                  key={post._id}
+                  onClick={() => onSelect(post._id)}
+                  className="flex items-start gap-4 p-3 bg-black/20 hover:bg-black/40 rounded-lg transition-colors text-left group"
+                >
+                  {post.image && (
+                    <img
+                      src={post.image}
+                      alt={post.heading}
+                      className="w-16 h-16 object-cover rounded"
+                    />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-russo text-lg text-white truncate group-hover:text-blue-400">
+                      {post.heading || "Untitled"}
+                    </h3>
+                    <div className="flex items-center gap-4 mt-1">
+                      <div className="text-xs text-white/40">{post.slug}</div>
+                      {post.publicationDate && (
+                        <div className="text-xs text-white/40">
+                          {new Date(post.publicationDate).toLocaleDateString()}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -594,6 +804,7 @@ function ContentSelector({
 function Toolbar() {
   const editor = useEditor();
   const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [showPostSelector, setShowPostSelector] = useState(false);
 
   const toggleStyle = useCallback(
     (style: string) => {
@@ -629,6 +840,10 @@ function Toolbar() {
   );
 
   const insertBlock = useCallback((type: string) => {
+    if (type === "postsRef") {
+      setShowPostSelector(true);
+      return;
+    }
     setSelectedType(type);
   }, []);
 
@@ -663,6 +878,30 @@ function Toolbar() {
       setSelectedType(null);
     },
     [editor, selectedType]
+  );
+
+  const handlePostSelect = useCallback(
+    (ref: string) => {
+      if (!editor) return;
+
+      editor.send({
+        type: "insert.block object",
+        placement: "after",
+        blockObject: {
+          name: "postsRef",
+          value: {
+            _type: "postsRef",
+            posts: {
+              _type: "reference",
+              _ref: ref,
+            },
+          },
+        },
+      });
+      editor.send({ type: "focus" });
+      setShowPostSelector(false);
+    },
+    [editor]
   );
 
   return (
@@ -726,7 +965,7 @@ function Toolbar() {
         <div className="flex gap-1">
           <button
             onClick={() => insertBlock("imageRef")}
-            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-green-500/10 text-green-500"
+            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-blue-500/10 text-blue-500"
             title="Add Image"
           >
             <ImageIcon />
@@ -747,7 +986,7 @@ function Toolbar() {
           </button>
           <button
             onClick={() => insertBlock("audioRef")}
-            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-blue-500/10 text-blue-500"
+            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-green-500/10 text-green-500"
             title="Add Audio"
           >
             <PlayIcon />
@@ -769,6 +1008,13 @@ function Toolbar() {
           onClose={() => setSelectedType(null)}
         />
       )}
+
+      {showPostSelector && (
+        <PostSelector
+          onSelect={handlePostSelect}
+          onClose={() => setShowPostSelector(false)}
+        />
+      )}
     </>
   );
 }
@@ -780,48 +1026,52 @@ interface RichTextEditorProps {
 
 export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
   return (
-    <EditorProvider
-      initialConfig={{
-        schemaDefinition,
-        initialValue: value,
-      }}
-    >
-      <EditorEventListener
-        on={(event) => {
-          if (event.type === "mutation") {
-            onChange(event.value);
-          }
+    <div className="flex flex-col">
+      <EditorProvider
+        initialConfig={{
+          schemaDefinition,
+          initialValue: value,
         }}
-      />
-      <Toolbar />
-      <div className="relative">
-        <PortableTextEditable
-          className="min-h-[200px] p-4 bg-[#101112] text-white focus:outline-none"
-          renderStyle={renderStyle}
-          renderDecorator={renderDecorator}
-          renderBlock={(props) => {
-            // Only use renderBlockObject for special blocks (audio, image, etc.)
-            if (
-              props.value._type &&
-              [
-                "audioRef",
-                "videoRef",
-                "imageRef",
-                "quoteRef",
-                "postsRef",
-              ].includes(props.value._type)
-            ) {
-              return renderBlockObject({
-                value: props.value,
-                schemaType: { name: props.value._type },
-              });
+      >
+        <EditorEventListener
+          on={(event) => {
+            if (event.type === "mutation") {
+              onChange(event.value);
             }
-            // For regular text blocks, render normally
-            return <div className="mb-4 text-white">{props.children}</div>;
           }}
-          renderListItem={(props) => <li className="ml-4">{props.children}</li>}
         />
-      </div>
-    </EditorProvider>
+        <Toolbar />
+        <div className="relative">
+          <PortableTextEditable
+            className="min-h-[200px] p-4 bg-[#101112] text-white focus:outline-none"
+            renderStyle={renderStyle}
+            renderDecorator={renderDecorator}
+            renderBlock={(props) => {
+              // Only use renderBlockObject for special blocks (audio, image, etc.)
+              if (
+                props.value._type &&
+                [
+                  "audioRef",
+                  "videoRef",
+                  "imageRef",
+                  "quoteRef",
+                  "postsRef",
+                ].includes(props.value._type)
+              ) {
+                return renderBlockObject({
+                  value: props.value,
+                  schemaType: { name: props.value._type },
+                });
+              }
+              // For regular text blocks, render normally
+              return <div className="mb-4 text-white">{props.children}</div>;
+            }}
+            renderListItem={(props) => (
+              <li className="ml-4">{props.children}</li>
+            )}
+          />
+        </div>
+      </EditorProvider>
+    </div>
   );
 }
