@@ -25,22 +25,6 @@ export default function CreateLayout({
   const [selectedDoc, setSelectedDoc] = useState<any>(null);
   const [selectedType, setSelectedType] = useState<string>("posts");
 
-  const Logo = () => (
-    <svg
-      width="35"
-      height="35"
-      viewBox="0 0 80 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M47.1279 70.8731L33.5967 55.3087M43.4729 23.3416L10.6978 28.9689L33.5967 55.3087M43.4729 23.3416L33.5967 55.3087M43.4729 23.3416L68.3831 51.4708L33.5967 55.3087M43.4729 23.3416L30.6805 9.58502"
-        stroke="#fff"
-        strokeWidth="6"
-      />
-    </svg>
-  );
-
   return (
     <DocumentContext.Provider
       value={{ selectedDoc, setSelectedDoc, selectedType, setSelectedType }}
@@ -70,7 +54,9 @@ export default function CreateLayout({
               DESIGNERS
             </span>
           </div>
-          <span className="text-gray-200/50 text-xs ml-4 font-mono">LAB</span>
+          <span className="text-gray-200/50 text-[10px] ml-2 tracking-widest font-mono">
+            LAB
+          </span>
         </div>
       </div>
       <div className="flex h-screen pt-14 bg-black">

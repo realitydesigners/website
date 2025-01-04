@@ -16,16 +16,16 @@ import {
 import { useDocument } from "../layout";
 
 const gradients = {
-  posts: "from-purple-500/20 to-blue-500/20",
-  img: "from-blue-500/20 to-cyan-500/20",
-  audio: "from-green-500/20 to-emerald-500/20",
-  video: "from-red-500/20 to-orange-500/20",
-  quote: "from-yellow-500/20 to-amber-500/20",
-  team: "from-pink-500/20 to-rose-500/20",
-  category: "from-violet-500/20 to-purple-500/20",
-  library: "from-indigo-500/20 to-blue-500/20",
-  model: "from-cyan-500/20 to-teal-500/20",
-  glossary: "from-teal-500/20 to-green-500/20",
+  posts: "[20deg] from-purple-500/20 via-indigo-400/10 to-blue-500/20",
+  img: "[20deg] from-sky-500/20 via-blue-400/10 to-cyan-500/20",
+  audio: "[20deg] from-emerald-500/20 via-green-400/10 to-teal-500/20",
+  video: "[20deg] from-rose-500/20 via-red-400/10 to-orange-500/20",
+  quote: "[20deg] from-amber-500/20 via-yellow-400/10 to-orange-500/20",
+  team: "[20deg] from-fuchsia-500/20 via-pink-400/10 to-rose-500/20",
+  category: "[20deg] from-violet-500/20 via-purple-400/10 to-fuchsia-500/20",
+  library: "[20deg] from-blue-500/20 via-indigo-400/10 to-violet-500/20",
+  model: "[20deg] from-cyan-500/20 via-sky-400/10 to-blue-500/20",
+  glossary: "[20deg] from-teal-500/20 via-emerald-400/10 to-green-500/20",
 };
 
 const contentTypes = [
@@ -137,33 +137,33 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
           Choose a content type to get started
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {contentTypes.map((item) => {
             const Icon = item.icon;
             return (
-              <button
+              <div
                 key={item.type}
-                onClick={() => handleTypeSelect(item)}
-                className="group relative p-6 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a]/80 to-black 
-                  border border-transparent hover:border-white/10 transition-all duration-300
-                  hover:shadow-lg hover:shadow-black/20"
+                className="group p-[1px] rounded-xl bg-[linear-gradient(20deg,transparent_0%,var(--tw-gradient-from)_20%,var(--tw-gradient-via)_50%,var(--tw-gradient-to)_80%,transparent_100%)] from-white/10 via-white/5 to-transparent hover:from-white/20 hover:via-white/10 hover:to-transparent transition-all duration-500 relative overflow-hidden before:absolute before:inset-0 before:bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.3),transparent)] before:-translate-x-[100%] before:opacity-0 hover:before:translate-x-[100%] hover:before:opacity-100 before:transition-all before:duration-700 before:ease-out"
               >
-                <div className="flex flex-col items-center text-center space-y-4">
+                <button
+                  onClick={() => handleTypeSelect(item)}
+                  className="relative w-full p-6 rounded-xl bg-[linear-gradient(20deg,#000_0%,#0a0a0a_50%,#000_100%)] flex flex-col items-center text-center space-y-4 z-10"
+                >
                   <div
-                    className={`p-3 rounded-lg bg-gradient-to-br ${
+                    className={`p-3 rounded-lg bg-[linear-gradient(20deg,transparent_0%,var(--tw-gradient-from)_20%,var(--tw-gradient-via)_50%,var(--tw-gradient-to)_80%,transparent_100%)] ${
                       gradients[item.type as keyof typeof gradients]
-                    } backdrop-blur-sm group-hover:scale-110 group-hover:rotate-[8deg] transition-all duration-300`}
+                    } backdrop-blur-sm group-hover:scale-105 transition-all duration-500`}
                   >
-                    <Icon size={24} className="text-white" />
+                    <Icon size={24} className="text-white/90" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-white/60">{item.description}</p>
+                    <p className="text-xs text-white/40">{item.description}</p>
                   </div>
-                </div>
-              </button>
+                </button>
+              </div>
             );
           })}
         </div>
