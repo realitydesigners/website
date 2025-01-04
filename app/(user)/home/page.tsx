@@ -15,7 +15,7 @@ export default function HomeClient() {
 
   const finalSceneObjects = useSceneConfig(splineRef, visibilityStates);
 
-  const url = "https://prod.spline.design/NuDwxTLapGXyOHT1/scene.splinecode";
+  const url = "https://prod.spline.design/cg4XUubFU5hfFTcM/scene.splinecode";
 
   return (
     <main className="fixed inset-0 flex h-screen w-screen overflow-hidden">
