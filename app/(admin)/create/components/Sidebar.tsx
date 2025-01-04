@@ -97,19 +97,6 @@ export function Sidebar({
 
   return (
     <div className="w-64 h-screen bg-gradient-to-b from-black via-[#0a0a0a]/90 to-black border-r border-white/10 flex flex-col">
-      <div className="p-4 border-b border-white/10">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-white">Content</h2>
-          <Link
-            href="/create"
-            className="p-1.5 rounded-lg bg-gradient-to-br from-black via-[#0a0a0a]/80 to-black 
-              border border-transparent hover:border-white/10 text-white/70 hover:text-white/90 transition-all duration-300"
-          >
-            <RiAddLine size={18} />
-          </Link>
-        </div>
-      </div>
-
       <div className="flex-1 overflow-auto">
         <div className="p-3">
           <div className="space-y-0.5">
