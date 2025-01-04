@@ -21,7 +21,7 @@ import {
   RiCloseLine,
 } from "react-icons/ri";
 import { client } from "@/sanity/lib/client";
-import { ImageDocument } from "@/sanity/schemas/img";
+import { getFields } from "./fields/getFields";
 
 interface Block {
   _type: string;
@@ -492,228 +492,28 @@ export function Editor({ selectedDoc }: EditorProps) {
               </button>
             </div>
           </>
-        ) : selectedDoc?._type === "img" ? (
+        ) : (
           <div className="space-y-6">
-            <div className="space-y-4">
-              <label className="block text-sm font-medium text-white/60">
-                Title
-              </label>
-              <input
-                type="text"
-                value={(formData as ImageDocument).title || ""}
-                onChange={(e) => handleInputChange("title", e.target.value)}
-                className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter title..."
-              />
-            </div>
-            <div className="space-y-4">
-              <label className="block text-sm font-medium text-white/60">
-                Image
-              </label>
-              <div className="space-y-4">
-                {(formData as ImageDocument).image?.asset?.url ? (
-                  <div className="relative group">
-                    <img
-                      src={(formData as ImageDocument).image.asset.url}
-                      alt={(formData as ImageDocument).title || "Image preview"}
-                      className="w-full max-w-2xl rounded-lg border border-white/10"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-between items-center">
-                        <div>
-                          <div className="text-sm font-medium text-white">
-                            {(formData as ImageDocument).title}
-                          </div>
-                          {(formData as ImageDocument).team && (
-                            <div className="text-xs text-white/60">
-                              By{" "}
-                              {
-                                teamMembers.find(
-                                  (m) =>
-                                    m._id ===
-                                    (formData as ImageDocument).team?._ref
-                                )?.name
-                              }
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() =>
-                              setIsImageDetailsExpanded(!isImageDetailsExpanded)
-                            }
-                            className="px-2 py-1 bg-black/60 hover:bg-black rounded text-xs text-white/60 hover:text-white"
-                          >
-                            {isImageDetailsExpanded ? "Close" : "Details"}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-white/10 rounded-lg bg-white/5">
-                    <RiImageLine className="w-8 h-8 text-white/40 mb-2" />
-                    <label className="cursor-pointer px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm">
-                      Choose File
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={(e) => {
-                          // Handle image upload
-                          console.log("Image upload not implemented yet");
-                        }}
-                      />
-                    </label>
-                    <p className="mt-2 text-sm text-white/40">No file chosen</p>
-                  </div>
-                )}
-
-                {/* Image Details Panel */}
-                {isImageDetailsExpanded &&
-                  (formData as ImageDocument).image?.asset && (
-                    <div className="mt-2 p-4 bg-black/80 backdrop-blur-sm rounded-lg border border-white/10">
-                      <div className="space-y-4">
-                        <div>
-                          <div className="text-sm text-white/60 mb-1">
-                            Reference ID
-                          </div>
-                          <div className="text-sm font-mono bg-black/50 p-2 rounded">
-                            {(formData as ImageDocument).image.asset._ref}
-                          </div>
-                        </div>
-                        {(formData as ImageDocument).image.asset.metadata && (
-                          <div>
-                            <div className="text-sm text-white/60 mb-1">
-                              Image Details
-                            </div>
-                            <div className="grid grid-cols-2 gap-2">
-                              <div className="text-sm bg-black/50 p-2 rounded">
-                                <span className="text-white/40">Width:</span>{" "}
-                                <span className="text-white">
-                                  {
-                                    (formData as any).image.asset.metadata
-                                      .dimensions.width
-                                  }
-                                  px
-                                </span>
-                              </div>
-                              <div className="text-sm bg-black/50 p-2 rounded">
-                                <span className="text-white/40">Height:</span>{" "}
-                                <span className="text-white">
-                                  {
-                                    (formData as any).image.asset.metadata
-                                      .dimensions.height
-                                  }
-                                  px
-                                </span>
-                              </div>
-                              <div className="text-sm bg-black/50 p-2 rounded">
-                                <span className="text-white/40">Size:</span>{" "}
-                                <span className="text-white">
-                                  {Math.round(
-                                    (formData as any).image.asset.size / 1024
-                                  )}
-                                  KB
-                                </span>
-                              </div>
-                              <div className="text-sm bg-black/50 p-2 rounded">
-                                <span className="text-white/40">Type:</span>{" "}
-                                <span className="text-white">
-                                  {
-                                    (
-                                      formData as any
-                                    ).image.asset.mimeType.split("/")[1]
-                                  }
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-              </div>
-            </div>
-            <div className="space-y-4">
-              <label className="block text-sm font-medium text-white/60">
-                Alt Text
-              </label>
-              <input
-                type="text"
-                value={(formData as ImageDocument).alt || ""}
-                onChange={(e) => handleInputChange("alt", e.target.value)}
-                className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter alt text..."
-              />
-            </div>
-            <div className="space-y-4">
-              <label className="block text-sm font-medium text-white/60">
-                Team
-              </label>
-              {(formData as ImageDocument).team?._ref ? (
-                <div className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    {teamMembers.find(
-                      (m) => m._id === (formData as ImageDocument).team?._ref
-                    )?.image?.asset?.url && (
-                      <img
-                        src={
-                          teamMembers.find(
-                            (m) =>
-                              m._id === (formData as ImageDocument).team?._ref
-                          )?.image?.asset?.url
-                        }
-                        alt={
-                          teamMembers.find(
-                            (m) =>
-                              m._id === (formData as ImageDocument).team?._ref
-                          )?.name
-                        }
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                    )}
-                    <div>
-                      <div className="text-white">
-                        {
-                          teamMembers.find(
-                            (m) =>
-                              m._id === (formData as ImageDocument).team?._ref
-                          )?.name
-                        }
-                      </div>
-                      <div className="text-sm text-white/60">Team Member</div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => handleInputChange("team", null)}
-                    className="px-2 py-1 text-sm text-white/60 hover:text-white/80 bg-black/40 hover:bg-black/60 rounded"
-                  >
-                    Change
-                  </button>
-                </div>
-              ) : (
-                <select
-                  value={(formData as ImageDocument).team?._ref || ""}
-                  onChange={(e) =>
-                    handleInputChange("team", {
-                      _ref: e.target.value,
-                      _type: "reference",
-                    })
+            {getFields(selectedDoc._type).map((field) => {
+              const Component = field.component;
+              return (
+                <Component
+                  key={field.name}
+                  label={field.title}
+                  description={field.description}
+                  value={(formData as any)[field.name]}
+                  onChange={(value: any) =>
+                    handleInputChange(field.name, value)
                   }
-                  className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="">Select team member</option>
-                  {teamMembers.map((member) => (
-                    <option key={member._id} value={member._id}>
-                      {member.name}
-                    </option>
-                  ))}
-                </select>
-              )}
-            </div>
+                  {...(field.type === "reference"
+                    ? { options: teamMembers }
+                    : {})}
+                  {...field.options}
+                />
+              );
+            })}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
