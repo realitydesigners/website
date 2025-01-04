@@ -4,6 +4,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { writeClient } from "@/sanity/lib/client";
 import { RichTextEditor } from "./RichTextEditor";
 import { useDocument } from "../layout";
+import { HeadingBlock } from "@/sanity/blocks/headingBlock";
 import {
   RiFileTextLine,
   RiImageLine,
@@ -23,22 +24,30 @@ import {
 import { client } from "@/sanity/lib/client";
 import { getFields } from "./fields/getFields";
 
-interface Block {
-  _type: string;
+interface ContentBlock {
+  _type: "contentBlock";
   _key: string;
-  heading?: string;
-  subheading?: string;
-  layout?: string;
-  content?: any[];
-  team?: any[];
+  content: any[];
+  layout?: "dark" | "light" | "transparent";
 }
 
+interface TeamBlock {
+  _type: "teamBlock";
+  _key: string;
+  team: Array<{
+    _ref: string;
+    _type: "reference";
+  }>;
+}
+
+type PostBlock = HeadingBlock | ContentBlock | TeamBlock;
+
 const BLOCK_TYPES = {
-  HEADING: "headingBlock",
-  CONTENT: "contentBlock",
-  TEAM: "teamBlock",
-  IMAGE_CANVAS: "imageCanvasBlock",
-  HEADING_SPLINE: "headingSplineBlock",
+  HEADING: "headingBlock" as const,
+  CONTENT: "contentBlock" as const,
+  TEAM: "teamBlock" as const,
+  IMAGE_CANVAS: "imageCanvasBlock" as const,
+  HEADING_SPLINE: "headingSplineBlock" as const,
 };
 
 const LAYOUT_OPTIONS = [
@@ -79,11 +88,10 @@ interface EditorProps {
 
 export function Editor({ selectedDoc }: EditorProps) {
   const { setSelectedDoc } = useDocument();
-  const [blocks, setBlocks] = useState<Block[]>([]);
+  const [blocks, setBlocks] = useState<PostBlock[]>([]);
   const [formData, setFormData] = useState<any>({});
   const [slug, setSlug] = useState("");
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
-  const [isImageDetailsExpanded, setIsImageDetailsExpanded] = useState(false);
 
   useEffect(() => {
     // Fetch team members
@@ -217,9 +225,7 @@ export function Editor({ selectedDoc }: EditorProps) {
             {
               _type: BLOCK_TYPES.HEADING,
               _key: Math.random().toString(36).substring(2, 15),
-              heading: "",
-              subheading: "",
-            },
+            } as HeadingBlock,
           ]);
         } else {
           setFormData({});
@@ -232,38 +238,27 @@ export function Editor({ selectedDoc }: EditorProps) {
     [blocks, selectedDoc, setSelectedDoc, slug, formData]
   );
 
-  const updateBlock = (index: number, updates: Partial<Block>) => {
+  const updateBlock = (index: number, updates: Partial<PostBlock>) => {
     setBlocks((current) =>
-      current.map((block, i) =>
-        i === index ? { ...block, ...updates } : block
-      )
+      current.map((block, i) => {
+        if (i !== index) return block;
+        return { ...block, ...updates } as PostBlock;
+      })
     );
   };
 
-  const addBlock = (type: string) => {
-    const newBlock: Block = {
+  const addBlock = (type: (typeof BLOCK_TYPES)[keyof typeof BLOCK_TYPES]) => {
+    const newBlock = {
       _type: type,
       _key: Math.random().toString(36).substring(2, 15),
-      ...(type === BLOCK_TYPES.CONTENT
-        ? {
-            layout: "dark",
-            content: [
-              {
-                _type: "block",
-                _key: Math.random().toString(36).substring(2, 15),
-                style: "normal",
-                children: [{ _type: "span", text: "" }],
-              },
-            ],
-          }
-        : {}),
-      ...(type === BLOCK_TYPES.HEADING
-        ? {
-            heading: "",
-            subheading: "",
-          }
-        : {}),
-    };
+    } as PostBlock;
+
+    // Initialize specific block types
+    if (type === BLOCK_TYPES.CONTENT) {
+      (newBlock as ContentBlock).content = [];
+    } else if (type === BLOCK_TYPES.TEAM) {
+      (newBlock as TeamBlock).team = [];
+    }
 
     setBlocks((current) => [...current, newBlock]);
   };
@@ -357,49 +352,31 @@ export function Editor({ selectedDoc }: EditorProps) {
       </header>
 
       <div className="flex-1 p-8 space-y-6 overflow-auto">
-        {selectedDoc?._type === "posts" && (
-          <div className="space-y-4">
-            <label className="block text-sm font-medium text-white/60">
-              Slug
-            </label>
-            <input
-              type="text"
-              value={slug}
-              onChange={(e) => setSlug(e.target.value)}
-              className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="post-slug"
-            />
-          </div>
-        )}
-
-        {selectedDoc?._type === "posts" ? (
-          // Render blocks editor for posts
+        {selectedDoc._type === "posts" ? (
           <>
+            <div className="space-y-4">
+              <label className="block text-sm font-medium text-white/60">
+                Slug
+              </label>
+              <input
+                type="text"
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+                className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="post-slug"
+              />
+            </div>
+
             {blocks.map((block, index) => (
               <div
                 key={index}
-                className={`p-4 bg-white/5 border border-white/10 rounded-md`}
+                className="p-4 bg-white/5 border border-white/10 rounded-md"
               >
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center space-x-2">
                     <span className="text-sm font-medium text-white/60">
                       {block._type}
                     </span>
-                    {block._type === BLOCK_TYPES.CONTENT && (
-                      <select
-                        value={block.layout || "dark"}
-                        onChange={(e) =>
-                          updateBlock(index, { layout: e.target.value })
-                        }
-                        className="ml-4 bg-white/5 border border-white/10 rounded-md text-white text-sm p-1"
-                      >
-                        {LAYOUT_OPTIONS.map((option) => (
-                          <option key={option.value} value={option.value}>
-                            {option.title}
-                          </option>
-                        ))}
-                      </select>
-                    )}
                   </div>
                   <button
                     onClick={() => removeBlock(index)}
@@ -408,39 +385,6 @@ export function Editor({ selectedDoc }: EditorProps) {
                     Remove
                   </button>
                 </div>
-
-                {block._type === BLOCK_TYPES.HEADING && (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-white/60 mb-2">
-                        Heading
-                      </label>
-                      <input
-                        type="text"
-                        value={block.heading || ""}
-                        onChange={(e) =>
-                          updateBlock(index, { heading: e.target.value })
-                        }
-                        className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Enter heading..."
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-white/60 mb-2">
-                        Subheading
-                      </label>
-                      <input
-                        type="text"
-                        value={block.subheading || ""}
-                        onChange={(e) =>
-                          updateBlock(index, { subheading: e.target.value })
-                        }
-                        className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Enter subheading..."
-                      />
-                    </div>
-                  </div>
-                )}
 
                 {block._type === BLOCK_TYPES.CONTENT && (
                   <div className="space-y-4">
@@ -466,6 +410,31 @@ export function Editor({ selectedDoc }: EditorProps) {
                         }}
                       />
                     </div>
+                  </div>
+                )}
+
+                {block._type === BLOCK_TYPES.HEADING && (
+                  <div className="space-y-4">
+                    {getFields("headingBlock").map((field) => {
+                      const Component = field.component;
+                      return (
+                        <Component
+                          key={field.name}
+                          label={field.title}
+                          description={field.description}
+                          value={block[field.name as keyof typeof block]}
+                          onChange={(value: any) =>
+                            updateBlock(index, {
+                              [field.name]: value,
+                            } as any)
+                          }
+                          {...(field.type === "reference"
+                            ? { options: teamMembers }
+                            : {})}
+                          {...field.options}
+                        />
+                      );
+                    })}
                   </div>
                 )}
               </div>

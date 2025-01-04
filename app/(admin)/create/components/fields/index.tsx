@@ -288,3 +288,163 @@ export const AudioField = ({
     </div>
   </div>
 );
+
+interface HeadingBlockProps extends BaseFieldProps {
+  layout?: "dark" | "light" | "transparent";
+  imageRef?: {
+    _ref: string;
+    _type: "reference";
+    image?: {
+      asset: {
+        url: string;
+      };
+    };
+  };
+  heading?: string;
+  subheading?: string;
+  publicationDate?: string;
+  team?: {
+    _ref: string;
+    _type: "reference";
+  };
+  category?: {
+    _ref: string;
+    _type: "reference";
+  };
+}
+
+export const HeadingBlockField = ({
+  label,
+  description,
+  value,
+  onChange,
+}: HeadingBlockProps) => {
+  return (
+    <div className="space-y-6 p-4 bg-white/5 border border-white/10 rounded-md">
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center space-x-2">
+          <span className="text-sm font-medium text-white/60">{label}</span>
+          <select
+            value={value?.layout || "dark"}
+            onChange={(e) => onChange({ ...value, layout: e.target.value })}
+            className="ml-4 bg-white/5 border border-white/10 rounded-md text-white text-sm p-1"
+          >
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="transparent">Transparent</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-white/60 mb-2">
+            Heading
+          </label>
+          <input
+            type="text"
+            value={value?.heading || ""}
+            onChange={(e) => onChange({ ...value, heading: e.target.value })}
+            className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter heading..."
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-white/60 mb-2">
+            Subheading
+          </label>
+          <textarea
+            value={value?.subheading || ""}
+            onChange={(e) => onChange({ ...value, subheading: e.target.value })}
+            className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
+            placeholder="Enter subheading..."
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-white/60 mb-2">
+            Publication Date
+          </label>
+          <input
+            type="date"
+            value={value?.publicationDate || ""}
+            onChange={(e) =>
+              onChange({ ...value, publicationDate: e.target.value })
+            }
+            className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-white/60 mb-2">
+            Featured Image
+          </label>
+          {value?.imageRef?.image?.asset?.url ? (
+            <div className="relative group">
+              <img
+                src={value.imageRef.image.asset.url}
+                alt={value.heading || "Featured image"}
+                className="w-full max-w-2xl rounded-lg border border-white/10"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <button className="px-2 py-1 bg-black/60 hover:bg-black rounded text-xs text-white/60 hover:text-white">
+                    Change Image
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed border-white/10 rounded-lg bg-white/5">
+              <RiImageLine className="w-8 h-8 text-white/40 mb-2" />
+              <button className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm">
+                Choose Image
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-white/60 mb-2">
+              Team Member
+            </label>
+            <select
+              value={value?.team?._ref || ""}
+              onChange={(e) =>
+                onChange({
+                  ...value,
+                  team: { _ref: e.target.value, _type: "reference" },
+                })
+              }
+              className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select team member</option>
+              {/* Team options will be passed via context or props */}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-white/60 mb-2">
+              Category
+            </label>
+            <select
+              value={value?.category?._ref || ""}
+              onChange={(e) =>
+                onChange({
+                  ...value,
+                  category: { _ref: e.target.value, _type: "reference" },
+                })
+              }
+              className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select category</option>
+              {/* Category options will be passed via context or props */}
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
