@@ -1,14 +1,18 @@
 "use client";
-import Spline from "@splinetool/react-spline";
+
 import Link from "next/link";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Buttons } from "@/app/(user)/home/config";
 import { useNavigation } from "@/components/providers/NavigationProvider";
+import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
   const [isClicked, setIsClicked] = useState(false);
   const { currentSection, handleButtonClick } = useNavigation();
+  const pathname = usePathname();
+
+  if (pathname === "/create") return null;
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();

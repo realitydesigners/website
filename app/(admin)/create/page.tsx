@@ -280,7 +280,7 @@ export default function CreatePage() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 p-8">
+      {/* <div className="border-t border-white/10 p-8">
         <h2 className="text-lg font-medium text-white mb-4">Preview</h2>
         <div className="p-4 bg-white/5 border border-white/10 rounded-md min-h-[200px]">
           {blocks.map((block, index) => (
@@ -309,7 +309,7 @@ export default function CreatePage() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
