@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import { MainContent } from "./components/MainContent";
 import { TableView } from "./components/TableView";
 import { Editor } from "./components/Editor";
