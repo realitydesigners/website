@@ -11,8 +11,22 @@ import {
   RiBookLine,
   RiGamepadLine,
   RiBookmarkLine,
+  RiArrowRightLine,
 } from "react-icons/ri";
 import { useDocument } from "../layout";
+
+const gradients = {
+  posts: "from-purple-500/20 to-blue-500/20",
+  img: "from-blue-500/20 to-cyan-500/20",
+  audio: "from-green-500/20 to-emerald-500/20",
+  video: "from-red-500/20 to-orange-500/20",
+  quote: "from-yellow-500/20 to-amber-500/20",
+  team: "from-pink-500/20 to-rose-500/20",
+  category: "from-violet-500/20 to-purple-500/20",
+  library: "from-indigo-500/20 to-blue-500/20",
+  model: "from-cyan-500/20 to-teal-500/20",
+  glossary: "from-teal-500/20 to-green-500/20",
+};
 
 const contentTypes = [
   {
@@ -92,13 +106,20 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
 
   const handleTypeSelect = (type: any) => {
     onTypeSelect(type.type);
-    // Create a new document with default structure based on type
-    const newDoc: any = {
+    const newDoc: {
+      _type: string;
+      _id: string;
+      block?: Array<{
+        _type: string;
+        _key: string;
+        heading: string;
+        subheading: string;
+      }>;
+    } = {
       _type: type.type,
-      _id: `drafts.new-${Math.random().toString(36).substring(2, 15)}`,
+      _id: `drafts.${Math.random().toString(36).substring(2, 15)}`,
     };
 
-    // Add type-specific defaults
     if (type.type === "posts") {
       newDoc.block = [type.defaultBlock];
     }
@@ -108,32 +129,40 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
 
   return (
     <div className="flex-1 p-8">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold text-white mb-2">
+      <div className="w-full flex pt-12 flex-col justify-center items-center mx-auto">
+        <h1 className="text-2xl font-bold text-white mb-2">
           What would you like to create today?
         </h1>
-        <p className="text-white/60 mb-8">
+        <p className="text-md text-white/70 mb-8">
           Choose a content type to get started
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {contentTypes.map((type) => {
-            const Icon = type.icon;
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {contentTypes.map((item) => {
+            const Icon = item.icon;
             return (
               <button
-                key={type.type}
-                onClick={() => handleTypeSelect(type)}
-                className="group p-4 bg-black/20 hover:bg-black/40 border border-white/5 hover:border-white/10 
-                  rounded-xl transition-all duration-200 flex flex-col items-center text-center"
+                key={item.type}
+                onClick={() => handleTypeSelect(item)}
+                className="group relative p-6 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a]/80 to-black 
+                  border border-transparent hover:border-white/10 transition-all duration-300
+                  hover:shadow-lg hover:shadow-black/20"
               >
-                <div
-                  className="w-12 h-12 mb-3 rounded-lg bg-blue-500/10 text-blue-400 
-                  flex items-center justify-center group-hover:scale-110 transition-transform duration-200"
-                >
-                  <Icon size={24} />
+                <div className="flex flex-col items-center text-center space-y-4">
+                  <div
+                    className={`p-3 rounded-lg bg-gradient-to-br ${
+                      gradients[item.type as keyof typeof gradients]
+                    } backdrop-blur-sm group-hover:scale-110 group-hover:rotate-[8deg] transition-all duration-300`}
+                  >
+                    <Icon size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-white/60">{item.description}</p>
+                  </div>
                 </div>
-                <h3 className="font-medium text-white mb-1">{type.title}</h3>
-                <p className="text-xs text-white/60">{type.description}</p>
               </button>
             );
           })}

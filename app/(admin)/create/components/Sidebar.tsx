@@ -38,6 +38,19 @@ interface SidebarProps {
   onTypeSelect: (type: string) => void;
 }
 
+const gradients = {
+  posts: "from-purple-500/20 to-blue-500/20",
+  img: "from-blue-500/20 to-cyan-500/20",
+  audio: "from-green-500/20 to-emerald-500/20",
+  video: "from-red-500/20 to-orange-500/20",
+  quote: "from-yellow-500/20 to-amber-500/20",
+  team: "from-pink-500/20 to-rose-500/20",
+  category: "from-violet-500/20 to-purple-500/20",
+  library: "from-indigo-500/20 to-blue-500/20",
+  model: "from-cyan-500/20 to-teal-500/20",
+  glossary: "from-teal-500/20 to-green-500/20",
+};
+
 export function Sidebar({
   onDocumentSelect,
   selectedType,
@@ -83,13 +96,14 @@ export function Sidebar({
   };
 
   return (
-    <div className="w-64 h-screen bg-black/50 border-r border-white/10 flex flex-col">
+    <div className="w-64 h-screen bg-gradient-to-b from-black via-[#0a0a0a]/90 to-black border-r border-white/10 flex flex-col">
       <div className="p-4 border-b border-white/10">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-white">Content</h2>
           <Link
             href="/create"
-            className="p-1.5 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 transition-colors"
+            className="p-1.5 rounded-lg bg-gradient-to-br from-black via-[#0a0a0a]/80 to-black 
+              border border-transparent hover:border-white/10 text-white/70 hover:text-white/90 transition-all duration-300"
           >
             <RiAddLine size={18} />
           </Link>
@@ -101,25 +115,38 @@ export function Sidebar({
           <div className="space-y-0.5">
             {contentTypes.map((item) => {
               const Icon = item.icon;
+              const isSelected = selectedType === item.type;
               return (
                 <button
                   key={item.type}
                   onClick={() => onTypeSelect(item.type)}
                   className={`w-full px-3 py-2 flex items-center justify-between rounded-lg
                     ${
-                      selectedType === item.type
-                        ? "bg-blue-500/10 text-blue-400"
-                        : "text-white/70 hover:bg-white/5"
-                    } transition-all duration-200`}
+                      isSelected
+                        ? "bg-gradient-to-br from-black via-[#0a0a0a]/80 to-black border border-white/10"
+                        : "hover:bg-black/40 border border-transparent"
+                    } transition-all duration-300`}
                 >
                   <div className="flex items-center space-x-2">
-                    <Icon size={16} className="flex-shrink-0" />
-                    <span className="text-sm font-medium">{item.title}</span>
+                    <div
+                      className={`p-1.5 rounded ${
+                        isSelected
+                          ? `bg-gradient-to-br ${gradients[item.type as keyof typeof gradients]}`
+                          : "bg-black/40"
+                      } backdrop-blur-sm`}
+                    >
+                      <Icon size={16} className="flex-shrink-0 text-white" />
+                    </div>
+                    <span
+                      className={`text-sm font-medium ${isSelected ? "text-white" : "text-white/70"}`}
+                    >
+                      {item.title}
+                    </span>
                   </div>
                   <RiArrowRightSLine
                     size={16}
-                    className={`transform transition-transform duration-200
-                      ${selectedType === item.type ? "rotate-90" : ""}`}
+                    className={`transform transition-transform duration-300 text-white/70
+                      ${isSelected ? "rotate-90" : ""}`}
                   />
                 </button>
               );
@@ -140,7 +167,7 @@ export function Sidebar({
                 <button
                   key={doc._id}
                   onClick={() => onDocumentSelect(doc)}
-                  className="w-full px-3 py-2 text-sm text-white/80 hover:bg-white/5 
+                  className="w-full px-3 py-2 text-sm text-white/70 hover:bg-white/5 
                     rounded-lg transition-colors flex items-center space-x-2"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-white/20" />

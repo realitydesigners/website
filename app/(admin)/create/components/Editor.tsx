@@ -1,9 +1,25 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { writeClient } from "@/sanity/lib/client";
 import { RichTextEditor } from "./RichTextEditor";
 import { useDocument } from "../layout";
+import {
+  RiFileTextLine,
+  RiImageLine,
+  RiMusicLine,
+  RiVideoLine,
+  RiChatQuoteLine,
+  RiTeamLine,
+  RiFolderLine,
+  RiBookLine,
+  RiGamepadLine,
+  RiBookmarkLine,
+  RiArrowLeftLine,
+  RiDraftLine,
+  RiSendPlaneLine,
+  RiCloseLine,
+} from "react-icons/ri";
 
 interface Block {
   _type: string;
@@ -28,6 +44,32 @@ const LAYOUT_OPTIONS = [
   { title: "Light", value: "light" },
   { title: "Transparent", value: "transparent" },
 ];
+
+const contentTypes = {
+  posts: { icon: RiFileTextLine, title: "Post" },
+  img: { icon: RiImageLine, title: "Image" },
+  audio: { icon: RiMusicLine, title: "Audio" },
+  video: { icon: RiVideoLine, title: "Video" },
+  quote: { icon: RiChatQuoteLine, title: "Quote" },
+  team: { icon: RiTeamLine, title: "Team" },
+  category: { icon: RiFolderLine, title: "Category" },
+  library: { icon: RiBookLine, title: "Library" },
+  model: { icon: RiGamepadLine, title: "Model" },
+  glossary: { icon: RiBookmarkLine, title: "Glossary" },
+};
+
+const gradients = {
+  posts: "from-purple-500/20 to-blue-500/20",
+  img: "from-blue-500/20 to-cyan-500/20",
+  audio: "from-green-500/20 to-emerald-500/20",
+  video: "from-red-500/20 to-orange-500/20",
+  quote: "from-yellow-500/20 to-amber-500/20",
+  team: "from-pink-500/20 to-rose-500/20",
+  category: "from-violet-500/20 to-purple-500/20",
+  library: "from-indigo-500/20 to-blue-500/20",
+  model: "from-cyan-500/20 to-teal-500/20",
+  glossary: "from-teal-500/20 to-green-500/20",
+};
 
 export function Editor() {
   const { selectedDoc, setSelectedDoc } = useDocument();
@@ -153,30 +195,73 @@ export function Editor() {
 
   return (
     <div className="flex flex-col h-full">
-      <header className="flex items-center justify-between px-8 py-4 border-b border-white/10">
-        <h1 className="text-2xl font-bold text-white">
-          {selectedDoc ? "Edit Post" : "Create New Post"}
-        </h1>
-        <div className="flex gap-4">
+      <header className="flex items-center justify-between px-6 py-3 border-b border-white/10 bg-[#0a0a0a]">
+        <div className="flex items-center space-x-6">
+          <button
+            onClick={() => setSelectedDoc(null)}
+            className="p-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 hover:text-white/90 
+              transition-all duration-300 flex items-center space-x-2 group"
+          >
+            <RiArrowLeftLine
+              size={18}
+              className="transform transition-transform group-hover:-translate-x-0.5"
+            />
+          </button>
+
+          <div className="flex items-center space-x-3">
+            {selectedDoc?._type &&
+              contentTypes[selectedDoc._type as keyof typeof contentTypes] && (
+                <div
+                  className={`p-2 rounded-lg bg-gradient-to-br ${gradients[selectedDoc._type as keyof typeof gradients]} backdrop-blur-sm`}
+                >
+                  {React.createElement(
+                    contentTypes[selectedDoc._type as keyof typeof contentTypes]
+                      .icon,
+                    {
+                      size: 20,
+                      className: "text-white",
+                    }
+                  )}
+                </div>
+              )}
+            <div>
+              <h1 className="text-lg font-bold text-white">
+                {selectedDoc?._type &&
+                contentTypes[selectedDoc._type as keyof typeof contentTypes]
+                  ? `Create ${contentTypes[selectedDoc._type as keyof typeof contentTypes].title}`
+                  : "Create New Post"}
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-3">
           {selectedDoc && (
             <button
               onClick={handleCancel}
-              className="px-4 py-2 text-white/60 hover:text-white transition-colors"
+              className="p-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 hover:text-white/90 
+                transition-all duration-300"
             >
-              Cancel
+              <RiCloseLine size={18} />
             </button>
           )}
           <button
             onClick={(e) => handleSubmit(e, false)}
-            className="px-4 py-2 bg-blue-600/50 text-white rounded-md hover:bg-blue-700/50 transition-colors"
+            className="px-4 py-2 rounded-lg bg-gradient-to-br from-blue-600/50 to-indigo-600/50 
+              hover:from-blue-600/60 hover:to-indigo-600/60 text-white border border-white/5 
+              hover:border-white/10 transition-all duration-300 flex items-center space-x-2"
           >
-            Save as Draft
+            <RiDraftLine size={18} />
+            <span>Save Draft</span>
           </button>
           <button
             onClick={(e) => handleSubmit(e, true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 
+              hover:from-blue-700 hover:to-indigo-700 text-white border border-white/10 
+              hover:border-white/20 transition-all duration-300 flex items-center space-x-2"
           >
-            Publish
+            <RiSendPlaneLine size={18} />
+            <span>Publish</span>
           </button>
         </div>
       </header>
