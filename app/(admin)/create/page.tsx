@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useState, useEffect } from "react";
-import { client } from "@/sanity/lib/client";
+import { writeClient } from "@/sanity/lib/client";
 import { useDocument } from "./layout";
 import { RichTextEditor } from "./components/RichTextEditor";
 
 interface Block {
   _type: string;
+  _key: string;
   heading?: string;
   subheading?: string;
   layout?: string;
@@ -39,13 +40,20 @@ export default function CreatePage() {
       setBlocks(selectedDoc.block || []);
       setSlug(selectedDoc.slug?.current || "");
     } else {
-      setBlocks([{ _type: BLOCK_TYPES.HEADING, heading: "", subheading: "" }]);
+      setBlocks([
+        {
+          _type: BLOCK_TYPES.HEADING,
+          _key: Math.random().toString(36).substring(2, 15),
+          heading: "",
+          subheading: "",
+        },
+      ]);
       setSlug("");
     }
   }, [selectedDoc]);
 
   const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
+    async (e: React.FormEvent, shouldPublish = false) => {
       e.preventDefault();
 
       try {
@@ -59,14 +67,30 @@ export default function CreatePage() {
           ...(selectedDoc?._id ? { _id: selectedDoc._id } : {}),
         };
 
-        const result = selectedDoc
-          ? await client.patch(selectedDoc._id).set(doc).commit()
-          : await client.create(doc);
+        const docId =
+          selectedDoc?._id ||
+          `drafts.${Math.random().toString(36).substring(2, 15)}`;
+        const draftId = `drafts.${docId.replace("drafts.", "")}`;
 
-        console.log(selectedDoc ? "Updated:" : "Created:", result);
+        const result = selectedDoc
+          ? await writeClient
+              .patch(shouldPublish ? docId : draftId)
+              .set(doc)
+              .commit()
+          : await writeClient.create({
+              ...doc,
+              _id: shouldPublish ? docId : draftId,
+            });
+
+        console.log(shouldPublish ? "Published:" : "Saved as draft:", result);
         setSelectedDoc(null);
         setBlocks([
-          { _type: BLOCK_TYPES.HEADING, heading: "", subheading: "" },
+          {
+            _type: BLOCK_TYPES.HEADING,
+            _key: Math.random().toString(36).substring(2, 15),
+            heading: "",
+            subheading: "",
+          },
         ]);
         setSlug("");
       } catch (error) {
@@ -87,12 +111,14 @@ export default function CreatePage() {
   const addBlock = (type: string) => {
     const newBlock: Block = {
       _type: type,
+      _key: Math.random().toString(36).substring(2, 15),
       ...(type === BLOCK_TYPES.CONTENT
         ? {
             layout: "dark",
             content: [
               {
                 _type: "block",
+                _key: Math.random().toString(36).substring(2, 15),
                 style: "normal",
                 children: [{ _type: "span", text: "" }],
               },
@@ -116,6 +142,19 @@ export default function CreatePage() {
     setActiveBlock(null);
   };
 
+  const handleCancel = () => {
+    setSelectedDoc(null);
+    setBlocks([
+      {
+        _type: BLOCK_TYPES.HEADING,
+        _key: Math.random().toString(36).substring(2, 15),
+        heading: "",
+        subheading: "",
+      },
+    ]);
+    setSlug("");
+  };
+
   return (
     <div className="flex flex-col h-full">
       <header className="flex items-center justify-between px-8 py-4 border-b border-white/10">
@@ -125,23 +164,23 @@ export default function CreatePage() {
         <div className="flex gap-4">
           {selectedDoc && (
             <button
-              onClick={() => {
-                setSelectedDoc(null);
-                setBlocks([
-                  { _type: BLOCK_TYPES.HEADING, heading: "", subheading: "" },
-                ]);
-                setSlug("");
-              }}
+              onClick={handleCancel}
               className="px-4 py-2 text-white/60 hover:text-white transition-colors"
             >
               Cancel
             </button>
           )}
           <button
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e, false)}
+            className="px-4 py-2 bg-blue-600/50 text-white rounded-md hover:bg-blue-700/50 transition-colors"
+          >
+            Save as Draft
+          </button>
+          <button
+            onClick={(e) => handleSubmit(e, true)}
             className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
           >
-            {selectedDoc ? "Update Post" : "Create Post"}
+            Publish
           </button>
         </div>
       </header>
