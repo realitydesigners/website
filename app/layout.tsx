@@ -25,7 +25,7 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="bg-black overflow-hidden">
+      <body className="bg-black">
         <NavigationProvider>
           <Navbar />
           {children}
