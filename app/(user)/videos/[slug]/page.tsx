@@ -6,12 +6,8 @@ import type { PostsPayload, VideoPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import VideoPageClient from "./client";
 
-type Props = {
-  params: { slug: string };
-};
-
 export async function generateMetadata(
-  { params }: Props,
+  props: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const metadataBaseUrl =
@@ -19,9 +15,9 @@ export async function generateMetadata(
   const video = await sanityFetch<PostsPayload>({
     query: getVideoBySlugQuery,
     tags: ["video"],
-    qParams: { slug: params.slug },
+    qParams: { slug: props.params.slug },
   });
-  //@ts-ignore
+  // @ts-ignore
   const ogImage = urlForOpenGraphImage(video?.block?.[0]?.image);
   const metadataBase = new URL(metadataBaseUrl);
 
@@ -37,15 +33,15 @@ export async function generateMetadata(
   };
 }
 
-export default async function PageSlugRoute({ params }: Props) {
+const Page = async (props: any) => {
+  const resolvedParams = await props.params;
   const currentVideo = await sanityFetch<VideoPayload>({
     query: getVideoBySlugQuery,
     tags: ["video"],
-    qParams: { slug: params.slug },
+    qParams: { slug: resolvedParams.slug },
   });
 
   const videoUrl = currentVideo.url;
-  console.log(videoUrl);
   const blocks = currentVideo?.block || [];
   const { title } = currentVideo || {};
 
@@ -53,7 +49,7 @@ export default async function PageSlugRoute({ params }: Props) {
     <>
       {currentVideo && (
         <div className="lg:flex-cols flex h-auto w-full flex-row flex-wrap items-start justify-center bg-black ">
-          <div className="flex  w-full flex-col items-center justify-centerlg:w-4/6" />
+          <div className="flex w-full flex-col items-center justify-centerlg:w-4/6" />
           <VideoPageClient
             videoUrl={videoUrl}
             title={title}
@@ -63,4 +59,6 @@ export default async function PageSlugRoute({ params }: Props) {
       )}
     </>
   );
-}
+};
+
+export default Page;

@@ -1,4 +1,3 @@
-// @ts-ignore
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/Blocks";
 import PostsList from "@/components/items/PostsList";
@@ -10,16 +9,12 @@ import { PostsPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import React, { Suspense } from "react";
 
-type Props = {
-  params: { slug: string };
-};
-
 export function generateStaticParams() {
   return generateStaticSlugs("posts");
 }
 
 export async function generateMetadata(
-  { params }: Props,
+  props: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const metadataBaseUrl =
@@ -27,7 +22,7 @@ export async function generateMetadata(
   const post = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
     tags: ["post"],
-    qParams: { slug: params.slug },
+    qParams: { slug: props.params.slug },
   });
 
   const ogImage = urlForOpenGraphImage(post?.block?.[0]?.imageRef);
@@ -53,11 +48,12 @@ export async function generateMetadata(
   };
 }
 
-export default async function PostSlugRoute({ params }: Props) {
+const Page = async (props: any) => {
+  const resolvedParams = await props.params;
   const currentPost = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
     tags: ["post"],
-    qParams: { slug: params.slug },
+    qParams: { slug: resolvedParams.slug },
   });
 
   let otherPosts;
@@ -68,7 +64,9 @@ export default async function PostSlugRoute({ params }: Props) {
       tags: ["post"],
     });
 
-    otherPosts = allPosts.filter((post) => post.slug?.current !== params.slug);
+    otherPosts = allPosts.filter(
+      (post) => post.slug?.current !== resolvedParams.slug
+    );
   }
 
   const blocks = currentPost?.block || [];
@@ -93,4 +91,6 @@ export default async function PostSlugRoute({ params }: Props) {
       )}
     </>
   );
-}
+};
+
+export default Page;

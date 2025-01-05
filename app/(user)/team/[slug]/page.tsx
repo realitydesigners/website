@@ -5,19 +5,14 @@ import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { TeamPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
-
 import React from "react";
-
-type Props = {
-  params: { slug: string };
-};
 
 export async function generateStaticParams() {
   return generateStaticSlugs("team");
 }
 
 export async function generateMetadata(
-  { params }: Props,
+  props: any,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const metadataBaseUrl =
@@ -25,9 +20,9 @@ export async function generateMetadata(
   const team = await sanityFetch<TeamPayload>({
     query: teamBySlugQuery,
     tags: ["team"],
-    qParams: { slug: params.slug },
+    qParams: { slug: props.params.slug },
   });
-  //@ts-ignore
+  // @ts-ignore
   const ogImage = urlForOpenGraphImage(team?.image);
   const metadataBase = new URL(metadataBaseUrl);
 
@@ -43,11 +38,12 @@ export async function generateMetadata(
   };
 }
 
-export default async function PageSlugRoute({ params }: Props) {
+const Page = async (props: any) => {
+  const resolvedParams = await props.params;
   const team = await sanityFetch<TeamPayload>({
     query: teamBySlugQuery,
-    qParams: { slug: params.slug },
-    tags: [`category:${params.slug}`],
+    qParams: { slug: resolvedParams.slug },
+    tags: [`category:${resolvedParams.slug}`],
   });
 
   if (!team) {
@@ -68,4 +64,6 @@ export default async function PageSlugRoute({ params }: Props) {
       <TeamItem team={team} blocks={blocks} socialLinks={socialLinks} />
     </div>
   );
-}
+};
+
+export default Page;
