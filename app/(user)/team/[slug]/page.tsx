@@ -4,41 +4,46 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { TeamPayload } from "@/types";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import React from "react";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
 export async function generateStaticParams() {
   return generateStaticSlugs("team");
 }
 
-export async function generateMetadata(
-  props: any,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const metadataBaseUrl =
-    process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const resolvedParams = await props.params;
   const team = await sanityFetch<TeamPayload>({
     query: teamBySlugQuery,
     tags: ["team"],
-    qParams: { slug: props.params.slug },
+    qParams: { slug: resolvedParams.slug },
   });
   // @ts-ignore
   const ogImage = urlForOpenGraphImage(team?.image);
-  const metadataBase = new URL(metadataBaseUrl);
 
   return {
-    title: team?.name,
-    description: team?.shortBio || (await parent).description,
-    openGraph: ogImage
-      ? {
-          images: [ogImage, ...((await parent).openGraph?.images || [])],
-        }
-      : {},
-    metadataBase,
+    title: team?.name || "Team Member",
+    description: team?.shortBio || "Team member details",
+    openGraph: {
+      title: team?.name || "Team Member",
+      description: team?.shortBio || "Team member details",
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            alt: team?.name || "Team member image",
+          },
+        ],
+      }),
+    },
   };
 }
 
-const Page = async (props: any) => {
+export default async function TeamSlugRoute(props: Props) {
   const resolvedParams = await props.params;
   const team = await sanityFetch<TeamPayload>({
     query: teamBySlugQuery,
@@ -64,6 +69,4 @@ const Page = async (props: any) => {
       <TeamItem team={team} blocks={blocks} socialLinks={socialLinks} />
     </div>
   );
-};
-
-export default Page;
+}

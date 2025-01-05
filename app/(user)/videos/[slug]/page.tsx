@@ -3,37 +3,43 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { getVideoBySlugQuery } from "@/sanity/lib/queries";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import type { PostsPayload, VideoPayload } from "@/types";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import VideoPageClient from "./client";
 
-export async function generateMetadata(
-  props: any,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const metadataBaseUrl =
-    process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const resolvedParams = await props.params;
   const video = await sanityFetch<PostsPayload>({
     query: getVideoBySlugQuery,
     tags: ["video"],
-    qParams: { slug: props.params.slug },
+    qParams: { slug: resolvedParams.slug },
   });
+
   // @ts-ignore
   const ogImage = urlForOpenGraphImage(video?.block?.[0]?.image);
-  const metadataBase = new URL(metadataBaseUrl);
 
   return {
-    title: video?.block?.[0]?.heading,
-    description: video?.block?.[0]?.subheading || (await parent).description,
-    openGraph: ogImage
-      ? {
-          images: [ogImage, ...((await parent).openGraph?.images || [])],
-        }
-      : {},
-    metadataBase,
+    title: video?.block?.[0]?.heading || "Video",
+    description: video?.block?.[0]?.subheading || "Video details",
+    openGraph: {
+      title: video?.block?.[0]?.heading || "Video",
+      description: video?.block?.[0]?.subheading || "Video details",
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            alt: video?.block?.[0]?.heading || "Video thumbnail",
+          },
+        ],
+      }),
+    },
   };
 }
 
-const Page = async (props: any) => {
+export default async function VideoSlugRoute(props: Props) {
   const resolvedParams = await props.params;
   const currentVideo = await sanityFetch<VideoPayload>({
     query: getVideoBySlugQuery,
@@ -59,6 +65,4 @@ const Page = async (props: any) => {
       )}
     </>
   );
-};
-
-export default Page;
+}

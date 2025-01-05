@@ -6,49 +6,46 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import React, { Suspense } from "react";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
 export function generateStaticParams() {
   return generateStaticSlugs("posts");
 }
 
-export async function generateMetadata(
-  props: any,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const metadataBaseUrl =
-    process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const resolvedParams = await props.params;
   const post = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
     tags: ["post"],
-    qParams: { slug: props.params.slug },
+    qParams: { slug: resolvedParams.slug },
   });
 
   const ogImage = urlForOpenGraphImage(post?.block?.[0]?.imageRef);
-  const ogImageAlt =
-    post?.block?.[0]?.imageRef?.imageAlt || "Your default alt text";
-  const metadataBase = new URL(metadataBaseUrl);
 
   return {
-    title: post?.block?.[0]?.heading,
-    description: post?.block?.[0]?.subheading || (await parent).description,
-    openGraph: ogImage
-      ? {
-          images: [
-            {
-              url: ogImage,
-              alt: ogImageAlt,
-            },
-            ...((await parent).openGraph?.images || []),
-          ],
-        }
-      : {},
-    metadataBase,
+    title: post?.block?.[0]?.heading || "Post",
+    description: post?.block?.[0]?.subheading || "Article details",
+    openGraph: {
+      title: post?.block?.[0]?.heading || "Post",
+      description: post?.block?.[0]?.subheading || "Article details",
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            alt: post?.block?.[0]?.imageRef?.imageAlt || "Article image",
+          },
+        ],
+      }),
+    },
   };
 }
 
-const Page = async (props: any) => {
+export default async function PostSlugRoute(props: Props) {
   const resolvedParams = await props.params;
   const currentPost = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
@@ -91,6 +88,4 @@ const Page = async (props: any) => {
       )}
     </>
   );
-};
-
-export default Page;
+}
