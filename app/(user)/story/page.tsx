@@ -1,5 +1,4 @@
 "use client";
-import { play } from "@/app/fonts";
 import Spline from "@splinetool/react-spline";
 
 export default function StoryPage() {

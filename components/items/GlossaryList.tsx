@@ -1,5 +1,4 @@
 "use client";
-import { play } from "@/app/fonts";
 import { GlossaryPayload } from "@/types";
 import Link from "next/link";
 import { FC } from "react";

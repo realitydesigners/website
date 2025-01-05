@@ -31,7 +31,6 @@
     "aframe": "1.5.0",
     "classnames": "2.5.1",
     "date-fns": "3.6.0",
-    "motion": "12.0.0-alpha.2",
     "next": "^15.0.4",
     "next-sanity": "9.3.10",
     "next-sanity-image": "6.1.1",
