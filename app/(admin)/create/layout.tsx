@@ -1,21 +1,8 @@
 "use client";
 
-import { useState, createContext, useContext } from "react";
+import { useState } from "react";
 import { Sidebar } from "./components/Sidebar";
-
-export const DocumentContext = createContext<{
-  selectedDoc: any;
-  setSelectedDoc: (doc: any) => void;
-  selectedType: string;
-  setSelectedType: (type: string) => void;
-}>({
-  selectedDoc: null,
-  setSelectedDoc: () => {},
-  selectedType: "posts",
-  setSelectedType: () => {},
-});
-
-export const useDocument = () => useContext(DocumentContext);
+import { DocumentContext } from "./context/DocumentContext";
 
 export default function CreateLayout({
   children,

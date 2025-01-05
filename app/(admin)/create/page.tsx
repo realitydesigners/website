@@ -2,7 +2,7 @@
 import { MainContent } from "./components/MainContent";
 import { TableView } from "./components/TableView";
 import { Editor } from "./components/Editor";
-import { useDocument } from "./layout";
+import { useDocument } from "./context/DocumentContext";
 
 export default function CreatePage() {
   const { selectedDoc, setSelectedType, selectedType } = useDocument();

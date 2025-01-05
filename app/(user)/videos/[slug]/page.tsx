@@ -1,10 +1,10 @@
 import { BlockProps } from "@/components/blocks/Blocks";
 import { sanityFetch } from "@/sanity/lib/client";
 import { getVideoBySlugQuery } from "@/sanity/lib/queries";
-import type { VideoPayload } from "@/types";
+import { urlForOpenGraphImage } from "@/sanity/lib/utils";
+import type { PostsPayload, VideoPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import VideoPageClient from "./client";
-import { generatePageMetadata } from "@/lib/metadata";
 
 type Props = {
   params: { slug: string };
@@ -14,15 +14,27 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  return generatePageMetadata<VideoPayload>(
-    {
-      query: getVideoBySlugQuery,
-      slug: params.slug,
-      tags: ["video"],
-      // Videos use the block structure like posts
-    },
-    parent
-  );
+  const metadataBaseUrl =
+    process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
+  const video = await sanityFetch<PostsPayload>({
+    query: getVideoBySlugQuery,
+    tags: ["video"],
+    qParams: { slug: params.slug },
+  });
+  //@ts-ignore
+  const ogImage = urlForOpenGraphImage(video?.block?.[0]?.image);
+  const metadataBase = new URL(metadataBaseUrl);
+
+  return {
+    title: video?.block?.[0]?.heading,
+    description: video?.block?.[0]?.subheading || (await parent).description,
+    openGraph: ogImage
+      ? {
+          images: [ogImage, ...((await parent).openGraph?.images || [])],
+        }
+      : {},
+    metadataBase,
+  };
 }
 
 export default async function PageSlugRoute({ params }: Props) {

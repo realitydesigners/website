@@ -6,7 +6,7 @@ import { client } from "@/sanity/lib/client";
 import { RiImageLine, RiEditLine, RiDeleteBinLine } from "react-icons/ri";
 import { format } from "date-fns";
 import Image from "next/image";
-import { useDocument } from "../../create/layout";
+import { useDocument } from "../context/DocumentContext";
 
 interface Post {
   _id: string;

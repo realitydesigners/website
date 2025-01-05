@@ -3,7 +3,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { writeClient } from "@/sanity/lib/client";
 import { RichTextEditor } from "./RichTextEditor";
-import { useDocument } from "../layout";
+import { useDocument } from "../context/DocumentContext";
 import { HeadingBlock } from "@/sanity/blocks/headingBlock";
 import {
   RiFileTextLine,

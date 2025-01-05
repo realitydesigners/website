@@ -13,7 +13,7 @@ import {
   RiBookmarkLine,
   RiArrowRightLine,
 } from "react-icons/ri";
-import { useDocument } from "../layout";
+import { useDocument } from "../context/DocumentContext";
 
 const gradients = {
   posts: "[20deg] from-purple-500/20 via-indigo-400/10 to-blue-500/20",

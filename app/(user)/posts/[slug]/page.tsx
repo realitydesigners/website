@@ -1,13 +1,14 @@
+// @ts-ignore
 import Blocks from "@/components/blocks/Blocks";
 import { BlockProps } from "@/components/blocks/Blocks";
 import PostsList from "@/components/items/PostsList";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
+import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
-import React, { Suspense, useMemo } from "react";
-import { generatePageMetadata } from "@/lib/metadata";
+import React, { Suspense } from "react";
 
 type Props = {
   params: { slug: string };
@@ -21,24 +22,44 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  return generatePageMetadata<PostsPayload>(
-    {
-      query: postsBySlugQuery,
-      slug: params.slug,
-      tags: ["post"],
-    },
-    parent
-  );
-}
-
-export default async function PageSlugRoute({ params }: Props) {
-  const currentPost = await sanityFetch<PostsPayload>({
+  const metadataBaseUrl =
+    process.env.NEXT_PUBLIC_METADATA_BASE || "http://localhost:3000";
+  const post = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
+    tags: ["post"],
     qParams: { slug: params.slug },
-    tags: [`category:${params.slug}`],
   });
 
-  console.log(currentPost);
+  const ogImage = urlForOpenGraphImage(post?.block?.[0]?.imageRef);
+  const ogImageAlt =
+    post?.block?.[0]?.imageRef?.imageAlt || "Your default alt text";
+  const metadataBase = new URL(metadataBaseUrl);
+
+  return {
+    title: post?.block?.[0]?.heading,
+    description: post?.block?.[0]?.subheading || (await parent).description,
+    openGraph: ogImage
+      ? {
+          images: [
+            {
+              url: ogImage,
+              alt: ogImageAlt,
+            },
+            ...((await parent).openGraph?.images || []),
+          ],
+        }
+      : {},
+    metadataBase,
+  };
+}
+
+export default async function PostSlugRoute({ params }: Props) {
+  const currentPost = await sanityFetch<PostsPayload>({
+    query: postsBySlugQuery,
+    tags: ["post"],
+    qParams: { slug: params.slug },
+  });
+
   let otherPosts;
 
   if (currentPost) {
@@ -57,7 +78,9 @@ export default async function PageSlugRoute({ params }: Props) {
       {currentPost && (
         <>
           <main>
-            {blocks?.map((block) => <Blocks block={block as BlockProps} />)}
+            {blocks?.map((block) => (
+              <Blocks key={block._key} block={block as BlockProps} />
+            ))}
           </main>
           <Suspense fallback={<div>Loading...</div>}>
             {otherPosts && (
