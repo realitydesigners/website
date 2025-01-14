@@ -20,7 +20,7 @@ interface Post {
   role?: string;
   description?: string;
   definition?: string;
-  block?: {
+  firstBlock?: {
     heading?: string;
     subheading?: string;
     layout?: string;
@@ -36,6 +36,7 @@ interface Post {
       slug?: string;
     };
   };
+  block?: Array<any>;
   imageUrl?: string;
   slug?: {
     current?: string;
@@ -63,6 +64,16 @@ interface Post {
   tiktok?: string;
   scene?: string;
   shortBio?: string;
+  model?: {
+    title?: string;
+    fileUrl?: string;
+  };
+  isMain?: boolean;
+  subcategories?: Array<{
+    _ref: string;
+    _type: "reference";
+  }>;
+  sceneIdentifier?: string;
 }
 
 interface TableViewProps {
@@ -118,7 +129,7 @@ export function TableView({ type }: TableViewProps) {
   const renderCell = (column: { key: string }, doc: Post) => {
     switch (column.key) {
       case "image":
-        const imageUrl = doc.block?.imageUrl || 
+        const imageUrl = doc.firstBlock?.imageUrl || 
                         doc.imageUrl || 
                         doc.mediaRef?.image?.image?.asset?.url;
         return (
@@ -126,7 +137,7 @@ export function TableView({ type }: TableViewProps) {
             {imageUrl ? (
               <img
                 src={imageUrl}
-                alt={doc.block?.heading || doc.title || doc.quote || "Image"}
+                alt={doc.firstBlock?.heading || doc.title || doc.quote || "Image"}
                 className="h-12 w-12 rounded-lg object-cover"
               />
             ) : (
@@ -139,7 +150,7 @@ export function TableView({ type }: TableViewProps) {
 
       case "heading":
       case "title":
-        const title = doc.block?.heading || doc.title || doc.name || doc.quote;
+        const title = doc.firstBlock?.heading || doc.title || doc.name || doc.quote;
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
             <div className="text-sm text-white">{title || "Untitled"}</div>
@@ -150,13 +161,13 @@ export function TableView({ type }: TableViewProps) {
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
             <div className="text-xs text-white/60 line-clamp-2">
-              {doc.block?.subheading || doc.description || "No subheading"}
+              {doc.firstBlock?.subheading || doc.description || "No subheading"}
             </div>
           </td>
         );
 
       case "team":
-        const teamName = doc.block?.team?.name || doc.team?.name;
+        const teamName = doc.firstBlock?.team?.name || doc.team?.name;
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
             <div className="text-sm text-white/60">{teamName || "No team"}</div>
@@ -167,7 +178,7 @@ export function TableView({ type }: TableViewProps) {
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
             <div className="text-sm text-white/60">
-              {doc.block?.category?.title || "-"}
+              {doc.firstBlock?.category?.title || "-"}
             </div>
           </td>
         );
@@ -273,17 +284,33 @@ export function TableView({ type }: TableViewProps) {
       case "name":
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
-            <div className="text-sm text-white">
-              {doc.name || "-"}
+            <div className="text-sm text-white/60">{doc.name || "No name"}</div>
+          </td>
+        );
+
+      case "model":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">
+              {doc.model?.title || "No model"}
             </div>
           </td>
         );
 
-      case "role":
+      case "isMain":
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
             <div className="text-sm text-white/60">
-              {doc.role || "-"}
+              {doc.isMain ? "Yes" : "No"}
+            </div>
+          </td>
+        );
+
+      case "subcategories":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">
+              {Array.isArray(doc.subcategories) ? `${doc.subcategories.length} subcategories` : "No subcategories"}
             </div>
           </td>
         );
@@ -291,7 +318,7 @@ export function TableView({ type }: TableViewProps) {
       default:
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
-            <span className="text-sm text-white/60">-</span>
+            <div className="text-sm text-white/60">{doc[column.key] || "-"}</div>
           </td>
         );
     }

@@ -67,12 +67,31 @@ export const schemaConfig: SchemaConfig = {
       _createdAt,
       _type,
       slug,
-      block[0] {
+      "firstBlock": block[0] {
         _type,
         heading,
         subheading,
         layout,
         publicationDate,
+        "imageUrl": imageRef->image.asset->url,
+        team->{
+          name,
+          role,
+          "image": image.asset->url
+        },
+        category->{
+          title,
+          "slug": slug.current
+        }
+      },
+      block[] {
+        _type,
+        _key,
+        heading,
+        subheading,
+        layout,
+        publicationDate,
+        content,
         "imageUrl": imageRef->image.asset->url,
         team->{
           name,

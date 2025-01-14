@@ -278,12 +278,68 @@ export function Editor({ selectedDoc }: EditorProps) {
     }));
   };
 
+  const renderBlockContent = (block: any, index: number) => {
+    switch (block._type) {
+      case BLOCK_TYPES.CONTENT:
+        return (
+          <div className="space-y-4">
+            <RichTextEditor
+              value={block.content}
+              onChange={(value) =>
+                updateBlock(index, {
+                  content: value
+                })
+              }
+            />
+            <div className="flex items-center space-x-2">
+              <label className="text-sm text-white/60">Layout:</label>
+              <select
+                value={block.layout || 'dark' as const}
+                onChange={(e) => updateBlock(index, { layout: e.target.value as "dark" | "light" | "transparent" })}
+                className="bg-black/40 text-white/90 rounded px-2 py-1 text-sm"
+              >
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="transparent">Transparent</option>
+              </select>
+            </div>
+          </div>
+        );
+
+      case BLOCK_TYPES.HEADING:
+        return (
+          <div className="space-y-4">
+            {getFields("headingBlock").map((field) => {
+              const Component = field.component;
+              return (
+                <Component
+                  key={field.name}
+                  label={field.title}
+                  description={field.description}
+                  value={block[field.name as keyof typeof block]}
+                  onChange={(value: any) =>
+                    updateBlock(index, {
+                      [field.name]: value,
+                    } as any)
+                  }
+                  {...(field.type === "reference" ? { options: teamMembers } : {})}
+                  {...field.options}
+                />
+              );
+            })}
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
   const renderContent = () => {
     if (!selectedDoc) return null;
 
     switch (selectedDoc._type) {
       case "posts":
-        // Ensure block is an array
         const blocks = Array.isArray(selectedDoc.block) 
           ? selectedDoc.block 
           : selectedDoc.block 
@@ -308,37 +364,7 @@ export function Editor({ selectedDoc }: EditorProps) {
                 Remove
               </button>
             </div>
-
-            {block._type === BLOCK_TYPES.CONTENT && (
-              <div className="space-y-4">
-                {/* Content block rendering */}
-              </div>
-            )}
-
-            {block._type === BLOCK_TYPES.HEADING && (
-              <div className="space-y-4">
-                {getFields("headingBlock").map((field) => {
-                  const Component = field.component;
-                  return (
-                    <Component
-                      key={field.name}
-                      label={field.title}
-                      description={field.description}
-                      value={block[field.name as keyof typeof block]}
-                      onChange={(value: any) =>
-                        updateBlock(index, {
-                          [field.name]: value,
-                        } as any)
-                      }
-                      {...(field.type === "reference"
-                        ? { options: teamMembers }
-                        : {})}
-                      {...field.options}
-                    />
-                  );
-                })}
-              </div>
-            )}
+            {renderBlockContent(block, index)}
           </div>
         ));
 
@@ -382,6 +408,46 @@ export function Editor({ selectedDoc }: EditorProps) {
           </div>
         );
     }
+  };
+
+  const addNewBlock = (type: (typeof BLOCK_TYPES)[keyof typeof BLOCK_TYPES]) => {
+    const newBlock = {
+      _type: type,
+      _key: Math.random().toString(36).substring(2, 15),
+      ...(type === BLOCK_TYPES.CONTENT ? {
+        layout: 'dark' as const,
+        content: []
+      } : type === BLOCK_TYPES.HEADING ? {
+        heading: '',
+        subheading: '',
+        publicationDate: new Date().toISOString().split('T')[0]
+      } : type === BLOCK_TYPES.TEAM ? {
+        team: []
+      } : {})
+    } as PostBlock;
+
+    setBlocks(current => [...current, newBlock]);
+  };
+
+  const renderBlockTypeSelector = () => {
+    return (
+      <div className="flex items-center space-x-4 mb-4">
+        <button
+          onClick={() => addNewBlock(BLOCK_TYPES.HEADING)}
+          className="px-4 py-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 
+            hover:text-white/90 transition-all duration-300"
+        >
+          Add Heading Block
+        </button>
+        <button
+          onClick={() => addNewBlock(BLOCK_TYPES.CONTENT)}
+          className="px-4 py-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 
+            hover:text-white/90 transition-all duration-300"
+        >
+          Add Content Block
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -458,6 +524,7 @@ export function Editor({ selectedDoc }: EditorProps) {
       </header>
 
       <div className="flex-1 p-8 space-y-6 overflow-auto">
+        {selectedDoc?._type === "posts" && renderBlockTypeSelector()}
         <div className="space-y-4">
           {renderContent()}
         </div>
