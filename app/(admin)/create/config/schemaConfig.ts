@@ -92,15 +92,35 @@ export const schemaConfig: SchemaConfig = {
         layout,
         publicationDate,
         content,
-        "imageUrl": imageRef->image.asset->url,
-        team->{
-          name,
-          role,
-          "image": image.asset->url
+        "imageRef": {
+          "_type": "reference",
+          "_ref": imageRef._ref,
+          "image": imageRef-> {
+            "asset": {
+              "_ref": image.asset._ref,
+              "_type": image.asset._type,
+              "url": image.asset->url
+            }
+          }
         },
-        category->{
-          title,
-          "slug": slug.current
+        "team": {
+          "_type": "reference",
+          "_ref": team._ref,
+          "name": team->name,
+          "role": team->role,
+          "image": team->image {
+            "asset": {
+              "_ref": asset._ref,
+              "_type": asset._type,
+              "url": asset->url
+            }
+          }
+        },
+        "category": {
+          "_type": "reference",
+          "_ref": category._ref,
+          "title": category->title,
+          "slug": category->slug.current
         }
       }
     }`,

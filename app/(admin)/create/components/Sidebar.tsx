@@ -1,7 +1,5 @@
 "use client";
-
 import { useCallback, useState, useEffect } from "react";
-import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { usePathname } from "next/navigation";
 import {
@@ -125,7 +123,7 @@ export function Sidebar({
 
     switch (doc._type) {
       case "posts":
-        return doc.block?.[0]?.heading || "Untitled";
+        return doc.block?.heading || "Untitled";
       case "img":
         return doc.title || "Untitled";
       case "video":
@@ -133,7 +131,7 @@ export function Sidebar({
       case "audio":
         return doc.title || "Untitled";
       case "quote":
-        return doc.quote?.substring(0, 30) + "..." || "Untitled";
+        return doc.quote?.substring(0, 20) + "..." || "Untitled";
       case "team":
         return doc.name || "Untitled";
       case "category":
@@ -150,10 +148,10 @@ export function Sidebar({
   };
 
   return (
-    <div className="w-64 h-screen bg-gradient-to-b from-black via-[#0a0a0a]/90 to-black border-r border-white/10 flex flex-col">
+    <div className="w-64 h-[calc(100vh-60px)] bg-gradient-to-b from-black via-[#0a0a0a]/90 to-black border-r border-white/10 flex flex-col">
       <div className="flex-1 overflow-auto">
-        <div className="p-3">
-          <div className="space-y-0.5">
+        <div className="p-2">
+          <div className="">
             {contentTypes.map((item) => {
               const Icon = item.icon;
               const isSelected = selectedType === item.type;
@@ -220,11 +218,7 @@ export function Sidebar({
         </div>
       )}
 
-      {isLoading && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-          <div className="animate-pulse text-white/60">Loading...</div>
-        </div>
-      )}
+   
     </div>
   );
 }

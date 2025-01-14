@@ -1,46 +1,37 @@
 "use client";
-
 import React, { useState, useCallback, useEffect } from "react";
 import { writeClient } from "@/sanity/lib/client";
-import { RichTextEditor } from "./RichTextEditor";
 import { useDocument } from "../context/DocumentContext";
-import { HeadingBlock } from "@/sanity/blocks/headingBlock";
+import { HeadingBlock, ContentBlock } from "./blocks";
+import { HeadingBlockMini } from "./blocks/HeadingBlock";
+import { ContentBlockMini } from "./blocks/ContentBlock";
+import type { HeadingBlock as HeadingBlockType } from "./blocks/HeadingBlock";
+import type { ContentBlock as ContentBlockType } from "./blocks/ContentBlock";
 import {
   RiFileTextLine,
-  RiImageLine,
-  RiMusicLine,
-  RiVideoLine,
-  RiChatQuoteLine,
-  RiTeamLine,
-  RiFolderLine,
   RiBookLine,
-  RiGamepadLine,
-  RiBookmarkLine,
-  RiArrowLeftLine,
-  RiDraftLine,
-  RiSendPlaneLine,
-  RiCloseLine,
 } from "react-icons/ri";
-import { client } from "@/sanity/lib/client";
 import { getFields } from "./fields/getFields";
-
-interface ContentBlock {
-  _type: "contentBlock";
-  _key: string;
-  content: any[];
-  layout?: "dark" | "light" | "transparent";
-}
 
 interface TeamBlock {
   _type: "teamBlock";
   _key: string;
   team: Array<{
-    _ref: string;
     _type: "reference";
+    _ref: string;
+    name?: string;
+    role?: string;
+    image?: {
+      asset: {
+        _ref: string;
+        _type: string;
+        url: string;
+      };
+    };
   }>;
 }
 
-type PostBlock = HeadingBlock | ContentBlock | TeamBlock;
+type PostBlock = HeadingBlockType | ContentBlockType | TeamBlock;
 
 const BLOCK_TYPES = {
   HEADING: "headingBlock" as const,
@@ -50,73 +41,88 @@ const BLOCK_TYPES = {
   HEADING_SPLINE: "headingSplineBlock" as const,
 };
 
-const LAYOUT_OPTIONS = [
-  { title: "Dark", value: "dark" },
-  { title: "Light", value: "light" },
-  { title: "Transparent", value: "transparent" },
-];
-
-const contentTypes = {
-  posts: { icon: RiFileTextLine, title: "Post" },
-  img: { icon: RiImageLine, title: "Image" },
-  audio: { icon: RiMusicLine, title: "Audio" },
-  video: { icon: RiVideoLine, title: "Video" },
-  quote: { icon: RiChatQuoteLine, title: "Quote" },
-  team: { icon: RiTeamLine, title: "Team" },
-  category: { icon: RiFolderLine, title: "Category" },
-  library: { icon: RiBookLine, title: "Library" },
-  model: { icon: RiGamepadLine, title: "Model" },
-  glossary: { icon: RiBookmarkLine, title: "Glossary" },
-};
-
-const gradients = {
-  posts: "from-purple-500/20 to-blue-500/20",
-  img: "from-blue-500/20 to-cyan-500/20",
-  audio: "from-green-500/20 to-emerald-500/20",
-  video: "from-red-500/20 to-orange-500/20",
-  quote: "from-yellow-500/20 to-amber-500/20",
-  team: "from-pink-500/20 to-rose-500/20",
-  category: "from-violet-500/20 to-purple-500/20",
-  library: "from-indigo-500/20 to-blue-500/20",
-  model: "from-cyan-500/20 to-teal-500/20",
-  glossary: "from-teal-500/20 to-green-500/20",
-};
-
 interface EditorProps {
   selectedDoc: any;
+  onMount?: (handleSubmit: (e?: React.FormEvent | undefined, shouldPublish?: boolean) => Promise<void>) => void;
 }
 
-export function Editor({ selectedDoc }: EditorProps) {
-  const { setSelectedDoc } = useDocument();
+interface Field {
+  name: string;
+  title: string;
+  description?: string;
+  type: string;
+  component: React.ComponentType<any>;
+  options?: any;
+}
+
+interface BlockButtonProps {
+  onClick: () => void;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  preview: React.ReactNode;
+}
+
+const BlockButton = ({ onClick, icon, title, description, preview }: BlockButtonProps) => (
+  <button
+    onClick={onClick}
+    className="w-full flex flex-col gap-3 p-3 rounded-lg bg-black/40 hover:bg-black/60 
+      text-white/70 hover:text-white/90 transition-all duration-300 group"
+  >
+    <div className="flex items-center gap-3">
+      <div className="w-6 h-6 flex items-center justify-center rounded-lg bg-blue-500/10 text-blue-500">
+        {icon}
+      </div>
+      <div className="flex-1 text-left">
+        <div className="text-sm font-medium">{title}</div>
+       
+      </div>
+    </div>
+    {preview}
+  </button>
+);
+
+const EditorSidebar = ({ 
+  selectedDoc, 
+  addNewBlock, 
+  BLOCK_TYPES 
+}: { 
+  selectedDoc: any;
+  addNewBlock: (type: any) => void;
+  BLOCK_TYPES: any;
+}) => (
+  selectedDoc?._type === "posts" && (
+    <div className="fixed right-0 top-14 bottom-0 w-72 border-l border-white/10 bg-[#0a0a0a] overflow-auto">
+      <div className="p-4 space-y-3">
+        <h3 className="text-sm font-medium text-white/60 px-2">Add Blocks</h3>
+        <div className="space-y-2">
+          <BlockButton
+            onClick={() => addNewBlock(BLOCK_TYPES.HEADING)}
+            icon={<RiFileTextLine size={18} />}
+            title="Heading Block"
+            description="Add title and metadata"
+            preview={<HeadingBlockMini />}
+          />
+
+          <BlockButton
+            onClick={() => addNewBlock(BLOCK_TYPES.CONTENT)}
+            icon={<RiBookLine size={18} />}
+            title="Content Block"
+            description="Add rich text content"
+            preview={<ContentBlockMini />}
+          />
+        </div>
+      </div>
+    </div>
+  )
+);
+
+export function Editor({ selectedDoc, onMount }: EditorProps) {
+  const { setSelectedDoc, setHandleSubmit } = useDocument();
   const [blocks, setBlocks] = useState<PostBlock[]>([]);
   const [formData, setFormData] = useState<any>({});
   const [slug, setSlug] = useState("");
   const [teamMembers, setTeamMembers] = useState<any[]>([]);
-
-  useEffect(() => {
-    // Fetch team members
-    const fetchTeamMembers = async () => {
-      try {
-        const result = await client.fetch(`*[_type == "team"] {
-          _id,
-          name,
-          role,
-          "image": {
-            "asset": {
-              ...image.asset->,
-              "_ref": image.asset._ref,
-              "_type": image.asset._type
-            }
-          }
-        }`);
-        setTeamMembers(result);
-      } catch (error) {
-        console.error("Error fetching team members:", error);
-      }
-    };
-
-    fetchTeamMembers();
-  }, []);
 
   useEffect(() => {
     if (selectedDoc) {
@@ -124,71 +130,50 @@ export function Editor({ selectedDoc }: EditorProps) {
       if (selectedDoc._type === "posts") {
         setBlocks(selectedDoc.block || []);
       }
-      // For other types, set form data and fetch complete data
-      if (selectedDoc._type === "img") {
-        const fetchCompleteData = async () => {
-          try {
-            const result = await client.fetch(
-              `*[_id == $id][0]{
-                ...,
-                title,
-                "image": {
-                  "asset": {
-                    ...image.asset->,
-                    "_ref": image.asset._ref,
-                    "_type": image.asset._type
-                  }
-                },
-                "team": {
-                  ...,
-                  "name": team->name,
-                  "_ref": team->_id,
-                  "_type": "reference",
-                  "image": team->image {
-                    "asset": {
-                      ...asset->
-                    }
-                  }
-                }
-              }`,
-              { id: selectedDoc._id }
-            );
-            console.log("Fetched data:", result); // For debugging
-            setFormData(result);
-          } catch (error) {
-            console.error("Error fetching complete data:", error);
-          }
-        };
-        fetchCompleteData();
-      } else {
-        const initialData: any = {};
-        Object.keys(selectedDoc).forEach((key) => {
-          if (!key.startsWith("_")) {
-            initialData[key] = selectedDoc[key];
-          }
-        });
-        setFormData(initialData);
-      }
+      // For other types, set form data
+      const initialData: any = {};
+      Object.keys(selectedDoc).forEach((key) => {
+        if (!key.startsWith("_")) {
+          initialData[key] = selectedDoc[key];
+        }
+      });
+      setFormData(initialData);
       setSlug(selectedDoc.slug?.current || "");
-    } else {
-      if (selectedDoc?._type === "posts") {
-        setBlocks([
-          {
-            _type: BLOCK_TYPES.HEADING,
-            _key: Math.random().toString(36).substring(2, 15),
-            heading: "",
-            subheading: "",
-          },
-        ]);
-      }
-      setFormData({});
-      setSlug("");
     }
   }, [selectedDoc]);
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent, shouldPublish = false) => {
-      e.preventDefault();
+  const addNewBlock = (type: (typeof BLOCK_TYPES)[keyof typeof BLOCK_TYPES]) => {
+    const newBlock = {
+      _type: type,
+      _key: Math.random().toString(36).substring(2, 15),
+      ...(type === BLOCK_TYPES.CONTENT ? {
+        layout: 'dark' as const,
+        content: []
+      } : type === BLOCK_TYPES.HEADING ? {
+        heading: '',
+        subheading: '',
+        publicationDate: new Date().toISOString().split('T')[0]
+      } : type === BLOCK_TYPES.TEAM ? {
+        team: []
+      } : {})
+    } as PostBlock;
+
+    setBlocks(current => [...current, newBlock]);
+    // Also update the selectedDoc to include the new block
+    if (selectedDoc && selectedDoc._type === "posts") {
+      const updatedDoc = {
+        ...selectedDoc,
+        block: [...(selectedDoc.block || []), newBlock]
+      };
+      setSelectedDoc(updatedDoc);
+    }
+  };
+
+  useEffect(() => {
+    const submitFn = async (e?: React.FormEvent, shouldPublish = false) => {
+      if (e && 'preventDefault' in e) {
+        e.preventDefault();
+      }
 
       try {
         const doc = {
@@ -196,37 +181,59 @@ export function Editor({ selectedDoc }: EditorProps) {
           ...(selectedDoc?._type === "posts" ? { block: blocks } : formData),
           slug: {
             _type: "slug",
-            current: slug,
+            current: slug || Math.random().toString(36).substring(2, 15),
           },
         };
 
         let result;
         if (!selectedDoc?._id || selectedDoc._id.startsWith("drafts.new-")) {
-          const docId = shouldPublish
-            ? Math.random().toString(36).substring(2, 15)
-            : `drafts.${Math.random().toString(36).substring(2, 15)}`;
-
-          result = await writeClient.create({
+          // Always create a draft first
+          const draftId = `drafts.${Math.random().toString(36).substring(2, 15)}`;
+          result = await writeClient.createOrReplace({
             ...doc,
-            _id: docId,
+            _id: draftId,
           });
-        } else {
-          const docId = shouldPublish
-            ? selectedDoc._id.replace("drafts.", "")
-            : `drafts.${selectedDoc._id.replace("drafts.", "")}`;
 
-          result = await writeClient.patch(docId).set(doc).commit();
+          // If shouldPublish is true, create the published version and delete the draft
+          if (shouldPublish) {
+            const publishedId = draftId.replace('drafts.', '');
+            await writeClient.createOrReplace({
+              ...doc,
+              _id: publishedId,
+            });
+            await writeClient.delete(draftId);
+            result = { _id: publishedId };
+          }
+        } else {
+          // For existing documents
+          const currentId = selectedDoc._id;
+          const isDraft = currentId.startsWith('drafts.');
+          const baseId = currentId.replace('drafts.', '');
+
+          if (shouldPublish) {
+            // Create/update the published version
+            result = await writeClient.createOrReplace({
+              ...doc,
+              _id: baseId,
+            });
+            // Delete the draft if it exists
+            if (isDraft) {
+              await writeClient.delete(currentId);
+            }
+          } else {
+            // Ensure we're working with a draft
+            const draftId = isDraft ? currentId : `drafts.${baseId}`;
+            result = await writeClient.createOrReplace({
+              ...doc,
+              _id: draftId,
+            });
+          }
         }
 
         console.log(shouldPublish ? "Published:" : "Saved as draft:", result);
         setSelectedDoc(null);
         if (selectedDoc?._type === "posts") {
-          setBlocks([
-            {
-              _type: BLOCK_TYPES.HEADING,
-              _key: Math.random().toString(36).substring(2, 15),
-            } as HeadingBlock,
-          ]);
+          setBlocks([]);
         } else {
           setFormData({});
         }
@@ -234,9 +241,14 @@ export function Editor({ selectedDoc }: EditorProps) {
       } catch (error) {
         console.error("Error:", error);
       }
-    },
-    [blocks, selectedDoc, setSelectedDoc, slug, formData]
-  );
+    };
+
+    setHandleSubmit(submitFn);
+
+    return () => {
+      setHandleSubmit(undefined);
+    };
+  }, [blocks, selectedDoc, setSelectedDoc, slug, formData, setHandleSubmit]);
 
   const updateBlock = (index: number, updates: Partial<PostBlock>) => {
     setBlocks((current) =>
@@ -245,22 +257,6 @@ export function Editor({ selectedDoc }: EditorProps) {
         return { ...block, ...updates } as PostBlock;
       })
     );
-  };
-
-  const addBlock = (type: (typeof BLOCK_TYPES)[keyof typeof BLOCK_TYPES]) => {
-    const newBlock = {
-      _type: type,
-      _key: Math.random().toString(36).substring(2, 15),
-    } as PostBlock;
-
-    // Initialize specific block types
-    if (type === BLOCK_TYPES.CONTENT) {
-      (newBlock as ContentBlock).content = [];
-    } else if (type === BLOCK_TYPES.TEAM) {
-      (newBlock as TeamBlock).team = [];
-    }
-
-    setBlocks((current) => [...current, newBlock]);
   };
 
   const removeBlock = (index: number) => {
@@ -278,58 +274,46 @@ export function Editor({ selectedDoc }: EditorProps) {
     }));
   };
 
-  const renderBlockContent = (block: any, index: number) => {
+  const renderBlockContent = (block: PostBlock, index: number) => {
     switch (block._type) {
-      case BLOCK_TYPES.CONTENT:
-        return (
-          <div className="space-y-4">
-            <RichTextEditor
-              value={block.content}
-              onChange={(value) =>
-                updateBlock(index, {
-                  content: value
-                })
-              }
-            />
-            <div className="flex items-center space-x-2">
-              <label className="text-sm text-white/60">Layout:</label>
-              <select
-                value={block.layout || 'dark' as const}
-                onChange={(e) => updateBlock(index, { layout: e.target.value as "dark" | "light" | "transparent" })}
-                className="bg-black/40 text-white/90 rounded px-2 py-1 text-sm"
-              >
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
-                <option value="transparent">Transparent</option>
-              </select>
-            </div>
-          </div>
-        );
-
       case BLOCK_TYPES.HEADING:
         return (
-          <div className="space-y-4">
-            {getFields("headingBlock").map((field) => {
-              const Component = field.component;
-              return (
-                <Component
-                  key={field.name}
-                  label={field.title}
-                  description={field.description}
-                  value={block[field.name as keyof typeof block]}
-                  onChange={(value: any) =>
-                    updateBlock(index, {
-                      [field.name]: value,
-                    } as any)
-                  }
-                  {...(field.type === "reference" ? { options: teamMembers } : {})}
-                  {...field.options}
-                />
-              );
-            })}
-          </div>
+          <HeadingBlock
+            block={block}
+            onUpdate={(updates) => {
+              updateBlock(index, updates);
+              // Also update the selectedDoc
+              if (selectedDoc && selectedDoc._type === "posts") {
+                const updatedBlocks = [...blocks];
+                updatedBlocks[index] = { ...block, ...updates };
+                const updatedDoc = {
+                  ...selectedDoc,
+                  block: updatedBlocks
+                };
+                setSelectedDoc(updatedDoc);
+              }
+            }}
+          />
         );
-
+      case BLOCK_TYPES.CONTENT:
+        return (
+          <ContentBlock
+            block={block}
+            onUpdate={(updates) => {
+              updateBlock(index, updates);
+              // Also update the selectedDoc
+              if (selectedDoc && selectedDoc._type === "posts") {
+                const updatedBlocks = [...blocks];
+                updatedBlocks[index] = { ...block, ...updates };
+                const updatedDoc = {
+                  ...selectedDoc,
+                  block: updatedBlocks
+                };
+                setSelectedDoc(updatedDoc);
+              }
+            }}
+          />
+        );
       default:
         return null;
     }
@@ -347,10 +331,7 @@ export function Editor({ selectedDoc }: EditorProps) {
             : [];
 
         return blocks.map((block, index) => (
-          <div
-            key={index}
-            className="p-4 bg-white/5 border border-white/10 rounded-md"
-          >
+          <div key={index} className="space-y-4 border border-white/10 rounded-md p-4">
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center space-x-2">
                 <span className="text-sm font-medium text-white/60">
@@ -370,28 +351,28 @@ export function Editor({ selectedDoc }: EditorProps) {
 
       case "team":
         return (
-          <div className="p-4 bg-white/5 border border-white/10 rounded-md">
-            {getFields("team").map((field) => {
+          <>
+            {getFields("team").map((field: Field) => {
               const Component = field.component;
               return (
                 <Component
                   key={field.name}
                   label={field.title}
                   description={field.description}
-                  value={selectedDoc[field.name as keyof typeof selectedDoc]}
+                  value={selectedDoc[field.name]}
                   onChange={(value: any) => handleInputChange(field.name, value)}
                   {...(field.type === "reference" ? { options: teamMembers } : {})}
                   {...field.options}
                 />
               );
             })}
-          </div>
+          </>
         );
 
       default:
         return (
-          <div className="p-4 bg-white/5 border border-white/10 rounded-md">
-            {getFields(selectedDoc._type).map((field) => {
+          <>
+            {getFields(selectedDoc._type).map((field: Field) => {
               const Component = field.component;
               return (
                 <Component
@@ -405,129 +386,25 @@ export function Editor({ selectedDoc }: EditorProps) {
                 />
               );
             })}
-          </div>
+          </>
         );
     }
   };
 
-  const addNewBlock = (type: (typeof BLOCK_TYPES)[keyof typeof BLOCK_TYPES]) => {
-    const newBlock = {
-      _type: type,
-      _key: Math.random().toString(36).substring(2, 15),
-      ...(type === BLOCK_TYPES.CONTENT ? {
-        layout: 'dark' as const,
-        content: []
-      } : type === BLOCK_TYPES.HEADING ? {
-        heading: '',
-        subheading: '',
-        publicationDate: new Date().toISOString().split('T')[0]
-      } : type === BLOCK_TYPES.TEAM ? {
-        team: []
-      } : {})
-    } as PostBlock;
-
-    setBlocks(current => [...current, newBlock]);
-  };
-
-  const renderBlockTypeSelector = () => {
-    return (
-      <div className="flex items-center space-x-4 mb-4">
-        <button
-          onClick={() => addNewBlock(BLOCK_TYPES.HEADING)}
-          className="px-4 py-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 
-            hover:text-white/90 transition-all duration-300"
-        >
-          Add Heading Block
-        </button>
-        <button
-          onClick={() => addNewBlock(BLOCK_TYPES.CONTENT)}
-          className="px-4 py-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 
-            hover:text-white/90 transition-all duration-300"
-        >
-          Add Content Block
-        </button>
-      </div>
-    );
-  };
-
   return (
     <div className="flex flex-col h-full">
-      <header className="flex items-center justify-between px-6 py-3 border-b border-white/10 bg-[#0a0a0a]">
-        <div className="flex items-center space-x-6">
-          <button
-            onClick={() => setSelectedDoc(null)}
-            className="p-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 hover:text-white/90 
-              transition-all duration-300 flex items-center space-x-2 group"
-          >
-            <RiArrowLeftLine
-              size={18}
-              className="transform transition-transform group-hover:-translate-x-0.5"
-            />
-          </button>
-
-          <div className="flex items-center space-x-3">
-            {selectedDoc?._type &&
-              contentTypes[selectedDoc._type as keyof typeof contentTypes] && (
-                <div
-                  className={`p-2 rounded-lg bg-gradient-to-br ${gradients[selectedDoc._type as keyof typeof gradients]} backdrop-blur-sm`}
-                >
-                  {React.createElement(
-                    contentTypes[selectedDoc._type as keyof typeof contentTypes]
-                      .icon,
-                    {
-                      size: 20,
-                      className: "text-white",
-                    }
-                  )}
-                </div>
-              )}
-            <div>
-              <h1 className="text-lg font-bold text-white">
-                {selectedDoc?._type &&
-                contentTypes[selectedDoc._type as keyof typeof contentTypes]
-                  ? `Create ${contentTypes[selectedDoc._type as keyof typeof contentTypes].title}`
-                  : "Create New Post"}
-              </h1>
-            </div>
+      <div className="flex flex-1 overflow-hidden">
+        <div className="flex-1 p-8 space-y-6 overflow-auto mr-72">
+          <div className="space-y-4">
+            {renderContent()}
           </div>
         </div>
 
-        <div className="flex items-center space-x-3">
-          {selectedDoc && (
-            <button
-              onClick={handleCancel}
-              className="p-2 rounded-lg bg-black/40 hover:bg-black/60 text-white/70 hover:text-white/90 
-                transition-all duration-300"
-            >
-              <RiCloseLine size={18} />
-            </button>
-          )}
-          <button
-            onClick={(e) => handleSubmit(e, false)}
-            className="px-4 py-2 rounded-lg bg-gradient-to-br from-blue-600/50 to-indigo-600/50 
-              hover:from-blue-600/60 hover:to-indigo-600/60 text-white border border-white/5 
-              hover:border-white/10 transition-all duration-300 flex items-center space-x-2"
-          >
-            <RiDraftLine size={18} />
-            <span>Save Draft</span>
-          </button>
-          <button
-            onClick={(e) => handleSubmit(e, true)}
-            className="px-4 py-2 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 
-              hover:from-blue-700 hover:to-indigo-700 text-white border border-white/10 
-              hover:border-white/20 transition-all duration-300 flex items-center space-x-2"
-          >
-            <RiSendPlaneLine size={18} />
-            <span>Publish</span>
-          </button>
-        </div>
-      </header>
-
-      <div className="flex-1 p-8 space-y-6 overflow-auto">
-        {selectedDoc?._type === "posts" && renderBlockTypeSelector()}
-        <div className="space-y-4">
-          {renderContent()}
-        </div>
+        <EditorSidebar 
+          selectedDoc={selectedDoc}
+          addNewBlock={addNewBlock}
+          BLOCK_TYPES={BLOCK_TYPES}
+        />
       </div>
     </div>
   );

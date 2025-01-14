@@ -23,8 +23,9 @@ import {
 import { client } from "@/sanity/lib/client";
 import { ImageRefPreview } from "./previews/ImageRefPreview";
 import { PostsRefPreview } from "./previews/PostsRefPreview";
+import { AudioRefPreview } from "./previews/AudioRefPreview";
+import { QuoteBlock } from "./previews/QuoteBlock";
 
-// Define the schema for our editor to match your Sanity schema
 const schemaDefinition = defineSchema({
   decorators: [
     { name: "strong" },
@@ -105,25 +106,25 @@ const renderStyle: RenderStyleFunction = (props) => {
   const style = props.schemaType.value;
   switch (style) {
     case "h1":
-      return <h1 className="text-3xl font-bold mb-4">{props.children}</h1>;
+      return <h1 className="text-4xl font-bold mb-6 font-russo">{props.children}</h1>;
     case "h2":
-      return <h2 className="text-2xl font-bold mb-3">{props.children}</h2>;
+      return <h2 className="text-3xl font-bold mb-5 font-russo">{props.children}</h2>;
     case "h3":
-      return <h3 className="text-xl font-bold mb-2">{props.children}</h3>;
+      return <h3 className="text-2xl font-bold mb-4 font-russo">{props.children}</h3>;
     case "h4":
-      return <h4 className="text-lg font-bold mb-2">{props.children}</h4>;
+      return <h4 className="text-xl font-bold mb-4">{props.children}</h4>;
     case "h5":
-      return <h5 className="text-base font-bold mb-2">{props.children}</h5>;
+      return <h5 className="text-lg font-bold mb-3">{props.children}</h5>;
     case "h6":
-      return <h6 className="text-sm font-bold mb-2">{props.children}</h6>;
+      return <h6 className="text-base font-bold mb-3">{props.children}</h6>;
     case "blockquote":
       return (
-        <blockquote className="border-l-4 border-white/20 pl-4 italic">
+        <blockquote className="border-l-4 border-blue-500/40 pl-4 italic my-6 text-white/80">
           {props.children}
         </blockquote>
       );
     default:
-      return <p className="mb-4">{props.children}</p>;
+      return <p className="mb-4 leading-relaxed text-white/90">{props.children}</p>;
   }
 };
 
@@ -200,111 +201,6 @@ async function fetchImageData(ref: string) {
   );
 }
 
-function AudioPreview({ value }: { value: any }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [audioData, setAudioData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  // Load data immediately on mount
-  useEffect(() => {
-    if (value.audio?._ref && !audioData && !error) {
-      loadAudioData();
-    }
-  }, [value.audio?._ref]);
-
-  const loadAudioData = useCallback(async () => {
-    if (!value.audio?._ref) return;
-
-    setIsLoading(true);
-    setError(null);
-    try {
-      const data = await fetchAudioData(value.audio._ref);
-      setAudioData(data?.audioRefData);
-    } catch (err) {
-      console.error("Error loading audio:", err);
-      setError(err instanceof Error ? err.message : "Failed to load audio");
-    }
-    setIsLoading(false);
-  }, [value.audio?._ref]);
-
-  return (
-    <div className="group relative">
-      <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded border border-white/10 group-hover:border-white/20">
-        <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-500/10 text-blue-500 rounded">
-          <PlayIcon />
-        </div>
-        <div className="flex-grow min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-white/60">
-              Audio | Style {value.className || "1"}
-            </span>
-          </div>
-          <div className="text-sm text-white truncate">
-            {isLoading ? (
-              "Loading..."
-            ) : error ? (
-              <span className="text-red-400">Error: {error}</span>
-            ) : audioData ? (
-              audioData.audioTitle
-            ) : (
-              "Select audio file..."
-            )}
-          </div>
-          {audioData?.audioFileUrl && (
-            <audio
-              src={audioData.audioFileUrl}
-              className="mt-2 w-full"
-              controls
-            />
-          )}
-        </div>
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="opacity-0 group-hover:opacity-100 transition-opacity ml-2 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-white/60 hover:text-white"
-        >
-          {isExpanded ? "Close" : "Edit"}
-        </button>
-      </div>
-
-      {isExpanded && (
-        <div className="mt-2 p-3 bg-[#1a1a1a] rounded border border-white/10">
-          {isLoading ? (
-            <div className="text-sm text-white/60">Loading audio data...</div>
-          ) : error ? (
-            <div className="text-sm text-red-400">
-              Failed to load audio: {error}
-              <div className="mt-1 text-white/60">
-                Debug info:
-                <pre className="mt-1 p-2 bg-black/30 rounded">
-                  {JSON.stringify({ ref: value.audio?._ref }, null, 2)}
-                </pre>
-              </div>
-            </div>
-          ) : audioData ? (
-            <div className="space-y-2">
-              <div>
-                <div className="text-sm text-white/60">Title</div>
-                <div className="text-sm text-white">{audioData.audioTitle}</div>
-              </div>
-              {audioData.audioFileUrl && (
-                <div>
-                  <div className="text-sm text-white/60">Audio File</div>
-                  <div className="text-sm text-white truncate">
-                    {audioData.audioFileUrl}
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="text-sm text-white/60">No audio data available</div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
 function VideoPreview({ value }: { value: any }) {
   return (
     <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded border border-white/10">
@@ -361,25 +257,7 @@ function ImagePreview({ value }: { value: any }) {
   );
 }
 
-function QuotePreview({ value }: { value: any }) {
-  return (
-    <div className="flex items-center gap-3 p-3 bg-[#1a1a1a] rounded border border-white/10">
-      <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-yellow-500/10 text-yellow-500 rounded">
-        <DocumentIcon />
-      </div>
-      <div className="flex-grow min-w-0">
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-white/60">
-            Quote | {value.className || "Default"}
-          </span>
-        </div>
-        <div className="text-sm text-white truncate">
-          {value._ref || "Select quote..."}
-        </div>
-      </div>
-    </div>
-  );
-}
+
 
 function PostSelector({
   onSelect,
@@ -495,18 +373,54 @@ function PostSelector({
   );
 }
 
+function useAudioData(ref: string | undefined) {
+  const [audioData, setAudioData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!ref) return;
+
+    const loadAudioData = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await fetchAudioData(ref);
+        setAudioData(data);
+      } catch (err) {
+        console.error("Error loading audio:", err);
+        setError(err instanceof Error ? err.message : "Failed to load audio");
+      }
+      setIsLoading(false);
+    };
+
+    loadAudioData();
+  }, [ref]);
+
+  return { audioData, isLoading, error };
+}
+
 const renderBlockObject = (props: any) => {
   const { value, schemaType } = props;
 
   switch (schemaType.name) {
-    case "audioRef":
-      return <AudioPreview value={value} />;
+    case "audioRef": {
+      const { audioData, isLoading, error } = useAudioData(value.audio?._ref);
+      return (
+        <AudioRefPreview
+          value={value}
+          audioData={audioData}
+          isLoading={isLoading}
+          error={error}
+        />
+      );
+    }
     case "videoRef":
       return <VideoPreview value={value} />;
     case "imageRef":
       return <ImagePreview value={value} />;
     case "quoteRef":
-      return <QuotePreview value={value} />;
+      return <QuoteBlock value={value} />;
     case "postsRef":
       return <PostsRefPreview value={value} />;
     default:
@@ -570,15 +484,7 @@ function ContentSelector({
     fetchItems();
   }, [type]);
 
-  if (loading) {
-    return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div className="bg-[#1a1a1a] p-4 rounded-lg w-[500px] max-h-[80vh] overflow-auto">
-          <div className="text-white">Loading...</div>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -736,10 +642,12 @@ function Toolbar() {
 
   return (
     <>
-      <div className="flex items-center gap-2 p-2 bg-[#101112] border-b border-white/10">
+      <div className="flex items-center gap-3 p-3 bg-black/60 backdrop-blur-sm border-b border-white/10">
         <select
           onChange={(e) => toggleStyle(e.target.value)}
-          className="px-2 py-1 bg-transparent text-white text-sm border border-white/10 rounded"
+          className="px-3 py-1.5 bg-black/40 text-white/90 text-sm border border-white/10 rounded-lg
+            focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/40
+            transition-all duration-300 hover:bg-black/60"
           defaultValue="normal"
         >
           <option value="normal">Normal</option>
@@ -751,79 +659,89 @@ function Toolbar() {
           <option value="h6">Heading 6</option>
         </select>
 
-        <div className="flex gap-1">
+        <div className="flex gap-1.5">
           <button
             onClick={() => toggleDecorator("strong")}
-            className="p-1.5 hover:bg-white/10 rounded"
+            className="p-2 hover:bg-black/40 rounded-lg text-white/90 transition-colors duration-300
+              border border-transparent hover:border-white/10"
             title="Bold"
           >
             B
           </button>
           <button
             onClick={() => toggleDecorator("em")}
-            className="p-1.5 hover:bg-white/10 rounded italic"
+            className="p-2 hover:bg-black/40 rounded-lg text-white/90 transition-colors duration-300
+              border border-transparent hover:border-white/10 italic"
             title="Italic"
           >
             I
           </button>
           <button
             onClick={() => toggleDecorator("underline")}
-            className="p-1.5 hover:bg-white/10 rounded underline"
+            className="p-2 hover:bg-black/40 rounded-lg text-white/90 transition-colors duration-300
+              border border-transparent hover:border-white/10 underline"
             title="Underline"
           >
             U
           </button>
         </div>
 
-        <div className="flex gap-1">
+        <div className="flex gap-1.5">
           <button
             onClick={() => toggleList("bullet")}
-            className="p-1.5 hover:bg-white/10 rounded"
+            className="p-2 hover:bg-black/40 rounded-lg text-white/90 transition-colors duration-300
+              border border-transparent hover:border-white/10"
             title="Bullet List"
           >
             •
           </button>
           <button
             onClick={() => toggleList("number")}
-            className="p-1.5 hover:bg-white/10 rounded"
+            className="p-2 hover:bg-black/40 rounded-lg text-white/90 transition-colors duration-300
+              border border-transparent hover:border-white/10"
             title="Numbered List"
           >
             1.
           </button>
         </div>
 
-        <div className="flex gap-1">
+        <div className="flex gap-1.5">
           <button
             onClick={() => insertBlock("imageRef")}
-            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-blue-500/10 text-blue-500"
+            className="p-2 hover:bg-blue-500/20 rounded-lg text-blue-500 transition-colors duration-300
+              border border-transparent hover:border-blue-500/20 bg-blue-500/10"
             title="Add Image"
           >
             <ImageIcon />
           </button>
           <button
             onClick={() => insertBlock("videoRef")}
-            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-purple-500/10 text-purple-500"
+            className="p-2 hover:bg-purple-500/20 rounded-lg text-purple-500 transition-colors duration-300
+              border border-transparent hover:border-purple-500/20 bg-purple-500/10"
             title="Add Video"
           >
             <DocumentVideoIcon />
           </button>
           <button
             onClick={() => insertBlock("quoteRef")}
-            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-yellow-500/10 text-yellow-500"
+            className="p-2 hover:bg-yellow-500/20 rounded-lg text-yellow-500 transition-colors duration-300
+              border border-transparent hover:border-yellow-500/20 bg-yellow-500/10"
             title="Add Quote"
           >
             <DocumentIcon />
           </button>
           <button
             onClick={() => insertBlock("audioRef")}
-            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-green-500/10 text-green-500"
+            className="p-2 hover:bg-green-500/20 rounded-lg text-green-500 transition-colors duration-300
+              border border-transparent hover:border-green-500/20 bg-green-500/10"
             title="Add Audio"
           >
             <PlayIcon />
           </button>
           <button
             onClick={() => insertBlock("postsRef")}
-            className="p-1.5 hover:bg-white/10 rounded flex items-center justify-center w-8 h-8 bg-red-500/10 text-red-500"
+            className="p-2 hover:bg-red-500/20 rounded-lg text-red-500 transition-colors duration-300
+              border border-transparent hover:border-red-500/20 bg-red-500/10"
             title="Add Post Reference"
           >
             <LinkIcon />
@@ -856,7 +774,7 @@ interface RichTextEditorProps {
 
 export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col rounded-lg overflow-hidden border border-white/10 bg-black/40">
       <EditorProvider
         initialConfig={{
           schemaDefinition,
@@ -873,11 +791,10 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
         <Toolbar />
         <div className="relative">
           <PortableTextEditable
-            className="min-h-[200px] p-4 bg-[#101112] text-white focus:outline-none"
+            className="min-h-[300px] p-6 bg-black/20 text-white/90 focus:outline-none"
             renderStyle={renderStyle}
             renderDecorator={renderDecorator}
             renderBlock={(props) => {
-              // Only use renderBlockObject for special blocks (audio, image, etc.)
               if (
                 props.value._type &&
                 [
@@ -893,11 +810,10 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
                   schemaType: { name: props.value._type },
                 });
               }
-              // For regular text blocks, render normally
-              return <div className="mb-4 text-white">{props.children}</div>;
+              return <div className="mb-4 text-white/90">{props.children}</div>;
             }}
             renderListItem={(props) => (
-              <li className="ml-4">{props.children}</li>
+              <li className="ml-6 mb-2 text-white/90">{props.children}</li>
             )}
           />
         </div>

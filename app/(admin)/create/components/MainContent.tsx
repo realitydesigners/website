@@ -109,20 +109,12 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
     const newDoc: {
       _type: string;
       _id: string;
-      block?: Array<{
-        _type: string;
-        _key: string;
-        heading: string;
-        subheading: string;
-      }>;
+      block?: any[];
     } = {
       _type: type.type,
       _id: `drafts.${Math.random().toString(36).substring(2, 15)}`,
+      ...(type.type === "posts" ? { block: [] } : {})
     };
-
-    if (type.type === "posts") {
-      newDoc.block = [type.defaultBlock];
-    }
 
     setSelectedDoc(newDoc);
   };
@@ -137,7 +129,7 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
           Choose a content type to get started
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {contentTypes.map((item) => {
             const Icon = item.icon;
             return (

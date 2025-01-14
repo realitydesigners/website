@@ -8,6 +8,8 @@ import {
 } from ".";
 import type { ImageDocument } from "@/sanity/schemas/img";
 import type { AudioDocument } from "@/sanity/schemas/audio";
+import type { TeamDocument } from "@/sanity/schemas/team";
+
 
 export interface Field {
   name: keyof SchemaType;
@@ -27,37 +29,13 @@ const fieldComponents: Record<string, any> = {
   headingBlock: HeadingBlockField,
 };
 
-type SchemaType = ImageDocument | AudioDocument | HeadingBlock;
+type SchemaType = ImageDocument | AudioDocument | TeamDocument | any;
 type SchemaTypes = {
   img: ImageDocument;
   audio: AudioDocument;
-  headingBlock: HeadingBlock;
+  team: TeamDocument;
+  headingBlock: any;
 };
-
-interface HeadingBlock {
-  _type: "headingBlock";
-  layout?: "dark" | "light" | "transparent";
-  imageRef?: {
-    _ref: string;
-    _type: "reference";
-    image?: {
-      asset: {
-        url: string;
-      };
-    };
-  };
-  heading?: string;
-  subheading?: string;
-  publicationDate?: string;
-  team?: {
-    _ref: string;
-    _type: "reference";
-  };
-  category?: {
-    _ref: string;
-    _type: "reference";
-  };
-}
 
 // Map schema types to their field configurations
 const schemaFieldConfigs: Record<
@@ -113,6 +91,32 @@ const schemaFieldConfigs: Record<
       title: "Team Member",
       description: "Credit the team member who created this",
       component: fieldComponents.reference,
+    },
+  },
+  team: {
+    name: {
+      type: "string",
+      title: "Name",
+      description: "Full name of the team member",
+      component: fieldComponents.string,
+    },
+    role: {
+      type: "string",
+      title: "Role",
+      description: "Role or position in the team",
+      component: fieldComponents.string,
+    },
+    image: {
+      type: "image",
+      title: "Profile Image",
+      description: "Profile photo of the team member",
+      component: fieldComponents.image,
+    },
+    shortBio: {
+      type: "text",
+      title: "Short Bio",
+      description: "A brief biography of the team member",
+      component: fieldComponents.text,
     },
   },
   headingBlock: {
