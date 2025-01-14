@@ -2,36 +2,21 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { writeClient } from "@/sanity/lib/client";
 import { useDocument } from "../context/DocumentContext";
-import { HeadingBlock, ContentBlock } from "./blocks";
+import { HeadingBlock, ContentBlock, TeamBlock } from "./blocks";
 import { HeadingBlockMini } from "./blocks/HeadingBlock";
 import { ContentBlockMini } from "./blocks/ContentBlock";
+import { TeamBlockMini } from "./blocks/TeamBlock";
 import type { HeadingBlock as HeadingBlockType } from "./blocks/HeadingBlock";
 import type { ContentBlock as ContentBlockType } from "./blocks/ContentBlock";
+import type { TeamBlock as TeamBlockType } from "./blocks/TeamBlock";
 import {
   RiFileTextLine,
   RiBookLine,
+  RiTeamLine,
 } from "react-icons/ri";
 import { getFields } from "./fields/getFields";
 
-interface TeamBlock {
-  _type: "teamBlock";
-  _key: string;
-  team: Array<{
-    _type: "reference";
-    _ref: string;
-    name?: string;
-    role?: string;
-    image?: {
-      asset: {
-        _ref: string;
-        _type: string;
-        url: string;
-      };
-    };
-  }>;
-}
-
-type PostBlock = HeadingBlockType | ContentBlockType | TeamBlock;
+type PostBlock = HeadingBlockType | ContentBlockType | TeamBlockType;
 
 const BLOCK_TYPES = {
   HEADING: "headingBlock" as const,
@@ -110,6 +95,14 @@ const EditorSidebar = ({
             title="Content Block"
             description="Add rich text content"
             preview={<ContentBlockMini />}
+          />
+
+          <BlockButton
+            onClick={() => addNewBlock(BLOCK_TYPES.TEAM)}
+            icon={<RiTeamLine size={18} />}
+            title="Team Block"
+            description="Add team members"
+            preview={<TeamBlockMini />}
           />
         </div>
       </div>
@@ -282,7 +275,6 @@ export function Editor({ selectedDoc, onMount }: EditorProps) {
             block={block}
             onUpdate={(updates) => {
               updateBlock(index, updates);
-              // Also update the selectedDoc
               if (selectedDoc && selectedDoc._type === "posts") {
                 const updatedBlocks = [...blocks];
                 updatedBlocks[index] = { ...block, ...updates };
@@ -301,7 +293,24 @@ export function Editor({ selectedDoc, onMount }: EditorProps) {
             block={block}
             onUpdate={(updates) => {
               updateBlock(index, updates);
-              // Also update the selectedDoc
+              if (selectedDoc && selectedDoc._type === "posts") {
+                const updatedBlocks = [...blocks];
+                updatedBlocks[index] = { ...block, ...updates };
+                const updatedDoc = {
+                  ...selectedDoc,
+                  block: updatedBlocks
+                };
+                setSelectedDoc(updatedDoc);
+              }
+            }}
+          />
+        );
+      case BLOCK_TYPES.TEAM:
+        return (
+          <TeamBlock
+            block={block}
+            onUpdate={(updates) => {
+              updateBlock(index, updates);
               if (selectedDoc && selectedDoc._type === "posts") {
                 const updatedBlocks = [...blocks];
                 updatedBlocks[index] = { ...block, ...updates };
