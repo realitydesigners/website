@@ -78,3 +78,28 @@ export default defineType({
     }),
   ],
 });
+
+export interface LibraryDocument {
+  _type: "library";
+  _id: string;
+  title?: string;
+  slug?: {
+    current: string;
+  };
+  subcategories?: Array<{
+    _ref: string;
+    _type: "reference";
+  }>;
+  model?: {
+    _ref: string;
+    _type: "reference";
+  };
+  isMain?: boolean;
+  block?: Array<any>;
+  image?: {
+    asset: {
+      url: string;
+    };
+    alt?: string;
+  };
+}

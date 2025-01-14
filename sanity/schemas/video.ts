@@ -101,3 +101,32 @@ export default defineType({
     }),
   ],
 });
+
+export interface VideoDocument {
+  _type: "video";
+  _id: string;
+  title?: string;
+  slug?: {
+    current: string;
+  };
+  url?: string;
+  image?: {
+    asset: {
+      url: string;
+    };
+  };
+  video?: {
+    asset: {
+      url: string;
+    };
+  };
+  alt?: string;
+  team?: {
+    name: string;
+    image: {
+      asset: {
+        url: string;
+      };
+    };
+  };
+}

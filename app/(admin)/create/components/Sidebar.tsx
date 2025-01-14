@@ -16,7 +16,6 @@ import {
   RiGamepadLine,
   RiBookmarkLine,
   RiArrowRightSLine,
-  RiAddLine,
 } from "react-icons/ri";
 
 const contentTypes = [
@@ -64,14 +63,47 @@ export function Sidebar({
     async (type: string) => {
       setIsLoading(true);
       try {
-        const query = `*[_type == "${type}"] {
-        _id,
-        _type,
-        block,
-        "title": block[0].heading,
-        _createdAt
-      } | order(_createdAt desc)`;
-        const results = await client.fetch(query);
+        let query = '';
+        
+        switch (type) {
+          case "posts":
+            query = `*[_type == "posts"] {
+              _id,
+              _type,
+              block[0] {
+                heading,
+                subheading
+              },
+              _createdAt
+            }`;
+            break;
+          case "quote":
+            query = `*[_type == "quote"] {
+              _id,
+              _type,
+              quote,
+              _createdAt
+            }`;
+            break;
+          case "team":
+            query = `*[_type == "team"] {
+              _id,
+              _type,
+              name,
+              role,
+              _createdAt
+            }`;
+            break;
+          default:
+            query = `*[_type == "${type}"] {
+              _id,
+              _type,
+              title,
+              _createdAt
+            }`;
+        }
+
+        const results = await client.fetch(query + ' | order(_createdAt desc)');
         setDocuments(results);
         onTypeSelect(type);
       } catch (error) {
@@ -89,10 +121,32 @@ export function Sidebar({
   }, [selectedType, fetchDocuments]);
 
   const getDocumentTitle = (doc: any) => {
-    if (doc._type === "posts" && doc.block && doc.block[0]) {
-      return doc.block[0].heading || "Untitled";
+    if (!doc) return "Untitled";
+
+    switch (doc._type) {
+      case "posts":
+        return doc.block?.[0]?.heading || "Untitled";
+      case "img":
+        return doc.title || "Untitled";
+      case "video":
+        return doc.title || "Untitled";
+      case "audio":
+        return doc.title || "Untitled";
+      case "quote":
+        return doc.quote?.substring(0, 30) + "..." || "Untitled";
+      case "team":
+        return doc.name || "Untitled";
+      case "category":
+        return doc.title || "Untitled";
+      case "library":
+        return doc.title || "Untitled";
+      case "model":
+        return doc.title || "Untitled";
+      case "glossary":
+        return doc.title || "Untitled";
+      default:
+        return "Untitled";
     }
-    return doc.title || doc.heading || doc.name || "Untitled";
   };
 
   return (

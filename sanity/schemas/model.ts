@@ -17,3 +17,15 @@ export default defineType({
     }),
   ],
 });
+
+export interface ModelDocument {
+  _type: "model";
+  _id: string;
+  title?: string;
+  file?: {
+    asset: {
+      url: string;
+      originalFilename?: string;
+    };
+  };
+}

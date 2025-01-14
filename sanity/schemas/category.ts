@@ -54,3 +54,22 @@ export default defineType({
     }),
   ],
 });
+
+export interface CategoryDocument {
+  _type: "category";
+  _id: string;
+  title?: string;
+  slug?: {
+    current: string;
+  };
+  model?: {
+    _ref: string;
+    _type: "reference";
+  };
+  isMain?: boolean;
+  subcategories?: Array<{
+    _ref: string;
+    _type: "reference";
+  }>;
+  sceneIdentifier?: string;
+}

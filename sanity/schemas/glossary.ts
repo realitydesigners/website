@@ -76,3 +76,30 @@ export default defineType({
     },
   },
 });
+
+export interface GlossaryDocument {
+  _type: "glossary";
+  _id: string;
+  title?: string;
+  slug?: {
+    current: string;
+  };
+  definition?: string;
+  model?: {
+    _ref: string;
+    _type: "reference";
+  };
+  mediaRef?: {
+    image?: {
+      image?: {
+        asset: {
+          url: string;
+        };
+      };
+    };
+  };
+  refPosts?: Array<{
+    _ref: string;
+    _type: "reference";
+  }>;
+}

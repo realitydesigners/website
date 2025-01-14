@@ -37,3 +37,19 @@ export default defineType({
     }),
   ],
 });
+
+export interface QuoteDocument {
+  _type: "quote";
+  _id: string;
+  quote?: string;
+  mediaRef?: {
+    image?: {
+      image?: {
+        asset: {
+          url: string;
+        };
+      };
+    };
+    layout?: string;
+  };
+}

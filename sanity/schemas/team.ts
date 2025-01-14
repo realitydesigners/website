@@ -91,3 +91,25 @@ export default defineType({
     }),
   ],
 });
+
+export interface TeamDocument {
+  _type: "team";
+  _id: string;
+  name?: string;
+  slug?: {
+    current: string;
+  };
+  role?: string;
+  shortBio?: string;
+  image?: {
+    asset: {
+      url: string;
+    };
+  };
+  scene?: string;
+  block?: Array<any>;
+  instagram?: string;
+  twitter?: string;
+  website?: string;
+  tiktok?: string;
+}

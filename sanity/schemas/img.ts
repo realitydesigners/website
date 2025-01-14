@@ -36,7 +36,6 @@ export interface ImageDocument {
 export default defineType({
   type: "document",
   name: "img",
-
   title: "Image",
   fields: [
     defineField({

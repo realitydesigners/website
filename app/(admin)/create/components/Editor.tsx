@@ -278,6 +278,112 @@ export function Editor({ selectedDoc }: EditorProps) {
     }));
   };
 
+  const renderContent = () => {
+    if (!selectedDoc) return null;
+
+    switch (selectedDoc._type) {
+      case "posts":
+        // Ensure block is an array
+        const blocks = Array.isArray(selectedDoc.block) 
+          ? selectedDoc.block 
+          : selectedDoc.block 
+            ? [selectedDoc.block] 
+            : [];
+
+        return blocks.map((block, index) => (
+          <div
+            key={index}
+            className="p-4 bg-white/5 border border-white/10 rounded-md"
+          >
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center space-x-2">
+                <span className="text-sm font-medium text-white/60">
+                  {block._type}
+                </span>
+              </div>
+              <button
+                onClick={() => removeBlock(index)}
+                className="text-white/40 hover:text-white/60"
+              >
+                Remove
+              </button>
+            </div>
+
+            {block._type === BLOCK_TYPES.CONTENT && (
+              <div className="space-y-4">
+                {/* Content block rendering */}
+              </div>
+            )}
+
+            {block._type === BLOCK_TYPES.HEADING && (
+              <div className="space-y-4">
+                {getFields("headingBlock").map((field) => {
+                  const Component = field.component;
+                  return (
+                    <Component
+                      key={field.name}
+                      label={field.title}
+                      description={field.description}
+                      value={block[field.name as keyof typeof block]}
+                      onChange={(value: any) =>
+                        updateBlock(index, {
+                          [field.name]: value,
+                        } as any)
+                      }
+                      {...(field.type === "reference"
+                        ? { options: teamMembers }
+                        : {})}
+                      {...field.options}
+                    />
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        ));
+
+      case "team":
+        return (
+          <div className="p-4 bg-white/5 border border-white/10 rounded-md">
+            {getFields("team").map((field) => {
+              const Component = field.component;
+              return (
+                <Component
+                  key={field.name}
+                  label={field.title}
+                  description={field.description}
+                  value={selectedDoc[field.name as keyof typeof selectedDoc]}
+                  onChange={(value: any) => handleInputChange(field.name, value)}
+                  {...(field.type === "reference" ? { options: teamMembers } : {})}
+                  {...field.options}
+                />
+              );
+            })}
+          </div>
+        );
+
+      default:
+        return (
+          <div className="p-4 bg-white/5 border border-white/10 rounded-md">
+            {getFields(selectedDoc._type).map((field) => {
+              const Component = field.component;
+              return (
+                <Component
+                  key={field.name}
+                  label={field.title}
+                  description={field.description}
+                  value={(formData as any)[field.name]}
+                  onChange={(value: any) => handleInputChange(field.name, value)}
+                  {...(field.type === "reference" ? { options: teamMembers } : {})}
+                  {...field.options}
+                />
+              );
+            })}
+          </div>
+        );
+    }
+  };
+
   return (
     <div className="flex flex-col h-full">
       <header className="flex items-center justify-between px-6 py-3 border-b border-white/10 bg-[#0a0a0a]">
@@ -352,137 +458,9 @@ export function Editor({ selectedDoc }: EditorProps) {
       </header>
 
       <div className="flex-1 p-8 space-y-6 overflow-auto">
-        {selectedDoc._type === "posts" ? (
-          <>
-            <div className="space-y-4">
-              <label className="block text-sm font-medium text-white/60">
-                Slug
-              </label>
-              <input
-                type="text"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                className="w-full p-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="post-slug"
-              />
-            </div>
-
-            {blocks.map((block, index) => (
-              <div
-                key={index}
-                className="p-4 bg-white/5 border border-white/10 rounded-md"
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm font-medium text-white/60">
-                      {block._type}
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => removeBlock(index)}
-                    className="text-white/40 hover:text-white/60"
-                  >
-                    Remove
-                  </button>
-                </div>
-
-                {block._type === BLOCK_TYPES.CONTENT && (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-white/60 mb-2">
-                        Content
-                      </label>
-                      <div className="flex space-x-2 mb-4">
-                        <button className="px-3 py-1 bg-white/10 rounded text-sm text-white hover:bg-white/20">
-                          Add Image
-                        </button>
-                        <button className="px-3 py-1 bg-white/10 rounded text-sm text-white hover:bg-white/20">
-                          Add Video
-                        </button>
-                        <button className="px-3 py-1 bg-white/10 rounded text-sm text-white hover:bg-white/20">
-                          Add Quote
-                        </button>
-                      </div>
-                      <RichTextEditor
-                        value={block.content || []}
-                        onChange={(newContent) => {
-                          updateBlock(index, { content: newContent });
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {block._type === BLOCK_TYPES.HEADING && (
-                  <div className="space-y-4">
-                    {getFields("headingBlock").map((field) => {
-                      const Component = field.component;
-                      return (
-                        <Component
-                          key={field.name}
-                          label={field.title}
-                          description={field.description}
-                          value={block[field.name as keyof typeof block]}
-                          onChange={(value: any) =>
-                            updateBlock(index, {
-                              [field.name]: value,
-                            } as any)
-                          }
-                          {...(field.type === "reference"
-                            ? { options: teamMembers }
-                            : {})}
-                          {...field.options}
-                        />
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            ))}
-
-            <div className="flex space-x-2">
-              <button
-                onClick={() => addBlock(BLOCK_TYPES.HEADING)}
-                className="px-4 py-2 bg-white/10 rounded text-white hover:bg-white/20"
-              >
-                Add Heading Block
-              </button>
-              <button
-                onClick={() => addBlock(BLOCK_TYPES.CONTENT)}
-                className="px-4 py-2 bg-white/10 rounded text-white hover:bg-white/20"
-              >
-                Add Content Block
-              </button>
-              <button
-                onClick={() => addBlock(BLOCK_TYPES.TEAM)}
-                className="px-4 py-2 bg-white/10 rounded text-white hover:bg-white/20"
-              >
-                Add Team Block
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="space-y-6">
-            {getFields(selectedDoc._type).map((field) => {
-              const Component = field.component;
-              return (
-                <Component
-                  key={field.name}
-                  label={field.title}
-                  description={field.description}
-                  value={(formData as any)[field.name]}
-                  onChange={(value: any) =>
-                    handleInputChange(field.name, value)
-                  }
-                  {...(field.type === "reference"
-                    ? { options: teamMembers }
-                    : {})}
-                  {...field.options}
-                />
-              );
-            })}
-          </div>
-        )}
+        <div className="space-y-4">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

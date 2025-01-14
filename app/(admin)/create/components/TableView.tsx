@@ -7,24 +7,62 @@ import { RiImageLine, RiEditLine, RiDeleteBinLine } from "react-icons/ri";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useDocument } from "../context/DocumentContext";
+import { schemaConfig } from '../config/schemaConfig';
 
 interface Post {
   _id: string;
   _createdAt: string;
   _type: string;
-  block?: Array<{
-    heading: string;
-    subheading: string;
-    imageRef?: {
-      imageUrl?: string;
-      imageAlt?: string;
-    };
-  }>;
-  imageUrl?: string;
   title?: string;
-  slug: {
-    current: string;
+  alt?: string;
+  quote?: string;
+  name?: string;
+  role?: string;
+  description?: string;
+  definition?: string;
+  block?: {
+    heading?: string;
+    subheading?: string;
+    layout?: string;
+    publicationDate?: string;
+    imageUrl?: string;
+    team?: {
+      name?: string;
+      role?: string;
+      image?: string;
+    };
+    category?: {
+      title?: string;
+      slug?: string;
+    };
   };
+  imageUrl?: string;
+  slug?: {
+    current?: string;
+  };
+  team?: {
+    name?: string;
+    image?: string;
+  };
+  url?: string;
+  videoUrl?: string;
+  audioUrl?: string;
+  mediaRef?: {
+    image?: {
+      image?: {
+        asset: {
+          url: string;
+        };
+      };
+    };
+    layout?: string;
+  };
+  instagram?: string;
+  twitter?: string;
+  website?: string;
+  tiktok?: string;
+  scene?: string;
+  shortBio?: string;
 }
 
 interface TableViewProps {
@@ -40,24 +78,13 @@ export function TableView({ type }: TableViewProps) {
     const fetchDocuments = async () => {
       setIsLoading(true);
       try {
-        const query = `*[_type == "${type}"] {
-          _id,
-          _createdAt,
-          _type,
-          block[] {
-            ...,
-            heading,
-            subheading,
-            "imageRef": {
-              "imageUrl": imageRef->image.asset->url,
-              "imageAlt": imageRef->alt
-            }
-          },
-          "imageUrl": image.asset->url,
-          title,
-          slug
-        }`;
-        const result = await client.fetch(query);
+        const config = schemaConfig[type];
+        if (!config) {
+          console.error(`No configuration found for type: ${type}`);
+          return;
+        }
+        const result = await client.fetch(config.query);
+        console.log(result);
         setDocuments(result);
       } catch (error) {
         console.error("Error fetching documents:", error);
@@ -69,73 +96,37 @@ export function TableView({ type }: TableViewProps) {
     fetchDocuments();
   }, [type]);
 
+
+
   const handleEdit = (doc: Post) => {
     setSelectedDoc(doc);
   };
 
-  const getImageUrl = (doc: Post) => {
-    if (doc._type === "img" && doc.imageUrl) {
-      return doc.imageUrl;
-    }
-    if (doc.block?.[0]?.imageRef?.imageUrl) {
-      return doc.block[0].imageRef.imageUrl;
-    }
-    return null;
-  };
-
-  const getTitle = (doc: Post) => {
-    if (doc._type === "img") {
-      return doc.title || "Untitled";
-    }
-    return doc.block?.[0]?.heading || "Untitled";
-  };
-
-  const getSubtitle = (doc: Post) => {
-    if (doc._type === "img") {
-      return doc.slug?.current || "No slug";
-    }
-    return doc.block?.[0]?.subheading || "No subheading";
-  };
 
   const getColumns = () => {
-    switch (type) {
-      case "img":
-        return [
-          { key: "image", label: "Image" },
-          { key: "title", label: "Title" },
-          { key: "created", label: "Created" },
-          { key: "actions", label: "Actions" },
-        ];
-      case "posts":
-        return [
-          { key: "image", label: "Image" },
-          { key: "title", label: "Title" },
-          { key: "slug", label: "Slug" },
-          { key: "created", label: "Created" },
-          { key: "actions", label: "Actions" },
-        ];
-      default:
-        return [
-          { key: "image", label: "Image" },
-          { key: "title", label: "Title" },
-          { key: "created", label: "Created" },
-          { key: "actions", label: "Actions" },
-        ];
-    }
+    const config = schemaConfig[type];
+    return config?.columns || [
+      { key: "image", label: "Image" },
+      { key: "title", label: "Title" },
+      { key: "alt", label: "Alt Text" },
+      { key: "team", label: "Team" },
+      { key: "created", label: "Created" },
+      { key: "actions", label: "Actions" },
+    ];
   };
 
   const renderCell = (column: { key: string }, doc: Post) => {
     switch (column.key) {
       case "image":
+        const imageUrl = doc.block?.imageUrl || 
+                        doc.imageUrl || 
+                        doc.mediaRef?.image?.image?.asset?.url;
         return (
-          <td
-            key={`${doc._id}-${column.key}`}
-            className="px-6 py-4 whitespace-nowrap"
-          >
-            {getImageUrl(doc) ? (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4 whitespace-nowrap">
+            {imageUrl ? (
               <img
-                src={getImageUrl(doc)!}
-                alt={getTitle(doc)}
+                src={imageUrl}
+                alt={doc.block?.heading || doc.title || doc.quote || "Image"}
                 className="h-12 w-12 rounded-lg object-cover"
               />
             ) : (
@@ -145,17 +136,42 @@ export function TableView({ type }: TableViewProps) {
             )}
           </td>
         );
+
+      case "heading":
       case "title":
+        const title = doc.block?.heading || doc.title || doc.name || doc.quote;
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
-            <div className="text-sm text-white">{getTitle(doc)}</div>
-            {type === "posts" && (
-              <div className="text-xs text-white/40 line-clamp-2">
-                {getSubtitle(doc)}
-              </div>
-            )}
+            <div className="text-sm text-white">{title || "Untitled"}</div>
           </td>
         );
+
+      case "subheading":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-xs text-white/60 line-clamp-2">
+              {doc.block?.subheading || doc.description || "No subheading"}
+            </div>
+          </td>
+        );
+
+      case "team":
+        const teamName = doc.block?.team?.name || doc.team?.name;
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">{teamName || "No team"}</div>
+          </td>
+        );
+
+      case "category":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">
+              {doc.block?.category?.title || "-"}
+            </div>
+          </td>
+        );
+
       case "slug":
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
@@ -164,6 +180,14 @@ export function TableView({ type }: TableViewProps) {
             </span>
           </td>
         );
+
+      case "alt":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">{doc.alt || "No alt text"}</div>
+          </td>
+        );
+
       case "created":
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
@@ -172,6 +196,7 @@ export function TableView({ type }: TableViewProps) {
             </span>
           </td>
         );
+
       case "actions":
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
@@ -188,10 +213,85 @@ export function TableView({ type }: TableViewProps) {
             </div>
           </td>
         );
+
+      case "url":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">
+              {doc.url || doc.videoUrl || doc.audioUrl || "-"}
+            </div>
+          </td>
+        );
+
+      case "quote":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60 line-clamp-2">
+              {doc.quote || "-"}
+            </div>
+          </td>
+        );
+
+      case "layout":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">
+              {doc.mediaRef?.layout || doc.block?.layout || "-"}
+            </div>
+          </td>
+        );
+
+      case "socials":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="flex space-x-2">
+              {doc.instagram && (
+                <span className="text-xs text-white/60">Instagram</span>
+              )}
+              {doc.twitter && (
+                <span className="text-xs text-white/60">Twitter</span>
+              )}
+              {doc.website && (
+                <span className="text-xs text-white/60">Website</span>
+              )}
+              {doc.tiktok && (
+                <span className="text-xs text-white/60">TikTok</span>
+              )}
+            </div>
+          </td>
+        );
+
+      case "shortBio":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60 line-clamp-2">
+              {doc.shortBio || "-"}
+            </div>
+          </td>
+        );
+
+      case "name":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white">
+              {doc.name || "-"}
+            </div>
+          </td>
+        );
+
+      case "role":
+        return (
+          <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
+            <div className="text-sm text-white/60">
+              {doc.role || "-"}
+            </div>
+          </td>
+        );
+
       default:
         return (
           <td key={`${doc._id}-${column.key}`} className="px-6 py-4">
-            -
+            <span className="text-sm text-white/60">-</span>
           </td>
         );
     }

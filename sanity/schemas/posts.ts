@@ -57,3 +57,34 @@ export default defineType({
     },
   },
 });
+
+export interface PostsDocument {
+  _type: "posts";
+  _id: string;
+  block?: Array<{
+    _type: string;
+    heading?: string;
+    subheading?: string;
+    imageRef?: {
+      _ref: string;
+      _type: "reference";
+      image?: {
+        asset: {
+          url: string;
+        };
+      };
+    };
+    publicationDate?: string;
+    team?: {
+      _ref: string;
+      _type: "reference";
+    };
+    category?: {
+      _ref: string;
+      _type: "reference";
+    };
+  }>;
+  slug?: {
+    current: string;
+  };
+}
