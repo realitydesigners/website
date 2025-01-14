@@ -176,20 +176,26 @@ export function HeadingBlock({ block, onUpdate }: HeadingBlockProps) {
 
 export function HeadingBlockMini() {
   return (
-    <div className="w-full aspect-[3/2] bg-black/40 rounded-lg p-2 flex flex-col gap-1.5">
+    <div className="w-full aspect-[3/2] bg-white/10 rounded-lg p-2 flex flex-col gap-1.5 border border-white/5">
       {/* Mini date */}
-      <div className="w-12 h-1.5 bg-white/10 rounded-full" />
-      
+      <div className="mt-auto justify-between flex gap-1">
+        <div className="w-6 h-1.5 bg-white/10  rounded-full" />
+        <div className="w-20 h-1.5 bg-white/10 rounded-full" />
+      </div>
+      <div className="w-full  h-full bg-white/10  rounded-lg" />
+   
+
+ 
       {/* Mini heading */}
-      <div className="w-full h-2 bg-white/20 rounded-full" />
+      <div className="w-full h-2 bg-white/10 rounded-full" />
       
       {/* Mini subheading */}
       <div className="w-3/4 h-1.5 bg-white/10 rounded-full" />
       
       {/* Mini metadata */}
       <div className="mt-auto flex gap-1">
-        <div className="w-6 h-1.5 bg-white/5 rounded-full" />
-        <div className="w-8 h-1.5 bg-white/5 rounded-full" />
+        <div className="w-6 h-1.5 bg-white/10 rounded-full" />
+        <div className="w-8 h-1.5 bg-white/10 rounded-full" />
       </div>
     </div>
   );

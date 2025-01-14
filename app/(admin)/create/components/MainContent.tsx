@@ -33,7 +33,7 @@ const contentTypes = [
     title: "Posts",
     type: "posts",
     icon: RiFileTextLine,
-    description: "Create a new blog post or article",
+    description: "Create a new blog post",
     defaultBlock: {
       _type: "headingBlock",
       _key: Math.random().toString(36).substring(2, 15),
@@ -135,7 +135,7 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
             return (
               <div
                 key={item.type}
-                className="group p-[1px] rounded-xl bg-[linear-gradient(20deg,transparent_0%,var(--tw-gradient-from)_20%,var(--tw-gradient-via)_50%,var(--tw-gradient-to)_80%,transparent_100%)] from-white/10 via-white/5 to-transparent hover:from-white/20 hover:via-white/10 hover:to-transparent transition-all duration-500 relative overflow-hidden before:absolute before:inset-0 before:bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.3),transparent)] before:-translate-x-[100%] before:opacity-0 hover:before:translate-x-[100%] hover:before:opacity-100 before:transition-all before:duration-700 before:ease-out"
+                className="group p-[1px]  rounded-xl bg-[linear-gradient(20deg,transparent_0%,var(--tw-gradient-from)_20%,var(--tw-gradient-via)_50%,var(--tw-gradient-to)_80%,transparent_100%)] from-white/10 via-white/5 to-transparent hover:from-white/20 hover:via-white/10 hover:to-transparent transition-all duration-500 relative overflow-hidden before:absolute before:inset-0 before:bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.3),transparent)] before:-translate-x-[100%] before:opacity-0 hover:before:translate-x-[100%] hover:before:opacity-100 before:transition-all before:duration-700 before:ease-out"
               >
                 <button
                   onClick={() => handleTypeSelect(item)}

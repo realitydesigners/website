@@ -66,11 +66,11 @@ interface BlockButtonProps {
 const BlockButton = ({ onClick, icon, title, description, preview }: BlockButtonProps) => (
   <button
     onClick={onClick}
-    className="w-full flex flex-col gap-3 p-3 rounded-lg bg-black/40 hover:bg-black/60 
-      text-white/70 hover:text-white/90 transition-all duration-300 group"
+    className="w-full flex flex-col gap-3 p-3 rounded-lg 
+      text-white/70 hover:text-white/90 transition-all duration-300 group border border-white/10"
   >
     <div className="flex items-center gap-3">
-      <div className="w-6 h-6 flex items-center justify-center rounded-lg bg-blue-500/10 text-blue-500">
+      <div className="w-6 h-6 flex items-center justify-center p-1 rounded-lg bg-white/10 text-white/25">
         {icon}
       </div>
       <div className="flex-1 text-left">
@@ -92,7 +92,7 @@ const EditorSidebar = ({
   BLOCK_TYPES: any;
 }) => (
   selectedDoc?._type === "posts" && (
-    <div className="fixed right-0 top-14 bottom-0 w-72 border-l border-white/10 bg-[#0a0a0a] overflow-auto">
+    <div className="fixed right-0 top-14 bottom-0 w-72 border-l border-white/10 bg-black overflow-auto">
       <div className="p-4 space-y-3">
         <h3 className="text-sm font-medium text-white/60 px-2">Add Blocks</h3>
         <div className="space-y-2">
