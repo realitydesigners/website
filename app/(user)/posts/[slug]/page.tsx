@@ -4,77 +4,88 @@ import PostsList from "@/components/items/PostsList";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
+import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import React, { Suspense } from "react";
-import { generatePageMetadata } from "@/lib/metadata";
-import { draftMode } from "next/headers";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
   return generateStaticSlugs("posts");
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const resolvedParams = await props.params;
   const post = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
-    qParams: { slug: params.slug },
     tags: ["post"],
+    qParams: { slug: resolvedParams.slug },
   });
 
-  return generatePageMetadata<PostsPayload>(
-    {
-      query: postsBySlugQuery,
-      slug: post?.slug?.current || "",
-      tags: ["post"],
+  const ogImage = urlForOpenGraphImage(post?.block?.[0]?.imageRef);
+
+  return {
+    title: post?.block?.[0]?.heading || "Post",
+    description: post?.block?.[0]?.subheading || "Article details",
+    openGraph: {
+      title: post?.block?.[0]?.heading || "Post",
+      description: post?.block?.[0]?.subheading || "Article details",
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            alt: post?.block?.[0]?.imageRef?.imageAlt || "Article image",
+          },
+        ],
+      }),
     },
-    parent
-  );
+  };
 }
 
-export default async function PageSlugRoute({ params }: Props) {
-  const [currentPost, allPosts] = await Promise.all([
-    sanityFetch<PostsPayload>({
-      query: postsBySlugQuery,
-      qParams: { slug: params.slug },
-      tags: ["post"],
-    }),
-    sanityFetch<PostsPayload[]>({
+export default async function PostSlugRoute(props: Props) {
+  const resolvedParams = await props.params;
+  const currentPost = await sanityFetch<PostsPayload>({
+    query: postsBySlugQuery,
+    tags: ["post"],
+    qParams: { slug: resolvedParams.slug },
+  });
+
+  let otherPosts;
+
+  if (currentPost) {
+    const allPosts = await sanityFetch<PostsPayload[]>({
       query: postsQuery,
       tags: ["post"],
-    }),
-  ]);
+    });
 
-  if (!currentPost) {
-    return null;
+    otherPosts = allPosts.filter(
+      (post) => post.slug?.current !== resolvedParams.slug
+    );
   }
-
-  const otherPosts = allPosts.filter(
-    (post) => post.slug?.current !== currentPost.slug?.current
-  );
 
   const blocks = currentPost?.block || [];
 
   return (
     <>
-      <main>
-        {blocks?.map((block) => (
-          <Blocks key={block._key} block={block as BlockProps} />
-        ))}
-      </main>
-      <Suspense fallback={<div>Loading...</div>}>
-        {otherPosts && (
-          <div className="w-full py-16 px-4 lg:px-8">
-            <PostsList post={otherPosts} />
-          </div>
-        )}
-      </Suspense>
+      {currentPost && (
+        <>
+          <main>
+            {blocks?.map((block) => (
+              <Blocks key={block._key} block={block as BlockProps} />
+            ))}
+          </main>
+          <Suspense fallback={<div>Loading...</div>}>
+            {otherPosts && (
+              <div className="w-full py-16 px-4 lg:px-8">
+                <PostsList post={otherPosts} />
+              </div>
+            )}
+          </Suspense>
+        </>
+      )}
     </>
   );
 }

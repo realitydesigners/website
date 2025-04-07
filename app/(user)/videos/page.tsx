@@ -1,25 +1,26 @@
 import { VideoList } from "@/components/items/VideoList";
 import { sanityFetch } from "@/sanity/lib/client";
-import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
 import { getVideosQuery } from "@/sanity/lib/queries";
 import { VideoPayload } from "@/types";
+import { Metadata } from "next";
+import React from "react";
 
-type Props = {
-  params: { slug: string };
+export const metadata: Metadata = {
+  title: "Videos",
+  description: "Videos",
 };
 
-export function generateStaticParams() {
-  return generateStaticSlugs("video");
-}
-export default async function VideoPage({ params }: Props) {
-  const videos: VideoPayload[] = await sanityFetch({
+const Page = async (props: any) => {
+  const videos = await sanityFetch<VideoPayload[]>({
     query: getVideosQuery,
-    tags: ["video"],
-    qParams: { slug: params },
+    tags: ["videos"],
   });
+
   return (
     <div className="flex-cols bg-black flex h-auto w-full flex-wrap lg:px-12">
       <VideoList videos={videos} />
     </div>
   );
-}
+};
+
+export default Page;

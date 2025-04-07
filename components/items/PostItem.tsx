@@ -1,7 +1,6 @@
 "use client";
 import { SanityImage } from "@/components/global/Images";
-import { play } from "@/app/fonts";
-import { BlockItem, PostsPayload } from "@/types";
+import { BlockItem } from "@/types";
 import Link from "next/link";
 import { FC } from "react";
 
