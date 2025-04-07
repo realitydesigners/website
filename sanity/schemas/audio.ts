@@ -1,30 +1,5 @@
 import { defineField, defineType } from "sanity";
 
-export interface AudioDocument {
-  _type: "audio";
-  title?: string;
-  description?: string;
-  audioFile?: {
-    asset: {
-      _ref: string;
-      _type: "reference";
-      url?: string;
-    };
-  };
-  team?: {
-    _ref: string;
-    _type: "reference";
-    name?: string;
-    image?: {
-      asset: {
-        _ref: string;
-        _type: "reference";
-        url?: string;
-      };
-    };
-  };
-}
-
 export default defineType({
   type: "document",
   name: "audio",
@@ -63,3 +38,28 @@ export default defineType({
     },
   },
 });
+
+export interface AudioDocument {
+  _type: "audio";
+  title?: string;
+  description?: string;
+  audioFile?: {
+    asset: {
+      _ref: string;
+      _type: "reference";
+      url?: string;
+    };
+  };
+  team?: {
+    _ref: string;
+    _type: "reference";
+    name?: string;
+    image?: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+        url?: string;
+      };
+    };
+  };
+}

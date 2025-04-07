@@ -1,10 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaYoutube, FaInstagram, FaTiktok } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname === "/create") return null;
+
   return (
     <footer className="w-full bg-black px-6 py-16 ">
       <div className="max-w-7xl mx-auto">

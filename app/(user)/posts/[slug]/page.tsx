@@ -4,41 +4,55 @@ import PostsList from "@/components/items/PostsList";
 import { postsBySlugQuery, postsQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
+import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { PostsPayload } from "@/types";
-import { Metadata, ResolvingMetadata } from "next";
-import React, { Suspense, useMemo } from "react";
-import { generatePageMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
+import React, { Suspense } from "react";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
   return generateStaticSlugs("posts");
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  return generatePageMetadata<PostsPayload>(
-    {
-      query: postsBySlugQuery,
-      slug: params.slug,
-      tags: ["post"],
-    },
-    parent
-  );
-}
-
-export default async function PageSlugRoute({ params }: Props) {
-  const currentPost = await sanityFetch<PostsPayload>({
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const resolvedParams = await props.params;
+  const post = await sanityFetch<PostsPayload>({
     query: postsBySlugQuery,
-    qParams: { slug: params.slug },
-    tags: [`category:${params.slug}`],
+    tags: ["post"],
+    qParams: { slug: resolvedParams.slug },
   });
 
-  console.log(currentPost);
+  const ogImage = urlForOpenGraphImage(post?.block?.[0]?.imageRef);
+
+  return {
+    title: post?.block?.[0]?.heading || "Post",
+    description: post?.block?.[0]?.subheading || "Article details",
+    openGraph: {
+      title: post?.block?.[0]?.heading || "Post",
+      description: post?.block?.[0]?.subheading || "Article details",
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            alt: post?.block?.[0]?.imageRef?.imageAlt || "Article image",
+          },
+        ],
+      }),
+    },
+  };
+}
+
+export default async function PostSlugRoute(props: Props) {
+  const resolvedParams = await props.params;
+  const currentPost = await sanityFetch<PostsPayload>({
+    query: postsBySlugQuery,
+    tags: ["post"],
+    qParams: { slug: resolvedParams.slug },
+  });
+
   let otherPosts;
 
   if (currentPost) {
@@ -47,7 +61,9 @@ export default async function PageSlugRoute({ params }: Props) {
       tags: ["post"],
     });
 
-    otherPosts = allPosts.filter((post) => post.slug?.current !== params.slug);
+    otherPosts = allPosts.filter(
+      (post) => post.slug?.current !== resolvedParams.slug
+    );
   }
 
   const blocks = currentPost?.block || [];
@@ -57,7 +73,9 @@ export default async function PageSlugRoute({ params }: Props) {
       {currentPost && (
         <>
           <main>
-            {blocks?.map((block) => <Blocks block={block as BlockProps} />)}
+            {blocks?.map((block) => (
+              <Blocks key={block._key} block={block as BlockProps} />
+            ))}
           </main>
           <Suspense fallback={<div>Loading...</div>}>
             {otherPosts && (

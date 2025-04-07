@@ -1,93 +1,35 @@
 "use client";
-import { BlockItem, PostsPayload } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
+import { PostsPayload } from "@/types";
 import { FC } from "react";
-
-interface PostItemProps {
-  block: BlockItem;
-  slug?: {
-    current?: string;
-  };
-}
+import { BasePostItem } from "./BasePostItem";
 
 interface PostsListProps {
   post: PostsPayload[];
-  slug?: {
-    current?: string;
-  };
+  className?: string;
 }
 
-export const PostItem: FC<PostItemProps> = ({ block, slug }) => {
-  const { image, heading, subheading, publicationDate } = block;
-
-  const imageUrl = block.imageRef?.imageUrl;
-
-  const formattedDate = publicationDate
-    ? new Date(publicationDate).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      })
-    : "Date not available";
-
-  return (
-    <div className="group flex h-auto flex-col border-gray-600/50 p-1 transition duration-300 ease-in-out hover:shadow-lg">
-      <div className="overflow-hidden">
-        <div className="transform transition duration-300 ease-in-out group-hover:scale-105">
-          <Image
-            src={imageUrl}
-            width={300}
-            height={300}
-            alt={"this"}
-            className="-[.7em] h-[50vw] w-full object-contain object-cover md:h-[33vw]  lg:h-[15vw]"
-          />
-        </div>
-      </div>
-      <span
-        className={` font-kodemono  py-2 h-auto w-full text-gray-400/50  text-xs uppercase  tracking-widest`}
-      >
-        {formattedDate}
-      </span>
-      <div>
-        <Link
-          href={`/posts/${slug?.current}`}
-          className="font-russo  text-white p-1 text-3xl font-bold capitalize leading-[1.2em] text-transparent"
-        >
-          {heading}
-        </Link>
-        <p
-          className={` pt-4 font-kodemono text-gray-200/50  p-1 text-md leading-tight`}
-        >
-          {subheading}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-const PostsList: FC<PostsListProps> = ({ post }) => {
+const PostsList: FC<PostsListProps> = ({ post, className }) => {
   if (!post) {
     return <div>No posts available</div>;
   }
 
   return (
-    <div className="w-full flex flex-col">
-      <h4 className={` font-russo   text-xl lg:text-2xl mb-4  text-gray-200 `}>
+    <div className={`w-full flex flex-col ${className || ""}`}>
+      <h4 className="font-russo text-xl lg:text-2xl mb-4 text-gray-200">
         More Posts
       </h4>
-      <div className="grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {post.map((postItem) =>
           postItem.block?.map((block, index) =>
             block.heading && block.imageRef ? (
-              <PostItem
+              <BasePostItem
                 key={`${postItem.slug?.current}-${index}`}
                 block={block}
-                slug={
-                  postItem.slug?.current
-                    ? { current: postItem.slug.current }
-                    : undefined
-                }
+                slug={postItem.slug}
+                config={{
+                  layout: "list",
+                  imageSize: { width: 500, height: 500 },
+                }}
               />
             ) : null
           )

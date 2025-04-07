@@ -1,25 +1,31 @@
 /** @type {import('next').NextConfig} */
-const config = {
+const nextConfig = {
+  experimental: {
+    reactCompiler: true,
+    inlineCss: true,
+  },
   images: {
     remotePatterns: [
       {
         hostname: "cdn.sanity.io",
         protocol: "https",
         pathname: `/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/**`,
+        search: "",
+        port: "",
       },
       {
         hostname: "source.unsplash.com",
         protocol: "https",
         pathname: "**",
+        search: "",
+        port: "",
       },
     ],
   },
   typescript: {
-    // Set this to false if you want production builds to abort if there's type errors
     ignoreBuildErrors: process.env.VERCEL_ENV === "production",
   },
   eslint: {
-    // Set this to false if you want production builds to abort if there's lint errors
     ignoreDuringBuilds: process.env.VERCEL_ENV === "production",
   },
   logging: {
@@ -27,10 +33,6 @@ const config = {
       fullUrl: true,
     },
   },
-  experimental: {
-    taint: true,
-    urlImports: ["https://themer.sanity.build/"],
-  },
 };
 
-export default config;
+module.exports = nextConfig;

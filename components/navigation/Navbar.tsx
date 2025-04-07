@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+
 import { Buttons } from "@/app/(user)/home/config";
 import { useNavigation } from "@/components/providers/NavigationProvider";
 import { usePathname } from "next/navigation";
@@ -73,31 +73,12 @@ export const Navbar = () => {
               >
                 <div className="relative text-white">
                   {button.icon && (
-                    <motion.div
-                      animate={{
-                        scale: isClicked ? [1, 0.8, 1.1, 1] : 1,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                      }}
-                    >
+                    <div>
                       <button.icon size={22} className="text-white" />
-                    </motion.div>
+                    </div>
                   )}
                   {currentSection === button.sectionId && (
-                    <motion.div
-                      className="absolute inset-[-12px] rounded-xl border border-white/10 bg-gradient-to-tr from-white/5 to-transparent"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.2, 0, 0.2],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
+                    <div className="absolute inset-[-12px] rounded-xl border border-white/10 bg-gradient-to-tr from-white/5 to-transparent" />
                   )}
                 </div>
               </button>

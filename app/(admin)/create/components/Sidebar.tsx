@@ -1,7 +1,5 @@
 "use client";
-
 import { useCallback, useState, useEffect } from "react";
-import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { usePathname } from "next/navigation";
 import {
@@ -16,7 +14,6 @@ import {
   RiGamepadLine,
   RiBookmarkLine,
   RiArrowRightSLine,
-  RiAddLine,
 } from "react-icons/ri";
 
 const contentTypes = [
@@ -64,14 +61,47 @@ export function Sidebar({
     async (type: string) => {
       setIsLoading(true);
       try {
-        const query = `*[_type == "${type}"] {
-        _id,
-        _type,
-        block,
-        "title": block[0].heading,
-        _createdAt
-      } | order(_createdAt desc)`;
-        const results = await client.fetch(query);
+        let query = '';
+        
+        switch (type) {
+          case "posts":
+            query = `*[_type == "posts"] {
+              _id,
+              _type,
+              block[0] {
+                heading,
+                subheading
+              },
+              _createdAt
+            }`;
+            break;
+          case "quote":
+            query = `*[_type == "quote"] {
+              _id,
+              _type,
+              quote,
+              _createdAt
+            }`;
+            break;
+          case "team":
+            query = `*[_type == "team"] {
+              _id,
+              _type,
+              name,
+              role,
+              _createdAt
+            }`;
+            break;
+          default:
+            query = `*[_type == "${type}"] {
+              _id,
+              _type,
+              title,
+              _createdAt
+            }`;
+        }
+
+        const results = await client.fetch(query + ' | order(_createdAt desc)');
         setDocuments(results);
         onTypeSelect(type);
       } catch (error) {
@@ -89,17 +119,39 @@ export function Sidebar({
   }, [selectedType, fetchDocuments]);
 
   const getDocumentTitle = (doc: any) => {
-    if (doc._type === "posts" && doc.block && doc.block[0]) {
-      return doc.block[0].heading || "Untitled";
+    if (!doc) return "Untitled";
+
+    switch (doc._type) {
+      case "posts":
+        return doc.block?.heading || "Untitled";
+      case "img":
+        return doc.title || "Untitled";
+      case "video":
+        return doc.title || "Untitled";
+      case "audio":
+        return doc.title || "Untitled";
+      case "quote":
+        return doc.quote?.substring(0, 20) + "..." || "Untitled";
+      case "team":
+        return doc.name || "Untitled";
+      case "category":
+        return doc.title || "Untitled";
+      case "library":
+        return doc.title || "Untitled";
+      case "model":
+        return doc.title || "Untitled";
+      case "glossary":
+        return doc.title || "Untitled";
+      default:
+        return "Untitled";
     }
-    return doc.title || doc.heading || doc.name || "Untitled";
   };
 
   return (
-    <div className="w-64 h-screen bg-gradient-to-b from-black via-[#0a0a0a]/90 to-black border-r border-white/10 flex flex-col">
+    <div className="w-64 h-[calc(100vh-60px)] bg-gradient-to-b from-black via-[#0a0a0a]/90 to-black border-r border-white/10 flex flex-col">
       <div className="flex-1 overflow-auto">
-        <div className="p-3">
-          <div className="space-y-0.5">
+        <div className="p-2">
+          <div className="">
             {contentTypes.map((item) => {
               const Icon = item.icon;
               const isSelected = selectedType === item.type;
@@ -166,11 +218,7 @@ export function Sidebar({
         </div>
       )}
 
-      {isLoading && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-          <div className="animate-pulse text-white/60">Loading...</div>
-        </div>
-      )}
+   
     </div>
   );
 }

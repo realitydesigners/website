@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Buttons } from "../config";
-import { motion } from "framer-motion";
 
 interface NavigationDotsProps {
   currentSection: string;
@@ -39,13 +38,12 @@ export const NavigationDots: React.FC<NavigationDotsProps> = ({
             className="relative flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
             aria-label={`Navigate to ${button.name}`}
           >
-            <motion.div
+            <div
               className={`absolute inset-0 rounded-full bg-gradient-to-tr from-white/5 to-white/10 backdrop-blur-sm transition-opacity duration-300 ${
                 currentSection === button.sectionId
                   ? "opacity-100"
                   : "opacity-0"
               }`}
-              layoutId="activeRing"
             />
 
             <div
@@ -56,16 +54,7 @@ export const NavigationDots: React.FC<NavigationDotsProps> = ({
               } before:absolute before:inset-[-4px] before:rounded-full before:ring-2 before:ring-white/10 before:transition-all before:duration-300 group-hover:before:ring-4 group-hover:before:ring-white/20`}
             >
               {button.icon && (
-                <motion.div
-                  animate={{
-                    scale:
-                      clickedButton === button.sectionId ? [1, 0.8, 1.1, 1] : 1,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                    ease: "easeInOut",
-                  }}
-                >
+                <div>
                   <button.icon
                     size={22}
                     className={`transition-all duration-300 ${
@@ -75,21 +64,10 @@ export const NavigationDots: React.FC<NavigationDotsProps> = ({
                         : "text-white/40"
                     }`}
                   />
-                </motion.div>
+                </div>
               )}
               {currentSection === button.sectionId && (
-                <motion.div
-                  className="absolute inset-[-8px] rounded-full bg-gradient-to-tr from-white/10 to-white/5"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.2, 0, 0.2],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                <div className="absolute inset-[-8px] rounded-full bg-gradient-to-tr from-white/10 to-white/5" />
               )}
             </div>
           </button>

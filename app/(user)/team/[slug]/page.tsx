@@ -2,39 +2,53 @@ import TeamItem from "@/components/items/TeamItem";
 import { teamBySlugQuery } from "@/sanity/lib//queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import { generateStaticSlugs } from "@/sanity/lib/generateStaticSlugs";
+import { urlForOpenGraphImage } from "@/sanity/lib/utils";
 import { TeamPayload } from "@/types";
-import { Metadata, ResolvingMetadata } from "next";
-import { generatePageMetadata } from "@/lib/metadata";
-
+import { Metadata } from "next";
 import React from "react";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
   return generateStaticSlugs("team");
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  return generatePageMetadata<TeamPayload>(
-    {
-      query: teamBySlugQuery,
-      slug: params.slug,
-      tags: ["team"],
-    },
-    parent
-  );
-}
-
-export default async function PageSlugRoute({ params }: Props) {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const resolvedParams = await props.params;
   const team = await sanityFetch<TeamPayload>({
     query: teamBySlugQuery,
-    qParams: { slug: params.slug },
-    tags: [`category:${params.slug}`],
+    tags: ["team"],
+    qParams: { slug: resolvedParams.slug },
+  });
+  // @ts-ignore
+  const ogImage = urlForOpenGraphImage(team?.image);
+
+  return {
+    title: team?.name || "Team Member",
+    description: team?.shortBio || "Team member details",
+    openGraph: {
+      title: team?.name || "Team Member",
+      description: team?.shortBio || "Team member details",
+      ...(ogImage && {
+        images: [
+          {
+            url: ogImage,
+            alt: team?.name || "Team member image",
+          },
+        ],
+      }),
+    },
+  };
+}
+
+export default async function TeamSlugRoute(props: Props) {
+  const resolvedParams = await props.params;
+  const team = await sanityFetch<TeamPayload>({
+    query: teamBySlugQuery,
+    qParams: { slug: resolvedParams.slug },
+    tags: [`category:${resolvedParams.slug}`],
   });
 
   if (!team) {

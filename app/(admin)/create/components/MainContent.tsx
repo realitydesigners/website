@@ -13,7 +13,7 @@ import {
   RiBookmarkLine,
   RiArrowRightLine,
 } from "react-icons/ri";
-import { useDocument } from "../layout";
+import { useDocument } from "../context/DocumentContext";
 
 const gradients = {
   posts: "[20deg] from-purple-500/20 via-indigo-400/10 to-blue-500/20",
@@ -33,7 +33,7 @@ const contentTypes = [
     title: "Posts",
     type: "posts",
     icon: RiFileTextLine,
-    description: "Create a new blog post or article",
+    description: "Create a new blog post",
     defaultBlock: {
       _type: "headingBlock",
       _key: Math.random().toString(36).substring(2, 15),
@@ -109,20 +109,12 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
     const newDoc: {
       _type: string;
       _id: string;
-      block?: Array<{
-        _type: string;
-        _key: string;
-        heading: string;
-        subheading: string;
-      }>;
+      block?: any[];
     } = {
       _type: type.type,
       _id: `drafts.${Math.random().toString(36).substring(2, 15)}`,
+      ...(type.type === "posts" ? { block: [] } : {})
     };
-
-    if (type.type === "posts") {
-      newDoc.block = [type.defaultBlock];
-    }
 
     setSelectedDoc(newDoc);
   };
@@ -137,13 +129,13 @@ export function MainContent({ onTypeSelect }: MainContentProps) {
           Choose a content type to get started
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {contentTypes.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.type}
-                className="group p-[1px] rounded-xl bg-[linear-gradient(20deg,transparent_0%,var(--tw-gradient-from)_20%,var(--tw-gradient-via)_50%,var(--tw-gradient-to)_80%,transparent_100%)] from-white/10 via-white/5 to-transparent hover:from-white/20 hover:via-white/10 hover:to-transparent transition-all duration-500 relative overflow-hidden before:absolute before:inset-0 before:bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.3),transparent)] before:-translate-x-[100%] before:opacity-0 hover:before:translate-x-[100%] hover:before:opacity-100 before:transition-all before:duration-700 before:ease-out"
+                className="group p-[1px]  rounded-xl bg-[linear-gradient(20deg,transparent_0%,var(--tw-gradient-from)_20%,var(--tw-gradient-via)_50%,var(--tw-gradient-to)_80%,transparent_100%)] from-white/10 via-white/5 to-transparent hover:from-white/20 hover:via-white/10 hover:to-transparent transition-all duration-500 relative overflow-hidden before:absolute before:inset-0 before:bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.3),transparent)] before:-translate-x-[100%] before:opacity-0 hover:before:translate-x-[100%] hover:before:opacity-100 before:transition-all before:duration-700 before:ease-out"
               >
                 <button
                   onClick={() => handleTypeSelect(item)}
