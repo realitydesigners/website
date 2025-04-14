@@ -1,10 +1,8 @@
-import config from "@/sanity.config";
-import { NextStudio } from "next-sanity/studio";
+import React from "react";
+import StudioClient from "./client";
 
-export const dynamic = "force-static";
-
-export { metadata, viewport } from "next-sanity/studio";
+export const dynamic = "force-dynamic";
 
 export default function StudioPage() {
-	return <NextStudio config={config} />;
+  return <StudioClient />;
 }

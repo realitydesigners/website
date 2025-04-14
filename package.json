@@ -2,7 +2,7 @@
   "name": "reality-designers",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build --turbopack",
     "dev": "next dev",
     "format": "biome format --write ./components ./app ./sanity"
   },
@@ -32,7 +32,7 @@
     "babel-plugin-react-compiler": "^19.0.0-beta-55955c9-20241229",
     "classnames": "2.5.1",
     "date-fns": "3.6.0",
-    "next": "^15.1.3",
+    "next": "^15.3.0",
     "next-sanity": "9.3.10",
     "next-sanity-image": "6.1.1",
     "react": "^19.0.0",
