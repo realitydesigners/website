@@ -26,11 +26,11 @@ export default async function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="bg-black">
-        {/* <NavigationProvider> */}
-        <SiteNavbar />
-        {children}
-        <Footer />
-        {/* </NavigationProvider> */}
+        <NavigationProvider>
+          <SiteNavbar />
+          {children}
+          <Footer />
+        </NavigationProvider>
         <Analytics />
       </body>
     </html>
